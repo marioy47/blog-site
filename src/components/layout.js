@@ -10,7 +10,9 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import "./layout.css"
+import "./layout.scss"
+
+import GithubSvg from "../images/svg/github-brands.svg"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -35,6 +37,7 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
+        <GithubSvg />
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

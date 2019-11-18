@@ -1,1 +1,33 @@
-@import "~bootstrap/scss/bootstrap";
+// Variables Override
+$pink: #f50057;
+
+$danger: $pink;
+
+$body-color: #37474f;
+$link-color: $pink;
+$font-size-base: 1rem;
+$font-family-base: "Fira Sans";
+$line-height-base: 1.7;
+$font-weight-normal: 300;
+$h1-font-size: $font-size-base * 3.052;
+$h2-font-size: $font-size-base * 2.441;
+$h3-font-size: $font-size-base * 1.953;
+$h4-font-size: $font-size-base * 1.563;
+$h5-font-size: $font-size-base * 1;
+$h6-font-size: $font-size-base * 0.8;
+
+// Bootstrap reboot
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+
+// Styling
+html {
+  font-size: 18px;
+}
+
+// Pages and components
+@import "header";
+@import "footer";
+@import "site-inner";

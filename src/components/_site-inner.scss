@@ -1,6 +1,8 @@
 .site-inner {
+  border: 1px solid transparent;
   @include make-container();
   @include make-container-max-widths();
+  min-height: calc(100vh - #{$site-header-height} - #{$site-footer-height});
 
   h1 {
     text-align: center;

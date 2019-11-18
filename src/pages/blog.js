@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const BlogPage = ({ data }) => (
-  <Layout>
+  <Layout className="blog">
     <SEO title="Mario's Blog" />
     <h1>Mario's Blog</h1>
     {data.allMarkdownRemark.edges.map(({ node }) => {
@@ -40,7 +40,7 @@ export const query = graphql`
             slug
           }
           frontmatter {
-            date
+            date(formatString: "MMMM Do, YYYY")
             title
             tags
           }

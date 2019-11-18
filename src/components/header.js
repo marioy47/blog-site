@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-import IcondDeveloperRound from "../images/svg/icon-developer-round.svg"
+import IconDeveloper from "../images/svg/icon-developer.svg"
 
 const Header = ({ siteTitle }) => (
   <header className="site-header">
@@ -10,7 +10,7 @@ const Header = ({ siteTitle }) => (
       <nav>
         <h1 className="site-title">
           <Link to="/">
-            <IcondDeveloperRound />
+            <IconDeveloper />
           </Link>
         </h1>
         <ul className="main-menu">

@@ -3,7 +3,11 @@
     display: flex;
     margin-bottom: 6rem;
     min-height: 10rem;
-    border: 1px solid blue;
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      box-shadow: 0 0 30px rgba($color: #000000, $alpha: 0.1);
+    }
 
     aside {
       flex: 2;

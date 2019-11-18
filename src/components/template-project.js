@@ -4,15 +4,13 @@ import { graphql } from "gatsby"
 import Layout from "./layout"
 import SEO from "./seo"
 
-const TemplateBlog = ({ data }) => {
-  console.log(data)
+const TemplateProject = ({ data }) => {
   return (
     <Layout>
-      <SEO title="Blog Post" />
+      <SEO title={data.title} />
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
     </Layout>
   )
-  //   return <pre>{JSON.stringify(data, undefined, 4)}</pre>
 }
 
 export const query = graphql`
@@ -37,4 +35,4 @@ export const query = graphql`
   }
 `
 
-export default TemplateBlog
+export default TemplateProject

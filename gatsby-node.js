@@ -13,7 +13,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const template = path.resolve(__dirname, "src/components/template-blog.js")
   const result = await graphql(`
     {
       allMarkdownRemark(
@@ -36,14 +35,19 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
+
+  let template = path.resolve(__dirname, "src/components/template-blog.js")
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    console.log("@@@@@@@@@@@@@@@ Slug", node.fields.slug)
+    // Select the template depending if its a blog or a project.
+    if (node.fields.slug.indexOf("projects")) {
+      template = path.resolve(__dirname, "src/components/template-project.js")
+    }
     actions.createPage({
       path: node.fields.slug,
       component: template,
       context: {
         slug: node.fields.slug,
-        id: node.id,
+        title: node.title,
       },
     })
   })

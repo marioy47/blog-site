@@ -1,0 +1,33 @@
+.portfolio {
+  article {
+    display: flex;
+    margin-bottom: 6rem;
+    min-height: 10rem;
+    border: 1px solid blue;
+
+    aside {
+      flex: 2;
+    }
+
+    main {
+      flex: 3;
+    }
+  }
+
+  main {
+    display: flex;
+    padding: 0 1rem;
+    flex-direction: column;
+
+    .summary {
+      flex: 2;
+    }
+
+    .tags {
+      text-align: right;
+    }
+    .read-more {
+      text-align: right;
+    }
+  }
+}

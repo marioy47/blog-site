@@ -1,6 +1,18 @@
 .site-footer {
+  border-top: 1px solid rgba($color: #000000, $alpha: 0.1);
   .wrapper {
     @include make-container();
     @include make-container-max-widths();
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+  }
+
+  .footer-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
   }
 }

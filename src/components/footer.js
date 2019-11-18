@@ -17,17 +17,29 @@ const Footer = () => {
         <nav>
           <ul className="footer-menu">
             <li>
-              <a href="https://twitter.com/marioy47" target="_blank">
+              <a
+                href="https://twitter.com/marioy47"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <TwitterSvg />
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/marioyepes/" target="_blank">
+              <a
+                href="https://www.linkedin.com/in/marioyepes/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <LinkedinSvg />
               </a>
             </li>
             <li>
-              <a href="https://github.com/marioy47/" target="_blank">
+              <a
+                href="https://github.com/marioy47/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <GithubSvg />
               </a>
             </li>

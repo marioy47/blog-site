@@ -20,9 +20,7 @@ const Layout = ({ children, className = "" }) => {
   return (
     <div className={className}>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div>
-        <main className="site-inner">{children}</main>
-      </div>
+      <div className="site-inner">{children}</div>
       <Footer />
     </div>
   )

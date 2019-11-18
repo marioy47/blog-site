@@ -5,13 +5,14 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const PortfolioPage = ({ data }) => {
+  let count = 0
   return (
-    <Layout>
+    <Layout className="portfolio">
       <SEO title="Projects ans Success Stories" />
       <h1>This are some of the projects that I’ve worked on</h1>
       {data.allMarkdownRemark.edges.map(({ node }) => {
         return (
-          <article>
+          <article key={count++}>
             <aside>
               <Img
                 fluid={node.frontmatter.cover.childImageSharp.fluid}
@@ -19,7 +20,9 @@ const PortfolioPage = ({ data }) => {
               />
             </aside>
             <main>
-              <h2>{node.frontmatter.title}</h2>
+              <h2 className="title">{node.frontmatter.title}</h2>
+              <div className="summary">Summary</div>
+              <div className="tags">{node.frontmatter.tags}</div>
               <div className="read-more">
                 <Link to={node.fields.slug}>Read More</Link>
               </div>
@@ -48,7 +51,7 @@ export const query = graphql`
             tags
             cover {
               childImageSharp {
-                fluid(maxWidth: 500, maxHeight: 300, cropFocus: CENTER) {
+                fluid(maxWidth: 500, maxHeight: 400, cropFocus: CENTER) {
                   ...GatsbyImageSharpFluid
                 }
               }

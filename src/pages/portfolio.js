@@ -48,7 +48,7 @@ export const query = graphql`
             tags
             cover {
               childImageSharp {
-                fluid(maxWidth: 500, maxHeight: 300) {
+                fluid(maxWidth: 500, maxHeight: 300, cropFocus: CENTER) {
                   ...GatsbyImageSharpFluid
                 }
               }

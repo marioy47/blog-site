@@ -58,6 +58,15 @@ module.exports = {
               linkImagesToOriginal: false,
             },
           },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              aliases: {
+                zsh: "bash",
+                showLineNumbers: true,
+              },
+            },
+          },
         ],
       },
     },

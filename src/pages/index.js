@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <Layout className="page-index">
     <SEO title="Home" />
     <div className="wrapper">
       <div className="left">

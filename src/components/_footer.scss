@@ -19,4 +19,14 @@
     padding: 0;
     display: flex;
   }
+
+  svg {
+    width: 1.7rem;
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+
+  a:hover path {
+    fill: $link-color;
+  }
 }

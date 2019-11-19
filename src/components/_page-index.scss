@@ -1,0 +1,73 @@
+.page-index {
+  background-color: $pink;
+  color: $body-bg;
+
+  .site-header {
+    background-color: $pink;
+    a {
+      color: $body-bg;
+    }
+    li a:after {
+      background-color: $body-bg;
+    }
+    .site-title a {
+      background-color: $body-bg;
+
+      path {
+        fill: $pink;
+      }
+
+      &:hover {
+        background-color: $body-color;
+      }
+    }
+  }
+
+  .site-inner .wrapper {
+    display: flex;
+    .right,
+    .left {
+      flex: 1;
+      display: flex;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .site-inner .left {
+    padding-right: 2rem;
+    h1,
+    h2,
+    h3 {
+      font-weight: 400;
+      text-align: right;
+      margin: 0;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 5.2rem;
+      font-weight: 700;
+    }
+  }
+
+  .site-inner .right {
+    .gatsby-image-wrapper {
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+  }
+
+  .site-footer {
+    color: $body-bg;
+    a {
+      color: $body-bg;
+    }
+    path {
+      fill: $body-bg;
+    }
+    a:hover path {
+      fill: $body-color;
+    }
+  }
+}

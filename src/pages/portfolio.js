@@ -1,15 +1,17 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/layout"
+import Site from "../components/site-layout"
 import SEO from "../components/seo"
 
 const PortfolioPage = ({ data }) => {
   let count = 0
   return (
-    <Layout className="portfolio">
+    <Site className="page-portfolio">
       <SEO title="Projects ans Success Stories" />
-      <h1>This are some of the projects that I’ve worked on</h1>
+      <h1 className="text-center">
+        This are some of the projects that I’ve worked on
+      </h1>
       {data.allMarkdownRemark.edges.map(({ node }) => {
         return (
           <article key={count++}>
@@ -30,7 +32,7 @@ const PortfolioPage = ({ data }) => {
           </article>
         )
       })}
-    </Layout>
+    </Site>
   )
 }
 

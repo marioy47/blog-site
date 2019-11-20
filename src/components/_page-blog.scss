@@ -1,10 +1,7 @@
-.blog {
+.page-blog {
   article {
-    display: flex;
-    align-items: center;
     border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
     transition: all 0.3s ease-in;
-    padding: 0 1rem;
 
     &:hover {
       box-shadow: 0 0 30px rgba($color: #000000, $alpha: 0.1);
@@ -12,12 +9,17 @@
     }
 
     header {
-      flex: 3;
+      min-height: 6em;
+      display: flex;
+      align-items: center;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
     aside {
-      flex: 1;
       text-align: right;
-      //   display: flex;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 }

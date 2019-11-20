@@ -1,20 +1,20 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
+import SiteLayout from "../components/site-layout"
 import SEO from "../components/seo"
 
 const BlogPage = ({ data }) => (
-  <Layout className="blog">
+  <SiteLayout className="page-blog">
     <SEO title="Mario's Blog" />
-    <h1>Mario's Blog</h1>
+    <h1 className="text-center">Mario's Blog</h1>
     {data.allMarkdownRemark.edges.map(({ node }) => {
       return (
-        <article>
-          <header>
-            <h2>{node.frontmatter.title}</h2>
+        <article className="row">
+          <header className="col-sm-9">
+            <h4>{node.frontmatter.title}</h4>
           </header>
-          <aside>
+          <aside className="col-sm-3">
             <time>{node.frontmatter.date}</time>
             <div className="read-more">
               <Link to={node.fields.slug}>Read More</Link>
@@ -25,7 +25,7 @@ const BlogPage = ({ data }) => (
     })}
     {/* <pre>{JSON.stringify(data, undefined, 4)}</pre> */}
     <Link to="/">Go back to the homepage</Link>
-  </Layout>
+  </SiteLayout>
 )
 
 export const query = graphql`

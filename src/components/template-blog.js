@@ -5,7 +5,6 @@ import Layout from "./layout"
 import SEO from "./seo"
 
 const TemplateBlog = ({ data }) => {
-  console.log(data)
   return (
     <Layout>
       <SEO title="Blog Post" />

@@ -9,12 +9,14 @@ import CopyrightSvg from "../images/svg/copyright-solid.svg"
 
 const Footer = () => {
   return (
-    <footer className="site-footer">
-      <div className="wrapper">
-        <div className="copyright">
-          © {new Date().getFullYear()}, Mario Andrés Yepes
+    <footer className="site-footer container">
+      <div className="row">
+        <div className="col-sm-3">
+          <div className="copyright">
+            © {new Date().getFullYear()}, Mario Andrés Yepes
+          </div>
         </div>
-        <nav>
+        <nav className="col-sm-9">
           <ul className="footer-menu">
             <li>
               <a

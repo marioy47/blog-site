@@ -5,14 +5,16 @@ import React from "react"
 import IconDeveloper from "../images/svg/icon-developer.svg"
 
 const Header = ({ siteTitle }) => (
-  <header className="site-header">
-    <div className="wrapper">
-      <nav>
+  <header className="site-header container">
+    <div className="row">
+      <div className="col-3">
         <h1 className="site-title">
           <Link to="/">
             <IconDeveloper />
           </Link>
         </h1>
+      </div>
+      <nav className="col-9">
         <ul className="main-menu">
           <li>
             <Link to="/portfolio">Portfolio</Link>

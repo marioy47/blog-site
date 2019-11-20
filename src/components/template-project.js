@@ -1,18 +1,18 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
-import Layout from "./layout"
+import SiteLayout from "./site-layout"
 import SEO from "./seo"
 
 const TemplateProject = ({ data }) => {
   return (
-    <Layout>
+    <SiteLayout>
       <SEO title={data.title} />
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
       <div className="back-link">
         <Link to="/portfolio">Back to Portfolio</Link>
       </div>
-    </Layout>
+    </SiteLayout>
   )
 }
 

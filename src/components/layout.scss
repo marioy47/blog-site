@@ -16,6 +16,8 @@ $site-footer-height: 60px;
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities";
 
 // Styling
 html {
@@ -23,9 +25,18 @@ html {
 }
 
 a {
-  font-weight: 700;
+  font-weight: 500;
 }
 
+a svg path {
+  fill: $link-color;
+}
+
+a:hover svg path {
+  fill: $link-hover-color;
+}
+
+// Heading Font Sizes
 $previous: 1 / 1.25;
 @for $i from 6 through 1 {
   h#{$i} {
@@ -35,12 +46,12 @@ $previous: 1 / 1.25;
 }
 
 // Pages and components
-@import "header";
-@import "footer";
+@import "site-header";
+@import "site-footer";
 @import "site-inner";
-
-@import "portfolio";
-@import "blog";
 @import "page-index";
+
+@import "page-portfolio";
+@import "page-blog";
 
 @import "prismjs";

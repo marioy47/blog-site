@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Mario Yepes Personal Blog`,
-    description: `Here I'll postgin notes, articles, tutorials and of course my portfolio!`,
+    description: `This is the Portfolio and Blog site of Mario Yepes C. Here I'll postgin notes, articles, tutorials and of course my portfolio!`,
     author: `@marioy47`,
   },
   plugins: [
@@ -35,7 +35,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Fira Sans:300,400,700"],
+          families: ["Fira Sans:300,500,700"],
         },
       },
     },
@@ -74,7 +74,7 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
-          default: require.resolve("./src/components/layout.js"),
+          default: require.resolve("./src/components/site-layout.js"),
         },
       },
     },

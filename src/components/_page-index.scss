@@ -3,13 +3,14 @@
 .page-index .site-header {
   background-color: $pink;
   color: $body-bg;
+
   a {
     color: $body-bg;
-
     &:after {
       background-color: $body-bg;
     }
   }
+
   svg path {
     fill: $body-bg;
   }
@@ -30,6 +31,5 @@
 
   .gatsby-image-wrapper {
     border-radius: 50%;
-    opacity: 50%;
   }
 }

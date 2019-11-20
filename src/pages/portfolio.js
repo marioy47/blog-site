@@ -1,30 +1,35 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
-import Site from "../components/site-layout"
+import SiteLayout from "../components/site-layout"
 import SEO from "../components/seo"
+import PortfolioTags from "../components/portfolio-tags"
 
 const PortfolioPage = ({ data }) => {
+  console.log(data)
   let count = 0
   return (
-    <Site className="page-portfolio">
+    <SiteLayout className="page-portfolio">
       <SEO title="Projects ans Success Stories" />
-      <h1 className="text-center">
+      <h1 className="text-center">Portfolio</h1>
+      <h4 className="text-center mb-5">
         This are some of the projects that I’ve worked on
-      </h1>
+      </h4>
       {data.allMarkdownRemark.edges.map(({ node }) => {
         return (
-          <article key={count++}>
-            <aside>
+          <article key={count++} className="row">
+            <aside className="col-md-5">
               <Img
                 fluid={node.frontmatter.cover.childImageSharp.fluid}
                 alt={node.frontmatter.title}
               />
             </aside>
-            <main>
-              <h2 className="title">{node.frontmatter.title}</h2>
-              <div className="summary">Summary</div>
-              <div className="tags">{node.frontmatter.tags}</div>
+            <main className="col-md-7">
+              <h3>{node.frontmatter.title}</h3>
+              <div className="summary">{node.frontmatter.summary}</div>
+              <div className="tags">
+                <PortfolioTags tags={node.frontmatter.tags} />
+              </div>
               <div className="read-more">
                 <Link to={node.fields.slug}>Read More</Link>
               </div>
@@ -32,7 +37,7 @@ const PortfolioPage = ({ data }) => {
           </article>
         )
       })}
-    </Site>
+    </SiteLayout>
   )
 }
 
@@ -51,9 +56,10 @@ export const query = graphql`
             date
             title
             tags
+            summary
             cover {
               childImageSharp {
-                fluid(maxWidth: 500, maxHeight: 400, cropFocus: CENTER) {
+                fluid(maxHeight: 400) {
                   ...GatsbyImageSharpFluid
                 }
               }

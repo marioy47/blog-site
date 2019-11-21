@@ -9,6 +9,10 @@ summary: Wordpess plugin that allowed the client to embed a mediacal diagnostics
 
 # "Patient Education" WordPress Plugin
 
+![Cover Image](pe-cover-image.png)
+
 iHealthSpot is a Miami based company dedicated to the construction of websites mainly for medical practices, also provides
 
-![Patient Education Dashboard](pe-dashboard.png)
+![Patient Education Dashboard](pe-complete-dashboard.png)
+
+![Patient Education Frontend](pe-complete-list.png)

@@ -2,6 +2,7 @@ import React from "react"
 import SiteLayout from "../components/site-layout"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import ContactForm from "../components/contact-formspree"
 
 const AboutPage = ({ data }) => {
   return (
@@ -37,6 +38,11 @@ const AboutPage = ({ data }) => {
         >
           Download my Rèsumè
         </a>
+      </div>
+      <div className="row">
+        <div className="col-sm-6 m-auto">
+          <ContactForm />
+        </div>
       </div>
     </SiteLayout>
   )

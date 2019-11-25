@@ -39,7 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
   let template = path.resolve(__dirname, "src/components/template-blog.js")
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     // Select the template depending if its a blog or a project.
-    if (node.fields.slug.indexOf("projects")) {
+    if (node.fields.slug.indexOf("projects") > 0) {
       template = path.resolve(__dirname, "src/components/template-project.js")
     }
     actions.createPage({

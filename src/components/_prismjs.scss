@@ -18,3 +18,13 @@
   padding-left: 0.75em;
   border-left: 0.25em solid #f99;
 }
+
+.gatsby-highlight {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+
+  > pre {
+    border-radius: 3px;
+  }
+}

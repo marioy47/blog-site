@@ -1,6 +1,8 @@
 // Variables Override
 $pink: #f50057;
 $danger: $pink;
+$green: #00c853;
+$red: #d84315;
 $body-color: #37474f;
 $link-color: $pink;
 $font-family-base: "Fira Sans";
@@ -54,6 +56,22 @@ $previous: 1 / 1.25;
 @import "page-index";
 
 @import "page-portfolio";
+@import "project-node";
 @import "page-blog";
+@import "blog-node";
 
 @import "prismjs";
+
+.page-about {
+  .success,
+  .error {
+    border: 1px solid $success;
+    border-radius: 5px;
+    color: $success;
+    padding: 0.5rem 1rem;
+  }
+  .error {
+    border: 1px solid $red;
+    color: $red;
+  }
+}

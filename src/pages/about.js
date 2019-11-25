@@ -41,6 +41,8 @@ const AboutPage = ({ data }) => {
       </div>
       <div className="row">
         <div className="col-sm-6 m-auto">
+          <h2 className="text-center">Need help with a project? </h2>
+          <h4 className="text-center">Lets talk</h4>
           <ContactForm />
         </div>
       </div>

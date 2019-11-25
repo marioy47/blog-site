@@ -6,7 +6,7 @@ import SEO from "./seo"
 
 const TemplateProject = ({ data }) => {
   return (
-    <SiteLayout>
+    <SiteLayout className="template-project project-node">
       <SEO title={data.title} />
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
       <div className="back-link">

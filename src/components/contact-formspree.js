@@ -16,24 +16,37 @@ class ContactFormspree extends React.Component {
         onSubmit={this.submitForm}
         action="https://formspree.io/mrggvzzo"
         method="POST"
+        className="contact-form"
       >
         <div className="form-group">
           <label>Email:</label>
-          <input type="email" name="email" className="form-control" />
+          <input
+            type="email"
+            name="email"
+            className="form-control"
+            placeholder="email@example.com"
+          />
         </div>
         <div className="form-group">
           <label>Message:</label>
-          <textarea name="message" className="form-control" rows="10" />
+          <textarea
+            name="message"
+            className="form-control"
+            rows="10"
+            placeholder="Tell me about your project"
+          />
         </div>
         <div>
           {status === "SUCCESS" ? (
-            <p>Thanks!</p>
+            <p className="success">Thanks!</p>
           ) : (
             <button className="btn btn-lg btn-danger text-center">
               Submit
             </button>
           )}
-          {status === "ERROR" && <p>Ooops! There was an error.</p>}
+          {status === "ERROR" && (
+            <p className="error">Ooops! There was an error.</p>
+          )}
         </div>
       </form>
     )

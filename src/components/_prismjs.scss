@@ -25,6 +25,12 @@
   margin-bottom: 2rem;
 
   > pre {
-    border-radius: 3px;
+    border-radius: 5px;
   }
+}
+
+
+// Fix on the oceanic theme
+pre[class*="language-"]  {
+  padding-top: initial;
 }

@@ -62,7 +62,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              showLineNumbers: true,
+              // showLineNumbers: true,
               noInlineHighlight: true,
               aliases: {
                 zsh: "bash",

@@ -1,10 +1,17 @@
+// Custom colors
+$gray: #37474f;
+
 // Variables Override
 $pink: #f50057;
 $danger: $pink;
 $green: #00c853;
 $red: #d84315;
-$body-color: #37474f;
-$link-color: $pink;
+$blue: #2962ff;
+
+
+// Link and font colors
+$body-color: $gray;
+$link-color: $blue;
 $font-family-base: "Fira Sans";
 $line-height-base: 1.7;
 $font-weight-normal: 300;
@@ -40,6 +47,11 @@ a svg path {
 
 a:hover svg path {
   fill: $link-hover-color;
+}
+
+blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid rgba($body-color, .5);
 }
 
 // Heading Font Sizes

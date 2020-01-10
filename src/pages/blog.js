@@ -23,8 +23,6 @@ const BlogPage = ({ data }) => (
         </article>
       )
     })}
-    {/* <pre>{JSON.stringify(data, undefined, 4)}</pre> */}
-    <Link to="/">Go back to the homepage</Link>
   </SiteLayout>
 )
 

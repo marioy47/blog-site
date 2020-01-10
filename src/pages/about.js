@@ -34,7 +34,7 @@ const AboutPage = ({ data }) => {
       <div className="text-center pt-5 pb-5">
         <a
           href="https://docs.google.com/document/d/1lP4DPa3Pztid-yCrT8chuKTm_6SRp0Lo7PTq_dmfKI0/export?format=pdf"
-          class="btn btn-lg btn-danger"
+          class="btn btn-lg btn-primary"
         >
           Download my Rèsumè
         </a>

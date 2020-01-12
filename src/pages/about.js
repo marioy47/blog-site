@@ -28,7 +28,7 @@ const AboutPage = ({ data }) => {
           </ul>
         </div>
         <div className="col-sm-6">
-          <Img fluid={data.file.childImageSharp.fluid} />
+          <Img fluid={data.file.childImageSharp.fluid} className="rounded-circle" />
         </div>
       </div>
       <div className="text-center pt-5 pb-5">

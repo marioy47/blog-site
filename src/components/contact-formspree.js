@@ -40,10 +40,10 @@ class ContactFormspree extends React.Component {
           {status === "SUCCESS" ? (
             <p className="success">Thanks!</p>
           ) : (
-            <button className="btn btn-lg btn-danger text-center">
-              Submit
+              <button className="btn btn-lg btn-primary btn-block text-center">
+                Submit
             </button>
-          )}
+            )}
           {status === "ERROR" && (
             <p className="error">Ooops! There was an error.</p>
           )}

@@ -32,6 +32,10 @@ $site-footer-height: 60px;
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/tables";
 
+
+// Responsvie fonts mixin
+@import "~rfs/scss";
+
 // Styling
 html {
   font-size: 18px;
@@ -58,7 +62,7 @@ blockquote {
 $previous: 1 / 1.25;
 @for $i from 6 through 1 {
   h#{$i} {
-    font-size: $previous * 1.25rem;
+    @include font-size($previous * 1.25rem);
   }
   $previous: $previous * 1.25;
 }

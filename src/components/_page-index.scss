@@ -22,11 +22,20 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    min-height: 500px;
+
+    @include media-breakpoint-up(small) {
+      min-height: calc(100vh - 80px - 121px);
+    }
+  }
+
+  .left {
+    @include media-breakpoint-down(small) {
+      text-align: center;
+    }
   }
 
   h1 {
-    font-size: 4.5rem;
+    @include font-size(4.5rem);
   }
 
   .gatsby-image-wrapper {

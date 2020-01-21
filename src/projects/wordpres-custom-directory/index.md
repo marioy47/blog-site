@@ -15,21 +15,25 @@ This plugin I did it as a personal project. And the main propose is to allow you
 
 It also allows you to have a live search for the list and support _Advanced Custom Fields_ for additional information.
 
-<div style="font-style: italic; text-align: center">Configuration Screen</div>
+## Screenshots
+
+### Configuration screen
 
 ![Configuration Screen](wp-custom-dir-config.png)
 
-<div style="font-style: italic; text-align: center">Embedded Help</div>
+### Embedded Help
 
 ![Embedded Help](wp-custom-dir-help.png)
 
-<div style="font-style: italic; text-align: center">Directory Sample</div>
+### Directory Sample
 
 ![Directory Sample](wp-custom-dir-result.png)
 
-Here is the live coding sessions for the creation of the plugin.
+## Live coding sessions
 
-**Note**: This is for demonstration purposes only, there is no sound or explanation of the process.
+Here are the live coding sessions for the creation of the plugin.
+
+_This is for demonstration purposes only, there is no sound or explanation of the process._
 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLqJrOd2CQU3cx-DUq0fPpFyYpLJYkwTba" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

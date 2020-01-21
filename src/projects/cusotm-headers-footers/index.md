@@ -25,17 +25,20 @@ The main reason to create it as a new plugin instead of using one of the existin
 
 So this plugin was created to solve those issues, and used an interface that was easier for them to use.
 
-<div style="text-align: center; font-style: italic;">Custom Headers & Footers with JavaScript code</div>
+## Screenshots
+
+### Custom Headers & Footers with JavaScript code
 
 ![Adding JS code](custom-header-footer-js.png)
 
-<div style="text-align: center; font-style: italic;">Custom Headers & Footers with CSS code</div>
+### Custom Headers & Footers with CSS code
 
 ![Adding CSS code](custom-header-footer-css.png)
 
+### Live Codgin
 Here is the live coding sessions of the development:
 
-**Note**: This is for demonstration purposes only, there is no sound or explanation of the process.
+_This is for demonstration purposes only, there is no sound or explanation of the process._
 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLqJrOd2CQU3cpPdSSU8k5V_ZmoRuISCfv" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

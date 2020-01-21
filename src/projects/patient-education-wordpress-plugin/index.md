@@ -36,26 +36,21 @@ The solution can be summarized in the following requirements.
 - The list of diagnoses/conditions should have filter tools
 - It should be easy to embed the information in any page of a WordPress website.
 
-## Examples
+## Example Site
 
 There are many sites using this plugin, but one of the best examples is in the [Texas Orthopedics](https://www.txortho.com/patient-education/) website:
 
 **Note**: The styling for this particular website was made by an internal iHealthSpot employee.
 
-
-<div style="text-aligh: center; font-style: italic">Configuration of the plugin in one site</div>
+### Configuration of the plugin in one site
 
 ![Patient Education Dashboard](pe-complete-dashboard.png)
 
-
-<div style="text-aligh: center; font-style: italic">The "Patient Education" database in displayed in one site</div>
+### The "Patient Education" database in displayed in one site
 
 ![Patient Education Frontend](pe-complete-list.png)
 
-
-<div style="text-aligh: center; font-style: italic">Displaying One Article</div>
+### Displaying One Article
 
 ![Patient Education Article](pe-article.png)
-
-
 

@@ -17,6 +17,8 @@ It also allows you to have a live search for the list and support _Advanced Cust
 
 Here is the live coding sessions for the creation of the plugin.
 
+**Note**: This is for demonstration purposes only, there is no sound or explanation of the process.
+
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLqJrOd2CQU3cx-DUq0fPpFyYpLJYkwTba" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>

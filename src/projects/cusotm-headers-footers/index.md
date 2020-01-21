@@ -3,7 +3,7 @@ title: Custom Headers & Footers
 cover: custom-header-footer-featured.png
 date: 2019-11-26
 client: iHealthSpot
-tags: wordpress, webpack, php, bitbucket
+tags: wordpress, php, bitbucket, git
 summary: Allows you to add any type of code on the header or footer of a WP page
 ---
 
@@ -22,6 +22,8 @@ The main reason to create it as a new plugin instead of using one of the existin
 - The existing plugins had issues with older versions (version 4.9) of wordpress.
 
 Here is the live coding sessions of the development:
+
+**Note**: This is for demonstration purposes only, there is no sound or explanation of the process.
 
 <div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLqJrOd2CQU3cpPdSSU8k5V_ZmoRuISCfv" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

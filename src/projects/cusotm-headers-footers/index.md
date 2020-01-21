@@ -16,10 +16,22 @@ This plugin was made for the company [iHealthSpot](https://ihealthspot.com) so t
 The main reason to create it as a new plugin instead of using one of the existing ones where:
 
 - There are tags used in Medical Directories in the US that require to add content on both header and footers of a page
+- Some of the tags required you to source an external `js` file and add additional JS objects on the content
 - The existing plugins allowed you to add content globally and not per page
 - The existing plugins did not allow you to set "firing priorities"
 - The marketing team wanted _syntax highlight_ when adding code
-- The existing plugins had issues with older versions (version 4.9) of wordpress.
+- The existing plugins had issues with older versions (version < 4.9) of WordPress.
+- They needed to keep track of which users made which changes to the code
+
+So this plugin was created to solve those issues, and used an interface that was easier for them to use.
+
+<div style="text-align: center; font-style: italic;">Custom Headers & Footers with JavaScript code</div>
+
+![Adding JS code](custom-header-footer-js.png)
+
+<div style="text-align: center; font-style: italic;">Custom Headers & Footers with CSS code</div>
+
+![Adding CSS code](custom-header-footer-css.png)
 
 Here is the live coding sessions of the development:
 

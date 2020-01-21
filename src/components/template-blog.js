@@ -7,7 +7,7 @@ import SEO from "./seo"
 const TemplateBlog = ({ data }) => {
   return (
     <SiteLayout className="template-blog blog-node">
-      <SEO title="Blog Post" />
+      <SEO title={`${data.markdownRemark.frontmatter.title}`} />
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
     </SiteLayout>
   )

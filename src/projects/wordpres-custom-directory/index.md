@@ -4,16 +4,28 @@ cover: wp-custom-dir-featured.png
 date: 2020-01-10
 client: Personal Project
 tags: wordpress, webpack, javascript, php, github
-summary: Wordpress plugin for creating a custom directory using shorcodes
+summary: Wordpress plugin for creating a sortable list of items with filtering options
 ---
 
 # "Custom Directory" WordPress Plugin
 
 ![Cover Image](wp-custom-dir-featured.png)
 
-This is a plugin I did as a personal project that allows you create a list of items (like personal profiles, definitions, reference terms, etc.) and have them embedded in any page.
+This plugin I did it as a personal project. And the main propose is to allow you create a list of items (like personal profiles, definitions, reference terms, etc.) and have them embedded in any page.
 
 It also allows you to have a live search for the list and support _Advanced Custom Fields_ for additional information.
+
+<div style="font-style: italic; text-align: center">Configuration Screen</div>
+
+![Configuration Screen](wp-custom-dir-config.png)
+
+<div style="font-style: italic; text-align: center">Embedded Help</div>
+
+![Embedded Help](wp-custom-dir-help.png)
+
+<div style="font-style: italic; text-align: center">Directory Sample</div>
+
+![Directory Sample](wp-custom-dir-result.png)
 
 Here is the live coding sessions for the creation of the plugin.
 

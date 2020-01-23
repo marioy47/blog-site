@@ -26,6 +26,7 @@ const PortfolioPage = ({ data }) => {
             </aside>
             <main className="col-md-7">
               <h3>{node.frontmatter.title}</h3>
+              <div className="client"><strong>Client:</strong> {node.frontmatter.client}</div>
               <div className="summary">{node.frontmatter.summary}</div>
               <div className="tags">
                 <PortfolioTags tags={node.frontmatter.tags} />
@@ -57,6 +58,7 @@ export const query = graphql`
             title
             tags
             summary
+            client
             cover {
               childImageSharp {
                 fluid(maxHeight: 400) {

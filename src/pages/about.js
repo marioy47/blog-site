@@ -41,11 +41,18 @@ const AboutPage = ({ data }) => {
       </div>
       <div className="row">
         <div className="col-sm-6 m-auto">
-          <h2 className="text-center">Need help with a project? </h2>
+          <h2 className="text-center" id="need-help">Need help with a project? </h2>
           <h4 className="text-center">Lets talk</h4>
           <ContactForm />
         </div>
       </div>
+      <div className="row text-center mt-5">
+        <div className="col-sm-12">
+          <h2>About this site</h2>
+          <p>This site was created using <a href="https://www.gatsbyjs.org/">Gatsby JS</a></p>
+        </div>
+      </div>
+
     </SiteLayout>
   )
 }

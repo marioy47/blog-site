@@ -46,7 +46,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <Link to="/about">
+              <Link to="/about#need-help">
                 <EnvelopeSvg />
               </Link>
             </li>

@@ -3,7 +3,7 @@ title: Banquetes Consuelo C Ecommerce Implementation
 cover: consueloc-homepage.png
 date: 2018-11-24
 client: Banquetes Consuelo C
-tags: figma, design, svg, webdesign, trello, woocommerce, ecommerce
+tags: woocommerce, ecommerce, wordpress, php, javascript, jquery, figma, design, svg, webdesign, trello
 summary: Conversion of the website "Banquetes Consuelo C" to a quotation tool by using the e-commerce plugin WooCommerce and some custom code.
 ---
 

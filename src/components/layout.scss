@@ -63,6 +63,7 @@ $previous: 1 / 1.25;
 @for $i from 6 through 1 {
   h#{$i} {
     @include font-size($previous * 1.25rem);
+    @include margin-top($previous * 1.25rem);
   }
   $previous: $previous * 1.25;
 }

@@ -40,7 +40,7 @@ const AboutPage = ({ data }) => {
         </a>
       </div>
       <div className="row">
-        <div className="col-sm-6 m-auto">
+        <div className="col-sm-8 m-auto">
           <h2 className="text-center" id="need-help">Need help with a project? </h2>
           <h4 className="text-center">Lets talk</h4>
           <ContactForm />

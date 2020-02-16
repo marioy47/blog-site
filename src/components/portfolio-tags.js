@@ -34,6 +34,13 @@ const PortfolioTags = ({ tags }) => {
         return <PhpIcon />
       case "wordpress":
         return <WordpresIcon />
+      case "sass":
+        return <SassIcon />
+      case "email":
+      case "mailchimp":
+        return <EnvelopeIcon />
+      case "node":
+        return <NodeIcon />
       default:
         return ""
     }

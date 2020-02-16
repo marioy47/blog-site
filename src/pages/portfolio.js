@@ -45,7 +45,7 @@ const PortfolioPage = ({ data }) => {
 export const query = graphql`
   {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/src/projects/.*.md/" } }
+      filter: { fileAbsolutePath: { regex: "/projects/.*.md/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {

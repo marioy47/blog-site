@@ -19,21 +19,23 @@ class ContactFormspree extends React.Component {
         className="contact-form"
       >
         <div className="form-group">
-          <label>Email:</label>
+          <label for="email-input">Email:</label>
           <input
             type="email"
             name="email"
             className="form-control"
             placeholder="email@example.com"
+            id="email-input"
           />
         </div>
         <div className="form-group">
-          <label>Message:</label>
+          <label for="message-input">Message:</label>
           <textarea
             name="message"
             className="form-control"
             rows="10"
             placeholder="Tell me about your project"
+            id="message-input"
           />
         </div>
         <div>

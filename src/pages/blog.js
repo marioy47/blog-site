@@ -29,7 +29,7 @@ const BlogPage = ({ data }) => (
 export const query = graphql`
   {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/src/posts/.*.md/" } }
+      filter: { fileAbsolutePath: { regex: "/posts/.*.md/" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {

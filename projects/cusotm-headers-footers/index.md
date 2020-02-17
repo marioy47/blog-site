@@ -25,7 +25,20 @@ The main reason to create it as a new plugin instead of using one of the existin
 
 So this plugin was created to solve those issues, and used an interface that was easier for them to use.
 
+## Technologies Used
+
+This is very simple plugin. It just adds content using the `wp_head` and `wp_footer` WordPress Hooks.
+
+For storing the code I created a new custom post type the supported additional meta information:
+
+- Placement of the code (header or footer)
+- _Firing_ priority
+- Page or pages where the code should be fired
+
+The hard part of this plugin was the creation of a black list of code patters that could not be added. This was achieved by using regular expressions that look for pre-defined patters on the code, and if one of those patters was found then that code would not be added to the header or the footer.
+
 ## Screenshots
+
 
 ### Custom Headers & Footers with JavaScript code
 
@@ -35,7 +48,8 @@ So this plugin was created to solve those issues, and used an interface that was
 
 ![Adding CSS code](custom-header-footer-css.png)
 
-### Live Codgin
+### Live Coding
+
 Here is the live coding sessions of the development:
 
 _This is for demonstration purposes only, there is no sound or explanation of the process._

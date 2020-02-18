@@ -48,7 +48,7 @@ npx create-react-app .
 yarn add @material-ui/core
 ```
 
-### Add the Robot Font and add the responsive meta-tag
+### Add the Roboto Font and add the responsive meta-tag
 
 Then open `public/index.html` with your browser and add the following lines before the closing of the `<head>` tag:
 
@@ -56,6 +56,8 @@ Then open `public/index.html` with your browser and add the following lines befo
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet" />
 ```
+
+![index.html changes](index-html-changes.png)
 
 > We could bundle the font using the package `typeface-roboto` but we would increase the size of our bundle considerable. If you want to know more follow [this link](https://v3.material-ui.com/style/typography/#migration-to-typography-v2)
 
@@ -111,7 +113,7 @@ function App() {
 export default App;
 ```
 
-![Image of the title Excercises](:storage/92b4a944-ba77-4622-bf31-6c216be5b7ac/a16f7d61.png)
+![Image of the title Exercises](first-yarn-start.png)
 
 Great now we can start adding Material-UI components
 
@@ -121,9 +123,9 @@ If you've worked with a framework like Bootstrap, Bulma, Tailwind, etc. You've n
 
 Materia-UI has its own Control just for that and it called [CssBaseline](https://material-ui.com/components/css-baseline/).
 
-Adding baseline could'nt be easier. Just import the component and add it in  `index.js`
+Adding baseline couldn't be easier. Just import the component and add it in  `index.js`
 
-```js {4,9-11}
+```js {4,8-11}
 // src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -146,14 +148,13 @@ ReactDOM.render(
 
 That would render the following:
 
-![Image of the styles changed](:storage/92b4a944-ba77-4622-bf31-6c216be5b7ac/04ea0171.png)
+![Image of the styles changed](cssbaseline-changes.png)
 
 Its not much.. but now we have a base line (hence the name) for all the styles so they look the same **in all browsers**
 
-
 ## Adding some test content
 
-Before we continue with our setup. Lets create some content in our app so we can actually see some changes. Lest add some button and some text in `App.js`:
+Before we continue with our setup. Lets create some content in our app so we can actually see some changes. Lest add a couple of buttons and some text in `App.js`:
 
 ```js {2,9-16}
 // src/App.js
@@ -182,7 +183,7 @@ export default App;
 
 Which would render this:
 
-![Some test content](:storage/92b4a944-ba77-4622-bf31-6c216be5b7ac/08fb48de.png)
+![Some test content](start-content.png)
 
 With this basic content we can add some material magic and actually see the changes.
 
@@ -236,7 +237,7 @@ ReactDOM.render(
 
 And we would have the following:
 
-![Theme color changes](:storage/92b4a944-ba77-4622-bf31-6c216be5b7ac/0997487f.png)
+![Theme color changes](theme-changes.png)
 
 
 

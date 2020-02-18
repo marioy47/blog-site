@@ -9,13 +9,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Mario's Personal Portfolio and Blog`,
+        short_name: `Mario's Blog `,
         start_url: `/`,
         background_color: `#F50057`,
         theme_color: `#2962ff`,
         display: `minimal-ui`,
-        icon: `src/images/icon-developer-round.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon-developer.png`, // This path is relative to the root of the site.
       },
     },
     {

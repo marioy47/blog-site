@@ -5,18 +5,18 @@ tags: npm, node, gulp, webpack, javascript, scss, sass, css
 ---
 # Use Gulp and Webpack together for you asset bundling needs
 
-I [love Webpack](https://marioyepes.com/posts/webpack-wordpress-config/), it allows me to bundle scripts in just one file. And if you par it with [babel](https://babeljs.io/) you can use next generation javascript syntax and still make your scripts compatible with older browsers.
+I [love Webpack](https://marioyepes.com/posts/webpack-wordpress-config/)! It allows me to bundle scripts in just one file. And if you pair it with [babel](https://babeljs.io/) you can use next generation javascript syntax and still make your scripts compatible with older browsers.
 
 The fact of the matter is that if you are going to create a full stack javascript project, you HAVE TO use webpack...
 
-But there is a problem... Webpack is not design for task automation, even though it can do them.
+But there is a problem... Webpack is not design for task automation, even tough it can do them.
 
 For tasks automation, I still think there is no better tool than [gulp](https://gulpjs.com/). Specially when we want to compile SASS files, create zip archives, or deploy code on remote servers.
 
-So here, i'm going to show you have to use gulp for task automation with the following tasks
+So here, I'm going to show you have to use `gulp` with `webpack` for task automation with the following tasks:
 
 - One tasks to compile SASS files into CSS files
-- One tasks to _compile js files with webpack_
+- One tasks to _compile .js files with webpack_
 
 I'm not going to cover how to do complex things like deployment or clean up since I just want to show you how to make this 2 tools work together.
 

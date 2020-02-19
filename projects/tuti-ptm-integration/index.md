@@ -3,35 +3,37 @@ title: PTM & Tuti Soap Integration
 cover: tuti-ptm-homepage.png
 date: 2020-02-15
 client: Tronex
-tags: wordpress, soap, javascript, php, bitbucket, git, unittest
-summary: Tuti.com.co E-commerce and PTM integration using Soap so the e-commerce could sell phone plans.
+tags: php, wordpress, soap, javascript, bitbucket, git, unittest
+summary: Integrate PTM (a "minute plan reseller") system with Tuti (A small business provisioner) E-commerce using Soap.
 ---
 
 # PTM & Tuti Soap Integration
 
 This is one of the more complex projects that I've built for a client.
 
-The main idea of the project was to integrate [Tuti's](https://tuti.com.co) e-commerce with the [PTM](https://ptm.com.co) service.
+The main idea of the project was to integrate [Tuti's](https://tuti.com.co) WordPress E-commerce with [PTM's](https://ptm.com.co) WebService.
 
-Tronex is a local company that provisions small neighborhood stores with products like milk, eggs, batteries, lighters, snacks, etc. without the need of the store owner to contact hundreds of providers.
+[Tronex](http://www.tronex.com/es-es/NUESTRA-COMPA%C3%91%C3%8DA/QUIENES-SOMOS) is a Colombian company that started as a battery factory, and now is changing its focus to provision small neighborhood stores with products like milk, eggs, batteries, lighters, snacks, etc. without the need of the store owner to contact hundreds of providers.
 
-Tuti is an e-commerce created by Tronex so this store owners could make quotes and orders in an e-commerce like environment with the main difference being the payment was done offline. Also, this e-commerce can only be accessed by pre-registered store owners.
+[Tuti](https://tuti.com.co/) is an e-commerce platform created by Tronex so this small store owners could make quotes and orders in an E-commerce like environment with the main difference being the payment was done offline directly to a Tronex representative 20 days after the delivery. Also, this e-commerce can only be accessed by pre-registered store owners.
 
-One of the products that this small owners sell very frequently is "minutes plans". So a store client can purchase something like "10 minutes of talk time on my phone". And that's where PTM comes in: PTM allows any kind of store to sell minutes to any kind of client.
+One of the products that this small owners sell very frequently to its clients are "minutes plans".
 
-For a store owner to be able to sell "minute plans" he/she needs to recharge a balance using an special document with personal barcode directly on a bank or authorized "minutes resellers".
+Minute Plans allows a user to purchase something like "10 minutes of talk time on my phone". And that's where PTM comes in: PTM allows any person to sell minutes to any kind of client.
+
+For a store owner to be able to sell "minute plans" he/she needs to create an account in PTM recharge a balance using an special document with personal barcode directly on a bank or authorized "minutes resellers".
 
 The main idea of this integration was to sell _PTM minute plans_ directly in _Tuti's e-commerce_.
 
 The initial requirements for this project where:
 
-- Display PTM's products inside Tuti's e-commerce like regular Woocommerce products
-- Display only aproved PTM's products in tuti.com.co
+- Display PTM's products inside Tuti's e-commerce like regular WooCommerce products
+- Display only approved PTM's products in tuti.com.co
 - Each store owner has a balance with PTM. Only store owners with available balance could make sells.
 - An store owner should be able to verify his/her balance once logged in.
 - On PTM's products show an inline form that allows the store owner to sell "minute plans"
 - Before each minute purchase was done, the store owner should be able to see his/her balance.
-- The e-commerce should be able to create the barcode document for each store owner.
+- The e-commerce should be able to create the barcode document (a PDF) for each store owner.
 
 ## Technologies used
 
@@ -41,7 +43,7 @@ Also, I used a pre-created script to install [WordPress](https://wordpress.org) 
 
 ## Coding Standards
 
-This project followed WordPress coding standards almost to a 100%. To achieve that I used the following packages:
+This project followed WordPress coding standards almost to a 100%. To achieve that I used the following [packagist](https://packagist.org) packages:
 
 - `dealerdirect/phpcodesniffer-composer-installer` To install coding standards locally
 - `phpcompatibility/php-compatibility` To verify compatibility with PHP version 7 and up
@@ -64,7 +66,7 @@ I used for testing the following packages.
 
 SOAP is something that PHP does not handle very well. Specially when you want to convert SOAP calls to PHP objects.
 
-To achieve that, I needed to use `wsdl2phpgenerator/wsdl2phpgenerator` which is a project that analyzes a local or remote WSDL file and creates a hierarchy of PHP classes so you can make calls to a remote server just by creating and calling methods on PHP objects.
+To achieve that, I used `wsdl2phpgenerator/wsdl2phpgenerator` which is a project that analyzes a local or remote WSDL file and creates a hierarchy of PHP classes so you can make calls to a remote server just by creating and calling methods on PHP objects.
 
 ## PDF Generation from HTML
 
@@ -86,12 +88,25 @@ Finally, I used `indibeast/currency-formatter` version 1.0 to display balances i
 
 The settings page for this project was somewhat long since you needed to configure the following:
 
-- The _SOAP_ end point to make the requests and send the charges information
+- The _SOAP_ end point to make the requests and send information
 - The proxy if any was used for the SOAP server
-- The auth credentials for querying for information
+- The auth credentials for querying for information on the WebService
 - On which page the _Refill_ form should be displayed
 - A selection box to chose which products of all the available will be offered in the e-commerce
 - A template for the generation of a PDF with barcode information
 
 ![Settings Page](tuti-ptm-settings-page.png)
 
+### Account Page
+
+In the account page we added a new path for showing the last sells recorded in PTM and the PTM Balance:
+
+![Accont Balances](tuti-ptm-user-balances)
+
+### Sell minute plans
+
+For each PTM product, there was a form to sell minute plans.
+
+![Sell minutes](tuti-ptm-sell-minutes.png)
+
+The form had to send information using ajax requests and the number and type of fields changed from product to product

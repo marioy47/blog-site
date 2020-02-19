@@ -101,7 +101,7 @@ The settings page for this project was somewhat long since you needed to configu
 
 In the account page we added a new path for showing the last sells recorded in PTM and the PTM Balance:
 
-![Accont Balances](tuti-ptm-user-balances)
+![Accont Balances](tuti-ptm-user-balances.png)
 
 ### Sell minute plans
 

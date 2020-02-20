@@ -12,7 +12,7 @@ module.exports = {
         name: `Mario's Personal Portfolio and Blog`,
         short_name: `Mario's Blog `,
         start_url: `/`,
-        background_color: `#F50057`,
+        background_color: `#2962ff`,
         theme_color: `#2962ff`,
         display: `minimal-ui`,
         icon: `src/images/icon-developer.png`, // This path is relative to the root of the site.

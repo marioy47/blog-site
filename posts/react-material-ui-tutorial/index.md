@@ -1,7 +1,7 @@
 ---
 title: Getting Started with React Material-UI
 date: 2020-02-20
-tags: javascript, materialui, css, react
+tags: javascript, material-ui, css, react
 ---
 
 # Getting Started with React Material-UI
@@ -13,44 +13,42 @@ But the problem is that the official docs assume that you already are familiar w
 
 So I decided to create my own documentation just for that and here it is.
 
+In this blog entry I'm going to create a very simple React App that does nothing, but that it looks good thanks to Material-UI.
+
 ## What is Material-UI ?
 
-Well... Its just a bunch of React components styled using the [material design principles](https://material.io) that are ready to use.
+If you are here is very probable that you already know Material-UI is... But just in case, Material-UI its just a bunch of React components styled using the [material design principles](https://material.io) that are ready to use in any React App.
 
 If you want to start a React Project and don't want to get caught up in the details of styling you app, then Material-UI is just what you need.
 
-
 ## Create a react project and install Material-UI
 
-This is very straight forward. We just need to...
+Lets start our App by doing the following:
 
 - Create the project with `create-react-app`
 - Install Material-UI to the project
 - Add the Roboto Google font
-- Clenaup files
-
-Additionally (and recommended)
-
+- Cleanup files
 - Add the responsive meta-tag
-- Reset the styles with [CssBaseline](https://material-ui.com/components/css-baseline/)
 
-
-**Note* I'm using `yarn` instead of `npm` for installing packages and executing commands since its  faster. You can use `npm` without any problems.
+**Note I'm using `yarn` instead of `npm` for installing packages and executing commands since its  faster. You can use `npm` without any problems.**
 
 ### Create the react app and install Material-UI
 
-You must know this by now. If not [read and follow the tutorial](https://reactjs.org/tutorial/tutorial.html)
+You must know this by now. If not, then you should be following [this tutorial instead](https://reactjs.org/tutorial/tutorial.html)
 
 ```bash
 mkdir react-material-ui-tutorial
 cd react-material-ui-tutorial
-npx create-react-app .
+yarn create react-app . # npx create-react-app .
 yarn add @material-ui/core
 ```
 
 ### Add the Roboto Font and add the responsive meta-tag
 
-Then open `public/index.html` with your browser and add the following lines before the closing of the `<head>` tag:
+This 2 lines should go into `public/index.html` before the closing of the `<head>` tag.
+
+The first one makes our layout to be responsive. The second one loads the _Roboto_ font form [Google Fonts](https://fonts.google.com)
 
 ```html
     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -64,16 +62,18 @@ Then open `public/index.html` with your browser and add the following lines befo
 
 ### Project cleanup
 
-Now lets remove unneeded files in `src`, leaving only `index.js` and `App.js` in that dir.
+Now lets remove unneeded files the `src/` folder, leaving only `index.js` and `App.js` in that dir.
 
 ```bash
 rm src/{App.css,App.test.js,index.css,logo.svg,serviceWorker.js,setupTests.js}
 tree src/
 ```
 
+> Were using some Bash magic there. Curly brackets allow you to append a list of files.
+
 The `src/` directory should look like this:
 
-```
+```bash
 $ tree src
 src
 ├── App.js
@@ -84,7 +84,7 @@ src
 
 ### Refactor `App.js` and `index.js`
 
-Then refactor `index.js` so it doesn't try to import the removed files. At the end it should look like this:
+Then refactor `src/index.js` so it doesn't try to import the removed files. At the end it should look like this:
 
 ```js
 // src/index.js
@@ -105,12 +105,18 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      <h1>React material Tutorial</h1>
+      <h1>React Material-UI Tutorial</h1>
     </div>
   );
 }
 
 export default App;
+```
+
+And start the development to see that we don't have any errors or issues. # Execute this in your terminal:
+
+```bash
+yarn start
 ```
 
 ![Image of the title Exercises](first-yarn-start.png)
@@ -121,9 +127,9 @@ Great now we can start adding Material-UI components
 
 If you've worked with a framework like Bootstrap, Bulma, Tailwind, etc. You've noticed that one of the first things they recommend is to use a CSS library like `normalize.css` or `reboot.css` to unify or resets the display of native controls.
 
-Materia-UI has its own Control just for that and it called [CssBaseline](https://material-ui.com/components/css-baseline/).
+Material-UI has its own Control just for that and it called [CssBaseline](https://material-ui.com/components/css-baseline/).
 
-Adding baseline couldn't be easier. Just import the component and add it in  `index.js`
+Adding baseline couldn't be easier. Just import the component and add it in  `src/index.js`
 
 ```js {4,8-11}
 // src/index.js
@@ -152,9 +158,16 @@ That would render the following:
 
 Its not much.. but now we have a base line (hence the name) for all the styles so they look the same **in all browsers**
 
-## Adding some test content
+## Adding our first elements
 
-Before we continue with our setup. Lets create some content in our app so we can actually see some changes. Lest add a couple of buttons and some text in `App.js`:
+Adding Material-UI is usually a 2 step process:
+
+- Import the component you need
+- Include it in your JSX
+
+Of course you can (and sometimes must) use properties to configure the component to your needs.
+
+So lets change our `src/App.js` file to include some content and a couple of buttons:
 
 ```js {2,9-16}
 // src/App.js
@@ -164,7 +177,7 @@ import { Button } from '@material-ui/core'
 function App() {
   return (
     <div className="App">
-      <h1>React material Tutorial</h1>
+      <h1>React Material-UI Tutorial</h1>
       <h2>This Could be a subtitle</h2>
       <p>And this is a paragraph</p>
       <Button variant="contained" color="primary">
@@ -178,14 +191,65 @@ function App() {
 }
 
 export default App;
-
 ```
 
 Which would render this:
 
 ![Some test content](start-content.png)
 
-With this basic content we can add some material magic and actually see the changes.
+As you can see, we now have a page with 2 buttons: One primary (the blue one) and one secondary.
+
+## Create layouts using Grid
+
+Right now our content seems kind of _Thrown out There_. that's because we're not using any kind of layout or placement.
+
+Lets fix that by using a [Material-UI Grid system](https://material-ui.com/components/grid/) so our content is in the middle and centered. Lets edit `src/App.js` with the following:
+
+```js
+import React from 'react';
+import { Button, Grid, Container } from '@material-ui/core';
+
+function App() {
+  return (
+    <div className="App">
+      <Container maxWidth="md">
+        <Grid item md={12}>
+          <h1>React Material-UI Tutorial</h1>
+          <h2>This Could be a subtitle</h2>
+          <p>And this is a paragraph</p>
+          <Grid container>
+            <Grid item md={6}>
+              <Button variant="contained" color="primary">
+                A Primary button
+              </Button>
+            </Grid>
+            <Grid item md={6}>
+              <Button variant="contained" color="secondary">
+                A Secondary button
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
+  );
+}
+
+export default App;
+```
+
+If you look closely, you can see that we added a `<Container />` tag and multiple `<Grid />` tags.
+
+If you've worked with [Bootstrap](https://getbootstrap.com) you'll see that `<Container />` works very similar to the `.container` class: It incloses the content in a container with a fixed with. In my case I used a container of 960px wide, hence the `maxWidth="md"` parameter.
+
+The `<Grid />` tag has a caveat: You can use the `item` or `container` prop.
+
+Again, if you come from Bootstrap, then `<Grid container>` it's like an element with `.row` class: A block element that is designed to contain cells.
+
+If you use a `<Grid item>` you are actually creating a cell and you **can** specify a with. That's why I used the `md={6}` parameter.
+
+If you want to know more about the _Grid_ parammeters, you can browse the [API documentation](https://material-ui.com/api/grid/)
+
 
 ## Create a Theme
 
@@ -246,7 +310,7 @@ And we would have the following:
 
 Until now we haven't used Material-UI, we just setted up the project.
 
-So lets start by changing the ugly font face in the H1 tag to use roboto. Just open `App.js` and add the following lines:
+So lets start by changing the ugly font face in the H1 tag to use Roboto. Just open `App.js` and add the following lines:
 
 ```js {3,10}
 // App.js

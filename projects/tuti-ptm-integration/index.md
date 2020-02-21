@@ -3,7 +3,7 @@ title: PTM & Tuti Soap Integration
 cover: tuti-ptm-homepage.png
 date: 2020-02-15
 client: Tronex
-tags: php, wordpress, soap, javascript, bitbucket, git, unittest
+tags: php, wordpress, soap, javascript, bitbucket, git, unit-test
 summary: Integrate PTM (a "minute plan reseller") system with Tuti (A small business provisioner) E-commerce using Soap.
 ---
 

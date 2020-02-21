@@ -8,7 +8,7 @@ tags: javascript, material-ui, css, react
 
 So I wanted to learn [Material UI](https://material-ui.com/) since it seems to be the best way to use Material Design in a React Applications.
 
-But the problem is that the official docs assume that you already are familiar with other UI frameworks for react and kind of point you to example projects instead of covering the basics on how to start a project using the toolkit.
+But the problem is that the official docs assume that you already are familiar with other UI frameworks for react and just point you to example projects instead of covering the basics on how to start a project using the toolkit.
 
 
 So I decided to create my own documentation just for that and here it is.
@@ -17,7 +17,7 @@ In this blog entry I'm going to create a very simple React App that does nothing
 
 ## What is Material-UI ?
 
-If you are here is very probable that you already know Material-UI is... But just in case, Material-UI its just a bunch of React components styled using the [material design principles](https://material.io) that are ready to use in any React App.
+If you are here is very probable that you already know Material-UI is... But just in case, Material-UI its just a number of React components styled using the [material design principles](https://material.io), that are ready to use in any React App.
 
 If you want to start a React Project and don't want to get caught up in the details of styling you app, then Material-UI is just what you need.
 
@@ -66,7 +66,6 @@ Now lets remove unneeded files the `src/` folder, leaving only `index.js` and `A
 
 ```bash
 rm src/{App.css,App.test.js,index.css,logo.svg,serviceWorker.js,setupTests.js}
-tree src/
 ```
 
 > Were using some Bash magic there. Curly brackets allow you to append a list of files.
@@ -113,7 +112,7 @@ function App() {
 export default App;
 ```
 
-And start the development to see that we don't have any errors or issues. # Execute this in your terminal:
+Now, lets start the development by issuing this in the terminal:
 
 ```bash
 yarn start
@@ -125,7 +124,7 @@ Great now we can start adding Material-UI components
 
 ## Normalize or CssBaseline
 
-If you've worked with a framework like Bootstrap, Bulma, Tailwind, etc. You've noticed that one of the first things they recommend is to use a CSS library like `normalize.css` or `reboot.css` to unify or resets the display of native controls.
+If you've worked with a framework like Bootstrap, Bulma, Tailwind, etc. You've noticed that one of the first things they recommend is to use a CSS library like `normalize.css` or `reboot.css` to unify or reset the display of native controls.
 
 Material-UI has its own Control just for that and it called [CssBaseline](https://material-ui.com/components/css-baseline/).
 
@@ -156,18 +155,18 @@ That would render the following:
 
 ![Image of the styles changed](cssbaseline-changes.png)
 
-Its not much.. but now we have a base line (hence the name) for all the styles so they look the same **in all browsers**
+Notice how the font is a `sans-serif` family font, and the background is now a light gray. Also, this is how its going to look the same in all browsers. So we have a common _Baseline_.
 
 ## Adding our first elements
 
-Adding Material-UI is usually a 2 step process:
+Adding Material-UI components is usually a 2 step process:
 
 - Import the component you need
 - Include it in your JSX
 
 Of course you can (and sometimes must) use properties to configure the component to your needs.
 
-So lets change our `src/App.js` file to include some content and a couple of buttons:
+So lets change our `src/App.js` file to include some content and to **add our first components**. We'll be adding a couple of buttons:
 
 ```js {2,9-16}
 // src/App.js
@@ -199,24 +198,63 @@ Which would render this:
 
 As you can see, we now have a page with 2 buttons: One primary (the blue one) and one secondary.
 
+## Typography
+
+One important aspect of the _Material Design Language_ is the font management.
+
+If you go over the [Material Design Documentation](https://material.io), you can see that there are a ton of options and rules for font usage and management.
+
+That's why Material-UI has the very powerful component `<Typography />`  which as a ton of options as you [can see in the documentation](https://material-ui.com/api/typography/).  The cool thing is that is only one component.
+
+So lets change hour headings and paragraphs to use the `<Typography />` component:
+
+```js {2,7-9}
+import React from 'react';
+import { Button, Typography } from '@material-ui/core';
+
+function App() {
+  return (
+    <div className="App">
+      <Typography variant="h1" align="center">React Material-UI Tutorial</Typography>
+      <Typography variant="h2">This Could be a subtitle</Typography>
+      <Typography color="textSecondary">And this is a paragraph</Typography>
+      <Button variant="contained" color="primary">
+        A Primary button
+      </Button>
+      <Button variant="contained" color="secondary">
+        A Secondary button
+      </Button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+That will yield
+
+![Using Typography instead of headings and paragraphs](typography.png)
+
+Now we're starting to make some progress.
+
 ## Create layouts using Grid
 
 Right now our content seems kind of _Thrown out There_. that's because we're not using any kind of layout or placement.
 
 Lets fix that by using a [Material-UI Grid system](https://material-ui.com/components/grid/) so our content is in the middle and centered. Lets edit `src/App.js` with the following:
 
-```js
+```js {2,7-8,12-13,17-18,22-25}
 import React from 'react';
-import { Button, Grid, Container } from '@material-ui/core';
+import { Button, Typography, Grid, Container } from '@material-ui/core';
 
 function App() {
   return (
     <div className="App">
       <Container maxWidth="md">
         <Grid item md={12}>
-          <h1>React Material-UI Tutorial</h1>
-          <h2>This Could be a subtitle</h2>
-          <p>And this is a paragraph</p>
+          <Typography variant="h1" align="center">React Material-UI Tutorial</Typography>
+          <Typography variant="h2">This Could be a subtitle</Typography>
+          <Typography color="textSecondary">And this is a paragraph</Typography>
           <Grid container>
             <Grid item md={6}>
               <Button variant="contained" color="primary">
@@ -238,18 +276,63 @@ function App() {
 export default App;
 ```
 
+![Using the Material-UI Grid System](material-ui-grid.png)
+
 If you look closely, you can see that we added a `<Container />` tag and multiple `<Grid />` tags.
 
-If you've worked with [Bootstrap](https://getbootstrap.com) you'll see that `<Container />` works very similar to the `.container` class: It incloses the content in a container with a fixed with. In my case I used a container of 960px wide, hence the `maxWidth="md"` parameter.
+If you've worked with [Bootstrap](https://getbootstrap.com) you'll see that `<Container />` works very similar to the `.container` Bootstrap class: It incloses the content in a container with a fixed with. In my case I used a container of 960px wide, hence the `maxWidth="md"` parameter.
 
-The `<Grid />` tag has a caveat: You can use the `item` or `container` prop.
+Keeping the analogy to Bootstrap, you can see that the `<Grid />` component works both as the `.row` and the `.col` Boostrap classes.
 
-Again, if you come from Bootstrap, then `<Grid container>` it's like an element with `.row` class: A block element that is designed to contain cells.
+When used with the parameter `container` the `Grid` component **creates a row** that contains one or more columns. If you want to be more technical, the `<Grid container />` creates an element with `display: flex`.
 
-If you use a `<Grid item>` you are actually creating a cell and you **can** specify a with. That's why I used the `md={6}` parameter.
+When used with the `item` parameter, it works like the `.col-xx-##` Boostrap class: It create a column inside the row. And again, being technical, it means create an element with `flex-grow` and `flex-basis`.
 
-If you want to know more about the _Grid_ parammeters, you can browse the [API documentation](https://material-ui.com/api/grid/)
+One last peace of important information. Like most of the CSS frameworks it works by the 12 column paradigm. Dividing the with of the canvas in 12 columns. And it is very important that on the `<Grid item />` you also specify either `xs`, `sm`, `md`, `lg` or `xl`. Otherwise Material-UI wont know how big or small is the column and it wont stretch to fill the required space.
 
+If you want to know more about the _Grid_ parameters, you can browse the [API documentation](https://material-ui.com/api/grid/).
+
+
+## Paper
+
+The idea behind Material Design is to emulate how humans perceive materials with the use of shadows and layers.
+
+So we have `Paper` which is a way to emulate a sheet of paper with elements over it.
+
+We're going to use `Paper` to enclose our app and making it more organized.
+
+```js {3,10,18}
+// App.js
+import React, { useState } from 'react';
+import { Typography, TextField, Paper } from '@material-ui/core'
+
+function App() {
+  const [excercises, setExcercises] = useState([]);
+  const [title, setTitle] = useState('')
+
+  return (
+    <Paper clssName='App'>
+      <Typography component='h2' variant='h1' align='center' gutterBottom>
+        Excercises
+      </Typography>
+      <form>
+        <TextField name='title' label='excercise' margin='normal' value={title}
+          onChange={e => setTitle(e.target.value)} />
+      </form>
+    </Paper>
+  );
+}
+
+export default App;
+
+
+```
+
+Notice that we are including all the _Material-UI_ elements ant that now everthihng is inclosed in `<Paper>` instead of a `<div>`
+
+![Image of the form enclosed in a card]()
+
+## Alter the CSS
 
 ## Create a Theme
 
@@ -303,122 +386,6 @@ And we would have the following:
 
 ![Theme color changes](theme-changes.png)
 
-
-
-
-## Change typography
-
-Until now we haven't used Material-UI, we just setted up the project.
-
-So lets start by changing the ugly font face in the H1 tag to use Roboto. Just open `App.js` and add the following lines:
-
-```js {3,10}
-// App.js
-import React, { useState } from 'react';
-import Typography from '@material-ui/core/Typography'
-
-function App() {
-  const [excercises, setExcercises] = useState([]);
-  const [title, setTitle] = useState('')
-  return (
-    <div className="App">
-      <Typography component='h2' variant='h1' align='center' gutterBottom>
-        Excercises
-      </Typography>
-    </div>
-  );
-}
-
-export default App;
-
-```
-
-And that would render:
-
-![Image of the new typography]()
-
-Now we're starting to see the power of _Material-UI_... You get _ready to use_ components with all the Marial options you could ever need in you project.
-
-If you head to the  [documentation](https://v3.material-ui.com/api/typography/), you can see that you have a miriad of options when it comes to just typhography and without the need of using intrincated clases or creating you own CSS.
-
-## Creating forms
-
-Now its time to create a form where we can register our excersises. lets start by bringing those components and then use them in `App.js`.
-
-```js {4,13-15}
-// App.js
-import React, { useState } from 'react';
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
-
-function App() {
-  const [excercises, useExcercises] = useState([]);
-  const [title, useTitle] = useState('')
-  return (
-    <div className="App">
-      <Typography component='h2' variant='h1' align='center' gutterBottom>
-        Excercises
-      </Typography>
-      <form>
-        <TextField name='title' label='excercise' margin='normal' value={title} />
-      </form>
-    </div>
-  );
-}
-
-export default App;
-```
-
-Which renders
-
-![Image of first impout field]()
-
-Not bad... We created a form with just a text field that has some pretty animations when focused on.
-
-The `TextField` as   component, has a lot of options. It would be wise to look at the [TextField documentation](https://v3.material-ui.com/api/text-field/).
-
-## Paper
-
-The idea behind Materia Design is to emulate how humans perceive materias with the use of shadows and layers.
-
-So we have `Paper` which is a way to emulate a sheet of paper with elements over it.
-
-We're going to use `Paper` to enclose our app and making it more organized.
-
-```js {3,10,18}
-// App.js
-import React, { useState } from 'react';
-import { Typography, TextField, Paper } from '@material-ui/core'
-
-function App() {
-  const [excercises, setExcercises] = useState([]);
-  const [title, setTitle] = useState('')
-
-  return (
-    <Paper clssName='App'>
-      <Typography component='h2' variant='h1' align='center' gutterBottom>
-        Excercises
-      </Typography>
-      <form>
-        <TextField name='title' label='excercise' margin='normal' value={title}
-          onChange={e => setTitle(e.target.value)} />
-      </form>
-    </Paper>
-  );
-}
-
-export default App;
-
-
-```
-
-Notice that we are including all the _Material-UI_ elements ant that now everthihng is inclosed in `<Paper>` instead of a `<div>`
-
-![Image of the form enclosed in a card]()
-
-## Buttons
-
-And to finalize this first part, lets add a submit button to our form so we can have a way to send data to wherever we are going to send it.
 
 ## Other Tutorials
 

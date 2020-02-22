@@ -26,7 +26,7 @@ Some of the advantages of bundling web assets are:
 
 If you want to know more about [Webpack](https://webpack.js.org/) and asset bundling, head over to the [documentation page](https://webpack.js.org/concepts/) and have a quick read.
 
-Now that I've convinced you that asses bundling is the way to go. Lets set up a wordpress project that uses **webpack** for asset bundling.
+Now that I've convinced you that asses bundling is the way to go. Lets set up a WordPress project that uses **webpack** for asset bundling.
 
 ## Starting your project.
 
@@ -185,7 +185,7 @@ and execute `npm start` again. You should have a `js/frontend.js` file now with 
 
 Webpack is powerful, very powerful... It uses something called **loaders** that allows you to transform your source files even further.
 
-There are loaders for transforming images into _base64_ strings (that you can use in your scripts afterwards), embedding CSS, traspiling javascript into old format, etc.
+There are loaders for transforming images into _base64_ strings (that you can use in your scripts afterwards), embedding CSS, convert javascript into old format, etc.
 
 In this case, we're going to use the `babel-loader` to convert all the `.js` files written in modern JavaScript into a flavor of JavaScript that is more compatible with older browser, before the bundling happens.
 
@@ -197,7 +197,7 @@ npm install --save-dev babel-loader @babel/core @babel/cli @babel/preset-env
 
 And change `webpack.config.js` to include a **modules** section. This section will have the loaders that we're going to use and specifications on which files should be passed trough which loaders.
 
-```js{12-20}
+```js{12-23}
 // webpack.config.js
 const path = require("path")
 
@@ -215,6 +215,9 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
+        options: {
+          presets: ['@babel/preset-env']
+        }
       },
     ],
   },
@@ -230,7 +233,7 @@ What I'm doing here is:
 
 Now the output file, which is `js/frontend.js` will be compiled from ES6 to an version that is more compatible with older browsers.
 
-![Test arrow function transpiling](test-babel-loader.png)
+![Test arrow function conversion](test-babel-loader.png)
 
 Look at that! No arrow function but a regular function. We're doing great so far.
 
@@ -286,7 +289,7 @@ We also have to instruct webpack to
 - Convert them to `css` by **using** the `sass-loader` and `css-loader`.
 - And then **extract** the results and save them in the `css/` directory:
 
-```js{3, 20-32,35-40}
+```js{3, 23-35,38-43}
 // webpack.config.js
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -305,6 +308,9 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
+        options: {
+          presets: ['@babel/preset-env']
+        }
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -413,7 +419,7 @@ module.exports = {
 
 And very importantly we have to configure _PostCSS_. Which can be done by creating a `postcss` section in `package.json`.
 
-```json{7,15}
+```json{7-15}
 // package.json
 {
   // ...
@@ -432,16 +438,20 @@ And very importantly we have to configure _PostCSS_. Which can be done by creati
 }
 ```
 
+> You can also use a `postcss.config.js` file. More information on PostCSS configuration [here](https://github.com/postcss/postcss-loader#configuration)
+
 Again, execute `npm run build` and have a look at the resulting `.css` file in `css/frontend.min.css` and look how the `rem` measurements have `px` equivalents.
 
 You can test even further by adding more rules in `src/sass/main.scss` that include transitions and `@imports` and look how they are now converted.
 
 ## Using images:
 
-Images? ... Yes, images. Webpack also packs images. We'll be doing 2 things:
+Images? ... Yes, images.
+
+Webpack also packs images. In this project we'll be doing 2 things:
 
 - Compress the images that are in `src/images`
-- Embed any small image used in the `.sass` and `.js` files (less than 8k) inside the code as a **base64** encoded string.
+- Embed any small image (less than 8k) used in the `.sass` and `.js` files inside the code as a **base64** encoded string.
 
 So lets start by installing the required modules:
 
@@ -450,7 +460,6 @@ npm install --save-dev url-loader file-loader image-webpack-loader
 ```
 
 And just for for testing, lets download [this image](https://raw.githubusercontent.com/webpack/media/master/logo/logo-on-white-bg.png) and [this image](https://raw.githubusercontent.com/webpack/media/master/logo/icon-square-small.svg)
-)
 
 ```bash
 mkdir -p src/images/
@@ -460,7 +469,7 @@ wget https://raw.githubusercontent.com/webpack/media/master/logo/icon-square-sma
 
 Also, for testing. Let change the `src/sass/main.scss` file:
 
-```scss{5-6,11,15}
+```scss{5-6,11-15}
 // src/sass/main.scss
 $body-bg: lightgray;
 body {
@@ -480,7 +489,7 @@ h1 {
 
 And finally, lets change the `webpack.config.js` file to include those modules.
 
-```js{4,11-20,28-31}
+```js{10-30}
 // webpack.config.js
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -519,7 +528,7 @@ module.exports = {
 }
 ```
 
-To summary of what I did in `webpack.config.init` is ask small files to be embedded and big files to be compressed.
+The summary of what I did in `webpack.config.init` is to ask small files to be embedded, and big files to be compressed.
 
 ![Result of embedding and compressing images](compress-embed-images.png)
 
@@ -529,6 +538,6 @@ Awesome... We have finished our Webpack setup. No the only thing is to convert a
 
 The only thing left to do is to add the files required to make this WordPress plugin and we're done.
 
-Instead of showing you what this would look like, let me point you to my [WebPack WordPress plugin starter in Github](https://github.com/marioy47/webpack-wordpress-starter) so you can take a look at the whole thing.
+Instead of showing you what that would look like, let me point you to my [WebPack WordPress plugin starter in Github](https://github.com/marioy47/webpack-wordpress-starter) so you can take a look at the whole thing.
 
 ... And that's it for this article. Hope you find it useful and you can use it in your projects.

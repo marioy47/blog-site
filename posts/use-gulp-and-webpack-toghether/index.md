@@ -246,7 +246,7 @@ But we're not done yet with webpack. We need to instruct webpack to convert the 
 
 ## Adding babel to webpack
 
-As always, it all starts with some packages installation. We have to install Webpack's `babel-loader` and all the Babel required files for transpiling code.
+As always, it all starts with some packages installation. We have to install Webpack's `babel-loader` and all the Babel required files for converting code.
 
 ```bash
 npm install --save-dev babel-loader @babel/core @babel/cli @babel/preset-env
@@ -254,7 +254,7 @@ npm install --save-dev babel-loader @babel/core @babel/cli @babel/preset-env
 
 Then, we have to modify `webpack.config.js` so any `js` file is converted to old javascript versions after compiling:
 
-```js {13-21}
+```js {13-24}
 // webpack.config.js
 
 const path = require('path');
@@ -269,18 +269,20 @@ module.exports = {
     },
     module:{
         rules: [
-          {
-              test: /\.js$/,
-              exclude: /node_modules/,
-              loader: 'babel-loader'
-          }
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
         ]
     }
 }
 ```
 
 The output of `npm run webpack` should't change, since we just told it to convert old format javascript. But we also should not get any errors.
-
 
 ## Configure webpack in Gulp
 
@@ -344,9 +346,9 @@ So lets fix that by adding a node env variable the script `build` on the file `p
 }
 ```
 
-Next we need to modifiy `webpack.config.js` to be aware of this new variable:
+Next we need to modify `webpack.config.js` to be aware of this new variable:
 
-```js {22}
+```js {25}
 // webpack.config.js
 
 const path = require('path');
@@ -361,11 +363,14 @@ module.exports = {
     },
     module:{
         rules: [
-          {
-              test: /\.js$/,
-              exclude: /node_modules/,
-              loader: 'babel-loader'
-          }
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
         ]
     },
     mode: process.env.NODE_ENV == 'production' ? 'production': 'development'

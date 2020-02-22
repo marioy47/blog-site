@@ -5,6 +5,8 @@ tags: npm, node, gulp, webpack, javascript, scss, sass, css
 ---
 # Use Gulp and Webpack together for you asset bundling needs
 
+> There is a [GitHub Repo](https://github.com/marioy47/gulp-webpack-integration) with the files of this article.
+
 I [love Webpack](https://marioyepes.com/posts/webpack-wordpress-config/)! It allows me to bundle scripts in just one file. And if you pair it with [babel](https://babeljs.io/) you can use next generation javascript syntax and still make your scripts compatible with older browsers.
 
 The fact of the matter is that if you are going to create a full stack javascript project, you HAVE TO use webpack...

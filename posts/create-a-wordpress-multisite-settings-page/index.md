@@ -93,7 +93,7 @@ Now lets add some functionality. Lets create a new Page called `Custom  Settings
    * Class Constructor.
    */
   public function __construct() {
-    // Register page on menu.
+    // Register function for settings page creation.
     add_action( 'network_admin_menu', array( $this, 'menu_and_fields' ) );
   }
 
@@ -104,7 +104,7 @@ Now lets add some functionality. Lets create a new Page called `Custom  Settings
    */
   public function menu_and_fields() {
 
-    // Register the menu and page in the admin side bar.
+    // Create the submenu and register the page creation function.
     add_submenu_page(
       'settings.php',
       __( 'Multisite Settings Page', 'multisite-settings' ),
@@ -116,7 +116,7 @@ Now lets add some functionality. Lets create a new Page called `Custom  Settings
   }
 
   /**
-   * This creates the settings page html.
+   * This creates the settings page itself.
    */
   public function create_page() {
     ?>
@@ -146,7 +146,9 @@ Now lets add some functionality. Lets create a new Page called `Custom  Settings
 
 Well, by adding the `network_admin_menu` hook in the constructor, you are required to create a new function that registers the new sub-menu hence the function `menu_and_fields`. And the function that register the new sub-menu requires you to create a function that generates the page html hence the function `create_page`. That's why we had to add 2 new functions.
 
-And we're done... Creating and **empty settings page**.
+Also, notice that we're using `$this->settings_slug` as a suffix for page and variable creation all over the place. That will make our life easier when we're trying to track which variables we need to store.
+
+And we're done... Creating and **empty settings page** that is.
 
 ## Creating the sections and fields
 
@@ -160,7 +162,7 @@ Lets continue by creating a section and a field in that new settings page. for t
    */
   public function menu_and_fields() {
 
-    // Register the menu and page in the admin side bar.
+    // Create the submenu and register the page creation function.
     add_submenu_page(
       'settings.php',
       __( 'Multisite Settings Page', 'multisite-settings' ),
@@ -170,7 +172,7 @@ Lets continue by creating a section and a field in that new settings page. for t
       array( $this, 'create_page' )
     );
 
-    // Restrict access to super admins.
+    // Register a new section on the page.
     add_settings_section(
       'default-section',
       __( 'This the first and only section', 'multisite-settings' ),
@@ -178,7 +180,7 @@ Lets continue by creating a section and a field in that new settings page. for t
       $this->settings_slug . '-page'
     );
 
-    // Register the variable and add a field to update it.
+    // Register a variable and add a field to update it.
     register_setting( $this->settings_slug . '-page', 'first_input_var' );
     add_settings_field(
       'test-input',
@@ -198,11 +200,11 @@ What did we do?...
 
 If we where to visit that settings page, we would get an errors asking for 2 missing functions: `section_first` and `field_first_input`.
 
-The `section_first` function is used to declare the begening of a section in the settings page. The `field_first_input` function should take care of creating a form input field:
+The `section_first` function is used to declare the beginning of a section in the settings page. The `field_first_input` function should take care of creating a form input field:
 
 ```php
   /**
-   * New section in the Settings page.
+   * Html after the new section title.
    *
    * @return void
    */
@@ -225,7 +227,7 @@ And that's it. We have a _Settings Page_ that does NOT save settings. In the nex
 
 ## Saving Network Settings
 
-To save network settings as opposed to site settings we have to build our own saving function and registered in WordPres.
+To save network settings as opposed to site settings we have to build our own saving function and registered in WordPress.
 
 So first add the following line in the constructor:
 
@@ -234,22 +236,24 @@ So first add the following line in the constructor:
    * Class Constructor.
    */
   public function __construct() {
-    // Register page on menu.
+    // Register function for settings page creation.
     add_action( 'network_admin_menu', array( $this, 'menu_and_fields' ) );
 
-    // Function to execute when saving data.
+    // Register function to execute when saving data.
     add_action( 'network_admin_edit_' . $this->settings_slug . '-update', array( $this, 'update' ) );
   }
 ```
 
-Now. This is where the magic happens. This is what you need to do different when working in a multisite. You have to create a function (I called it `update`) that takes care of saving the site_wide options:
+Notice again the usage of `$this->settings_slug`. Hope you appreciate now the fact that we stored the slug in a variable 😉.
+
+Now. This is where the magic happens. This is what you need to do different when working in a multisite: You have to create a function (I called it `update`) that takes care of saving the site-wide options:
 
 ```php
   /**
    * Multisite options require its own update function. Here we make the actual update.
    */
   public function update() {
-    \check_admin_referer( $this->settings_slug . '-page-options' );
+    check_admin_referer( $this->settings_slug . '-page-options' );
     global $new_whitelist_options;
 
     $options = $new_whitelist_options[ $this->settings_slug . '-page' ];

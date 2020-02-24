@@ -150,6 +150,8 @@ Also, notice that we're using `$this->settings_slug` as a suffix for page and va
 
 And we're done... Creating and **empty settings page** that is.
 
+![Empty Network Settings Page](empty-settings-page.png)
+
 ## Creating the sections and fields
 
 Lets continue by creating a section and a field in that new settings page. for that we need to **change** the `menu_and_fields` function. Specifically we'll be calling the `add_settings_section`, `register_setting` and `add_settings_field` functions:
@@ -200,6 +202,8 @@ What did we do?...
 
 If we where to visit that settings page, we would get an errors asking for 2 missing functions: `section_first` and `field_first_input`.
 
+![Network Settings Page without callbacks](settings-without-callbacks.png)
+
 The `section_first` function is used to declare the beginning of a section in the settings page. The `field_first_input` function should take care of creating a form input field:
 
 ```php
@@ -224,6 +228,8 @@ The `section_first` function is used to declare the beginning of a section in th
 ```
 
 And that's it. We have a _Settings Page_ that does NOT save settings. In the next step we have to fix that.
+
+![Settings page without saving option](settings-page.png)
 
 ## Saving Network Settings
 
@@ -281,6 +287,7 @@ Now. This is where the magic happens. This is what you need to do different when
 
 And that's really it.. We're done.
 
+![Settings page saving data](final-settings-page.png)
 ## Complete code
 
 Instead of showing you the complete class. Let me point you to the [GitHub Repo](https://github.com/marioy47/wordpress-multisite-settings) where all the code I created here is saved.

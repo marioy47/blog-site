@@ -143,8 +143,6 @@ On the **Mac** terminal execute:
 ansible -i inventory.yml all -a "hostname"
 ```
 
-![Ansible ad-hoc command result](ansible-ad-hoc-hostname.png)
-
 Here:
 - We're using the `inventory.yml` file. Hence the `-i` parameter.
 - `all` means "Use the pattern `all`" which is the default **group** for all the clients in the inventory. More on patters latter.
@@ -230,13 +228,13 @@ ansible all -u testuser -a whoami --become
 
 ![Image of before and after of --become](ansible-become.png)
 
-Voila! We're root on the remote server
+And just like that we executed a command (`whoami`) as root on the remote server.
 
 ## Patterns in the inventory file.
 
 At the beginning we talked about groups of hosts in the inventory. Ansible calls them _patterns_ because you can specify one group or several groups of hosts by using patterns.
 
-That's is somewhat out of the scope of this article. So know that we can specify multiple servers on the inventory file.
+> That's is somewhat out of the scope of this article since we're focusing on developers here. So just know that we can specify multiple servers on the inventory file.
 
 You can create a group of hosts by using hierarchy in the inventory file like so:
 
@@ -258,6 +256,8 @@ ansible testgroup -u testuser -a "echo hola mundo"
 ```
 
 ![Image of ansible with a pattern](ansible-with-testgroup.png)
+
+Its now obvious because the `testgroup` includes all the hosts in our test environment. But what we just did is to ask Ansible to execute a command in just a group of hosts.
 
 Ansible has 2 defaults groups `all` and `ungrouped`. You can read more about those in the [Ansible documentation](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
 
@@ -548,7 +548,7 @@ ansible-playbook playbook-sample1.yml
 - Next, each tasks declares the module it uses, like `copy`, `template` or `apt`
 - Depending on the module there is one or more parameters (like `src` or `dest` in the copy module)
 
-Hope you see now the power of ansible. With just one very short command we created files, installed services, parsed templates and in 2 clients **at the same time**.
+Hope you see now the power of ansible. With just one very short command we created files, installed services, parsed templates and **in 2 clients at the same time**.
 
 The **big bonus** of playbooks is that you can use everything we've seen so far inside a playbook without requiring external file (except for the `inventory` file):
 
@@ -635,7 +635,7 @@ You can see that the `debug` section never gets executed.
 
 ![Playbook without ignoring errors](playbook-errors-not-ignored.png)
 
-But if we add `ignore_errors: True` on the playbook.
+But we can add `ignore_errors: True` on the task.
 
 ```yml
 # playbook-ignore-errors.yml
@@ -664,7 +664,7 @@ Most of the time you need to create an alias and restart the service for the con
 
 For those times, the `notify` parameter in conjunction with a `handlers` section is exactly what you need.
 
-```yml
+```yml {21,,24-27}
 # playbook-notify-example.yml
 ---
 - hosts: testgroup
@@ -761,3 +761,17 @@ The `when` statement is the main form of using conditionals on a playbook:
       command: shutdown -h now
       when: ansible_os_family == "Debian"
 ```
+
+## Ansible Glaxy
+
+To finish this post, let me talk to you about [Ansible Galaxy](https://galaxy.ansible.com/)...
+
+_Ansible Galaxy_ is the GitHub or _Docker Hub_ for your Ansible Playbooks!
+
+There you can can store your plays in a way where they can be re-used in other playbooks. Also, you can browser other people playbooks that solve problems that you already have.
+
+Going over _Ansible Galaxy_ would be a topic for a new Blog, for now just know that there is a complete universe (or Galaxy if you will) of plays that you can download and use in your own plays.
+
+... Hope this article was useful to you and you find value in it.
+
+Good Bye!

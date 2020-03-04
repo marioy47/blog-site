@@ -7,7 +7,7 @@ tags: python, datascience, brew, visualstudio
 
 Even tough is not complicated, there are a series of steps that are suggested to take, in order to be able to be productive while developing Data Science solutions using a Mac machine with the Python language.
 
-In this article I'll show you a series of steps you can take to achieve just this with too many fuzz.
+In this article I'll show you a series of steps you can take to achieve just this without too many fuzz.
 
 ## Install Python
 

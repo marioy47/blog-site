@@ -85,9 +85,9 @@ The second module (autopep8) will format your code so it follows the PEP 8 style
 
 Remember that the last 2 steps have to be done for _every python project_
 
-## MathPlotLib
+## MatPlotLib
 
-This is not part of the process but its cool to show the power you get by following the previous steps. Lets install Python's [MathPlotLib](https://matplotlib.org/) and execute a small plotting test.
+This is not part of the process but its cool to show the power you get by following the previous steps. Lets install Python's [MatPlotLib](https://matplotlib.org/) and execute a small plotting test.
 
 Firs install the module in our _Virtual Environment_
 

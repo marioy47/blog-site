@@ -53,9 +53,11 @@ The third step is to **download the certificate** from _Let's Encrypt_ and save 
 
 The last **optional** step is that `certbot` will try to configure your _daemon_ (Apache, Nginx or other) with this new certificate.
 
+All this process takes about 30 seconds to a minute if you have your server configured in DNS beforehand.
+
 ## And how does a certificate secures my server?
 
-First of all... You use a **certificate and a key** to encrypt the information that transits between your server and a users browser. So a cert does not secures a service, it just secures the communication.
+First of all... You use a **certificate and a key** to encrypt the information that transits between your server and a users browser. So a certificate does not secures a service, it just secures the communication.
 
 Second: The basic idea of encrypting information is:
 
@@ -88,9 +90,9 @@ sudo certbot run -a webroot -i apache -w /var/www/html -d example.com
 - `-a` specifies that the authenticator is the `webroot` authenticator.
 - `-i` specifies that the installer is `apache`.
 - `-d` specifies that the domain to authenticate is `example.com`
-- `-w` is an additional parameter that the `webroot` authenticator requires
+- `-w` is an additional parameter that the `webroot` authenticator requires that indicates where is web server's _Web Root_
 
-The final **certificate and key** will get stored in `/etc/letsencrypt/live/example.com` sub directory. And the Apache service will be automatically configured.
+The final **certificate and key** will get stored in `/etc/letsencrypt/live/example.com/` sub directory. And the Apache service will be automatically configured.
 
 ### Authenticators
 
@@ -105,8 +107,6 @@ And _making sure that the DNS points to your machine_ can be done in one of this
 - Etc.
 
 So **authenticators** are the _method_ that `certbot` will use to validate your machine.
-
-In the previous example `-a webroot` tells `certbot` to authenticate the server by placing a temp file in the **Web Root** of your web server. Also notice that we had to provide `-w /var/www/html` to denote where that _Web Root_ is in the current machine.
 
 ### Installers
 
@@ -197,7 +197,7 @@ Let me explain...
 - `--agree-tos -m test-cert@marioyepes.com --no-eff-email` instructs `certboot` not to prompt me for _Terms of Service_ nor to _which email send reminders_ nor if I want _EFF (Electronic Frontier Foundation) emails_.
 - And finally `--certname test-cert` instructs `certbot` to save the new certificate and key in `/etc/letsencrypt/live/test-cert/` directory instead of using the domain name.
 
-If we list the newly created `/etc/letsencrypt/live/test-cert` directory, we can see that we have at least 3 files
+If we list the newly created `/etc/letsencrypt/live/test-cert/` directory, we can see that we have at least 3 files
 
 ![Image of the cert and key stored in the new directory](ls-letsencrypt-dir.png)
 
@@ -209,10 +209,10 @@ If we list the newly created `/etc/letsencrypt/live/test-cert` directory, we can
 
 To configure Nginx, you need to create a new virtual server. And a virtual server is created by adding a new `server` section.
 
-I like keeping virtual servers in its own files. So lets create the new file  `/etc/nginx/sites-available/default` with the following contents:
+I like keeping virtual servers in its own files. So lets create the new file  `/etc/nginx/sites-available/test-ssl` with the following contents:
 
 ```nginx {9,10}
-# /etc/nginx/sites-available/ssl
+# /etc/nginx/sites-available/test-ssl
 
 server {
 	listen 443 ssl default_server;
@@ -235,8 +235,8 @@ Having created the new virtual server in  `sites-available` you have to activate
 Here is the complete process:
 
 ```bash
-sudo vim /etc/nginx/sites-available/ssl # Create the file
-sudo ln -s /etc/nginx/sites-available/ssl /etc/nginx/sites-enabled/ssl # Enable new virtual server
+sudo vim /etc/nginx/sites-available/test-ssl # Create the file
+sudo ln -s /etc/nginx/sites-available/test-ssl /etc/nginx/sites-enabled/test-ssl # Enable new virtual server
 sudo nginx -t # Text configuration
 sudo service nginx reload # Load the configuration
 ```

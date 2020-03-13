@@ -1,6 +1,6 @@
 ---
 title: Install PostgresSQL in a Mac with Homebrew
-date: 2020-01-01
+date: 2020-03-13
 tags: postgres, macos, database, brew, homebrew, sql
 ---
 # Install PostgresSQL in a Mac with Homebrew

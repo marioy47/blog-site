@@ -11,9 +11,9 @@ In this article I'll show you a series of steps you can take to achieve just thi
 
 ## Install Python
 
-You could say _Duh_ here...
+You could say _Duh!_ here...
 
-But the fact is that Mac OS comes with an outdated version of Python, and that version could give you issues with newer solutions.
+But the fact of the matter is that Mac OS comes with an outdated version of Python, and that version could give you issues with newer solutions.
 
 So its required that you start by installing a new version of Python alongside of the stock one.
 
@@ -33,11 +33,8 @@ For starters we need only one extension, and that would be the [official Python 
 code --install-extension ms-python.python
 ```
 
-You can also install the [Djaneiro](https://marketplace.visualstudio.com/items?itemName=thebarkman.vscode-djaneiro) extension if you are also going to use Django.
+There are other extensions for _Data Science_ but that one will suffice.
 
-```bash
-code --install-extension thebarkman.vscode-djaneiro
-```
 
 ## Creating a project
 
@@ -68,7 +65,7 @@ In the last step _Visual Studio_ asked you to install 2 Python modules:
 - [PyLint](https://www.pylint.org/)
 - [AutoPEP8](https://pypi.org/project/autopep8/)
 
-If it didn't here are the commands to install them:
+If it didn't, here are the commands to install them in the terminal:
 
 ```bash
 python3 -m pip install pylint
@@ -115,6 +112,21 @@ And finally fire it using the run button:
 ![Python's VSCode Run Button](run-button.png)
 
 ![MathPlot inside Visual Studio Code](mathplot-result.png)
+
+## Jupyter Notebooks
+
+Another great **python** plugin that you should install for _Data Science_ projects is [Jupyter Notebooks](https://jupyter.org/)
+
+You can install and start a _Jupyter Notebook_ by issugin just 2 commands (assuming that you have initialized your virtual environment)
+
+```bash
+python -m pip install jupypterlab
+jupyter notebook
+```
+
+This will start a small web server in your computer that you can access just by opening your browser on the port 8080
+
+If you want to open a _Jupyter Notebook_ directoy in _Visual Studio_ you can use the [VS Code Jupyter Notebook Previewer](https://marketplace.visualstudio.com/items?itemName=jithurjacob.nbpreviewer). But the reallity is that you don't gain much by using it.
 
 ## Final thoughts
 

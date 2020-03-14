@@ -85,29 +85,42 @@ createdb `whoami`
 
 ### Postgres role not present
 
-Also, if you are getting an error about the `postgres` role not being present, then create the _Postgres User_
+Also, if you are getting an error about the `postgres` role not being present, then create the _PostgreSQL User_ `postgres`.
+
+![Postgres role error](pg-restore-role-error.png)
 
 ```bash
 createuser -s postgres
 ```
 
-## Visual Studio Code
+![Restore Success](pg-restore-success.png)
 
-There are several extensions that you can use to connnect to PostgreSQL using visual studio code. There is even one created by Microsoft...
+## Visual Studio Code Extensions
 
-But the best one is [PostgreSQL](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres) by Chris Kolkman
+There are several extensions that you can use to connect to PostgreSQL using visual studio code. There is even one created by Microsoft...
 
-You can install it using the extension manager inside _Visual Studio Code_. Or you can install it from the terminal with the following command.
+There are 2 that I recommend:
+
+- [PostgreSQL](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres) by Chris Kolkman which is great but only works on _PostgreSQL_
+- [SQLTools - Database tools](https://vscode-sqltools.mteixeira.dev/) from Matheus Teixeira which is even better and it actually manages several databases.
+
+You can install either one using the extension manager inside _Visual Studio Code_. Or you can install it from the terminal with the following commands:
 
 ```bash
+# PostgreSQL
 code --install-extension ckolkman.vscode-postgres
+
+# SQLTools
+code --install-extension mtxr.sqltools
 ```
+
+### PostgreSQL Extension
 
 Before we get into creating a connection, let me give you the most practical tip about this extension: **Use `F5` to execute a query** 😅
 
 ![Visual Studio run a query in PostgreSQL](vs-run-query.png)
 
-### Setup and connect
+#### Setup and connect
 
 Just create a connection
 
@@ -117,12 +130,27 @@ Or if you already have a connection, just select one:
 
 ![Visual Studio PostgreSQL select connection](vs-select-connection.png)
 
-### Explorer
+#### Explorer
 
 If you have objects on your database, you can use the explorer to view them:
 
 ![Show objects](vs-pg-explorer.png)
 
+### SQLTools Extension
+
+This one is a little more straight forward to use. And again... The most practical tip I can give you with this extension is that you can execute a query **by selecting a query** and then executing `⌘E⌘E` (CMD-E twice).
+
+#### Create a connection
+
+![SQLTools New Connection](sql-tools-connection.png)
+
+![SQLTools Connection details](sql-tools-conn-details.png)
+
+![SQLTools Connection Summary](sqltools-conn-summary.png)
+
+#### Execute a query
+
+![SQLTools Query Result](sqltools-query-result.png)
 
 ## Remove completely PostgresSQL
 

@@ -103,7 +103,7 @@ You can install it using the extension manager inside _Visual Studio Code_. Or y
 code --install-extension ckolkman.vscode-postgres
 ```
 
-Before we get into creating a connection, let me give you the most practical tip about this extension: **User `F5` to execute a query** 😅
+Before we get into creating a connection, let me give you the most practical tip about this extension: **Use `F5` to execute a query** 😅
 
 ![Visual Studio run a query in PostgreSQL](vs-run-query.png)
 

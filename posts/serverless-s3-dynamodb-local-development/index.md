@@ -58,7 +58,7 @@ Now that we have the initial project created, lets make this a _serverless_ proj
 
 All of this can be achieved with the following commands
 
-```bash
+```bash{5}
 cd Projects # Or where you store your projects
 mkdir serverles-aws-local-devenv
 cd serverles-aws-local-devenv
@@ -178,7 +178,7 @@ This should create a local URL that responds to **get** parameters (line 12 of `
 Next, lets start the local server by executing:
 
 ```bash
-npm install serverless-offline
+serverless offline start
 ```
 
 ![Serverless Offline Start](serverless-offline-start.png)
@@ -265,7 +265,7 @@ Now, execute `serverless offline start` command... And then create and upload a 
 
 ![Serverless offline output](upload-output.png)
 
-In another terminal...
+In another terminal execute the `aws s3api put-object` command
 
 ![Create and upload a file](create-and-upload-file.png)
 
@@ -293,13 +293,15 @@ Ok, so. If you don't have it. Install JRE.
 
 You can follow the excellent tutorial on [https://mkyong.com/java/how-to-install-java-on-mac-osx/](https://mkyong.com/java/how-to-install-java-on-mac-osx/). But the gist of it is:
 
-```bash
+```bash{3}
 brew tap adoptopenjdk/openjdk
 brew search jdk
 brew cask install adoptopenjdk14
 /usr/libexec/java_home -V
 java -version
 ```
+
+> The version of the JDK might change, that's why you should execute `brew search jdk` first
 
 ![Install JDK from AdoptOpenJDK](install-jdk14.png)
 
@@ -461,7 +463,7 @@ plugins:
 
 I called the new function `users` and it points to the function `index` in the file `lambdas/users.js`. So lets create that file with the following content:
 
-```javascript{5-9}
+```javascript{5-10}
 // lambdas/users.js
 
 const AWS = require("aws-sdk")
@@ -536,7 +538,7 @@ npm install serverless-dotenv-plugin --save-dev
 
 And then I have to update the `serverless.yml` file to use some environment variables for things like naming the _DynamoDB Table_ and a custom variable to specify that we're using a local environment:
 
-```yaml{4,14,25}
+```yaml{4,14,26}
 # serverless.yml
 . . .
 plugins:
@@ -609,3 +611,5 @@ To deploy the created resources to AWS yo initially have to do 2 things:
 - Select a region for deployment in `serverless.yml`
 
 After that your you can deploy your lambda functions, your Dynamo table and you api endpoints by issuing `serverless deploy`
+
+You can get a copy of the final project in [GitHub](https://github.com/marioy47/serverles-aws-local-devenv) and use it as the starting point of your own project.

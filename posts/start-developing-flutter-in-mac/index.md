@@ -24,7 +24,7 @@ So open the `App Store` app in your mac, search for Xcode, and click on `downloa
 
 ![Apple app store for Xcode installation](install-xcode.png)
 
-The Xcode is a big download (about 2 Gigs) and a long installation depending on your computer, so in the meantime we can install the `flutter` binary.
+The Xcode is a big download (about 2 Gigs) and a long installation depending on your computer, so in the meantime we can install the `flutter` SDK.
 
 ## Install Flutter
 
@@ -36,9 +36,9 @@ But before we do that. **You have to select a place in your hard drive where you
 
 The steps to install Flutter are then:
 
-- Go to the parent `dir` where you want to install flutter. (Mine is going to be ~/Projects).
+- Go to the _parent dir_ where you want to install flutter. (Mine is going to be `~/Projects`).
 - Clone the `stable` branch of the git repo
-- Add the `$FLUTTER_HOME/bin` to your path (FLUTTER_HOME is the dir where the flutter repo got stored)
+- Add the `$FLUTTER_HOME/bin` to your path `$FLUTTER_HOME` is the dir where the flutter repo got stored, in my case `~/Projects/flutter/`
 - Execute `flutter doctor` to make sure everything works
 
 ```bash{3}
@@ -53,9 +53,11 @@ If you look closely to the shell commands, you can see that I added the director
 
 ![Flutter doctor after installing flutter using git](flutter-doctor-1st.png)
 
+As you an see from the image, the `flutter` commands works, but its giving us some warnings. So lets mover forward with the _Xcode_ installation to make some of them go away.
+
 ## Setup Xcode
 
-After Xcode installs, we need to prepare it for development (any type of development). Se we need to execute the following commands:
+After Xcode installs, we need to prepare it for development (any type of Mac and iOS development). Se we need to execute the following commands:
 
 ```bash
 sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
@@ -63,19 +65,19 @@ sudo xcodebuild -license # Space to the en and then "agree"
 sudo xcodebuild -runFirstLaunch
 ```
 
-This commands are just to select the main tools I need for development, to accept the _user's end agreement_ and run xcode without a GUI.
+This commands are just to select the main tools I need for development, to accept the _user's end agreement_ and run _Xcode_ for the first time so it finish its setup.
 
 ![Accepting the Xcode license](xcode-licence.png)
 
 ![Xcode first run without open the interface](xcode-first-run.png)
 
-And we're done with Xcode
+And we're done with Xcode. You don't have to open it again if you don't want to **ever**.
 
 ## Create a Flutter test app
 
-To completelly verify that _Xcode_ and `flutter` work, we'll create a simple Flutter app, and run it in the iOS simulator that comes with Xcode.
+To completely verify that _Xcode_ and `flutter` work, we'll create a simple Flutter app, and run it in the iOS simulator that comes with Xcode.
 
-Creating a flutter test app, couln't be easier. Just type `flutter create` with the name of an app, and that's it.
+Creating a flutter test app, could't be easier. Just type `flutter create` with the name of an app, and that's it.
 
 ```bash
 cd ~/Projects # Your pojects folder
@@ -155,25 +157,27 @@ After the installation is finished, you have to name the **newly created device*
 
 ![Android Studio AVD naming device](android-studio-avd-06.png)
 
-And here it the list of devices in you machine with the one we just created:
+And here it the list of devices in your machine. Right now it only show the one I just created:
 
 ![Android Studio AVD list of devices](android-studio-avd-07.png)
 
 ## Install an Android SDK
 
-If I click on the `play` (▶️) icon, in the list of devices (the last image), I'll get a warning about no SDK installed on my machine
+If I click on the `play` (▶️) icon, in the list of devices (the last image), I'll get a warning about no SDK installed on my machine.
+
+You see, we installed the IDE (Android Studio), a _Virtual Android Device_ (The Pixel 2 with Android Q), but we still have to install the SDK to actually compile apps for Android!!! I told you it was going to be HUGE.
 
 ![Android Studio complaining about not having an SDK](android-studio-setup-01.png)
 
-To install an SDK, just follow along the wizard that Android Studio provides:
+The good news is that this is last piece of software we need to install. And to do it so, just follow along the wizard that Android Studio provides:
 
-![](android-studio-setup-02.png)
+![Select the Android SDK to install](android-studio-setup-02.png)
 
-![](android-studio-setup-03.png)
+![Install the Android SDK](android-studio-setup-03.png)
 
-**Now, This is important**: From the last image, you can see that the SDK will be installed in `/usr/local/share/android-sdk`. Yo'll need this for the next step.
+**Now, This is important**: From the this image, you can see that the SDK will be installed in `/usr/local/share/android-sdk`. Yo'll might need this _PATH_ for future steps.
 
-![](android-studio-setup-04.png)
+![Android SDK finished installing](android-studio-setup-04.png)
 
 If you are not are going to stick to _Android Studio_ and don't want to use the terminal or _Visual Studio Code_. You can stop reading. **You are completely seated up**.
 
@@ -183,19 +187,19 @@ I knew it... You couldn't stand not knowing how to use _Visual Studio Code_ (or 
 
 So let me show you how to run flutter apps from the command line in your _Android Virtual Device_. Which is also necessary if **you re goin to use Visual Studio Code**.
 
-Remember that I told you to take note of the path from "that image" in the last step? That's the `SDK Path` and we need it to configure it in our `~/.zshrc` (or `~/.bashrc`) so its available for Visual Studio Code and the terminal of course.
+Remember that I told you to take note of the path from "that image" in the previous step? That's the `SDK Path` and we need it to configure it in our `~/.zshrc` (or `~/.bashrc`) so its available for Visual Studio Code and the terminal of course.
 
 ```bash
-echo "export ANDROID_HOME=/usr/local/share/android-sdk" >> ~/.zshrc
+echo "export ANDROID_HOME=/usr/local/share/android-sdk" >> ~/.zshrc # or ~/.bashrc
 export ANDROID_HOME=/usr/local/share/android-sdk
 flutter doctor
 flutter emulators
 flutter emulators --launch Pixel_2_API_29
-cd ~/Projects/test_app
+cd ~/Projects/testapp
 flutter run
 ```
 
-That's it, we can now launch emulator from the command line and run flutter apps inside them.
+That's it, we can now launch the Android emulator from the command line and run flutter apps inside them.
 
 ![Open our AVD from the command line](run-pixel.png)
 
@@ -222,7 +226,5 @@ If you don't install it, you might as well forget about using _Visual Studio Cod
 - `F10` - Step Over
 - `F11` - Step In
 - `Shift+F11` - Step Out
-
-> Change ctrl instead of cmd for windows users.
 
 There are a lot of useful shortcuts that can be [viewed in this excellent blog post](https://medium.com/flutter-community/flutter-visual-studio-code-shortcuts-for-fast-and-efficient-development-7235bc6c3b7d)

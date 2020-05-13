@@ -6,6 +6,8 @@ tags: javascript
 
 # Create a pure Javascript Scroll Counter
 
+![Javascript Counter in action](scroll-animated-counter.png)
+
 I really don't know why my clients love to have animated counters in their pages. But the fact is that they do. And using a jQuery plugin or a custom library just for that is an over kill.
 
 So this is an small counter that starts its count when the element with an special _counter class_ gets visible on a page.
@@ -105,4 +107,6 @@ To make an element a counter you just need to add something like
 
 And it will count from 0 to 150 in about a second.
 
-Hope you found this short article useful :)
+![Javascript Counter in action](scroll-animated-counter.gif)
+
+Hope you found this short article useful ☺️

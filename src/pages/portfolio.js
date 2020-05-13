@@ -10,7 +10,7 @@ const PortfolioPage = ({ data }) => {
   let count = 0
   return (
     <SiteLayout className="page-portfolio">
-      <SEO title="Projects ans Success Stories" />
+      <SEO title="Projects and Success Stories" />
       <h1 className="text-center">Portfolio</h1>
       <h4 className="text-center mb-5">
         This are some of the projects that I’ve worked on

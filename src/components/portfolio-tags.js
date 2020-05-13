@@ -1,11 +1,13 @@
 import React from "react"
 
+import AWS from "../images/svg/aws-brands.svg"
+import Cloud from "../images/svg/cloud-upload-alt-solid.svg"
 import DatabaseIcon from "../images/svg/database-solid.svg"
 import EnvelopeIcon from "../images/svg/envelope-regular.svg"
 import FigmaIcon from "../images/svg/figma-brands.svg"
 import GithubIcon from "../images/svg/github-brands.svg"
-import JqueryIcon from "../images/svg/jquery.svg"
 import JavascriptIcon from "../images/svg/js-square-brands.svg"
+import JqueryIcon from "../images/svg/jquery.svg"
 import NodeIcon from "../images/svg/node-js-brands.svg"
 import PhpIcon from "../images/svg/php-brands.svg"
 import SassIcon from "../images/svg/sass-brands.svg"
@@ -17,6 +19,10 @@ const PortfolioTags = ({ tags }) => {
   }
   var icons = tags.split(",").map(tag => {
     switch (tag.trim().toLowerCase()) {
+      case "aws":
+        return <AWS />
+      case "coud":
+        return <Cloud />
       case "database":
       case "db":
         return <DatabaseIcon />

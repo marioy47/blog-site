@@ -19,7 +19,7 @@ class ContactFormspree extends React.Component {
         className="contact-form"
       >
         <div className="form-group">
-          <label for="email-input">Email:</label>
+          <label htmlFor="email-input">Email:</label>
           <input
             type="email"
             name="email"
@@ -29,7 +29,7 @@ class ContactFormspree extends React.Component {
           />
         </div>
         <div className="form-group">
-          <label for="message-input">Message:</label>
+          <label htmlFor="message-input">Message:</label>
           <textarea
             name="message"
             className="form-control"
@@ -42,10 +42,10 @@ class ContactFormspree extends React.Component {
           {status === "SUCCESS" ? (
             <p className="success">Thanks!</p>
           ) : (
-              <button className="btn btn-lg btn-primary btn-block text-center">
-                Submit
+            <button className="btn btn-lg btn-primary btn-block text-center">
+              Submit
             </button>
-            )}
+          )}
           {status === "ERROR" && (
             <p className="error">Ooops! There was an error.</p>
           )}

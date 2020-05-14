@@ -16,26 +16,4 @@ const TemplateProject = ({ data }) => {
   )
 }
 
-export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      fields {
-        slug
-      }
-      id
-      frontmatter {
-        title
-        cover {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
 export default TemplateProject

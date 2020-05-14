@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `Mario Yepes Personal Blog`,
-    description: `This is the Portfolio and Blog site of Mario Yepes C. Here I'll postgin notes, articles, tutorials and of course my portfolio!`,
+    description: `Hello, I'm Mario. A full stack developer from Medellín, Colombia. This is my blog and my portfolio!`,
     author: `@marioy47`,
+    keywords: `blog, web development, gatsby, jamstack,aws developer, flutter developer`,
+    url: `https://marioyepes.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

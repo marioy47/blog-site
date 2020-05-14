@@ -7,7 +7,11 @@ import SEO from "./seo"
 const TemplateBlog = ({ data }) => {
   return (
     <SiteLayout className="template-blog blog-node">
-      <SEO title={`${data.markdownRemark.frontmatter.title}`} />
+      <SEO
+        title={`${data.markdownRemark.frontmatter.title}`}
+        image={`${data.markdownRemark.frontmatter.cover.childImageSharp.fixed.src}`}
+        description={`${data.markdownRemark.excerpt}`}
+      />
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
     </SiteLayout>
   )
@@ -18,16 +22,22 @@ export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      id
+      excerpt
       fields {
         slug
       }
-      id
       frontmatter {
         title
         cover {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
+            }
+            fixed {
+              src
+              width
+              height
             }
           }
         }

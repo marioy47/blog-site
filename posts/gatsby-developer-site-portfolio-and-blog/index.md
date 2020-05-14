@@ -2,6 +2,7 @@
 title: Create a Developer Portfolio Site (with a blog) with Gatsby
 date: 2019-11-10
 tags: gatsby, react, javascript, graphql, npx
+cover: gatsby-icon-4a9773549091c227cd2eb82ccd9c5e3a.png
 ---
 
 # Create a Developer Portfolio Site (with a blog) with Gatsby
@@ -85,8 +86,8 @@ module.exports = {
         icon: `src/images/icon-developer.png`, // This image does not come with Gatsby.
       },
     },
-  ]
-};
+  ],
+}
 ```
 
 ## Gatsby Plugins
@@ -141,8 +142,8 @@ module.exports = {
         },
       },
     },
-  ]
-};
+  ],
+}
 ```
 
 And finally rename the main CSS style file to have the `.scss` extension:
@@ -201,12 +202,12 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /images\/svg\/.*svg$/
-        }
-      }
-    }
-  ]
-};
+          include: /images\/svg\/.*svg$/,
+        },
+      },
+    },
+  ],
+}
 ```
 
 This way, every time I `import` an SVG file in a component, Gatsby will include the code of the SVG instead of referencing it using `<img src="...">`.
@@ -237,11 +238,11 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: []
-      }
-    }
-  ]
-};
+        plugins: [],
+      },
+    },
+  ],
+}
 ```
 
 Notice that I left _an empty array_ as the value for `plugins` in the configuration.
@@ -280,14 +281,14 @@ module.exports = {
             options: {
               linkImagesToOriginal: false,
               maxWidth: 1000,
-              withWebp: true
-            }
-          }
-        ]
-      }
-    }
-  ]
-};
+              withWebp: true,
+            },
+          },
+        ],
+      },
+    },
+  ],
+}
 ```
 
 A short explanation of what I did here is:
@@ -309,7 +310,7 @@ The command to install the prism plugin and a series of highlighting themes is:
 npm install --save gatsby-remark-prismjs prismjs prism-themes
 ```
 
-And again, I have to do some configuration in `gatsby-config.js` by adding the following options INSIDE the  `gatsby-transformer-remark` _plugins_ array:
+And again, I have to do some configuration in `gatsby-config.js` by adding the following options INSIDE the `gatsby-transformer-remark` _plugins_ array:
 
 ```js
 // gatsby-config.js
@@ -326,33 +327,33 @@ module.exports = {
             options: {
               linkImagesToOriginal: false,
               maxWidth: 1000,
-              withWebp: true
-            }
+              withWebp: true,
+            },
           },
           {
             resolve: `gatsby-remark-prismjs`,
             aliases: {
-              zsh: "bash"
-            }
-          }
-        ]
-      }
-    }
-  ]
-};
+              zsh: "bash",
+            },
+          },
+        ],
+      },
+    },
+  ],
+}
 ```
 
 And I need to create a new file... Finally a new file!.
 
 This Prismjs plugin requires css files to colorize the code. So we also need to modify the `gatsby-browser.js` file to include this css.
 
-
 ```js
 // gatsby-browser.js
-require("prism-themes/themes/prism-material-oceanic.css");
-require("prismjs/plugins/line-numbers/prism-line-numbers.css");
-require("prismjs/plugins/command-line/prism-command-line.css");
+require("prism-themes/themes/prism-material-oceanic.css")
+require("prismjs/plugins/line-numbers/prism-line-numbers.css")
+require("prismjs/plugins/command-line/prism-command-line.css")
 ```
+
 We just need to add this 3 lines to the file, and that's it.
 
 ## Add MDX support plugin
@@ -360,7 +361,6 @@ We just need to add this 3 lines to the file, and that's it.
 So I'm lazy... Most of the developers are...
 
 And I don't want to use JSX for pages with a lot of copy (like the about page), I want something more simple and easier to write. That's why I'm going to use MDX instead of JSX!
-
 
 If you don't know, MDX is JSX inside Markdown!. If you want to know more about MDX head to [the official MDX site](https://mdxjs.com/).
 
@@ -376,9 +376,9 @@ module.exports = {
   // ...
   plugins: [
     // ...
-    `gatsby-transformer-mdx`
-  ]
-};
+    `gatsby-transformer-mdx`,
+  ],
+}
 ```
 
 This plugin requires no configuration, so that only line is what's needed.
@@ -406,9 +406,9 @@ module.exports = {
   plugins: [
     // ...
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`
-  ]
-};
+    `gatsby-plugin-robots-txt`,
+  ],
+}
 ```
 
 **!!! We're done!!!... (with the configuration). Now lets start with the development itself.**
@@ -463,31 +463,31 @@ If I use `GraphIQL` I can see that both `md` and `mdx` files are accessible:
 So I need to edit `gastby-node.js` and add the function `onCreateNode` asking Gatsby to add the **slug** field for those 2 type of nodes.
 
 ```js
-const { createFilePath } = require(`gatsby-source-filesystem`);
-const path = require("path");
+const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require("path")
 
 // Add fields to nodes.
 exports.onCreateNode = ({ node, getNode, actions }) => {
   // Add the slug field to the MarkdownRemark nodes.
   if (node.internal.type === `MarkdownRemark`) {
-    const relPath = createFilePath({ node, getNode });
+    const relPath = createFilePath({ node, getNode })
     actions.createNodeField({
       node,
       name: `slug`,
-      value: relPath.replace("/posts/", "/blog/")
-    });
+      value: relPath.replace("/posts/", "/blog/"),
+    })
   }
 
   // Add the slug field to the Mdx nodes.
   if (node.internal.type === `Mdx`) {
-    const relPath = createFilePath({ node, getNode });
+    const relPath = createFilePath({ node, getNode })
     actions.createNodeField({
       node,
       name: `slug`,
-      value: relPath.replace("/projects/", "/portfolio/")
-    });
+      value: relPath.replace("/projects/", "/portfolio/"),
+    })
   }
-};
+}
 ```
 
 Done... Now if I query the site again I'll see those 2 nodes:
@@ -560,11 +560,11 @@ export default BlogPage
 And now for the `portfolio.js` page:
 
 ```jsx
-import React from "react";
-import { Link, graphql } from "gatsby";
+import React from "react"
+import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const PortfolioPage = ({ data }) => {
   return (
@@ -585,8 +585,8 @@ const PortfolioPage = ({ data }) => {
         </div>
       ))}
     </Layout>
-  );
-};
+  )
+}
 
 export const query = graphql`
   {
@@ -607,9 +607,9 @@ export const query = graphql`
       }
     }
   }
-`;
+`
 
-export default PortfolioPage;
+export default PortfolioPage
 ```
 
 > Note: Is really important that each `mdx` portfolio file, has a **frontmatter** with the `date`, `image`, `tags` and `desc` field. Other wise the project's ordering will be thrown off and Gatsby wont generate files.
@@ -649,7 +649,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
+  `)
 
   // Crate pages from markdown.
   result.data.posts.edges.forEach(({ node }) => {
@@ -657,10 +657,10 @@ exports.createPages = async ({ graphql, actions }) => {
       path: node.fields.slug,
       component: path.resolve("./src/components/posts-template.js"),
       context: {
-        slug: node.fields.slug
-      }
-    });
-  });
+        slug: node.fields.slug,
+      },
+    })
+  })
 
   // Create pages from mdx.
   result.data.projects.edges.forEach(({ node }) => {
@@ -669,11 +669,11 @@ exports.createPages = async ({ graphql, actions }) => {
       component: node.fileAbsolutePath,
       context: {
         slug: node.fields.slug,
-        id: node.id
-      }
-    });
-  });
-};
+        id: node.id,
+      },
+    })
+  })
+}
 ```
 
 3 Things to notice here:
@@ -685,9 +685,9 @@ exports.createPages = async ({ graphql, actions }) => {
 Here is the template (`src/components/blog-template.js`) for the blog posts:
 
 ```js
-import React from "react";
-import { graphql } from "gatsby";
-import Layout from "./layout";
+import React from "react"
+import { graphql } from "gatsby"
+import Layout from "./layout"
 
 const PostsTemplate = ({ data }) => {
   return (
@@ -695,8 +695,8 @@ const PostsTemplate = ({ data }) => {
       <h1>{data.post.frontmatter.title}</h1>
       <article dangerouslySetInnerHTML={{ __html: data.post.html }} />
     </Layout>
-  );
-};
+  )
+}
 
 export const query = graphql`
   query($slug: String!) {
@@ -707,9 +707,9 @@ export const query = graphql`
       }
     }
   }
-`;
+`
 
-export default PostsTemplate;
+export default PostsTemplate
 ```
 
 Now, when I visit a url like `localhost:8000/portfolio/project-1` or `localhost:8000/blog/my-first-blog-post/` I actually get a page with its content.

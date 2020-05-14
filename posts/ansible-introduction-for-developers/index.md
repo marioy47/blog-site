@@ -2,6 +2,7 @@
 title: Ansible introduction for developers
 date: 2020-01-06
 tags: linux, windows, ssh, winrt, ansible, sysadmin
+cover: ansible-with-cfg.png
 ---
 
 # Ansible introduction for developers
@@ -37,7 +38,6 @@ Among the advantages of Ansible are:
 
 > Ansible works by using SSH to execute commands on Linux/MacOS, and [WinRT](https://en.wikipedia.org/wiki/Windows_Runtime) to execute commands on Windows
 
-
 ## Clients setup
 
 Before we beginning, we need to setup SSH access to the remote machines we're going to use.
@@ -47,12 +47,12 @@ For that we have to create public ssh key for my current account, and add it to 
 Since that is beyond the scope of this article, I'll leave you to figure out how to create a SSH key, but I'm going to show you the steps to create a `sudo` user:
 
 ### 1. Create the remote user
+
 Doesn't matter how, but on the remote client (in this case `client1`) you should have access to the `root` user, at least for a little while.
 
 then create the _ansible execution user_, meaning the user that you are going to use to execute ansible modules. In my case the user will be `testuser`.
 
 ![Creating the user testuser and adding the key](useradd-testuser.png)
-
 
 ### 2. Paste your key on the new users `.ssh/authorized_keys` file
 
@@ -60,16 +60,13 @@ The next step is to copy your **public key** from you Ansible Server (your manag
 
 _This step is executed as the `testuser` user_
 
-
 ### 3. Add SUDO privileges to that user or group
 
 Also, we need that the remote user(s) to have `sudo` privileges without requiring a password.
 
 If you noticed in the previous step, I created the `testuser` user with the group `sudo`. That's the group that's going to have special privileges.
 
-So, **still as root**  execute `visudo` and add the `NOPASSWD` option.
-
-
+So, **still as root** execute `visudo` and add the `NOPASSWD` option.
 
 ![Add NOPASSWD option to the sudo group](ansible-visudo-nopasswd.png)
 
@@ -129,7 +126,7 @@ As you can see, by default the inventory file, and most other `ansible` files, a
 
 Lets start by executing a remote command on each of the hosts (in our case just two) that we have in our inventory.
 
-The structure an `ansible`  command is
+The structure an `ansible` command is
 
 ```bash
 ansible -i <inventory-file.yml> <pattern or host> -m <module to use> -a <command in the module>
@@ -144,6 +141,7 @@ ansible -i inventory.yml all -a "hostname"
 ```
 
 Here:
+
 - We're using the `inventory.yml` file. Hence the `-i` parameter.
 - `all` means "Use the pattern `all`" which is the default **group** for all the clients in the inventory. More on patters latter.
 - `-a` means "arguments" and since we haven't specified any module (again, more on modules and commands latter), Ansible will assume we are using the [`command`](https://docs.ansible.com/ansible/latest/modules/command_module.html#command-module) module with the parameter `hostname`.
@@ -162,7 +160,7 @@ ansible -i inventory.yml all -u testuser -a "hostname"
 
 ![Image of ansible success hostname command](ansible-hostname-testuser.png)
 
-Even though is not very obvious. We get a successful answer: `client1` and `client2` is the name of each  machine.
+Even though is not very obvious. We get a successful answer: `client1` and `client2` is the name of each machine.
 
 ## Execute a module
 
@@ -182,6 +180,7 @@ ansible -i inventory.yml all -u testuser -m ping
 - There is no `-a` option because the `ping` module does not requires it.
 
 Take into account that the _module_ `ping` is **not** the ping command. From the Ansible documentation:
+
 > This is NOT ICMP ping, this is just a trivial test module that requires Python on the remote-node
 
 ## Setting defaults
@@ -244,7 +243,6 @@ testgroup:
   hosts:
     client1:
     client2:
-
 ```
 
 Here we created the `testgroup` group (or pattern) and that group has two hosts `client1` and `client2`.
@@ -260,7 +258,6 @@ ansible testgroup -u testuser -a "echo hola mundo"
 Its now obvious because the `testgroup` includes all the hosts in our test environment. But what we just did is to ask Ansible to execute a command in just a group of hosts.
 
 Ansible has 2 defaults groups `all` and `ungrouped`. You can read more about those in the [Ansible documentation](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
-
 
 ## Variables in inventories
 
@@ -289,10 +286,11 @@ testgroup:
     client1:
     client2:
   vars:
-      my_custom_string: Hola Mundo
+    my_custom_string: Hola Mundo
 ```
 
 #### 3. Combined:
+
 ```yml
 # inventory.yml
 testgroup:
@@ -312,7 +310,7 @@ ansible testgroup -u testgroup -a "echo {{my_custom_string}}"
 
 ![Image of ansible vars in action](ansible-vars-custom-string.png)
 
-Awesome! We can now specify global parameters and variables depending on the host or the gruop.
+Awesome! We can now specify global parameters and variables depending on the host or the group.
 
 ## Advanced variables
 
@@ -322,7 +320,7 @@ For Ansible to know which variables file to use on a host or a group, you have t
 
 So for instance, in our example we have the group `testgroup`. We should have the following hierarchy:
 
-```txt
+```
 $ tree
 .
 ├── group_vars
@@ -344,7 +342,6 @@ testgroup:
     client1:
       my_custom_string: Hola just for client 1
     client2:
-
 ```
 
 And `group_vars/testgroup.yml` looks like:
@@ -364,9 +361,7 @@ ansible all -u testuser -a "echo {{my_custom_string}}"
 
 As you can see, the `my_custom_string` has different values in each client. On `client1` it picked the value from `inventory.yml`. On `client2` it picked it up from the `group_vars/testgroup.yml` file.
 
-
 > Ansible has a very clever flattening algorithm to overwrite variable values. More on that [here](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#how-variables-are-merged)
-
 
 ## Special variables
 
@@ -407,11 +402,12 @@ ansible all -a "whoami"
 
 I bet that you already figured out that `ansible_user` is the username we use for connecting to the remote server, and that `ansible_become` tells Ansible to become the super user on the remote machine.
 
-Also you've might noticed that I combined the usage of variables inside the `inventory.yml` and `gruop_vars/testgroup.yml`. I could have added the `ansible_user` var inside the `inventory.yml` file also.
+Also you've might noticed that I combined the usage of variables inside the `inventory.yml` and `group_vars/testgroup.yml`. I could have added the `ansible_user` var inside the `inventory.yml` file also.
 
 > You could use the `group_vars/testgroup.yml` file for sensitive data that can not be committed to a repo by adding it to `.gitignore`.
 
 ## Managing files
+
 With Ansible you can also copy files to the remote machines.... And not only that, those files can be templates that will be parsed a and complemented with local or remote variables.
 
 ### Copying a file
@@ -424,6 +420,7 @@ touch files/test-file.txt
 ansible all -m copy -a "src=files/test-file.txt dest=/tmp/new-file.txt"
 ansible all -a "ls -l /tmp/new-file.txt"
 ```
+
 ![Copying a file](ansible-copy.png)
 
 ### Coping and parsing a template
@@ -489,6 +486,7 @@ ansible client1 -u testuser -m setup -a "filter=*ipv4"
 ```
 
 ## Ansible Playbooks
+
 Up until now, we've been using the `ansible` command to execute specific **tasks** on the remote systems listed in the inventory file.
 
 The real power of Ansible is when you create a group of tasks or **plays** in what Ansible calls **Playbooks**.
@@ -498,6 +496,7 @@ The first and most important difference is that playbooks are executed using the
 Playbooks must be in the `yaml` format (its not optional) and are designed to be very easy to read and create.
 
 So lets create a playbook that does the last 3 tasks for us:
+
 1. Copy a file
 2. Create a file from a template
 3. Install a package
@@ -536,15 +535,13 @@ ansible-playbook playbook-sample1.yml
 
 > Take into account that variables should be enclosed in `"` when used in a playbook as the sole parameter
 
-
 ![Result of executing an playbook](ansible-playbook-smaple1.png)
-
 
 ... As you can see.
 
 - A _play_ starts with the `- hosts:` label.
 - Each play has a `tasks:` section where every tasks is added.
-- Each task starts with a `- name: ` label followed by a plain English (or plain Spanish in my case 😁) description of what it does.
+- Each task starts with a `- name:` label followed by a plain English (or plain Spanish in my case 😁) description of what it does.
 - Next, each tasks declares the module it uses, like `copy`, `template` or `apt`
 - Depending on the module there is one or more parameters (like `src` or `dest` in the copy module)
 
@@ -602,7 +599,7 @@ The usage of the `debug` option almost always requires you to store the output o
       command: cat /etc/hostname
       register: _command
     - debug:
-      msg: {{ _command.stdout }}
+      msg: { { _command.stdout } }
 ```
 
 ![Ansible playbook debug example](ansible-playbook-debug.png)
@@ -734,7 +731,6 @@ You can prompt the user for a variable value by using the `vars_prompt` command:
 ```
 
 ![Ansible prompt for variables](ansible-vars-prompt.png)
-
 
 ## Conditionals in playbooks
 

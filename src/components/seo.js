@@ -31,7 +31,7 @@ function SEO({ description, lang, meta, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const postImage = image || file.publicURL
+  const postImage = image === null || image === "null" ? file.publicURL : image
 
   return (
     <Helmet

@@ -2,7 +2,9 @@
 title: Certbot Introduction and Basic Usage with Nginx and Apache
 date: 2020-03-11
 tags: certbot, letsencrypt, ssl, certs, nginx
+cover: certbot-OG.png
 ---
+
 # Certbot Introduction and Basic Installation
 
 Since 2018 Google started penalizing sites that are not secured by [SSL](https://wikipedia.org/wiki/SSL) lowering its page rank. And even tough its been 2 years since that change, there are still many sites that use Plain HTTP instead of HTTPS.
@@ -21,7 +23,7 @@ A **Certificate Authority** is a special company or organization that can issue 
 
 In other words, you can request a free, 100% valid, certificate from Let's Encrypt.
 
-So, you can either go to a commercial Certificate Authority like GoDaddy or Verisign and pay up a yearly feee of up to US$200 to create a certificate. Or you can use `certbot` to request a certificates from Let's Encrypt without paying a dime.
+So, you can either go to a commercial Certificate Authority like GoDaddy or Verisign and pay up a yearly feee of up to US\$200 to create a certificate. Or you can use `certbot` to request a certificates from Let's Encrypt without paying a dime.
 
 One note though...
 
@@ -68,7 +70,7 @@ The key is created by you in your server and nobody, **and I mean nobody**, shou
 
 The certificate has to be created by a valid **Certificate Authority** (like Let's Encrypt) since that certificate need to be trusted by browser across the world.
 
-The process is actually a little more complicated than that. But that's  the gist of it.
+The process is actually a little more complicated than that. But that's the gist of it.
 
 ## `cerbot` commands and plugins
 
@@ -209,7 +211,7 @@ If we list the newly created `/etc/letsencrypt/live/test-cert/` directory, we ca
 
 To configure Nginx, you need to create a new virtual server. And a virtual server is created by adding a new `server` section.
 
-I like keeping virtual servers in its own files. So lets create the new file  `/etc/nginx/sites-available/test-ssl` with the following contents:
+I like keeping virtual servers in its own files. So lets create the new file `/etc/nginx/sites-available/test-ssl` with the following contents:
 
 ```nginx {9,10}
 # /etc/nginx/sites-available/test-ssl
@@ -230,7 +232,7 @@ server {
 
 Notice that the newly created certificate and key are configured with the `ssl_certificate` and `ssl_certificate_key` directives. **We need both files**.
 
-Having created the new virtual server in  `sites-available` you have to activate it by creating a _Symbolic Link_ in `sites-available`.
+Having created the new virtual server in `sites-available` you have to activate it by creating a _Symbolic Link_ in `sites-available`.
 
 Here is the complete process:
 
@@ -293,7 +295,7 @@ The good new is that to renew **all of your certificates** stored in you machine
 
 ```bash
 sudo certbot renew
-````
+```
 
 ![Image of certbot renew](certbot-renew.png)
 
@@ -301,7 +303,7 @@ And that will go over all of the certificates stored in `/etc/letsencrypt/live` 
 
 You can even add a `cron` job in your machine that does that automatically for you once a week.
 
-```crontab
+```
 # /etc/crontab
 3 0 * * 1 certbot renew
 ```
@@ -315,6 +317,7 @@ If you need to list which certificates are in you machine use the command
 ```bash
 sudo cerboot certificates
 ```
+
 ![Image of certbot certificates to list certs](certbot-certificates.png)
 
 And if by any case you need to delete a certificate you can issue the command

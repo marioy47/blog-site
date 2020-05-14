@@ -5,12 +5,21 @@ import SiteLayout from "./site-layout"
 import SEO from "./seo"
 
 const TemplateBlog = ({ data }) => {
+  let image = null
+  if (data.markdownRemark.frontmatter.cover) {
+    image = data.markdownRemark.frontmatter.cover.childImageSharp.fixed.src
+  }
+  const title = data.markdownRemark.frontmatter.title || ""
+  const description = data.markdownRemark.excerpt
+    .replace(new RegExp(title, "i"), "")
+    .trim()
+
   return (
     <SiteLayout className="template-blog blog-node">
       <SEO
-        title={`${data.markdownRemark.frontmatter.title}`}
-        image={`${data.markdownRemark.frontmatter.cover.childImageSharp.fixed.src}`}
-        description={`${data.markdownRemark.excerpt}`}
+        title={`${title}`}
+        image={`${image}`}
+        description={`${description}`}
       />
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
     </SiteLayout>

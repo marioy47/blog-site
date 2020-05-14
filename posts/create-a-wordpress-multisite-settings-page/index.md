@@ -2,7 +2,9 @@
 title: Create a WordPress Multisite Settings Page
 date: 2020-02-23
 tags: wordpress, multisite, settings
+cover: wordpress-1810453_960_720.jpg
 ---
+
 # Create a WordPress Multisite Settings Page
 
 Creating a settings page with the [WordPress settings API](https://developer.wordpress.org/plugins/settings/settings-api/) is pretty straight forward, just add a sub-menu, add the page content and finally create the sections and fields.
@@ -12,7 +14,6 @@ But creating a **Network** Settings Page, well... Thats a completely different a
 _Network Settings_ or _Multisite Settings_ do not follow the same process because the _Wordpress Settings API_ saves data on a **site level** instead of a network level. So you have to do some custom steps to have a settings page for a multisite.
 
 By the end of this tutorial you'll have a 1 file plugin with just a settings page that saves data on the multisite.
-
 
 ## Start the plugin.
 
@@ -85,7 +86,7 @@ The idea behind that variable is that _detecting_ and _saving_ **Network** optio
 
 ## Create a submenu and the page
 
-Now lets add some functionality. Lets create a new Page called `Custom  Settings` in the `Settings` section of the **admin sidebar**
+Now lets add some functionality. Lets create a new Page called `Custom Settings` in the `Settings` section of the **admin sidebar**
 
 ```php{7,15-26,31-50}
 <?php
@@ -288,6 +289,7 @@ Now. This is where the magic happens. This is what you need to do different when
 And that's really it.. We're done.
 
 ![Settings page saving data](final-settings-page.png)
+
 ## Complete code
 
 Instead of showing you the complete class. Let me point you to the [GitHub Repo](https://github.com/marioy47/wordpress-multisite-settings) where all the code I created here is saved.

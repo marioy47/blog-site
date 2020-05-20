@@ -21,9 +21,10 @@ function SEO({ description, lang, meta, title, image }) {
             author
             keywords
             url
+            image
           }
         }
-        file(relativePath: { in: ["images/share-image.png"] }) {
+        file(relativePath: { in: ["images/icon-developer.png"] }) {
           publicURL
         }
       }
@@ -31,7 +32,10 @@ function SEO({ description, lang, meta, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const postImage = image === null || image === "null" ? file.publicURL : image
+  const postImage =
+    image === null || image === "null" || typeof image == "undefined"
+      ? file.publicURL
+      : image
 
   return (
     <Helmet

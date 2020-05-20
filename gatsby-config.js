@@ -5,6 +5,7 @@ module.exports = {
     author: `@marioy47`,
     keywords: `blog, web development, gatsby, jamstack,aws developer, flutter developer`,
     url: `https://marioyepes.com`,
+    image: `images/icon-developer.png`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

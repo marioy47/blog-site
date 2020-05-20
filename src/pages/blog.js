@@ -10,7 +10,7 @@ const BlogPage = ({ data }) => (
     <h1 className="text-center">Mario's Blog</h1>
     {data.allMarkdownRemark.edges.map(({ node }) => {
       return (
-        <article className="row">
+        <article className="row" key={node.fields.slug}>
           <header className="col-sm-9">
             <h4>{node.frontmatter.title}</h4>
           </header>

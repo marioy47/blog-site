@@ -9,7 +9,7 @@ cover: vim-web-developmet-cover.png
 
 If you've read some of my blog posts, you can see that PHP and WordPress are a big part of my day to day... But I love vim.
 
-I say "but" because there is a problem: Even though PHP is still one of the [most popular languages](https://octoverse.github.com/#top-languages) around, the tooling is not up to par with the tooling of languages like JavaScript, TypeScript or Python. At least not when it comes to open tools like Visual Studio or (NEO)VIM.
+I say "but" because there is a problem: Even though PHP is still one of the [most popular languages](https://octoverse.github.com/#top-languages) around, the tooling is not up to par with the likes of JavaScript, TypeScript or Python. At least not when it comes to open tools like Visual Studio or (NEO)VIM.
 
 So if you want a decent PHP editor that does everything, you better be prepared to spend some dough... or read this article where I'll teach you how to setup your (Neo)Vim to work much like and IDE like Visual Studio or PhpStorm.
 
@@ -17,7 +17,7 @@ And while I'm at it. I'm going to make it work also for other languages like Jav
 
 ## Disclaimer
 
-At the end of this article there is a small _cheat sheet_ of some of the most useful commands form vim that I keep around for convenience. Still, this is an intermediate level article and assumes that you already know the basics of vim, like closing the editor and move around inside a file.
+This article is not for Vim beginners. I assume that you know where your `.vimrc` for `init.vim` file resides. Also how to use (Neo)Vim _plugin managers_ and how to save and quit from Vim.
 
 ## Install required software
 
@@ -25,7 +25,7 @@ Since we're going to be starting from scratch, I'm only going to assume that you
 
 So Just install the following pieces of software
 
-- Vim 8 or NeoVim
+- NeoVim  or Vim 8 
 - Node 10
 - git
 - curl
@@ -101,7 +101,7 @@ We're still a long way to go, but we made some good progress.
 
 One thing that I didn't mention before, is that `vim's` config file is actually written in `vimscript`, which is a complete programming language. So we could make vim behave like an IDE by adding functions and directives in this file. The problem is that it would take too long to do it and we would en up with a configuration file with a size that could be measured in Megs. That's why we'll be using plugins.
 
-In our case, we're going to use the plugin manager [vim-plug](https://github.com/junegunn/vim-plug) to take care of downloading installing and configuring the plugins we're going to use.
+In our case, we're going to use the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager to take care of downloading installing and configuring the plugins we're going to use.
 
 So add the following to the `config.vim` file at the end:
 
@@ -246,9 +246,9 @@ But as I said, with NeoVim I haven't had any issues.
 
 ## File management
 
-One essential part of an IDE, it's file management... preferably by using some kind of sidebar. And to complement that, it would be nice to have some kind of _fuzzy file opener_ that lets you open a file just by typing part of the name. Much like `Cmd-P` in Visual Studio Code.
+One essential part of an IDE, it's file management... preferably by using some kind of sidebar that shows the project's files. And to complement that, it would be nice to have some kind of _fuzzy file opener_ that lets you open a file just by typing part of the name. Much like `Cmd-P` in Visual Studio Code.
 
-It turns out that there are also plugins for that.
+It turns out that there are also plugins for that!.
 
 We'll install [`NERDTree`](https://github.com/preservim/nerdtree) for file exploring and [`fzf`](https://github.com/junegunn/fzf.vim) for fuzzy file finding (think Cmd-p open file):
 
@@ -346,7 +346,7 @@ And test the _Intellisense_ just by typing something:
 
 Cool, isn't it?
 
-## CoC extensions
+### CoC extensions
 
 CoC by itself is very capable, but it does just auto suggest competition for only a small set of languages. Which is pretty normal since there number of available programming languages its very big.
 
@@ -360,7 +360,7 @@ Here I'm installing the `coc-phpls` extension to have PHP code competition.
 
 To have CoC install extensions automatically you have to set up the `coc_global_extensions` variable inside the `config.vim` file, with a list of _CoC_ extensions you want to install at **start up time**.
 
-So lets add some extensions by adding the following directive to your `config.vim` file and **restarting** vim:
+So lets add some extensions by adding the following directive to your `config.vim` file and **restarting vim**:
 
 ```vim
 let g:coc_global_extensions = [
@@ -387,7 +387,12 @@ In my case, when I'm developing for WordPress, the `coc-phpls` extension keeps w
 
 That's why we need our last plugin: [Ale](https://github.com/dense-analysis/ale).
 
-_Ale_ allows you to configure any linter we want. For instance you could be using `phpcs` for your PHP projects, or `pylint` for your Python projects.
+**Ale** allows you to configure any linter we want. For instance you could be using `phpcs` for your PHP projects, or `pylint` and/or `flake8` for your Python projects.
+
+Since we already have _CoC_ installed, we need to do 2 things:
+
+- Install the _Ale_ plugin with `vim-plug`
+- Tell _CoC_ to use Ale for linting
 
 So lets add the plugin in the plugins section first:
 
@@ -411,16 +416,11 @@ Plug 'dense-analysis/ale'         " Code linting
 call plug#end()
 ```
 
-Then we have to tell CoC to use Ale instead of any extensions when it comes to linting. For that you have 2 options:
-
-- Execute `:CocConfig`.
-- Edit the file called `coc-settings.json`
-
-Actually `:CocConfig` opens up the `coc-settings.json` file for you, so both options are actually the same.
+Then we have to tell _CoC_ to use _Ale_ instead of any extensions when it comes to linting. For that you have to execute `:CocConfig`. That opens up the `coc-settings.json` file for you.
 
 ![CoC config for Ale](coc-settings-for-ale.png)
 
-In the `coc-config.json` file you have to add just this:
+There you have to add the folloing lines:
 
 ```json
 {
@@ -450,7 +450,7 @@ Notice that you have still have to configure the linting tool for your projects,
 
 ## Install your configuration file
 
-Up until now we've been using a "temporary" config file so its easier to modify and keep as a separate project. But now that we have all the settings that we want we can install it so it get auto loaded by Vim8 and Neo vim
+Up until now we've been using a "temporary" config file (that's why we used the `vim -u config.vim config.vim` command) so its easier to modify and keep as a separate project. But now that we have all the settings that we want we can install it so it get auto loaded by Vim8 and Neo vim
 
 ### Vim
 
@@ -462,16 +462,9 @@ cp config.vim ~/.vimrc
 
 ### NeoVim
 
-For Neo Vim you have to copy this file to `.config/nvim/init.vim`
+For Neo Vim we are going to use a little tric (looks like we're full of trick here !!!)
 
-```bash
-mkdir -p ~/.config/nvim/
-cp config.vim ~/.config/nvim/init.vim
-```
-
-### For both
-
-To have this file be loaded by both NeoVim and Vim you have to configure it for Vim and add the following contents to `~/.config/nvim/init.vim`
+Lest instruct _NeoVim_ to use _Vim's_ file. For that you have to create a file in `.config/nvim/init.vim` with the followin content:
 
 ```vim
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -479,102 +472,18 @@ let &packpath=&runtimepath
 source ~/.vimrc
 ```
 
-By adding this to `init.vim` you are telling NeoVim to look for configuration settings int `~/.vimrc`
+```bash
+mkdir -p ~/.config/nvim/
+cp config.vim ~/.config/nvim/init.vim
+```
 
-## Vim Cheat Sheet
+By adding this to `init.vim` you are telling NeoVim to look for configuration settings int `~/.vimrc` and use  the `~/.vim/autoload` directory for plugin storage.
 
-Now, this are some vim commands that I keep here as reference. There are some that are very basic (from when I was starting with Vim) and some that are somewhat advanced.
+And we're done.
 
-### Move and edit inside your code
+## Final thougts
 
-| Command | Action                          |
-| ------- | ------------------------------- |
-| jkhl    | Move Down, Up, Left, Right      |
-| w       | Beginning of the next word      |
-| b       | Beginning of the previews word  |
-| e       | End of the next word            |
-| i       | Insert text                     |
-| a       | Add text                        |
-| A       | Add text at the end of the line |
-| x       | Remove character                |
-| dw      | Delete word                     |
+I've created Git repo for testing my `.vimrc` file in [GitHub](https://marioyepes.com/vim-setup-for-modern-web-development/). You can take a look there to the final result.
 
-### Advanced move command
+Also, if you want to browse my current `.vimrc` file, you can browse it in [my dotfiles repo](https://github.com/marioy47/dotfiles/)
 
-| Command | Action                                                            |
-| ------- | ----------------------------------------------------------------- |
-| g       | Go to beginning of file                                           |
-| G       | Go to end of file                                                 |
-| gd      | Go to _definition_ in current file                                |
-| gf      | To to _definition_ in other file file                             |
-| 16G     | Go to line 16                                                     |
-| <ctl>o  | Previous position or previous buffer (useful when using gd or gf) |
-| <ctl>i  | Next position or next buffer                                      |
-| \$      | End of line                                                       |
-
-### Delete Undo/Redo
-
-| Command | Action                |
-| ------- | --------------------- |
-| dd      | Delete line           |
-| dw      | Delete word           |
-| d\$     | Delete to end of line |
-| u       | Undo                  |
-| <ctl>R  | Redo                  |
-
-### Edit/Delete with movement
-
-| Command | Action                      |
-| ------- | --------------------------- |
-| de      | Delete to en of word        |
-| d^      | Delete to beginning         |
-| d0      | Delete to the beginning too |
-| db      | Delete back                 |
-
-### Repeat
-
-| Command | Action              |
-| ------- | ------------------- |
-| 6dw     | Delete next 6 words |
-
-### Clipboard
-
-| Command | Action      |
-| ------- | ----------- |
-| dd      | Delete line |
-| P       | Paste under |
-| O       | Paste over  |
-
-### Changes
-
-| Command | Action                                         |
-| ------- | ---------------------------------------------- |
-| ciw     | Change word no matter the position in the word |
-
-### Search
-
-| Command | Action          |
-| ------- | --------------- |
-| /       | Search          |
-| n       | Next result     |
-| N       | Previous result |
-
-### Search & Replace
-
-| Command             | Action                                         |
-| ------------------- | ---------------------------------------------- |
-| :%s/original/new/gc | Search in all document asking if do the change |
-
-### Visual
-
-| Command | Action                   |
-| ------- | ------------------------ |
-| v       | Start the visual         |
-| !V      | Visual the complete line |
-
-### NERDTree Commands
-
-| Command | Action       |
-| ------- | ------------ |
-| s       | Open on left |
-| vs      | Open on top  |

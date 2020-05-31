@@ -64,7 +64,7 @@ All this a commands are for **normal** mode:
 | d0      | Delete to the beginning too |
 | db      | Delete back                 |
 | u       | Undo                        |
-| <C-r>   | Redo                        |
+| `<C-r>` | Redo                        |
 
 ## Repeat
 
@@ -83,8 +83,10 @@ Most commands, when preceded by a number, are executed multiple times:
 | yw      | Copy (Yank) word |
 | p       | Paste it         |
 | dd      | Delete line      |
-| P       | Paste under      |
 | O       | Paste over       |
+| P       | Paste under      |
+
+- The last 2 command work to add a new line before or after the curent line if you haven't yanked anything yet
 
 ## Changes
 
@@ -103,9 +105,9 @@ Most commands, when preceded by a number, are executed multiple times:
 
 ## Search & Replace
 
-| Command             | Action                                         |
-| ------------------- | ---------------------------------------------- |
-| :%s/original/new/gc | Search in all document asking if do the change |
+| Command               | Action                                         |
+| --------------------- | ---------------------------------------------- |
+| `:%s/original/new/gc` | Search in all document asking if do the change |
 
 ## Visual
 
@@ -139,7 +141,7 @@ This commands are to be executed while inside the NERDTree sidebar.
 
 ## CoC commands
 
-This commans assume you used the [example configuration](https://github.com/neoclide/coc.nvim#example-vim-configuration) sugested by the [CoC github page](https://github.com/neoclide/coc.nvim)
+This commands assume you used the [example configuration](https://github.com/neoclide/coc.nvim#example-vim-configuration) sugested by the [CoC github page](https://github.com/neoclide/coc.nvim)
 
 | Command                | Action                       |
 | ---------------------- | ---------------------------- |
@@ -158,7 +160,7 @@ This commans assume you used the [example configuration](https://github.com/neoc
 
 ## FZF Commands
 
-Its really helpful to use `:help fzf-vim-comands` to browse the documentation
+Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](https://github.com/junegunn/fzf.vim/blob/master/doc/fzf-vim.txt)
 
 | Command   | Action                                             |
 | --------- | -------------------------------------------------- |

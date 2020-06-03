@@ -466,7 +466,36 @@ Si inside Vim execute the command `:CocConfig` which takes you to a new (and emp
 
 And that's it...  You have code completion from CoC and linting with ALE.
 
-We're almost finished.
+## Syntax highlighting
+
+Vim has pretty decent syntax highlighting out of the box. But with hundreds of possible languages there is room for improvement. For instance, take the following `jsx` file.
+
+![Image of App.js from a react project](app-js-before-vim-poliglot.png)
+
+Can you see that none of the import parameters is highlighted?
+
+That's where the [Vim Poliglot](https://github.com/sheerun/vim-polyglot) comes into play.  What `vim-poliglot` does is that loads the language syntax highlighting commands when you load a file. So it doesn't slows down the editor in no sensible way.
+
+To install it you have to follow the same procedure. Add the plugin in `config.vim` and save, source, `:PlugInstall` and source again.
+
+
+```vim{3}
+" config.vim
+call plug#begin('~/.vim/plugged')
+" ...
+Plug 'sheerun/vim-polyglot'
+call plug#end()
+```
+
+To make it run, you don't have to do anything else. Since the `set syntax on` and `set filetype on` directives in our `config.vim` takes care of everything.
+
+Now, take a look at the same file after `vim-poliglot` is installed.
+
+![Image of App.js after polyglot gets installed](app-js-after-vim-poliglot.png)
+
+Pretty... right?
+
+For a list of available languages, you can [visit the GitHub page](https://github.com/sheerun/vim-polyglot#language-packs). I find it hard that your language of choice is not there.
 
 ## Install your configuration file
 

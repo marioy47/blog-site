@@ -13,7 +13,13 @@ I say "but" because there is a problem: Even though PHP is still one of the [mos
 
 So if you want a decent PHP editor that does everything, you better be prepared to spend some dough... or read this article where I'll teach you how to setup your (Neo)Vim to work much like and IDE like Visual Studio or PhpStorm.
 
-And while I'm at it. I'm going to make it work also for other languages like JavaScript, Dart and Python.
+We'll be setting up:
+
+- Plugins
+- Error detection
+- Auto complete
+- Adding closing brackets/keys/quotes automaticalle
+- And pretty colors of course.
 
 ## Disclaimer
 
@@ -25,7 +31,7 @@ Since we're going to be starting from scratch, I'm only going to assume that you
 
 So Just install the following pieces of software
 
-- NeoVim  or Vim 8 
+- NeoVim or Vim 8
 - Node 10
 - git
 - curl
@@ -34,11 +40,13 @@ So Just install the following pieces of software
 
 As you can see, I'm using brew in MacOS to speed up my installation. But you can install it in the traditional way.
 
+Also, if you are in Mac, I've experienced the best results when using [iTerm2](https://www.iterm2.com/) and [Alacirtty](https://github.com/alacritty/alacritty)
+
 ## Basic Vim configuration
 
 Vim is powerful, _very very_ powerful, there is no doubt about that. But the fact is that after installation, vim it's kind of a dumb editor. It doesn't have any _code highlighting_, nor any file management. And the help is kind of hard to reach. But there is a reason for that. Vim expects that you configure it to make it you own.
 
-So, to configure `vim` you have to create a configuration file in you home directory that can be `~/.vimrc` if you are using Vim or `~/.config/nvim/init.vim` if you are using NeoVim...
+So, to configure `vim` you have to create a configuration file in you home directory that can be `~/.vimrc` if you are using **Vim** or `~/.config/nvim/init.vim` if you are using **NeoVim**.
 
 But just to be sure that we're not making any mistakes, and also that this configuration file works for both _Vim 8_ and _NeoVim_ we're going to use the temporary file `config.vim` in a custom directory:
 
@@ -91,15 +99,17 @@ Now, here is the second trick. _Save and re-source the current file to make the 
 - First save with `:w`
 - The re-source the current file with `:source %`
 
+![Vim first run for the configuration](config-vim-first.png)
+
 And you'll get something like this:
 
-![Vim first run for the configuration](config-vim-first.png)
+![Vim first run for the configuration](config-vim-first-result.png)
 
 We're still a long way to go, but we made some good progress.
 
 ## Install a Plugin Manager
 
-One thing that I didn't mention before, is that `vim's` config file is actually written in `vimscript`, which is a complete programming language. So we could make vim behave like an IDE by adding functions and directives in this file. The problem is that it would take too long to do it and we would en up with a configuration file with a size that could be measured in Megs. That's why we'll be using plugins.
+One thing that I didn't mention before, is that `vim's` config file is actually written in `vimscript`, which is a [complete programming language](https://learnvimscriptthehardway.stevelosh.com/). So we could make vim behave like an IDE by adding functions and directives in this file. The problem is that it would take too long to do it and we would en up with a configuration file with a size that could be measured in Megs. That's why we'll be using plugins.
 
 In our case, we're going to use the [vim-plug](https://github.com/junegunn/vim-plug) plugin manager to take care of downloading installing and configuring the plugins we're going to use.
 
@@ -109,7 +119,6 @@ So add the following to the `config.vim` file at the end:
 " Install vim-plug for vim and neovim
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  silent !mkdir -p ~/.config/nvim/autoload/ && ln -s ~/.vim/autoload/plug.vim ~/.config/nvim/autoload/
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -143,7 +152,7 @@ To install the plugin lets make the following change at the end of the `config.v
 
 ```vim {4}
 " config.vim
-
+" ...
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'         " Sensible defaults
 call plug#end()
@@ -170,51 +179,44 @@ That plugin adds some additional functionality, that can be reviewed by looking 
 
 What is an IDE without out some pretty colors??? 😅
 
-In vim themes are also plugins. So we are going to add 3 new plugins:
+In vim themes are also plugins. So we are going to add one new plugins: `drewtempelmeyer/palenight.vim`.
 
-- Material _Palenight_
-- _Gruvbox_
-- Night Owl
+To install it, make the following changes on `config.vim` in the plugins section:
 
-> I like to switch theme according to the time of day, or the language I'm programing on. That's why I use 3 themes
-
-To install them, make the following changes on `config.vim` in the plugins section:
-
-```vim {7-9,13}
+```vim {5,8}
 " config.vim
-
+"...
 call plug#begin('~/.vim/plugged')
-
-Plug 'tpope/vim-sensible'         " Sensible defaults
-
-Plug 'kaicataldo/material.vim'    " Material themes
-Plug 'morhetz/gruvbox'            " Retro colors theme
-Plug 'haishanh/night-owl.vim'     " A 'night friendly` theme
-
+Plug 'tpope/vim-sensible'            " Sensible defaults
+Plug 'drewtempelmeyer/palenight.vim' " Soothing color scheme for your favorite [best] text editor
 call plug#end()
 
-colorscheme material              " Activate the Material theme
+colorscheme palenight " Activate the theme
 ```
 
 Again:
 
 - Save the file with `:w`
 - Re-source it with `:source %`
+  - Here you are going to get an error saying that the theme is not installed. Which is true.
 - Install the plugins with `:PlugInstall`
 - Close the _install buffer_ with `:bd`
 - Re-source (for the second time) the config with `:source %`
 
-![Install themes plugin](plug-install-themes.png)
+![Theme not present error](colorsheme-error.png)
 
 And you'll see a new set of colors:
 
-![Material Theme](colorscheme-material.png)
+![Install themes plugin](plug-install-themes.png)
 
-Each of the themes have additional options that you can configure in the `config.vim` file. Options like support for italics, different versions of the theme, _light_ versions, etc.
+The themes that I use the most are
 
-- Options for the [Material theme](https://github.com/kaicataldo/material.vim#usage)
-- Options for [Gruvbox](https://github.com/morhetz/gruvbox/wiki/Configuration)
-- Options for [Nigh Owl](https://github.com/haishanh/night-owl.vim#usage)
+- [Material theme](https://github.com/kaicataldo/material.vim#usage)
+- [Gruvbox](https://github.com/morhetz/gruvbox/wiki/Configuration)
+- [Nigh Owl](https://github.com/haishanh/night-owl.vim#usage)
+- [Palenight](https://github.com/drewtempelmeyer/palenight.vim#usage)
+
+And before you say something... yes, _Palenight_ theme is also included in the _Material Theme_. Its just that in my terminal the stand alone _Palenight_ looks better.
 
 ### Fix italic issue
 
@@ -254,31 +256,26 @@ We'll install [`NERDTree`](https://github.com/preservim/nerdtree) for file explo
 
 So lets add the following lines to the `config.vim` file:
 
-```vim {11-13,19-21}
+```vim {6-8,13-16}
 " config.vim
-
+" ...
 call plug#begin('~/.vim/plugged')
-
-Plug 'tpope/vim-sensible'         " Sensible defaults
-
-Plug 'kaicataldo/material.vim'    " Material themes
-Plug 'morhetz/gruvbox'            " Retro colors theme
-Plug 'haishanh/night-owl.vim'     " A 'night friendly` theme
-
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }           " File navigator
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fuzzy finder binary
-Plug 'junegunn/fzf.vim'           " Enable fuzzy finder in Vim
-
+Plug 'tpope/vim-sensible'            " Sensible defaults
+Plug 'drewtempelmeyer/palenight.vim'  " Soothing color scheme for your favorite [best] text editor
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File navigator
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Install fuzzy finder binary
+Plug 'junegunn/fzf.vim'               " Enable fuzzy finder in Vim
 call plug#end()
 
-colorscheme material                    " Activate the Material theme
+colorscheme palenight                 " Activate the Palenight theme
 
-noremap <C-k><C-p> :NERDTreeToggle<cr> " Use Ctrl-K Ctrl-P to open a sidebar with the list of files
-
-nnoremap <C-p> :Files<cr>              " Use Ctrl-P to open the fuzzy file opener
+" Use Ctrl-k Ctrl-p to open a sidebar with the list of files
+map <C-k><C-p> :NERDTreeToggle<cr>
+" Use Ctrl-P to open the fuzzy file opener
+nnoremap <C-p> :Files<cr>
 ```
 
-The reason that _fzf_ requires 2 plugins is because the first installs the `fzf` binary in our file system, and the second is the actual vim plugin.
+The reason that _fzf_ requires 2 plugins is because the first installs the `fzf` binary in our file system, and the second adds commands that allows us to use it easily inside Vim.
 
 Again, save the file with `:w`, re-source the file with `:source %` and install the plugins with `:PlugInstall`. Finally re-source again to enable the new plugins in our current vim instance.
 
@@ -296,9 +293,91 @@ Both NERDTree and FZF are pretty configurable. I encourage you to read [this art
 
 The FZF [GitHub Page](https://github.com/junegunn/fzf.vim) its pretty good. But you might want to take a look at this [blog post](https://blog.avahe.tk/posts/neovim/fzf-ripgrep/) for additional information on how **also** fuzzy find inside files using [RipGrep](https://github.com/BurntSushi/ripgrep).
 
+## Tabs vs Spaces, Line Feed vs Carriage Return (Editor Config)
+
+Now, if you are working in a team, is probable that your developers are using different code editors and different OSs. This leads to "conflits" on how to format the files in your project.
+
+To solve that, I use a [.editorconfig](https://editorconfig.org) file in my projects.
+
+What this does is that it **configures your editor** to use spaces or tabs... Also to use CRLF or just LF for line endings.
+
+To make that work on vim, you have to use another plugin, the `editorconfig` plugin.
+
+So just add the following line int the _PLugins_ section of your `config.vim` file and thats it:
+
+```vim
+Plug 'editorconfig/editorconfig-vim'  " Tab/Space trough projects
+```
+
+To check if things are working create the following `.editorconfig` in your directory
+
+```editorconfig
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
+
+# WordPress Coding Standards
+# https://make.wordpress.org/core/handbook/coding-standards/
+
+root = true
+
+[*]
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = tab
+indent_size = 8
+```
+
+And in vim use the command `set list lcs=trail:·,tab:»·` so tabs and spaces are visible on the current buffer.
+
+![Editorconfig](editorconfig-show-tabs.png)
+
+And as you can see, **in this buffer** we are using tabs even tough we configured Vim from the start to use spaces.
+
+## Linting and Fixing code
+
+One of the pains of developing in PHP is that 2 of the bigest projects around, Wordpress and Laravel, use different coding standards.
+
+For instance, Laravel uses the PSR12 standard that ask you to use `camelCaseFunction` names and spaces for indenting. In the other hand, Wordpress uses tabs for indenting and `snake_cased_function` names. This requires you to use different linters for the same language.
+
+For Python things are not so different, the discussion to use Pylint or Flake8 is still a vivid debate.
+
+That's why we're going to use the `ALE` plugin. To take care of the different linters that the languages might have. It works by looking in your project configuration and executing the correct linter.
+
+It's important to note that **you have to configure your project to use an specific linter**. ALE its just going to take care of showing the linter results inside Vim.
+
+So lets add the new plugin, and save, re-source the config file, PlugInstall and re-source again as we been doing it.
+
+```vim
+" config.vim
+call plug#begin('~/.vim/plugged')
+"...
+Plug 'dense-analysis/ale'         " Code linting
+call plug#end()
+```
+
+Now lets make a little test with a php file:
+
+- Install composer in the directory you are working
+- Create a PHP file with wrong format
+- Fix the format using ALE
+
+```bash
+composer init
+composer require "squizlabs/php_codesniffer=*" --dev
+vim hello.php
+```
+
+Make a bad formatted file with vim and look at the errors:
+
+![ALE Linting Errors](ale-linting-errors.png)
+
+Note that you still have to configure the linting tool for your projects, but as far as Vim is concerned, that's it.
+
+
 ## IntelliSense
 
-Now the interesting part, _Code Completion_ and _Intellisense_.
+Now the most interesting part, _Code Completion_ and _Intellisense_.
 
 The project [Conquer of Completion](https://github.com/neoclide/coc.nvim) (or **CoC**) it's a very big Vim plugin that brings [Language Server Protocol](https://langserver.org/) over to Vim.
 
@@ -310,23 +389,11 @@ Even tough the LSP server is an standard more than an application, the only usef
 
 So, to enable CoC on vim we need to add the following line to the plugins section in our `config.vim` file:
 
-```vim {15}
+```vim {4}
 " config.vim
-
 call plug#begin('~/.vim/plugged')
-
-Plug 'tpope/vim-sensible'         " Sensible defaults
-
-Plug 'kaicataldo/material.vim'    " Material themes
-Plug 'morhetz/gruvbox'            " Retro colors theme
-Plug 'haishanh/night-owl.vim'     " A 'night friendly` theme
-
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }           " File navigator
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fuzzy finder binary
-Plug 'junegunn/fzf.vim'           " Enable fuzzy finder in Vim
-
+" ...
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intelisense
-
 call plug#end()
 ```
 
@@ -345,6 +412,7 @@ And test the _Intellisense_ just by typing something:
 ![IntelliSense in action](vim-intellisense-in-action.png)
 
 Cool, isn't it?
+
 
 ### CoC extensions
 
@@ -377,50 +445,18 @@ This will install the `tsserver` (for javascript), `json`, `html`, `css`, `php` 
 
 If you require support for additional languages, just take a look at the available [list of extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 
-## Linting
+### CoC Diagnostics (Linting)
 
-If you tested CoC, you can see that its capable of detecting syntax and format errors, which is awesome.
+CoC not only provides _autocompletion_. It also provides **linting**.
 
-The problem is that if you already use something like `eslint` for your JavaScript projects, or `phpcs` for your PHP projects, then you might be getting warnings of _linting_ errors when you know that there are none.
+But, we already have a linting plugin that is able to use native linters like _phpcs_, _flake8_, _darfmt_, etc.
 
-In my case, when I'm developing for WordPress, the `coc-phpls` extension keeps warning me that I'm using _tabs_ instead of _spaces_ in my code. Which is a nightmare.
+So we need to disable the _diagnostic_ capabilities from CoC so there are no colissions.
 
-That's why we need our last plugin: [Ale](https://github.com/dense-analysis/ale).
+To tell you the truth, I don't specially like how CoC handle this particular procedure. Because you have to go into a configuration file that is only for CoC and its written in `json`.
 
-**Ale** allows you to configure any linter we want. For instance you could be using `phpcs` for your PHP projects, or `pylint` and/or `flake8` for your Python projects.
+Si inside Vim execute the command `:CocConfig` which takes you to a new (and empty) configuration file. There you have to add the folloing lines:
 
-Since we already have _CoC_ installed, we need to do 2 things:
-
-- Install the _Ale_ plugin with `vim-plug`
-- Tell _CoC_ to use Ale for linting
-
-So lets add the plugin in the plugins section first:
-
-```vim{15}
-" config.vim
-call plug#begin('~/.vim/plugged')
-
-Plug 'tpope/vim-sensible'         " Sensible defaults
-
-Plug 'kaicataldo/material.vim'    " Material themes
-Plug 'morhetz/gruvbox'            " Retro colors theme
-Plug 'haishanh/night-owl.vim'     " A 'night friendly` theme
-
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }           " File navigator
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Install fuzzy finder binary
-Plug 'junegunn/fzf.vim'           " Enable fuzzy finder in Vim
-
-Plug 'neoclide/coc.nvim', { 'branch': 'release' } " Intelisense
-Plug 'dense-analysis/ale'         " Code linting
-
-call plug#end()
-```
-
-Then we have to tell _CoC_ to use _Ale_ instead of any extensions when it comes to linting. For that you have to execute `:CocConfig`. That opens up the `coc-settings.json` file for you.
-
-![CoC config for Ale](coc-settings-for-ale.png)
-
-There you have to add the folloing lines:
 
 ```json
 {
@@ -428,25 +464,9 @@ There you have to add the folloing lines:
 }
 ```
 
-And that's it...
+And that's it...  You have code completion from CoC and linting with ALE.
 
-Now lets make a little test with a php file:
-
-- Install composer in the directory you are working
-- Create a PHP file with wrong format
-- Fix the format using ALE
-
-```bash
-composer init
-composer require "squizlabs/php_codesniffer=*" --dev
-vim hello.php
-```
-
-Make a bad formatted file with vim and look at the errors:
-
-![ALE Linting Errors](ale-linting-errors.png)
-
-Notice that you have still have to configure the linting tool for your projects, but as far as Vim is concerned, that's it.
+We're almost finished.
 
 ## Install your configuration file
 
@@ -462,9 +482,9 @@ cp config.vim ~/.vimrc
 
 ### NeoVim
 
-For Neo Vim we are going to use a little tric (looks like we're full of trick here !!!)
+For Neo Vim we are going to use a little trick (looks like we're full of trick here !!!) Lest instruct _NeoVim_ to use _Vim's_ file.
 
-Lest instruct _NeoVim_ to use _Vim's_ file. For that you have to create a file in `.config/nvim/init.vim` with the followin content:
+Create the `~/.config/nvim/` directory and in the file `~/.config/nvim/init.vim` add the following content:
 
 ```vim
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -472,12 +492,7 @@ let &packpath=&runtimepath
 source ~/.vimrc
 ```
 
-```bash
-mkdir -p ~/.config/nvim/
-cp config.vim ~/.config/nvim/init.vim
-```
-
-By adding this to `init.vim` you are telling NeoVim to look for configuration settings int `~/.vimrc` and use  the `~/.vim/autoload` directory for plugin storage.
+By adding this to `init.vim` you are telling NeoVim to look for configuration settings int `~/.vimrc` and use the `~/.vim/autoload` directory for plugin storage.
 
 And we're done.
 
@@ -486,4 +501,3 @@ And we're done.
 I've created Git repo for testing my `.vimrc` file in [GitHub](https://marioyepes.com/vim-setup-for-modern-web-development/). You can take a look there to the final result.
 
 Also, if you want to browse my current `.vimrc` file, you can browse it in [my dotfiles repo](https://github.com/marioy47/dotfiles/)
-

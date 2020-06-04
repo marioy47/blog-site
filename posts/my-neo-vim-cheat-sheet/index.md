@@ -215,6 +215,7 @@ Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](
 | `:Tags`     | Tags in the project                                |
 | `:Snippets` | UtilSnips snippets                                 |
 | `:BCommits` | Commits for the current buffer (Requires Fugitive) |
+| `:Rg!`      | Like grep for all the project files but faster     |
 | `<C-k><C-u>`| Executes `:Buffers`                                |
 
 - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new

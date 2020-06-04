@@ -179,3 +179,20 @@ So to use _Youtube Uploader_ you just have to:
 - Execute the upload command to create the `request.token`
 - Save those 2 files for future uploads
 - Unless specified, the uploaded videos are _private_
+
+## Interesting Parammeters
+
+You can get a complete list of the supported parammeters by executing
+
+```bash
+youtubeuploader -h
+```
+
+But here is a list of the most useful ones:
+
+- `-description "The description"` If none specified the description will be _Uploaded by Youtubeuploader_
+- `-filename /path/to/video/file.mp4` The local file to upload
+- `-privacy <private|public|unlisted>` One of `private`, `public`, `unlisted`
+- `-secrets /path/to/client_secrets.json` When you have the `.json` file on another directory
+- `-title "The video title"`
+- `-thumbnail /path/or/url/to/thumbnail.png` You can upload the thumbnail too

@@ -61,7 +61,7 @@ It's like scrolling but keeping the cursor on the same position
 All this a commands are for **normal** mode:
 
 | Command | Action                              |
-| ------- | ----------------------------------  |
+| ------- | ----------------------------------- |
 | x       | Cut (Works in visual mode too)      |
 | de      | Delete to end of word               |
 | d0      | Delete to the beginning of the line |
@@ -69,6 +69,7 @@ All this a commands are for **normal** mode:
 | dfx     | Delete until the next `x`           |
 | `:.,$d` | Delete until the end of the buffer  |
 | u       | Undo                                |
+| U       | Undo on the whole line              |
 | `<C-r>` | Redo                                |
 
 ## Repeat
@@ -97,18 +98,18 @@ Most commands, when preceded by a number, are executed multiple times:
 It's like a clipboard history
 
 | Command | Action                                             |
-| ------- | ---------------------------------------------------|
+| ------- | -------------------------------------------------- |
 | `:reg`  | List registers (List yanked test                   |
 | `"2p`   | Pastes register 2 (after you list registers first) |
 
-
 ## Changes
 
-| Command | Action                                          |
-| ------- | ----------------------------------------------- |
-| r       | Replace current character                       |
-| ciw     | Change word no matter the position in the word  |
-| ci`)`   | Change (inside) the contents until the next `)` |
+| Command | Action                                                |
+| ------- | ----------------------------------------------------- |
+| r       | Replace current character                             |
+| ciw     | Change word no matter the position in the word        |
+| ci`)`   | Change (inside) the contents until the next `)`       |
+| cb`)`   | Change (otside) the block contents until the next `)` |
 
 ## Search
 
@@ -134,11 +135,11 @@ It's like a clipboard history
 
 ## Quicfix and Location List
 
-| Command    | Action                                                |
-| ---------- | ----------------------------------------------------- |
-| `:copen`   | Open error list (requires my configuration)           |
-| `:cclose`  | Close error list (requires my configuration)          |
-| `:cnext`   | Go to next error                                      |
+| Command   | Action                                       |
+| --------- | -------------------------------------------- |
+| `:copen`  | Open error list (requires my configuration)  |
+| `:cclose` | Close error list (requires my configuration) |
+| `:cnext`  | Go to next error                             |
 
 ## Debug utilities
 
@@ -175,6 +176,7 @@ This are particular to my configuration
 | ------------ | ----------------------------------------------- |
 | `<C-k><C-k>` | Toggle NERDTree (open if closed, close if open) |
 | `<C-k><C-f>` | Toggle NERDTree and select the current file     |
+
 |
 
 This commands are to be executed while inside the NERDTree sidebar:
@@ -196,27 +198,26 @@ This are the default key-maps
 
 ## ALE Commands
 
-| Command    | Action                                                |
-| ---------- | ----------------------------------------------------- |
-| `:ALEFix`  | Format the current document with the configured fixer |
-| `:ALEInfo` | Conf for the current buffer                           |
-| `<leader>ap` | Show next error/warning                             |
-| `<leader>an` | Shows the previous error/warning                    |
-
+| Command      | Action                                                |
+| ------------ | ----------------------------------------------------- |
+| `:ALEFix`    | Format the current document with the configured fixer |
+| `:ALEInfo`   | Conf for the current buffer                           |
+| `<leader>ap` | Show next error/warning                               |
+| `<leader>an` | Shows the previous error/warning                      |
 
 ## FZF Commands
 
 Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](https://github.com/junegunn/fzf.vim/blob/master/doc/fzf-vim.txt)
 
-| Command     | Action                                             |
-| ----------- | -------------------------------------------------- |
-| `:History`  | Opens up the list of last edited files             |
-| `:GFiles`   | Ignores files in `.gitignore`                      |
-| `:Tags`     | Tags in the project                                |
-| `:Snippets` | UtilSnips snippets                                 |
-| `:BCommits` | Commits for the current buffer (Requires Fugitive) |
-| `:Rg!`      | Like grep for all the project files but faster     |
-| `<C-k><C-u>`| Executes `:Buffers`                                |
+| Command      | Action                                             |
+| ------------ | -------------------------------------------------- |
+| `:History`   | Opens up the list of last edited files             |
+| `:GFiles`    | Ignores files in `.gitignore`                      |
+| `:Tags`      | Tags in the project                                |
+| `:Snippets`  | UtilSnips snippets                                 |
+| `:BCommits`  | Commits for the current buffer (Requires Fugitive) |
+| `:Rg!`       | Like grep for all the project files but faster     |
+| `<C-k><C-u>` | Executes `:Buffers`                                |
 
 - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
   tab, a new split, or in a new vertical split

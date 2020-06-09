@@ -179,7 +179,7 @@ The good news is that this is last piece of software we need to install. And to 
 
 ![Android SDK finished installing](android-studio-setup-04.png)
 
-If you are not are going to stick to _Android Studio_ and don't want to use the terminal or _Visual Studio Code_. You can stop reading. **You are completely seated up**.
+If you are not are going to stick to _Android Studio_ and don't want to use the terminal or _Visual Studio Code_. You can stop reading. **You are completely set up**.
 
 ## Setup the Android SDK Path
 
@@ -209,22 +209,26 @@ Finally a couple of tips for _Visual Studio Code_ users like me:
 
 ### 1. Install the Flutter extension
 
+If you don't install it, you might as well forget about using _Visual Studio Code_.
+
+You just have to look for _Flutter_ on the extensions panel. Or issue the following command on the terminal:
+
 ```bash
 code --install-extension Dart-Code.flutter
 ```
 
-If you don't install it, you might as well forget about using _Visual Studio Code_
+### 2. Some key bindings
 
-### Some key bindings
+As a quick (and personal) reminder, here are the most used key bindings for flutter development:
 
-- `F5` - Open you app in the running simulator in debug mode
-- `Cmd+F5` - Opens your app in the simulator without debug. This makes it run faster.
-- `cmd+.` - Activity menu that allows you for instance wrap a widget in another.
-- `shift+F5` - Stop debugging
-- `cmd-shift-F5` - Restart Debugging (Hot Reload when debugging Flutter apps)
-- `F9` - Toggle Breakpoint
-- `F10` - Step Over
-- `F11` - Step In
-- `Shift+F11` - Step Out
+- `F5` - Open you app in the running simulator in debug mode.
+- `Cmd+F5` - Opens your app in the simulator without debug. This makes it run and reload faster.
+- `cmd+.` - Activity menu that allows you for instance wrap a widget in another or rename a variable.
+- `shift+F5` - Stop debugging.
+- `cmd-shift-F5` - Restart Debugging (Hot Reload when debugging Flutter apps).
+- `F9` - Toggle Breakpoint.
+- `F10` - Step Over.
+- `F11` - Step In.
+- `Shift+F11` - Step Out.
 
 There are a lot of useful shortcuts that can be [viewed in this excellent blog post](https://medium.com/flutter-community/flutter-visual-studio-code-shortcuts-for-fast-and-efficient-development-7235bc6c3b7d)

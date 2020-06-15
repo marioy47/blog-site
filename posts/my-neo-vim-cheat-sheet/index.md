@@ -21,14 +21,26 @@ One thing tough. I try to use the default key-maps as much as I can, so this che
 
 All this a commands are for **normal** mode:
 
-| Command | Action                          |
-| ------- | ------------------------------- |
-| w       | Beginning of the next word      |
-| fx      | Go to forward to the next `x`   |
-| b       | Beginning of the previews word  |
-| e       | End of the next word            |
-| `$`     | End of line                     |
-| A       | Add text at the end of the line |
+| Command | Action                                 |
+| ------- | -------------------------------------- |
+| `w`     | Beginning of the next word             |
+| `b`     | Beginning of the _previews_ word       |
+| `e`     | End of the next word                   |
+| `$`     | End of line                            |
+| `fx`    | Go to forward to the next `x`          |
+| `{`     | Go to next _paragrap_ (empty line)     |
+| `}`     | Go to previous _paragrap_ (empty line) |
+| `A`     | Add text at the end of the line        |
+| `I`     | Add text at the end of the line        |
+
+## Advanced save
+
+All this a commands are for **normal** mode:
+
+| Command              | Action                                                  |
+| -------------------- | ------------------------------------------------------- |
+| `#,#w file-name.txt` | Saves part of a file to a new file                      |
+| `:r file-name.txt`   | Inserts contents of `file-name.txt` in current position |
 
 ## Advanced movement commands
 
@@ -36,25 +48,15 @@ All this commands are for **normal** mode:
 
 | Command | Action                                                            |
 | ------- | ----------------------------------------------------------------- |
-| gg      | Go to beginning of file                                           |
-| G       | Go to end of file                                                 |
+| `gg`    | Go to beginning of file                                           |
+| `G`     | Go to end of file                                                 |
 | `<C-f>` | Page Down (Page Forward)                                          |
 | `<C-b>` | Page Up (Page Backward)                                           |
-| gd      | Go to _definition_ of word or function in current file            |
-| gf      | To to _definition_ in other file                                  |
-| 16G     | Go to line 16                                                     |
+| `gd`    | Go to _definition_ of word or function in current file            |
+| `gf`    | To to _definition_ in other file                                  |
+| `16G`   | Go to line 16                                                     |
 | `<C-o>` | Previous position or previous buffer (useful when using gd or gf) |
 | `<C-i>` | Next position or next buffer                                      |
-
-## ViewPort
-
-It's like scrolling but keeping the cursor on the same position
-
-| Command | Action                              |
-| ------- | ----------------------------------- |
-| `<C-e>` | Move viewport up                    |
-| `<C-u>` | Move viewport Up (like page up)     |
-| `<C-d>` | Move viewport Down (like page down) |
 
 ## Delete Undo/Redo
 
@@ -62,14 +64,14 @@ All this a commands are for **normal** mode:
 
 | Command | Action                              |
 | ------- | ----------------------------------- |
-| x       | Cut (Works in visual mode too)      |
-| de      | Delete to end of word               |
-| d0      | Delete to the beginning of the line |
-| db      | Delete back                         |
-| dfx     | Delete until the next `x`           |
+| `x`     | Cut (Works in visual mode too)      |
+| `de`    | Delete to end of word               |
+| `d0`    | Delete to the beginning of the line |
+| `db`    | Delete back                         |
+| `dfx`   | Delete until the next `x`           |
 | `:.,$d` | Delete until the end of the buffer  |
-| u       | Undo                                |
-| U       | Undo on the whole line              |
+| `u`     | Undo                                |
+| `U`     | Undo on the whole line              |
 | `<C-r>` | Redo                                |
 
 ## Repeat
@@ -78,18 +80,18 @@ Most commands, when preceded by a number, are executed multiple times:
 
 | Command | Action              |
 | ------- | ------------------- |
-| 6dw     | Delete next 6 words |
-| 6dd     | Delete next 6 lines |
+| `6dw`   | Delete next 6 words |
+| `6dd`   | Delete next 6 lines |
 
 ## Clipboard
 
-| Command | Action                       |
-| ------- | ---------------------------- |
-| yw      | Copy (Yank) word             |
-| p       | Paste it after the cursor    |
-| dd      | Delete line                  |
-| O       | Paste over the current line  |
-| P       | Paste under the current line |
+| Command       | Action                                             |
+| ------------- | -------------------------------------------------- |
+| `y<movement>` | Copy (Yank). `<movement>` can be `h,j,l,k,w,e,$,0` |
+| `p`           | Paste it after the cursor                          |
+| `dd`          | Delete line                                        |
+| `O`           | Paste over the current line                        |
+| `P`           | Paste under the current line                       |
 
 - The last 2 command work to add a new line before or after the current line if you haven't yanked anything yet
 
@@ -99,54 +101,60 @@ It's like a clipboard history
 
 | Command | Action                                             |
 | ------- | -------------------------------------------------- |
-| `:reg`  | List registers (List yanked test                   |
+| `:reg`  | List registers (List yanked test)                  |
 | `"2p`   | Pastes register 2 (after you list registers first) |
 
 ## Changes
 
-| Command | Action                                                |
-| ------- | ----------------------------------------------------- |
-| r       | Replace current character                             |
-| ciw     | Change word no matter the position in the word        |
-| ci`)`   | Change (inside) the contents until the next `)`       |
-| cb`)`   | Change (otside) the block contents until the next `)` |
+| Command | Action                                                                |
+| ------- | --------------------------------------------------------------------- |
+| `r`     | Replace current character                                             |
+| `R`     | Overwrite content (replace) until you escape                          |
+| `ciw`   | _Change Inside_ word no matter the position                           |
+| `cip`   | _Change Inside_ paragrap (between empty lines) no matter the position |
+| `ci)`   | Change (inside) the contents until the next `)`                       |
 
 ## Search
 
-| Command | Action          |
-| ------- | --------------- |
-| /       | Search          |
-| n       | Next result     |
-| N       | Previous result |
+| Command | Action                               |
+| ------- | ------------------------------------ |
+| `/`     | Search                               |
+| `?`     | Search backwards                     |
+| `*`     | Search for the word under the cursor |
+| `n`     | Next result                          |
+| `N`     | Previous result                      |
 
 ## Search & Replace
 
-| Command               | Action                                         |
-| --------------------- | ---------------------------------------------- |
-| `:%s/original/new/gc` | Search in all document asking if do the change |
+| Command               | Action                                               |
+| --------------------- | ---------------------------------------------------- |
+| `:s/original/new/g`   | Search and replace in the complete line              |
+| `:%s/original/new/gc` | Search in all document asking if do the change (`c`) |
 
 ## Visual
 
 | Command | Action                                                  |
 | ------- | ------------------------------------------------------- |
-| v       | **Start** the visual (Use jkhl to move the selection)   |
-| v`$`    | Select until the end of line                            |
-| V       | Visual the complete line (Use jk to move the selection) |
+| `v`     | **Start** the visual (Use jkhl to move the selection)   |
+| `v$`    | Select until the end of line                            |
+| `vip`   | Select current paragrap (content between empty lines)   |
+| `V`     | Visual the complete line (Use jk to move the selection) |
 
 ## Quicfix and Location List
 
-| Command   | Action                                       |
-| --------- | -------------------------------------------- |
-| `:copen`  | Open error list (requires my configuration)  |
-| `:cclose` | Close error list (requires my configuration) |
-| `:cnext`  | Go to next error                             |
+| Command   | Action           |
+| --------- | ---------------- |
+| `:copen`  | Open error list  |
+| `:cclose` | Close error list |
+| `:cnext`  | Go to next error |
 
 ## Debug utilities
 
 | Command               | Action                                              |
 | --------------------- | --------------------------------------------------- |
-| :verbose imap `<tab>` | Find if the `<tab>` key is defined                  |
-| :verbose imap `<C-p>` | Find if the `<ctrl>p` key is defined                |
+| `Ctrl-g`              | Show file status                                    |
+| `:verbose imap <tab>` | Find if the `<tab>` key is defined                  |
+| `:verbose imap <C-p>` | Find if the `<ctrl>p` key is defined                |
 | `<leader>lo`          | Executes `:lopen` show location list in the gutter  |
 | `<leader>lc`          | Executes `:lclose` hide location list in the gutter |
 
@@ -158,15 +166,19 @@ It's like a clipboard history
 
 - Native autocomplete works by searching the current buffer
 
-## Error/QuickFix list
+## Sessions
 
-| Command        | Action                                                               |
-| -------------- | -------------------------------------------------------------------- |
-| `:cw [height]` | Open the list of errors if there are any, close it if there are none |
-| `:lw [height]` | Location list for the current buffer only                            |
-| `:ccl`         | Close the list of errors                                             |
-| `:lcl`         | Close the location list                                              |
-| `<C-W>L`       | Move the window to the right (Uppercase H/J/K/L)                     |
+| Command       | Action                                                          |
+| ------------- | --------------------------------------------------------------- |
+| `:mks <path>` | Saves the curren session to a path. Better if it's a hidden dir |
+
+## Markers and Macros
+
+| Command            | Action                                               |
+| ------------------ | ---------------------------------------------------- |
+| `m<character>`     | Creates a marker with the name `<character`          |
+| `'<character>`     | Jumps to marker. (Use _backtick_ to include column ) |
+| &#96;`<character>` | Jumps to marker. (Use _backtick_ to include column ) |
 
 ## NERDTree Commands
 
@@ -177,14 +189,13 @@ This are particular to my configuration
 | `<C-k><C-k>` | Toggle NERDTree (open if closed, close if open) |
 | `<C-k><C-f>` | Toggle NERDTree and select the current file     |
 
-|
-
 This commands are to be executed while inside the NERDTree sidebar:
 
 | Command | Action       |
 | ------- | ------------ |
-| s       | Open on left |
-| vs      | Open on top  |
+| `s`     | Open on left |
+| `vs`    | Open on top  |
+| `t`     | Open on new tab|
 
 ## NERD Commenter
 
@@ -195,15 +206,6 @@ This are the default key-maps
 | `<leader>c<space>` | Toggle comments                                                                   |
 | `<leader>ci`       | Toggles the comment state of the selected line(s) individually.                   |
 | `<leader>cs`       | Toggle sexy Comments out the selected lines with a pretty block formatted layout. |
-
-## ALE Commands
-
-| Command      | Action                                                |
-| ------------ | ----------------------------------------------------- |
-| `:ALEFix`    | Format the current document with the configured fixer |
-| `:ALEInfo`   | Conf for the current buffer                           |
-| `<leader>ap` | Show next error/warning                               |
-| `<leader>an` | Shows the previous error/warning                      |
 
 ## FZF Commands
 
@@ -224,13 +226,13 @@ Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](
 
 ## GitGutter
 
-| Command          | Action                          |
-| ---------------- | ------------------------------- |
-| :GitGutterToggle | Show/Hide file changes          |
-| `[c`             | Show next blog of changes       |
-| `]c`             | Show previous blog of changes   |
-| `<Leader>hu`     | Remove hunk                     |
-| `:GitGutterFold` | Toggle fold of the file changes |
+| Command            | Action                          |
+| ------------------ | ------------------------------- |
+| `:GitGutterToggle` | Show/Hide file changes          |
+| `[c`               | Show next blog of changes       |
+| `]c`               | Show previous blog of changes   |
+| `<Leader>hu`       | Remove hunk                     |
+| `:GitGutterFold`   | Toggle fold of the file changes |
 
 ## CoC commands
 

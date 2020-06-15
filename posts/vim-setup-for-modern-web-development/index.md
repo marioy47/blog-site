@@ -11,7 +11,7 @@ If you've read some of my blog posts, you can see that PHP and WordPress are a b
 
 I say "but" because there is a problem: Even though PHP is still one of the [most popular languages](https://octoverse.github.com/#top-languages) around, the tooling is not up to par with the likes of JavaScript, TypeScript or Python. At least not when it comes to open tools like Visual Studio or (NEO)VIM.
 
-So if you want a decent PHP editor that does everything, you better be prepared to spend some dough... or read this article where I'll teach you how to setup your (Neo)Vim to work much like and IDE like Visual Studio or PhpStorm.
+So if you want a decent PHP editor that does everything, you better be prepared to [spend some dough](https://www.jetbrains.com/es-es/phpstorm/)... or read this article where I'll teach you how to setup your (Neo)Vim to work much like and IDE like Visual Studio or PhpStorm.
 
 We'll be setting up:
 
@@ -23,7 +23,7 @@ We'll be setting up:
 
 ## Disclaimer
 
-This article is not for Vim beginners. I assume that you know where your `.vimrc` for `init.vim` file resides. Also how to use (Neo)Vim _plugin managers_ and how to save and quit from Vim.
+This article is not for Vim beginners. I assume that you know where your `.vimrc` or `init.vim` file resides. Also how to use (Neo)Vim _plugin managers_ and how to save and quit from Vim.
 
 ## Install required software
 
@@ -38,13 +38,15 @@ So Just install the following pieces of software
 
 ![Install required packages](brew-install-packages.png)
 
-As you can see, I'm using brew in MacOS to speed up my installation. But you can install it in the traditional way.
+You might be wandering why do I need [NodeJS](https://nodejs.org)? Well, that's going to be our secret souce for this configuration. But lets not get ahead of ourselves lets first focus on setting up a simple developmet environment for our new configuration.
 
-Also, if you are in Mac, I've experienced the best results when using [iTerm2](https://www.iterm2.com/) and [Alacirtty](https://github.com/alacritty/alacritty)
+Also, I'm using brew in MacOS to speed up my installation. But you can install it in the traditional way.
+
+Finally, if you are in Mac, I've experienced the best results when using [iTerm2](https://www.iterm2.com/) and [Alacirtty](https://github.com/alacritty/alacritty)
 
 ## Basic Vim configuration
 
-Vim is powerful, _very very_ powerful, there is no doubt about that. But the fact is that after installation, vim it's kind of a dumb editor. It doesn't have any _code highlighting_, nor any file management. And the help is kind of hard to reach. But there is a reason for that. Vim expects that you configure it to make it you own.
+Vim is powerful, _very very_ powerful, there is no doubt about that. But the fact is that after installation, vim it's kind of a dumb editor and makes no asumptions. It doesn't have any _code highlighting_, nor any file management. And the help is kind of hard to reach. But there is a reason for that. Vim expects that you configure it to make it you own.
 
 So, to configure `vim` you have to create a configuration file in you home directory that can be `~/.vimrc` if you are using **Vim** or `~/.config/nvim/init.vim` if you are using **NeoVim**.
 
@@ -159,7 +161,7 @@ Remember that I said that the configuration we added was to make `vim` and `nvim
 
 We'll the reason for not making the **exactly** the same at that point, was because there is a plugin that will help us with that.
 
-The plugin is called [`tpope/vim-sensible`](https://github.com/tpope/vim-sensible) and what it does is that configures our vim editor with some "sensible" defaults.
+The plugin is called [tpope/vim-sensible](https://github.com/tpope/vim-sensible) and what it does is that configures our vim editor with some "sensible" defaults.
 
 To install the plugin lets make the following change at the end of the `config.vim` file:
 
@@ -171,9 +173,9 @@ Plug 'tpope/vim-sensible'         " Sensible defaults
 call plug#end()
 ```
 
-We just added our first plugin but we still need to install it.
+We just added our first plugin! but we still need to install it.
 
-When installing plugins, our _trick_ has a little change:
+This are the steps to install _and activate_ our new plugin:
 
 - Save the file with `:w`
 - Execute `:source %` to re-source
@@ -192,7 +194,7 @@ That plugin adds some additional functionality, that can be reviewed by looking 
 
 What is an IDE without out some pretty colors??? 😅
 
-In vim themes are also plugins. So we are going to add one new plugins: `drewtempelmeyer/palenight.vim`.
+In vim themes are also plugins. So we are going to add one new plugin: [drewtempelmeyer/palenight.vim](https://github.com/drewtempelmeyer/palenight.vim).
 
 To install it, make the following changes on `config.vim` in the plugins section:
 
@@ -213,7 +215,7 @@ Again:
 - Re-source it with `:source %`
   - Here you are going to get an error saying that the theme is not installed. Which is true.
 - Install the plugins with `:PlugInstall`
-- Close the _install buffer_ with `:bd`
+- Close the _install buffer_ with `:q`
 - Re-source (for the second time) the config with `:source %`
 
 ![Theme not present error](colorsheme-error.png)
@@ -222,7 +224,8 @@ And you'll see a new set of colors:
 
 ![Install themes plugin](plug-install-themes.png)
 
-The themes that I use the most are
+_Palenight_ is a great color scheme but in case you want to take a look to som
+other cool options, This are the themes that I use the most:
 
 - [Material theme](https://github.com/kaicataldo/material.vim#usage)
 - [Gruvbox](https://github.com/morhetz/gruvbox/wiki/Configuration)
@@ -230,6 +233,8 @@ The themes that I use the most are
 - [Palenight](https://github.com/drewtempelmeyer/palenight.vim#usage)
 
 And before you say something... yes, _Palenight_ theme is also included in the _Material Theme_. Its just that in my terminal the stand alone _Palenight_ looks better.
+
+Also, there is the plugin [flazz/vim-colorschemes](https://github.com/flazz/vim-colorschemes) which includes about 300 additional color themes.
 
 ### Fix italic issue
 
@@ -265,7 +270,7 @@ One essential part of an IDE, it's file management... preferably by using some k
 
 It turns out that there are also plugins for that!.
 
-We'll install [`NERDTree`](https://github.com/preservim/nerdtree) for file exploring and [`fzf`](https://github.com/junegunn/fzf.vim) for fuzzy file finding (think Cmd-p open file):
+We'll install [NERDTree](https://github.com/preservim/nerdtree) for file exploring and [`fzf`](https://github.com/junegunn/fzf.vim) for fuzzy file finding (think Cmd-p open file):
 
 So lets add the following lines to the `config.vim` file:
 
@@ -282,8 +287,8 @@ call plug#end()
 
 colorscheme palenight                 " Activate the Palenight theme
 
-" Use Ctrl-k Ctrl-p to open a sidebar with the list of files
-map <C-k><C-p> :NERDTreeToggle<cr>
+" Use Ctrl-k Ctrl-k to open a sidebar with the list of files
+map <C-k><C-k> :NERDTreeToggle<cr>
 " Use Ctrl-P to open the fuzzy file opener
 nnoremap <C-p> :Files<cr>
 ```
@@ -294,7 +299,7 @@ Again, save the file with `:w`, re-source the file with `:source %` and install 
 
 ![Install NERD Tree](plug-install-nerdtree.png)
 
-Now, when you type `Ctrl-K` and then `Ctrl-P` you'll get a tree view of the files of the current directory.
+Now, when you type `Ctrl-k` and then `Ctrl-k` you'll get a tree view of the files of the current directory.
 
 ![NERDTree](nerdtree.png)
 
@@ -308,7 +313,7 @@ The FZF [GitHub Page](https://github.com/junegunn/fzf.vim) its pretty good. But 
 
 ## Tabs vs Spaces, Line Feed vs Carriage Return (Editor Config)
 
-Now, if you are working in a team, is probable that your developers are using different code editors and different OSs. This leads to "conflits" on how to format the files in your project.
+Now, if you are working in a team, is probable that your developers are using different code editors and different OSs. This leads to "conflicts" on how to format the files in your project.
 
 To solve that, I use a [.editorconfig](https://editorconfig.org) file in my projects.
 
@@ -346,47 +351,6 @@ And in vim use the command `set list lcs=trail:·,tab:»·` so tabs and spaces a
 ![Editorconfig](editorconfig-show-tabs.png)
 
 And as you can see, **in this buffer** we are using tabs even tough we configured Vim from the start to use spaces.
-
-## Linting and Fixing code
-
-One of the pains of developing in PHP is that 2 of the bigest projects around, Wordpress and Laravel, use different coding standards.
-
-For instance, Laravel uses the PSR12 standard that ask you to use `camelCaseFunction` names and spaces for indenting. In the other hand, Wordpress uses tabs for indenting and `snake_cased_function` names. This requires you to use different linters for the same language.
-
-For Python things are not so different, the discussion to use Pylint or Flake8 is still a vivid debate.
-
-That's why we're going to use the `ALE` plugin. To take care of the different linters that the languages might have. It works by looking in your project configuration and executing the correct linter.
-
-It's important to note that **you have to configure your project to use an specific linter**. ALE its just going to take care of showing the linter results inside Vim.
-
-So lets add the new plugin, and save, re-source the config file, PlugInstall and re-source again as we been doing it.
-
-```vim
-" config.vim
-call plug#begin('~/.vim/plugged')
-"...
-Plug 'dense-analysis/ale'         " Code linting
-call plug#end()
-```
-
-Now lets make a little test with a php file:
-
-- Install composer in the directory you are working
-- Create a PHP file with wrong format
-- Fix the format using ALE
-
-```bash
-composer init
-composer require "squizlabs/php_codesniffer=*" --dev
-vim hello.php
-```
-
-Make a bad formatted file with vim and look at the errors:
-
-![ALE Linting Errors](ale-linting-errors.png)
-
-Note that you still have to configure the linting tool for your projects, but as far as Vim is concerned, that's it.
-
 
 ## IntelliSense
 
@@ -437,7 +401,14 @@ You install _CoC extensions_ by By using the `:CocInstall <extension-name>` comm
 
 ![CocInstall phpls](coc-install-phpls.png)
 
-Here I'm installing the `coc-phpls` extension to have PHP code competition.
+
+Here I'm installing the `coc-phpls` extension by issuing inside `vim` the command 
+
+```vim
+:CocInstall coc-phpls
+``` 
+
+And now I to have PHP code completition!.
 
 To have CoC install extensions automatically you have to set up the `coc_global_extensions` variable inside the `config.vim` file, with a list of _CoC_ extensions you want to install at **start up time**.
 
@@ -450,34 +421,79 @@ let g:coc_global_extensions = [
     \ 'coc-html',
     \ 'coc-css',
     \ 'coc-phpls',
-    \ 'coc-python'
+    \ 'coc-python',
+	\ 'coc-diagnostic'
     \]
 ```
 
-This will install the `tsserver` (for javascript), `json`, `html`, `css`, `php` and `python` extensions
+This will install the `tsserver` (for javascript), `json`, `html`, `css`, `php` and `python` extensions. Also will install a **diagnostic** extension that can take care of linting and formating using external tools.
 
 If you require support for additional languages, just take a look at the available [list of extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
 
 ### CoC Diagnostics (Linting)
 
-CoC not only provides _autocompletion_. It also provides **linting**.
+CoC not only provides _autocompletion_. It also provides **linting** and **formatting** out the box.
 
-But, we already have a linting plugin that is able to use native linters like _phpcs_, _flake8_, _darfmt_, etc.
+But there are ocations where [external](https://github.com/squizlabs/PHP_CodeSniffer) [tools](https://github.com/PyCQA/flake8) work better. We need then to instruct _CoC_ to use one of those external tools in some languages.
 
-So we need to disable the _diagnostic_ capabilities from CoC so there are no colissions.
+That's why we added the `coc-diagnostic` extension on the list extensions to
+install on the previous step. We just have to configure it to specify which languages will use external tools
 
-To tell you the truth, I don't specially like how CoC handle this particular procedure. Because you have to go into a configuration file that is only for CoC and its written in `json`.
+_CoC_ uses and additional `json` configuration file that can be accesed by executing inside vim `:CocConfig`.
 
-Si inside Vim execute the command `:CocConfig` which takes you to a new (and empty) configuration file. There you have to add the folloing lines:
+In that file I'm going to add the following content:
+
 
 
 ```json
 {
-  "diagnostic.displayByAle": true
+  "diagnostic-languageserver.filetypes": {
+    "php": ["phpcs"]
+  },
+  "diagnostic-languageserver.linters": {
+    "phpcs": {
+      "command": "./vendor/bin/phpcs",
+      "debounce": 300,
+      "rootPatterns": ["composer.json", "composer.lock", "vendor", ".git"],
+      "args": ["--report=emacs", "-s", "-"],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "sourceName": "phpcs",
+      "formatLines": 1,
+      "formatPattern": [
+        "^.*:(\\d+):(\\d+):\\s+(.*)\\s+-\\s+(.*)(\\r|\\n)*$",
+        {
+          "line": 1,
+          "column": 2,
+          "message": 4,
+          "security": 3
+        }
+      ],
+      "securities": {
+        "error": "error",
+        "warning": "warning"
+      }
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "php": "phpcbf"
+  },
+  "diagnostic-languageserver.formatters": {
+    "phpcbf": {
+      "command": "./vendor/bin/phpcbf",
+      "rootPatterns": ["composer.json", "composer.lock", "vendor", ".git"],
+      "args": ["%file"],
+      "isStdout": false,
+      "doesWriteToFile": true
+    }
+  },
 }
 ```
 
-And that's it...  You have code completion from CoC and linting with ALE.
+I know its kind of confusing. The short explanation is that I'm doing 2 things:
+
+- I'm telling _CoC_ which languages will use external tools for formating and linting (phpcs and phpcbf in my case)
+- Then I configure **the command** that has to be executed for each formatter and each sniffer
 
 ## Syntax highlighting
 

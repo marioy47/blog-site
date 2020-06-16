@@ -21,17 +21,17 @@ One thing tough. I try to use the default key-maps as much as I can, so this che
 
 All this a commands are for **normal** mode:
 
-| Command | Action                                 |
-| ------- | -------------------------------------- |
-| `w`     | Beginning of the next word             |
-| `b`     | Beginning of the _previews_ word       |
-| `e`     | End of the next word                   |
-| `$`     | End of line                            |
-| `fx`    | Go to forward to the next `x`          |
-| `{`     | Go to next _paragrap_ (empty line)     |
-| `}`     | Go to previous _paragrap_ (empty line) |
-| `A`     | Add text at the end of the line        |
-| `I`     | Add text at the end of the line        |
+| Command | Action                                |
+| ------- | ------------------------------------- |
+| `w`     | Beginning of the next word            |
+| `b`     | Beginning of the _previews_ word      |
+| `e`     | End of the next word                  |
+| `$`     | End of line                           |
+| `fx`    | Go to forward to the next `x`         |
+| `{`     | Go to next _paragraph_ (empty line)   |
+| `}`     | Go to previous paragraph (empty line) |
+| `A`     | Add text at the end of the line       |
+| `I`     | Add text at the end of the line       |
 
 ## Advanced save
 
@@ -65,6 +65,7 @@ All this a commands are for **normal** mode:
 | Command | Action                              |
 | ------- | ----------------------------------- |
 | `x`     | Cut (Works in visual mode too)      |
+| `s`     | Cut char and place in insert mode   |
 | `de`    | Delete to end of word               |
 | `d0`    | Delete to the beginning of the line |
 | `db`    | Delete back                         |
@@ -78,10 +79,12 @@ All this a commands are for **normal** mode:
 
 Most commands, when preceded by a number, are executed multiple times:
 
-| Command | Action              |
-| ------- | ------------------- |
-| `6dw`   | Delete next 6 words |
-| `6dd`   | Delete next 6 lines |
+| Command | Action                             |
+| ------- | ---------------------------------- |
+| `6dw`   | Delete next 6 words                |
+| `6dd`   | Delete next 6 lines                |
+| `.`     | Redo last change action            |
+| `;`     | Redo last character find `f{char}` |
 
 ## Clipboard
 
@@ -106,13 +109,13 @@ It's like a clipboard history
 
 ## Changes
 
-| Command | Action                                                                |
-| ------- | --------------------------------------------------------------------- |
-| `r`     | Replace current character                                             |
-| `R`     | Overwrite content (replace) until you escape                          |
-| `ciw`   | _Change Inside_ word no matter the position                           |
-| `cip`   | _Change Inside_ paragrap (between empty lines) no matter the position |
-| `ci)`   | Change (inside) the contents until the next `)`                       |
+| Command | Action                                                                 |
+| ------- | ---------------------------------------------------------------------- |
+| `r`     | Replace current character                                              |
+| `R`     | Overwrite content (replace) until you escape                           |
+| `ciw`   | _Change Inside_ word no matter the position                            |
+| `cip`   | _Change Inside_ paragraph (between empty lines) no matter the position |
+| `ci)`   | Change (inside) the contents until the next `)`                        |
 
 ## Search
 
@@ -137,10 +140,10 @@ It's like a clipboard history
 | ------- | ------------------------------------------------------- |
 | `v`     | **Start** the visual (Use jkhl to move the selection)   |
 | `v$`    | Select until the end of line                            |
-| `vip`   | Select current paragrap (content between empty lines)   |
+| `vip`   | Select current paragraph (content between empty lines)  |
 | `V`     | Visual the complete line (Use jk to move the selection) |
 
-## Quicfix and Location List
+## QuickFix and Location List
 
 | Command   | Action           |
 | --------- | ---------------- |
@@ -168,9 +171,9 @@ It's like a clipboard history
 
 ## Sessions
 
-| Command       | Action                                                          |
-| ------------- | --------------------------------------------------------------- |
-| `:mks <path>` | Saves the curren session to a path. Better if it's a hidden dir |
+| Command       | Action                                                           |
+| ------------- | ---------------------------------------------------------------- |
+| `:mks <path>` | Saves the current session to a path. Better if it's a hidden dir |
 
 ## Markers and Macros
 
@@ -179,6 +182,18 @@ It's like a clipboard history
 | `m<character>`     | Creates a marker with the name `<character`          |
 | `'<character>`     | Jumps to marker. (Use _backtick_ to include column ) |
 | &#96;`<character>` | Jumps to marker. (Use _backtick_ to include column ) |
+
+## Spell
+
+Spell needs to have `set spell` option active on `.vimrc` and optionally use `set spelllang=en_us`. I use `es_co` for Spanish Colombia.
+
+| Command | Action                            |
+| ------- | --------------------------------- |
+| `z=`    | Search for alternatives           |
+| `zg`    | Add current word to dictionary    |
+| `zw`    | Remove current word to dictionary |
+| `]g`    | Jump to next error                |
+| `[g`    | Jump to previous error            |
 
 ## NERDTree Commands
 
@@ -191,11 +206,11 @@ This are particular to my configuration
 
 This commands are to be executed while inside the NERDTree sidebar:
 
-| Command | Action       |
-| ------- | ------------ |
-| `s`     | Open on left |
-| `vs`    | Open on top  |
-| `t`     | Open on new tab|
+| Command | Action          |
+| ------- | --------------- |
+| `s`     | Open on left    |
+| `vs`    | Open on top     |
+| `t`     | Open on new tab |
 
 ## NERD Commenter
 
@@ -229,14 +244,25 @@ Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](
 | Command            | Action                          |
 | ------------------ | ------------------------------- |
 | `:GitGutterToggle` | Show/Hide file changes          |
-| `[c`               | Show next blog of changes       |
-| `]c`               | Show previous blog of changes   |
+| `[c`               | Show next block of changes      |
+| `]c`               | Show previous block of changes  |
 | `<Leader>hu`       | Remove hunk                     |
 | `:GitGutterFold`   | Toggle fold of the file changes |
 
+## Fugitive
+
+This commands are to be executed on the `:Gstatus` window
+
+| Command      | Action                      |
+| ------------ | --------------------------- |
+| `a`          | Add unstaged/untracked file |
+| `ds`         | Diff split _horizontally_   |
+| `dv`         | Diff split _vertically_     |
+| `<leader>gs` | Toggle Status (my `.vimrc`) |
+
 ## CoC commands
 
-This commands assume you used the [example configuration](https://github.com/neoclide/coc.nvim#example-vim-configuration) suggested by the [CoC github page](https://github.com/neoclide/coc.nvim)
+This commands assume you used the [example configuration](https://github.com/neoclide/coc.nvim#example-vim-configuration) suggested by the [CoC GitHub page](https://github.com/neoclide/coc.nvim)
 
 | Command                     | Action                      |
 | --------------------------- | --------------------------- |

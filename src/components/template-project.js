@@ -1,8 +1,7 @@
+import { Link } from "gatsby"
 import React from "react"
-import { graphql, Link } from "gatsby"
-
-import SiteLayout from "./site-layout"
 import SEO from "./seo"
+import SiteLayout from "./site-layout"
 
 const TemplateProject = ({ data }) => {
   return (

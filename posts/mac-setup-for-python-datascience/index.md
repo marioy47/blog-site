@@ -3,6 +3,7 @@ title: Setup a Mac OS computer to develop DataScience solutions with Python and 
 date: 2020-03-04
 tags: python, datascience, brew, visualstudio
 ---
+
 # Setup a Mac OS computer to develop DataScience solutions with Python and VSCode
 
 Even tough is not complicated, there are a series of steps that are suggested to take, in order to be able to be productive while developing Data Science solutions using a Mac machine with the Python language.
@@ -35,7 +36,6 @@ code --install-extension ms-python.python
 
 There are other extensions for _Data Science_ but that one will suffice.
 
-
 ## Creating a project
 
 The previous 2 steps are required on a global scope. Now its time to setup your project.
@@ -56,7 +56,6 @@ If you notice from the image, _Visual Studio Code_ prompts you to use that Virtu
 Also change the _Python Interpreter_ just in case:
 
 ![New Python Interpreter](change-python-interpreter.png)
-
 
 ## Python Project Modules
 
@@ -133,5 +132,3 @@ If you want to open a _Jupyter Notebook_ directoy in _Visual Studio_ you can use
 As you can see, Visual Studio Code is a very capable Python IDE with the advantage of being very light and very versatile.
 
 Hope you find this tutorial useful.
-
-

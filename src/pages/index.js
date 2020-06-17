@@ -1,9 +1,8 @@
-import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-
-import SiteLayout from "../components/site-layout"
+import React from "react"
 import SEO from "../components/seo"
+import SiteLayout from "../components/site-layout"
 
 const IndexPage = ({ data }) => (
   <SiteLayout className="page-index">

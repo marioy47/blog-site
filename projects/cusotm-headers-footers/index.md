@@ -39,7 +39,6 @@ The hard part of this plugin was the creation of a black list of code patters th
 
 ## Screenshots
 
-
 ### Custom Headers & Footers with JavaScript code
 
 ![Adding JS code](custom-header-footer-js.png)

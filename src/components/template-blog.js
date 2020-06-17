@@ -1,8 +1,7 @@
-import React from "react"
 import { graphql } from "gatsby"
-
-import SiteLayout from "./site-layout"
+import React from "react"
 import SEO from "./seo"
+import SiteLayout from "./site-layout"
 
 const TemplateBlog = ({ data }) => {
   let image = null

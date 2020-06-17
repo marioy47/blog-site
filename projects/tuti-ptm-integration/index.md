@@ -76,7 +76,7 @@ And since I was creating a PDF from HTML, I also needed a template system. The c
 
 ## Barcodes
 
-Also, the PDF file needed custom barcodes that where different for each of the e-commerce clients. So the barcode needed to be created on the fly. I ended up using  `picqer/php-barcode-generator`, which generates a PNG file that could be embedded in the PDF.
+Also, the PDF file needed custom barcodes that where different for each of the e-commerce clients. So the barcode needed to be created on the fly. I ended up using `picqer/php-barcode-generator`, which generates a PNG file that could be embedded in the PDF.
 
 ## Currency format
 

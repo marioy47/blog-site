@@ -3,6 +3,7 @@ title: Use Gulp and Webpack together for you asset bundling needs
 date: 2020-01-15
 tags: npm, node, gulp, webpack, javascript, scss, sass, css
 ---
+
 # Use Gulp and Webpack together for you asset bundling needs
 
 > There is a [GitHub Repo](https://github.com/marioy47/gulp-webpack-integration) with the files of this article.
@@ -53,8 +54,8 @@ Create `src/scss/main.scss` with the following contents:
 ```scss
 // src/scss/main.scss
 
-$background-color: #4B16FF;
-$foreground-color: #FFFFFF;
+$background-color: #4b16ff;
+$foreground-color: #ffffff;
 
 body {
   background-color: $background-color;
@@ -64,22 +65,22 @@ body {
 
 Now create `src/js/hola-mundo.js` With the following contents:
 
-```js
+```javascript
 // src/js/hola-mundo.js
 
 export default HolaMundo = name => {
-    console.log(`Hello ${name} from hola-mundo.js`)
+  console.log(`Hello ${name} from hola-mundo.js`)
 }
 ```
 
 And finally create `src/js/main.js` with
 
-```js
+```javascript
 // src/js/main.js
 
-import HolaMundo from './hola-mundo.js';
+import HolaMundo from "./hola-mundo.js"
 
-HolaMundo('Mario');
+HolaMundo("Mario")
 ```
 
 As you can see, this are very basic files, but enough for testing our setup.
@@ -92,7 +93,6 @@ Now that we have our test files, we can start the configuration. This are the st
 - Install and configure `webpack`
 - Install `babel` and configure it with webpack
 - Configure webpack in gulp
-
 
 ## Create `package.json`
 
@@ -118,6 +118,7 @@ This will create a very basic file:
   "license": "ISC"
 }
 ```
+
 That was easy... Lets continue by installing and configuring Gulp.
 
 ## Install Gulp
@@ -130,17 +131,15 @@ npm install --save-dev gulp
 
 And create a `gulpfile.js` with just this code:
 
-
-```js
+```javascript
 // gulpfile.js
 
-const gulp = require('gulp');
+const gulp = require("gulp")
 ```
 
 Just for testing: execute `node_modules/.bin/gulp --tasks` to find out if all is good.
 
 ![Output of gulp tasks](gulp-webpack-dot-exe.png)
-
 
 ## Install and configure a sass compiler
 
@@ -154,21 +153,22 @@ npm install --save-dev gulp-sass node-sass
 
 Now that we have installed both packages, make the following changes to `gulpfile.js` adding a task to compile `scss` files into `css`:
 
-```js {4-14}
+```javascript {4-14}
 // gulpfile.js
 
-const gulp = require('gulp');
-const sass = require('gulp-sass');
+const gulp = require("gulp")
+const sass = require("gulp-sass")
 
-sass.compiler = require('node-sass');
+sass.compiler = require("node-sass")
 
 function styles() {
-    return gulp.src('src/scss/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('css/'));
+  return gulp
+    .src("src/scss/*.scss")
+    .pipe(sass())
+    .pipe(gulp.dest("css/"))
 }
 
-exports.build = styles;
+exports.build = styles
 ```
 
 And lastly (for this step) change `package.json` to access this new **task** with just `npm run build` by creating a new _script_ entry:
@@ -209,19 +209,19 @@ npm install --save-dev webpack webpack-cli
 
 Then create a basic `webpack.config.js` file to instruct webpack where are the js files and where to store the output:
 
-```js
+```javascript
 // webpack.config.js
 
-const path = require('path');
+const path = require("path")
 
 module.exports = {
-    entry: {
-        main: './src/js/main.js'
-    },
-    output: {
-        filename: '[name].min.js',
-        path: path.resolve(__dirname, 'js')
-    }
+  entry: {
+    main: "./src/js/main.js",
+  },
+  output: {
+    filename: "[name].min.js",
+    path: path.resolve(__dirname, "js"),
+  },
 }
 ```
 
@@ -256,31 +256,31 @@ npm install --save-dev babel-loader @babel/core @babel/cli @babel/preset-env
 
 Then, we have to modify `webpack.config.js` so any `js` file is converted to old javascript versions after compiling:
 
-```js {13-24}
+```javascript {13-24}
 // webpack.config.js
 
-const path = require('path');
+const path = require("path")
 
 module.exports = {
-    entry: {
-        main: './src/js/main.js'
-    },
-    output: {
-        filename: '[name].min.js',
-        path: path.resolve(__dirname, 'js')
-    },
-    module:{
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env']
-                }
-            }
-        ]
-    }
+  entry: {
+    main: "./src/js/main.js",
+  },
+  output: {
+    filename: "[name].min.js",
+    path: path.resolve(__dirname, "js"),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          presets: ["@babel/preset-env"],
+        },
+      },
+    ],
+  },
 }
 ```
 
@@ -300,28 +300,30 @@ npm install --save-dev webpack-stream
 
 Then make the following changes to the `gulpfile.js`
 
-```js {5,15-21}
+```javascript {5,15-21}
 // gulpfile.js
 
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const webpack = require('webpack-stream');
+const gulp = require("gulp")
+const sass = require("gulp-sass")
+const webpack = require("webpack-stream")
 
-sass.compiler = require('node-sass');
+sass.compiler = require("node-sass")
 
 function styles() {
-    return gulp.src('src/scss/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('css/'));
+  return gulp
+    .src("src/scss/*.scss")
+    .pipe(sass())
+    .pipe(gulp.dest("css/"))
 }
 
 function scripts() {
-    return gulp.src('.')
-        .pipe(webpack(require('./webpack.config.js')))
-        .pipe(gulp.dest('js/'));
+  return gulp
+    .src(".")
+    .pipe(webpack(require("./webpack.config.js")))
+    .pipe(gulp.dest("js/"))
 }
 
-exports.build = gulp.parallel(styles, scripts);
+exports.build = gulp.parallel(styles, scripts)
 ```
 
 And test it out:
@@ -350,32 +352,32 @@ So lets fix that by adding a node env variable the script `build` on the file `p
 
 Next we need to modify `webpack.config.js` to be aware of this new variable:
 
-```js {25}
+```javascript {25}
 // webpack.config.js
 
-const path = require('path');
+const path = require("path")
 
 module.exports = {
-    entry: {
-        main: './src/js/main.js'
-    },
-    output: {
-        filename: '[name].min.js',
-        path: path.resolve(__dirname, 'js')
-    },
-    module:{
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env']
-                }
-            }
-        ]
-    },
-    mode: process.env.NODE_ENV == 'production' ? 'production': 'development'
+  entry: {
+    main: "./src/js/main.js",
+  },
+  output: {
+    filename: "[name].min.js",
+    path: path.resolve(__dirname, "js"),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          presets: ["@babel/preset-env"],
+        },
+      },
+    ],
+  },
+  mode: process.env.NODE_ENV == "production" ? "production" : "development",
 }
 ```
 
@@ -390,4 +392,3 @@ Perfect.
 So here I showed you how to make `gulp` and `webpack` play nice together. What is missing from this article is how to configure a _watch task_ for automatic compiling of js and sass files.
 
 The short answer is... There is no difference!. You create _watch_ tasks **in gulp** (not in webpack) as you've always have.
-

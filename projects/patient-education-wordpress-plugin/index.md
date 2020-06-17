@@ -53,4 +53,3 @@ There are many sites using this plugin, but one of the best examples is in the [
 ### Displaying One Article
 
 ![Patient Education Article](pe-article.png)
-

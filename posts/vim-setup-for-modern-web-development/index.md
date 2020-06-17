@@ -390,7 +390,6 @@ And test the _Intellisense_ just by typing something:
 
 Cool, isn't it?
 
-
 ### CoC extensions
 
 CoC by itself is very capable, but it does just auto suggest competition for only a small set of languages. Which is pretty normal since there number of available programming languages its very big.
@@ -401,12 +400,11 @@ You install _CoC extensions_ by By using the `:CocInstall <extension-name>` comm
 
 ![CocInstall phpls](coc-install-phpls.png)
 
-
-Here I'm installing the `coc-phpls` extension by issuing inside `vim` the command 
+Here I'm installing the `coc-phpls` extension by issuing inside `vim` the command
 
 ```vim
 :CocInstall coc-phpls
-``` 
+```
 
 And now I to have PHP code completition!.
 
@@ -442,8 +440,6 @@ install on the previous step. We just have to configure it to specify which lang
 _CoC_ uses and additional `json` configuration file that can be accesed by executing inside vim `:CocConfig`.
 
 In that file I'm going to add the following content:
-
-
 
 ```json
 {
@@ -486,7 +482,7 @@ In that file I'm going to add the following content:
       "isStdout": false,
       "doesWriteToFile": true
     }
-  },
+  }
 }
 ```
 
@@ -503,10 +499,9 @@ Vim has pretty decent syntax highlighting out of the box. But with hundreds of p
 
 Can you see that none of the import parameters is highlighted?
 
-That's where the [Vim Poliglot](https://github.com/sheerun/vim-polyglot) comes into play.  What `vim-poliglot` does is that loads the language syntax highlighting commands when you load a file. So it doesn't slows down the editor in no sensible way.
+That's where the [Vim Poliglot](https://github.com/sheerun/vim-polyglot) comes into play. What `vim-poliglot` does is that loads the language syntax highlighting commands when you load a file. So it doesn't slows down the editor in no sensible way.
 
 To install it you have to follow the same procedure. Add the plugin in `config.vim` and save, source, `:PlugInstall` and source again.
-
 
 ```vim{3}
 " config.vim

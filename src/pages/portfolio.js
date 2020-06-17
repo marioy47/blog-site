@@ -1,12 +1,11 @@
-import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
-import SiteLayout from "../components/site-layout"
-import SEO from "../components/seo"
+import React from "react"
 import PortfolioTags from "../components/portfolio-tags"
+import SEO from "../components/seo"
+import SiteLayout from "../components/site-layout"
 
 const PortfolioPage = ({ data }) => {
-  console.log(data)
   let count = 0
   return (
     <SiteLayout className="page-portfolio">
@@ -26,7 +25,9 @@ const PortfolioPage = ({ data }) => {
             </aside>
             <main className="col-md-7">
               <h3>{node.frontmatter.title}</h3>
-              <div className="client"><strong>Client:</strong> {node.frontmatter.client}</div>
+              <div className="client">
+                <strong>Client:</strong> {node.frontmatter.client}
+              </div>
               <div className="summary">{node.frontmatter.summary}</div>
               <div className="tags">
                 <PortfolioTags tags={node.frontmatter.tags} />

@@ -3,6 +3,7 @@ title: Install and Manage PostgreSQL in a Mac with Homebrew
 date: 2020-03-13
 tags: postgres, macos, database, brew, homebrew, sql
 ---
+
 # Install and Manage PostgreSQL in a Mac with Homebrew
 
 In this post I'll show you how to install [PostgreSQL](https://postgresql.org) on a Mac machine, as easy as possible, using [Homebrew](https://brew.sh). And I'll also show you some tips, tricks and gotchas.
@@ -11,7 +12,7 @@ As I bonus, I'll show you how to access it directly in visual studio since most 
 
 ## Install the package
 
-This is very straight  forward, specially if you have used Hombrew before:
+This is very straight forward, specially if you have used Hombrew before:
 
 ```bash
 brew doctor
@@ -62,7 +63,6 @@ And to stop it...
 brew services stop postgresql
 ```
 
-
 ## Common errors
 
 This are a couple of solutions to common errors
@@ -103,7 +103,7 @@ The most complete tool for managing your databases is [PgAdmin](https://www.pgad
 
 As you can see it run in a browser window.
 
-To install it just issue 
+To install it just issue
 
 ```bash
 brew install pgadmin4
@@ -118,7 +118,7 @@ Even tough you can do queries with this tool, I recommend using _Visual Studio C
 
 ### Restore a database
 
-If you want to create a local development database from a production database, the best option (or at least the fastest) its to create a local db from a backup of production. 
+If you want to create a local development database from a production database, the best option (or at least the fastest) its to create a local db from a backup of production.
 
 If you followed the previous section, you might have an `.sql` file with the backup.
 
@@ -136,7 +136,7 @@ One important thing to notice. **The restoration process shows warnings as error
 
 In this case, I have a warning about a `role` not beingh present. But the database did import correctly.
 
-### Import a `csv` file in a table 
+### Import a `csv` file in a table
 
 If you have a text file (`csv` or `tsv`) you can import it directly to a table using _PgAdmin_
 
@@ -145,6 +145,7 @@ Just **right click on the table you want to import it to, and select `import`**.
 ![Import file dialog](import-csv-params.png)
 
 Here yo have to specify
+
 - Which file you want to import
 - If the first row are the column titles (`Header` option)
 - How is the data quote (by `"` or by `'`)

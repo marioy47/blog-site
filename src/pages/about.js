@@ -1,8 +1,8 @@
-import React from "react"
-import SiteLayout from "../components/site-layout"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import React from "react"
 import ContactForm from "../components/contact-formspree"
+import SiteLayout from "../components/site-layout"
 
 const AboutPage = ({ data }) => {
   return (
@@ -28,7 +28,10 @@ const AboutPage = ({ data }) => {
           </ul>
         </div>
         <div className="col-sm-6">
-          <Img fluid={data.file.childImageSharp.fluid} className="rounded-circle" />
+          <Img
+            fluid={data.file.childImageSharp.fluid}
+            className="rounded-circle"
+          />
         </div>
       </div>
       <div className="text-center pt-5 pb-5">
@@ -41,7 +44,9 @@ const AboutPage = ({ data }) => {
       </div>
       <div className="row">
         <div className="col-sm-8 m-auto">
-          <h2 className="text-center" id="need-help">Need help with a project? </h2>
+          <h2 className="text-center" id="need-help">
+            Need help with a project?{" "}
+          </h2>
           <h4 className="text-center">Lets talk</h4>
           <ContactForm />
         </div>
@@ -49,10 +54,12 @@ const AboutPage = ({ data }) => {
       <div className="row text-center mt-5">
         <div className="col-sm-12">
           <h2>About this site</h2>
-          <p>This site was created using <a href="https://www.gatsbyjs.org/">Gatsby JS</a></p>
+          <p>
+            This site was created using{" "}
+            <a href="https://www.gatsbyjs.org/">Gatsby JS</a>
+          </p>
         </div>
       </div>
-
     </SiteLayout>
   )
 }

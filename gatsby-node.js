@@ -15,7 +15,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
-      allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, limit: 1000, filter: {frontmatter: {date: {ne: null}}}) {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 1000
+        filter: { frontmatter: { date: { ne: null } } }
+      ) {
         edges {
           node {
             frontmatter {
@@ -31,26 +35,23 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-
   `)
 
   let template = path.resolve(__dirname, "src/components/template-blog.js")
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     if (node.frontmatter.date != null) {
-
-        // Select the template depending if its a blog or a project.
-        if (node.fields.slug.indexOf("projects") > 0) {
-          template = path.resolve(__dirname, "src/components/template-project.js")
-        }
-        actions.createPage({
-          path: node.fields.slug,
-          component: template,
-          context: {
-            slug: node.fields.slug,
-            title: node.title,
-          },
-        })
-
+      // Select the template depending if its a blog or a project.
+      if (node.fields.slug.indexOf("projects") > 0) {
+        template = path.resolve(__dirname, "src/components/template-project.js")
+      }
+      actions.createPage({
+        path: node.fields.slug,
+        component: template,
+        context: {
+          slug: node.fields.slug,
+          title: node.title,
+        },
+      })
     }
   })
 }

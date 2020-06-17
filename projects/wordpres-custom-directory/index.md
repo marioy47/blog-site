@@ -63,8 +63,6 @@ This are some screenshots that show different parts of the plugin
 
 ### Configuration screen
 
-
-
 ![Configuration Screen](wp-custom-dir-config.png)
 
 ### Embedded Help

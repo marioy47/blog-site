@@ -1,7 +1,6 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-
 import IconDeveloper from "../images/svg/icon-developer.svg"
 
 const Header = ({ siteTitle }) => (
@@ -9,7 +8,7 @@ const Header = ({ siteTitle }) => (
     <div className="row">
       <div className="col-3">
         <h1 className="site-title">
-          <Link to="/">
+          <Link to="/" alt={siteTitle}>
             <IconDeveloper />
           </Link>
         </h1>

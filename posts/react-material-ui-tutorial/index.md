@@ -10,7 +10,6 @@ So I wanted to learn [Material UI](https://material-ui.com/) since it seems to b
 
 But the problem is that the official docs assume that you already are familiar with other UI frameworks for react and just point you to example projects instead of covering the basics on how to start a project using the toolkit.
 
-
 So I decided to create my own documentation just for that and here it is.
 
 In this blog entry I'm going to create a very simple React App that does nothing, but that it looks good thanks to Material-UI.
@@ -31,7 +30,7 @@ Lets start our App by doing the following:
 - Cleanup files
 - Add the responsive meta-tag
 
-**Note I'm using `yarn` instead of `npm` for installing packages and executing commands since its  faster. You can use `npm` without any problems.**
+**Note I'm using `yarn` instead of `npm` for installing packages and executing commands since its faster. You can use `npm` without any problems.**
 
 ### Create the react app and install Material-UI
 
@@ -51,14 +50,19 @@ This 2 lines should go into `public/index.html` before the closing of the `<head
 The first one makes our layout to be responsive. The second one loads the _Roboto_ font form [Google Fonts](https://fonts.google.com)
 
 ```html
-    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet" />
+<meta
+  name="viewport"
+  content="minimum-scale=1, initial-scale=1, width=device-width"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ![index.html changes](index-html-changes.png)
 
 > We could bundle the font using the package `typeface-roboto` but we would increase the size of our bundle considerable. If you want to know more follow [this link](https://v3.material-ui.com/style/typography/#migration-to-typography-v2)
-
 
 ### Project cleanup
 
@@ -87,29 +91,28 @@ Then refactor `src/index.js` so it doesn't try to import the removed files. At t
 
 ```js
 // src/index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from "react"
+import ReactDOM from "react-dom"
+import App from "./App"
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
+ReactDOM.render(<App />, document.getElementById("root"))
 ```
 
 And finally. We should refactor `App.js` so it does not issue any errors:
 
 ```js
 // src/App.js
-import React from 'react';
+import React from "react"
 
 function App() {
   return (
     <div className="App">
       <h1>React Material-UI Tutorial</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 Now, lets start the development by issuing this in the terminal:
@@ -128,21 +131,22 @@ If you've worked with a framework like Bootstrap, Bulma, Tailwind, etc. You've n
 
 Material-UI has its own Control just for that and it called [CssBaseline](https://material-ui.com/components/css-baseline/).
 
-Adding baseline couldn't be easier. Just import the component and add it in  `src/index.js`
+Adding baseline couldn't be easier. Just import the component and add it in `src/index.js`
 
 ```js {4,8-11}
 // src/index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import App from './App';
+import React from "react"
+import ReactDOM from "react-dom"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import App from "./App"
 
 ReactDOM.render(
   <>
     <CssBaseline />
     <App />
   </>,
-  document.getElementById('root'));
+  document.getElementById("root")
+)
 ```
 
 ### What did we do?
@@ -170,8 +174,8 @@ So lets change our `src/App.js` file to include some content and to **add our fi
 
 ```js {2,9-16}
 // src/App.js
-import React from 'react';
-import { Button } from '@material-ui/core'
+import React from "react"
+import { Button } from "@material-ui/core"
 
 function App() {
   return (
@@ -186,10 +190,10 @@ function App() {
         A Secondary button
       </Button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 Which would render this:
@@ -204,18 +208,20 @@ One important aspect of the _Material Design Language_ is the font management.
 
 If you go over the [Material Design Documentation](https://material.io), you can see that there are a ton of options and rules for font usage and management.
 
-That's why Material-UI has the very powerful component `<Typography />`  which as a ton of options as you [can see in the documentation](https://material-ui.com/api/typography/).  The cool thing is that is only one component.
+That's why Material-UI has the very powerful component `<Typography />` which as a ton of options as you [can see in the documentation](https://material-ui.com/api/typography/). The cool thing is that is only one component.
 
 So lets change hour headings and paragraphs to use the `<Typography />` component:
 
 ```js {2,7-9}
-import React from 'react';
-import { Button, Typography } from '@material-ui/core';
+import React from "react"
+import { Button, Typography } from "@material-ui/core"
 
 function App() {
   return (
     <div className="App">
-      <Typography variant="h1" align="center">React Material-UI Tutorial</Typography>
+      <Typography variant="h1" align="center">
+        React Material-UI Tutorial
+      </Typography>
       <Typography variant="h2">This Could be a subtitle</Typography>
       <Typography color="textSecondary">And this is a paragraph</Typography>
       <Button variant="contained" color="primary">
@@ -225,10 +231,10 @@ function App() {
         A Secondary button
       </Button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 That will yield
@@ -244,15 +250,17 @@ Right now our content seems kind of _Thrown out There_. that's because we're not
 Lets fix that by using a [Material-UI Grid system](https://material-ui.com/components/grid/) so our content is in the middle and centered. Lets edit `src/App.js` with the following:
 
 ```js {2,7-8,12-13,17-18,22-25}
-import React from 'react';
-import { Button, Typography, Grid, Container } from '@material-ui/core';
+import React from "react"
+import { Button, Typography, Grid, Container } from "@material-ui/core"
 
 function App() {
   return (
     <div className="App">
       <Container maxWidth="md">
         <Grid item md={12}>
-          <Typography variant="h1" align="center">React Material-UI Tutorial</Typography>
+          <Typography variant="h1" align="center">
+            React Material-UI Tutorial
+          </Typography>
           <Typography variant="h2">This Could be a subtitle</Typography>
           <Typography color="textSecondary">And this is a paragraph</Typography>
           <Grid container>
@@ -270,10 +278,10 @@ function App() {
         </Grid>
       </Container>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
 
 ![Using the Material-UI Grid System](material-ui-grid.png)
@@ -292,7 +300,6 @@ One last peace of important information. Like most of the CSS frameworks it work
 
 If you want to know more about the _Grid_ parameters, you can browse the [API documentation](https://material-ui.com/api/grid/).
 
-
 ## Paper
 
 The idea behind Material Design is to emulate how humans perceive materials with the use of shadows and layers.
@@ -303,29 +310,32 @@ We're going to use `Paper` to enclose our app and making it more organized.
 
 ```js {3,10,18}
 // App.js
-import React, { useState } from 'react';
-import { Typography, TextField, Paper } from '@material-ui/core'
+import React, { useState } from "react"
+import { Typography, TextField, Paper } from "@material-ui/core"
 
 function App() {
-  const [excercises, setExcercises] = useState([]);
-  const [title, setTitle] = useState('')
+  const [excercises, setExcercises] = useState([])
+  const [title, setTitle] = useState("")
 
   return (
-    <Paper clssName='App'>
-      <Typography component='h2' variant='h1' align='center' gutterBottom>
+    <Paper clssName="App">
+      <Typography component="h2" variant="h1" align="center" gutterBottom>
         Excercises
       </Typography>
       <form>
-        <TextField name='title' label='excercise' margin='normal' value={title}
-          onChange={e => setTitle(e.target.value)} />
+        <TextField
+          name="title"
+          label="excercise"
+          margin="normal"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
       </form>
     </Paper>
-  );
+  )
 }
 
-export default App;
-
-
+export default App
 ```
 
 Notice that we are including all the _Material-UI_ elements ant that now everthihng is inclosed in `<Paper>` instead of a `<div>`
@@ -344,48 +354,48 @@ The first step is to create a `theme.js` file and call [createMuiTheme](https://
 
 ```js
 // src/theme.js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from "@material-ui/core/styles"
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#00695c'
+      main: "#00695c",
     },
     secondary: {
-      main: '#c0ca33'
+      main: "#c0ca33",
     },
     background: {
-      default: '#fff'
-    }
-  }
-});
+      default: "#fff",
+    },
+  },
+})
 
-export default theme;
+export default theme
 ```
 
 And change `index.js` so the app supports themes:
 
 ```js {5,7,10,13}
 // src/index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles'
-import App from './App';
-import theme from './theme'
+import React from "react"
+import ReactDOM from "react-dom"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import { ThemeProvider } from "@material-ui/core/styles"
+import App from "./App"
+import theme from "./theme"
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <App />
   </ThemeProvider>,
-  document.getElementById('root'));
+  document.getElementById("root")
+)
 ```
 
 And we would have the following:
 
 ![Theme color changes](theme-changes.png)
-
 
 ## Other Tutorials
 

@@ -1,8 +1,7 @@
+import { graphql, Link } from "gatsby"
 import React from "react"
-import { Link, graphql } from "gatsby"
-
-import SiteLayout from "../components/site-layout"
 import SEO from "../components/seo"
+import SiteLayout from "../components/site-layout"
 
 const BlogPage = ({ data }) => (
   <SiteLayout className="page-blog">

@@ -329,7 +329,7 @@ Plug 'editorconfig/editorconfig-vim'  " Tab/Space trough projects
 
 To check if things are working create the following `.editorconfig` in your directory
 
-```editorconfig
+```yaml
 # This file is for unifying the coding style for different editors and IDEs
 # editorconfig.org
 

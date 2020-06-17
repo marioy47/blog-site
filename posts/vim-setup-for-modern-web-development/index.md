@@ -56,6 +56,8 @@ But just to be sure that we're not making any mistakes, and also that this confi
 
 ![Create empty configuration file](touch-config.png)
 
+> Here is another trick. You can start _Vim_ without a config file but in _nocompatible_ mode by issuing `vim -u NONE -N`
+
 Now, lets open this file with with _our trick_ and add the following directives:
 
 ```vim

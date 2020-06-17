@@ -142,7 +142,7 @@ If you have a text file (`csv` or `tsv`) you can import it directly to a table u
 
 Just **right click on the table you want to import it to, and select `import`**. You'll get the following dialog:
 
-![Import file dialog](import-csv-params.png)
+![Import file dialog](pgadmin-import-start.png)
 
 Here yo have to specify
 
@@ -153,7 +153,11 @@ Here yo have to specify
 
 By going to the `Columns` tab on that same dialog, you can select **the order** in which the fields are on the `csv` file.
 
-![Select the order of the fields to import](import-csv-fields.png)
+![Select the order of the fields to import](pgadmin-import-fields.png)
+
+And finally, verify how many records got imported
+
+![PgAdmin import csv finished](pgadmin-import-progress2.png)
 
 ## Visual Studio Code Extensions
 

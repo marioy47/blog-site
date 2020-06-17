@@ -13,6 +13,7 @@ Analyzes code without executing it
 
 So you can share the lint configuration with Continues Integration.
 
+
 ## Eslint Rules
 
 Eslint documentation > rules
@@ -24,9 +25,19 @@ Some of the default rules that it comes with
 you can use rules from another company like AirBnB
 
 ## Installation
+Create repo in github adding a README, ad LICENCE and a .gitignore for node
+applications 
+
+- Clone the repo in a local dir
+
+
+Change the author and keywords and entry of the `package.json` file
+
+## Create the .eslint.js file
 
 ```bash
 npm init -y
+npx eslint --init
 npm install eslint @wordpress/eslint-plugin --save-dev
 ./node_modules/.bin/eslint --init
 
@@ -48,6 +59,31 @@ npm install eslint @wordpress/eslint-plugin --save-dev
 ```
 
 ## Configuration
+```json
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}
+
+```
 
 ```json
 {

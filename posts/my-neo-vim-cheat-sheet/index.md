@@ -253,12 +253,13 @@ Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](
 
 This commands are to be executed on the `:Gstatus` window
 
-| Command      | Action                      |
-| ------------ | --------------------------- |
-| `a`          | Add unstaged/untracked file |
-| `ds`         | Diff split _horizontally_   |
-| `dv`         | Diff split _vertically_     |
-| `<leader>gs` | Toggle Status (my `.vimrc`) |
+| Command      | Action                                   |
+| ------------ | ---------------------------------------- |
+| `a`          | Add unstaged/untracked file              |
+| `ds`         | Diff split _horizontally_                |
+| `dv`         | Diff split _vertically_                  |
+| `J`          | Under a modified file shows a small diff |
+| `<leader>gs` | Toggle Status (my `.vimrc`)              |
 
 ## CoC commands
 

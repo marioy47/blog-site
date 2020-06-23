@@ -5,6 +5,7 @@ import EnvelopeSvg from "../images/svg/envelope-regular.svg"
 import GithubSvg from "../images/svg/github-brands.svg"
 import LinkedinSvg from "../images/svg/linkedin-brands.svg"
 import TwitterSvg from "../images/svg/twitter-brands.svg"
+import CodersRankSvg from "../images/svg/coders-rank.svg"
 
 const Footer = () => {
   return (
@@ -45,13 +46,17 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <Link to="/about#need-help">
-                <EnvelopeSvg />
-              </Link>
+              <a
+                href="https://profile.codersrank.io/user/marioy47"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <CodersRankSvg />
+              </a>
             </li>
             <li>
-              <Link to="/credits">
-                <CopyrightSvg />
+              <Link to="/about#need-help">
+                <EnvelopeSvg />
               </Link>
             </li>
           </ul>

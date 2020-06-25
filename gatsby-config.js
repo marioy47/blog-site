@@ -4,7 +4,7 @@ module.exports = {
     description: `Hello, I'm Mario. A full stack developer from Medellín, Colombia. This is my blog and my portfolio!`,
     author: `@marioy47`,
     keywords: `blog, web development, gatsby, jamstack,aws developer, flutter developer`,
-    url: `https://marioyepes.com`,
+    siteUrl: `https://marioyepes.com`,
     image: `images/icon-developer.png`,
   },
   plugins: [
@@ -99,5 +99,7 @@ module.exports = {
     //     },
     //   },
     // },
+	  `gatsby-plugin-sitemap`,
+	  `gatsby-plugin-robots-txt`
   ],
 }

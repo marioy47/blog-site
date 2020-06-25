@@ -13,39 +13,40 @@ import SassIcon from "../images/svg/sass-brands.svg"
 import WordpresIcon from "../images/svg/wordpress-brands.svg"
 
 const PortfolioTags = ({ tags }) => {
+  let keyCounter = 0;
   if (tags.length === 0) {
     return ""
   }
   var icons = tags.split(",").map(tag => {
     switch (tag.trim().toLowerCase()) {
       case "aws":
-        return <AWS />
-      case "coud":
-        return <Cloud />
+        return <AWS key={keyCounter++}/>
+      case "cloud":
+        return <Cloud  key={keyCounter++}/>
       case "database":
       case "db":
-        return <DatabaseIcon />
+        return <DatabaseIcon  key={keyCounter++}/>
       case "figma":
-        return <FigmaIcon />
+        return <FigmaIcon  key={keyCounter++}/>
       case "bitbucket":
       case "github":
-        return <GithubIcon />
+        return <GithubIcon  key={keyCounter++}/>
       case "javascript":
       case "js":
-        return <JavascriptIcon />
+        return <JavascriptIcon  key={keyCounter++}/>
       case "jquery":
-        return <JqueryIcon />
+        return <JqueryIcon  key={keyCounter++}/>
       case "php":
-        return <PhpIcon />
+        return <PhpIcon  key={keyCounter++}/>
       case "wordpress":
-        return <WordpresIcon />
+        return <WordpresIcon  key={keyCounter++}/>
       case "sass":
-        return <SassIcon />
+        return <SassIcon  key={keyCounter++}/>
       case "email":
       case "mailchimp":
-        return <EnvelopeIcon />
+        return <EnvelopeIcon  key={keyCounter++}/>
       case "node":
-        return <NodeIcon />
+        return <NodeIcon  key={keyCounter++}/>
       default:
         return ""
     }

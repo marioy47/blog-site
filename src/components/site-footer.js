@@ -1,6 +1,5 @@
 import { Link } from "gatsby"
 import React from "react"
-import CopyrightSvg from "../images/svg/copyright-solid.svg"
 import EnvelopeSvg from "../images/svg/envelope-regular.svg"
 import GithubSvg from "../images/svg/github-brands.svg"
 import LinkedinSvg from "../images/svg/linkedin-brands.svg"

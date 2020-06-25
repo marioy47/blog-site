@@ -102,7 +102,7 @@ I could start writing JSX files with content for the site right away, but I want
 
 The process to install and use Gatsby Plugins is almost the same:
 
-1. Install the plugin using `npm``
+1. Install the plugin using `npm`
 2. Configure the plugin in `gatsby-config.js` by adding a new section in the **plugins** section of that file
 3. _Optionally_ create or modify an additional file (like `gatsby-browser.js` in the case of the _prismjs_ plugin).
 
@@ -391,17 +391,19 @@ I want my site to be indexed by Google and the index should be fast. So I need a
 
 Also, I want to create a `robots.txt` file when I build the site...
 
-The `gatsby-plugin-sitemap` and `gatsby-plugin-robots-txt` do just that. Create sitemaps and support robots.txt files
+The [`gatsby-plugin-sitemap`](https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap) and `gatsby-plugin-robots-txt` do just that. Create sitemaps and support robots.txt files
 
 ```bash
 npm install --save gatsby-plugin-sitemap gatsby-plugin-robots-txt
 ```
 
-And aging... edit `gatsby-config.js`
+And again... edit `gatsby-config.js`
 
-```js
+```js{4,8-9}
 // gatsby-config.js
 module.exports = {
+  // ...
+  siteUrl: 'https://marioyepes.com',
   // ...
   plugins: [
     // ...
@@ -409,6 +411,15 @@ module.exports = {
     `gatsby-plugin-robots-txt`,
   ],
 }
+```
+
+One important thing to note. The sitemap is NOT generated until you actually publish your page. So if you issue `npm start` you wont see a sitemap. 
+
+To see the sitemap you have to build and serve the page
+
+```bash
+npm run build
+npm run serve
 ```
 
 **!!! We're done!!!... (with the configuration). Now lets start with the development itself.**

@@ -13,7 +13,7 @@ function SEO({ description, lang, meta, title, image }) {
             description
             author
             keywords
-            url
+            siteUrl
             image
           }
         }
@@ -60,11 +60,11 @@ function SEO({ description, lang, meta, title, image }) {
         },
         {
           property: `og:image`,
-          content: site.siteMetadata.url + postImage,
+          content: site.siteMetadata.siteUrl + postImage,
         },
         {
           property: `og:url`,
-          content: site.siteMetadata.url,
+          content: site.siteMetadata.siteUrl,
         },
         {
           name: `twitter:card`,

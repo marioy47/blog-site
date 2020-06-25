@@ -13,40 +13,40 @@ import SassIcon from "../images/svg/sass-brands.svg"
 import WordpresIcon from "../images/svg/wordpress-brands.svg"
 
 const PortfolioTags = ({ tags }) => {
-  let keyCounter = 0;
+  let keyCounter = 0
   if (tags.length === 0) {
     return ""
   }
   var icons = tags.split(",").map(tag => {
     switch (tag.trim().toLowerCase()) {
       case "aws":
-        return <AWS key={keyCounter++}/>
+        return <AWS key={keyCounter++} />
       case "cloud":
-        return <Cloud  key={keyCounter++}/>
+        return <Cloud key={keyCounter++} />
       case "database":
       case "db":
-        return <DatabaseIcon  key={keyCounter++}/>
+        return <DatabaseIcon key={keyCounter++} />
       case "figma":
-        return <FigmaIcon  key={keyCounter++}/>
+        return <FigmaIcon key={keyCounter++} />
       case "bitbucket":
       case "github":
-        return <GithubIcon  key={keyCounter++}/>
+        return <GithubIcon key={keyCounter++} />
       case "javascript":
       case "js":
-        return <JavascriptIcon  key={keyCounter++}/>
+        return <JavascriptIcon key={keyCounter++} />
       case "jquery":
-        return <JqueryIcon  key={keyCounter++}/>
+        return <JqueryIcon key={keyCounter++} />
       case "php":
-        return <PhpIcon  key={keyCounter++}/>
+        return <PhpIcon key={keyCounter++} />
       case "wordpress":
-        return <WordpresIcon  key={keyCounter++}/>
+        return <WordpresIcon key={keyCounter++} />
       case "sass":
-        return <SassIcon  key={keyCounter++}/>
+        return <SassIcon key={keyCounter++} />
       case "email":
       case "mailchimp":
-        return <EnvelopeIcon  key={keyCounter++}/>
+        return <EnvelopeIcon key={keyCounter++} />
       case "node":
-        return <NodeIcon  key={keyCounter++}/>
+        return <NodeIcon key={keyCounter++} />
       default:
         return ""
     }

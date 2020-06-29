@@ -255,10 +255,10 @@ This commands are to be executed on the `:Gstatus` window
 
 | Command      | Action                                   |
 | ------------ | ---------------------------------------- |
-| `a`          | Add unstaged/untracked file              |
-| `ds`         | Diff split _horizontally_                |
-| `dv`         | Diff split _vertically_                  |
+| `g?`         | Show help                                |
 | `J`          | Under a modified file shows a small diff |
+| `-`          | Toggle stage/unstage file under cursor   |
+| `dv`         | Diff split _vertically_                  |
 | `<leader>gs` | Toggle Status (my `.vimrc`)              |
 
 ## CoC commands
@@ -272,3 +272,16 @@ This commands assume you used the [example configuration](https://github.com/neo
 | `:OR`                       | Organize Imports            |
 | `:CocConfig`                | Open the configuration file |
 | `:CocInstall <plugin name>` | Install a new CoC plugin    |
+
+## Folding
+
+| Command | Action                                     |
+| ------- | ------------------------------------------ |
+| `zr`    | reduces fold level throughout the buffer   |
+| `zR`    | opens all folds                            |
+| `zm`    | increases fold level throughout the buffer |
+| `zM`    | folds everything all the way               |
+| `za`    | open a fold your cursor is on              |
+| `zA`    | open a fold your cursor is on recursively  |
+| `zc`    | close a fold your cursor is on             |
+| `zC`    | close a fold your cursor is on recursively |

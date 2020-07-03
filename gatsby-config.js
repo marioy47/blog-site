@@ -52,10 +52,15 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        google: {
-          families: ["Fira Sans:300,500,700"],
+        fonts: {
+          google: [
+            {
+              family: `Fira Sans`,
+              variants: ["300", "500", "700"],
+            },
+          ],
         },
       },
     },
@@ -99,7 +104,7 @@ module.exports = {
     //     },
     //   },
     // },
-	  `gatsby-plugin-sitemap`,
-	  `gatsby-plugin-robots-txt`
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
   ],
 }

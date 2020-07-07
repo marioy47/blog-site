@@ -1,7 +1,7 @@
 ---
 title: Configure Eslint and Prettier for WordPress Development
 date: 2020-07-06
-cover:
+cover: prettier+eslint.png
 tags: wordpress, javascript, eslint, prettier
 ---
 

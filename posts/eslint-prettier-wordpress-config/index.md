@@ -142,19 +142,19 @@ Now, lets create a test `.js` file with some bad formatted code and code-smells.
 ```javascript
 // src/js/test-file.js
 
-var first_var
+var first_var;
 
-function aSimpleFunction() {
-  console.log("Hola mundo")
-}
 
-function anotherFunction(event) {
-  console.log("This one is used")
-}
 
-let other = document.getElementById("the-element-id")
+                function aSimpleFunction()
+{ console.log('Hola mundo') }
 
-anotherFunction(null)
+function anotherFunction(event)
+{ console.log('This one is used'); }
+
+let other = document.getElementById('the-element-id')
+
+anotherFunction(null);
 ```
 
 And execute **our local ESLint** to figure out if it has any errors:

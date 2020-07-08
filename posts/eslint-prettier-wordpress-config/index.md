@@ -130,8 +130,7 @@ The result of this command, is that you'll get a `.eslint.json` file similar to 
 
 And that in your `packages.json` file you'll have a new dev requirement called `eslint`.
 
-
-This `.eslintrc.json ` file is very important since ESLint wont work without it. It declares which **rules** you are going to apply to you project.
+This `.eslintrc.json` file is very important since ESLint wont work without it. It declares which **rules** you are going to apply to you project.
 
 ## Using ESLint with the new configuration
 
@@ -196,10 +195,7 @@ Then we have to edit `.eslint.json` to add the **prettier plugin** and the **pre
     "browser": true,
     "es2020": true
   },
-  "extends": [
-    "eslint:recommended", 
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 11
   },
@@ -290,7 +286,7 @@ This way you wont get any errors about the `no-console` issue:
 
 ![Disable the no-console rule](eslint-disable-no-console.png)
 
-As you can see there are no `no-console` errors on that output. 
+As you can see there are no `no-console` errors on that output.
 
 ## Prettier local configuration
 
@@ -340,8 +336,7 @@ So lets fix both issues by adding 2 **scripts** in the `packages.json` file:
 }
 ```
 
-The first command is going to find errors on all of our JavaScript files, and the second will fix them. 
-
+The first command is going to find errors on all of our JavaScript files, and the second will fix them.
 
 Let's give them a try:
 
@@ -362,9 +357,34 @@ Take into account that `eslint` wont fix some errors that will actually break yo
 
 Wont be fixed and its up to you to actually fix them without breaking your code.
 
-## Visual Studio and Vim configuration
+## Vim configuration
 
-To make it work with **Vim** you just have to install [Conquer of Completition](https://github.com/neoclide/coc.nvim). You can see an article here on how to configure it [here](https://marioyepes.com/vim-setup-for-modern-web-development/).
+To make it work with **Vim** you just have to install [Conquer of Completition](https://github.com/neoclide/coc.nvim). You can see an article on how to configure it [here](https://marioyepes.com/vim-setup-for-modern-web-development/).
+
+Just be sure to install the [coc-eslint](https://github.com/neoclide/coc-eslint) extension by executing this inside vim
+
+```vi
+:CocInstall coc-eslint
+```
+
+And in your `coc-config.json` add 
+```json 
+  "eslint.autoFixOnSave": true,
+```
+
+so your files get auto fixed.
+
+> You can open your `coc-config.json` file in vim by issuing the `:CocConfig` command
+
+You can also issue the Vim command 
+
+```
+:CocCommand eslint.executeAutofix
+``` 
+
+to manually fix your files
+
+## Visual Studio
 
 For visual studio you need to install 2 extensions:
 
@@ -379,9 +399,8 @@ code --install-extension dbaeumer.vscode-eslint esbenp.prettier-vscode
 
 And that's it. Your set up.
 
-
-## Final toughs 
+## Final toughs
 
 One additional piece you can add to your development environment is [`editorconfig`](https://editorconfig.org/) so your editor writes you code in the correct format from the get go. But its not really necessary.
 
-And, if you want to take a look at the resulting files, you can see the final result in this  [Github Repo](https://github.com/marioy47/wordpress-eslint-prettier-config)
+And, if you want to take a look at the resulting files, you can see the final result in this [Github Repo](https://github.com/marioy47/wordpress-eslint-prettier-config)

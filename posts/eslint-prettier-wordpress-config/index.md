@@ -376,6 +376,8 @@ so your files get auto fixed.
 
 > You can open your `coc-config.json` file in vim by issuing the `:CocConfig` command
 
+![Vim with CoC displaying errors](vim-eslint-test.png)
+
 You can also issue the Vim command 
 
 ```

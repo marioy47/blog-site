@@ -195,7 +195,10 @@ Then we have to edit `.eslint.json` to add the **prettier plugin** and the **pre
     "browser": true,
     "es2020": true
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended", 
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 11
   },

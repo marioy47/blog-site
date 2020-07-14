@@ -89,8 +89,6 @@ PIPENV_IGNORE_VIRTUALENVS=1 pipenv shell
 
 This will create a directory for our project, `cd` into it and initialize a virtual environment.
 
-> As a side note. `pipenv --rm` removes the current environment
-
 Notice how the prompt changes, adding `(django-first-app)` at the begening of it.
 
 This tell us that we're using a virtual environment and that the name of the virtual environment is `django-first-app`.
@@ -311,7 +309,6 @@ And we're done.
 
 ## Create first app
 
-
 I recommend you stop here and pick up an actual [Django tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p), or the official [documentation](https://docs.djangoproject.com/en/3.0/intro/). But if you want a quick getting started, here it is.
 
 ### 1. Create the actual app using the `manage.py` script like so:
@@ -351,7 +348,6 @@ If you visit now the server, the success page will change to an error warning us
 
 ![No route error](python-runserver-hello-error.png)
 
-
 ### 4. Create a route in `first_app/urls.py`
 
 ```python{3.8}
@@ -372,6 +368,24 @@ python manage.py runserver
 ```
 
 ![Showing the new route](python-runserver-hello-success.png)
+
+## Pipenv Cheat Sheet
+
+I've included here a list of useful `pipenv` commands in case yoy are curious.
+
+| Command                | Action                                                |
+| ---------------------- | ----------------------------------------------------- |
+| `pipenv --python 3.7`  | Create a project with another Python version          |
+| `pipenv install --dev` | Install packages including _dev_ dependencies         |
+| `pipenv lock`          | _Burns_ the package versions on `Pipfile.lock` file   |
+| `pipenv clean`         | Removes all packages not in `Pipfile.lock`            |
+| `pipenv run <command>` | Runs a command using the current virtualenv           |
+| `pipenv sync`          | Installs the packages from `Pipfile.lock`             |
+| `pipenv uninstall`     | Removes a pacakge from the env and from the `Pipfile` |
+| `pipenv --where`       | Locates the project                                   |
+| `pipenv --rm`          | Remove the current virtual environment                |
+| `pipenv --venv`        | Locates the virtual environment                       |
+| `pipenv ---py`         | Locates the Python interpreter                        |
 
 ## Final words
 

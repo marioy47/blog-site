@@ -5,7 +5,7 @@ cover: intelephense-genesis-cover.png
 tags: wordpress, genesis, composer, intelephense, coc
 ---
 
-# Configure Intelephense to recognize Genesis Framework Functions
+# Configure Intelephense to recognize WordPress, Genesis Framework and ACF Functions
 
 Its very probable that you don't know what Intelephense is, or at least what it really is.
 

@@ -324,13 +324,14 @@ python manage.py startapp hello
 ```python{9}
 # first_app/settings.py
 INSTALLED_APPS = [
+    'first_app.app.Hello',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello'
 ]
 ```
 
@@ -386,6 +387,19 @@ I've included here a list of useful `pipenv` commands in case yoy are curious.
 | `pipenv --rm`          | Remove the current virtual environment                |
 | `pipenv --venv`        | Locates the virtual environment                       |
 | `pipenv ---py`         | Locates the Python interpreter                        |
+
+## Django Cheat Sheet
+
+| Command                                           | Action                                                                       |
+| ------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `django-admin startproject <project_name> [path]` | Creates a new project on path (preferably `.`)                               |
+| `python manage.py runserver 0:8080`               | Starts the development server                                                |
+| `python manage.py startapp <appname>`             | Creates a new app in the project                                             |
+| `python manage.py makemigrations [appname]`       | Creates the migration **from** the models                                    |
+| `python manage.py migrate [appname]`              | Executes the migrations in the database                                      |
+| `python manage.py sqlmigrate [appname] [#id]`     | Returns the SQL for the migration specified by `<#id>` and `<appname>`       |
+| `python manage.py shell`                          | Creates an interactive shell where you can import models and execute queries |
+| `python manage.py createsuperuser`                | Creates a super user                                                         |
 
 ## Final words
 

@@ -7,9 +7,9 @@ tags: django, python, shell, pipenv, virtualenv
 
 # Install, Setup and Execute your first Django Application
 
-Lately I've become interested in Data Science applications and creation websites that has some kind of prediction options.
+Lately I've become interested in Data Science applications and the creation websites that has some kind of prediction options.
 
-If you search the Internet, you'll find that if you want to do some kind of Data Science and Web projects you should use the Python-Django-TensorFlow stack.
+If you search the Internet, you'll find that if you want to do some kind of Data Science and Web projects, the Python-Django-TensorFlow stack its the way to go.
 
 Now, I'm not saying that that's what you should use, I'm only pointing out that those are the most popular technologies according to the search engines.
 

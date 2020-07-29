@@ -282,7 +282,7 @@ If you look at that last line, you can see how the `SECRET_KEY` is available as 
 # settings.py
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'change_this')
 ```
 
 And lets start the Django server again to verify that everything is working:
@@ -384,6 +384,7 @@ I've included here a list of useful `pipenv` commands in case yoy are curious.
 | `pipenv sync`          | Installs the packages from `Pipfile.lock`             |
 | `pipenv uninstall`     | Removes a pacakge from the env and from the `Pipfile` |
 | `pipenv --where`       | Locates the project                                   |
+| `pipenv --system`      | Install the packages system wide and not in a venv    |
 | `pipenv --rm`          | Remove the current virtual environment                |
 | `pipenv --venv`        | Locates the virtual environment                       |
 | `pipenv ---py`         | Locates the Python interpreter                        |

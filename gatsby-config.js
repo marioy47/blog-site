@@ -84,6 +84,9 @@ module.exports = {
             },
           },
           {
+            resolve: `gatsby-remark-autolink-headers`,
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               // showLineNumbers: true,

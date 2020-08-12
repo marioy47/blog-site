@@ -7,35 +7,36 @@ tags: python, django, pandas, flask
 
 # Python Cheat Sheets (Python, Django, Pandas, Numpy)
 
-In this article I'll be posting a series of code snippets, gotchas and sysntax description for Python and some of its notable projects like Django, Flask, Pandas, Numpy, etc.
+In this article I'll be posting a series of code snippets, gotchas and syntax description for Python and some of its notable projects like Django, Flask, Pandas, Numpy, etc.
 
-The idea is to have a single stop resource for those obscure and sometimes forgeteable snipeets that you need in your Python projects.
+The idea is to have a single stop resource for those obscure and sometimes forgettable snippets that you need in your Python projects.
 
-Depending on your level of experiencie, some of this snips will be too basic or to comple for you.
+Depending on your level of experience, some of this snips will be too basic or to complex for you.
 
-## TOC               
-- [Python](#python) 
-- [Django](#django) 
-- [Numpy](#django) 
+## TOC
+
+- [Python](#python)
+- [Django](#django)
+- [Numpy](#django)
 
 ## Python
 
-A more succinct PDF version can be found in the [Python Crash Course Site](https://ehmatthes.github.io/pcc/): [PDF](https://github.com/ehmatthes/pcc/releases/download/v1.0.0/beginners_python_cheat_sheet_pcc_all.pdf)
+A more complete [PDF](https://github.com/ehmatthes/pcc/releases/download/v1.0.0/beginners_python_cheat_sheet_pcc_all.pdf) version can be found in the [Python Crash Course Site](https://ehmatthes.github.io/pcc/).
 
 ### Python Variables
 
 | Syntax              | Comments                                          |
 | ------------------- | ------------------------------------------------- |
-| `var_name = 4.9`    | Variable declaration                              |
 | `True` `False`      | Contrary to other languages, they are capitalized |
 | `"string" 'string'` | Both quotes are valid                             |
+| `a,b = b,a`         | Variable swap                                     |
 
 ### Adding comments in python
 
-| Syntax      | Notes                                                                                               |
-| ----------- | --------------------------------------------------------------------------------------------------- |
-| `# comment` | Pund sign comment a line                                                                            |
-| `"""`       | Triple quotes allow you to comment a function or class when placed _After_ the function declaration |
+| Syntax  | Notes                                                                                               |
+| ------- | --------------------------------------------------------------------------------------------------- |
+| `# ...` | Pound sign comment a line                                                                           |
+| `"""`   | Triple quotes allow you to comment a function or class when placed _After_ the function declaration |
 
 ### Input from the console
 
@@ -75,10 +76,12 @@ A more succinct PDF version can be found in the [Python Crash Course Site](https
 | ------------------------------------- | ------------------------------------------------------------- |
 | `.pop()`                              | Removes the last item                                         |
 | `.clear()`                            | Empties the list                                              |
+| `",".join(mylist)`                    | Creates a string separated by `,`                             |
 | `.index('str')`                       | Returns the index of the first occurrence of `str`            |
 | `.copy()`                             | Returns a copy of the list. Useful for functional programming |
 | `mylist[:]`                           | Returns a copy of the list (like above)                       |
-| `mylist[:2]`                          | Returns from the start of the list to the 2nd itme            |
+| `mylist[:2]`                          | Returns from the start of the list to the 2nd item            |
+| `mylist[::-1]`                        | Reverse a list or string                                      |
 | `[x**2 for x in range(2,8)]`          | List comprehension                                            |
 | `[x**2 for x in range(2,8) if x % 2]` | List comprehension with conditional                           |
 
@@ -90,6 +93,7 @@ A more succinct PDF version can be found in the [Python Crash Course Site](https
 | `for key in my_dict.keys():`        | Loop trough a dictionary keys                                                |
 | `for key, val in my_dict.values():` | Loop trough a dictionary values                                              |
 | `for key, val in my_dict.items():`  | Loop trough a dictionary                                                     |
+| `{**dic1, **dic2}`                  | Merge dictionaries                                                           |
 
 ## Final notes
 

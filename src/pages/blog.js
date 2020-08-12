@@ -6,7 +6,7 @@ import SiteLayout from "../components/site-layout"
 const BlogPage = ({ data }) => (
   <SiteLayout className="page-blog">
     <SEO title="Mario's Blog" />
-    <h1 className="text-center">Mario's Blog</h1>
+    <h1 className="text-center">Mario&apos;s Blog</h1>
     {data.allMarkdownRemark.edges.map(({ node }) => {
       return (
         <article className="row" key={node.fields.slug}>

@@ -8,7 +8,6 @@ $green: #00c853;
 $red: #d84315;
 $blue: #2962ff;
 
-
 // Link and font colors
 $body-color: $gray;
 $link-color: $blue;
@@ -35,8 +34,6 @@ $site-footer-height: 60px;
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/print";
 
-
-
 // Responsvie fonts mixin
 @import "~rfs/scss";
 
@@ -59,7 +56,7 @@ a:hover svg path {
 
 blockquote {
   padding-left: 1rem;
-  border-left: 2px solid rgba($body-color, .5);
+  border-left: 2px solid rgba($body-color, 0.5);
 }
 
 // Heading Font Sizes
@@ -73,17 +70,16 @@ $previous: 1 / 1.25;
 }
 
 // Pages and components
-@import "site-header";
-@import "site-footer";
-@import "site-inner";
-@import "page-index";
-
-@import "page-portfolio";
-@import "project-node";
-@import "page-blog";
 @import "blog-node";
-
+@import "page-about";
+@import "page-blog";
+@import "page-index";
+@import "page-portfolio";
 @import "prismjs";
+@import "project-node";
+@import "site-footer";
+@import "site-header";
+@import "site-inner";
 
 .page-about {
   .success,
@@ -99,11 +95,12 @@ $previous: 1 / 1.25;
   }
 }
 
-
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
-  padding-top: 30px; height: 0; overflow: hidden;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
 }
 
 .video-container iframe,

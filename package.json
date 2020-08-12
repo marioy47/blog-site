@@ -36,6 +36,8 @@
     "rfs": "^9.0.2"
   },
   "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-plugin-react": "^7.20.5",
     "prettier": "^1.19.1"
   },
   "keywords": [
@@ -49,7 +51,8 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "lint": "eslint src/**/*.js"
   },
   "repository": {
     "type": "git",

@@ -27,7 +27,7 @@ So lets see how to configure them one by one.
 
 ## The Caveat
 
-Even tough all tools are excellent, its not all roses.
+Even though all tools are excellent, its not all roses.
 
 It turns out that ESLint has its own code formatter. Which is good, but it doesn't do as good a job as Prettier. So its not a bad idea to use both tools at the same time. And that can bring some weird issues.
 
@@ -83,11 +83,11 @@ It's a good idea to edit your `package.json` so the information about author, ke
 ESLint and Prettier are tools that can be run in the command line. That's why some developers install them globally on their system:
 
 ```bash
-# This is useful but not recommended
+# This can be useful but NOT RECOMMENDED
 npm install -g eslint prettier
 ```
 
-This is totally fine. But [as the documentation suggests](https://eslint.org/docs/user-guide/getting-started#installation-and-usage) you should install eslint **per project**. And the reason is because having them locally in your project willl facilitate the _code linting_ and _code beatifying_ on your **Continuous Integration** step.
+This is totally fine. But [as the documentation suggests](https://eslint.org/docs/user-guide/getting-started#installation-and-usage) you should install eslint **per project**. And the reason is because having them locally in your project willl facilitate the _code linting_ and _code beautifying_ on your **Continuous Integration** step.
 
 Personally, I never install them globally and I recommend you don't also. That way there wont be any confusion on why the "_CI_ step is not working".
 
@@ -110,7 +110,7 @@ As you can see, the wizard asks you for pretty basic questions:
 
 Here, you should be as agnostic as possible, since all the configuration will be done by editing _init files_.
 
-> The final question is if you want to install `eslint` locally. You should say Yes here.
+> The final question is if you want to install `eslint` locally. You should say **Yes** here.
 
 The result of this command, is that you'll get a `.eslint.json` file similar to this:
 
@@ -131,6 +131,17 @@ The result of this command, is that you'll get a `.eslint.json` file similar to 
 And that in your `packages.json` file you'll have a new dev requirement called `eslint`.
 
 This `.eslintrc.json` file is very important since ESLint wont work without it. It declares which **rules** you are going to apply to you project.
+
+## A brief explanation of ESLint options
+
+A complete explanation of the configuration file can be found in the [official documentation](https://eslint.org/docs/user-guide/configuring). But here is the gist of it:
+
+- `parserOptions`: How do you want to parse your code. Pe. The ECMAScript (`ecmaVersion`) version (ES6, ES2018, etc); If you want to use modules (`sourceType`). Etc.
+- `env`: Defines which global [environment variables](https://eslint.org/docs/user-guide/configuring#specifying-environments) you can use. Pe. if you declare `jest: true`, you can use the `describe`, `it` or `test` global variables. Using `browser: true` allows you to use the `document` global. Setting `node: true` allows you to use the `process` variable.
+- `global`: Personalized globals. In the case of WordPress the `ajaxurl` can be very useful to be defined here.
+- `plugins`: Imports sets of rules from other _npm modules_. More on that latter
+- `rules`: This is the core of the configuration and can be very large if you don' use plugins. For a list for rules [refer to the official documentation](https://eslint.org/docs/rules/)
+- `extends`: Allows you to make the current configuration an extension of an external one defined in another module.
 
 ## Using ESLint with the new configuration
 
@@ -362,22 +373,23 @@ Wont be fixed and its up to you to actually fix them without breaking your code.
 
 ## Vim configuration
 
-To make it work with **Vim** you just have to install [Conquer of Completition](https://github.com/neoclide/coc.nvim). You can see an article on how to configure it [here](https://marioyepes.com/vim-setup-for-modern-web-development/).
-
-Just be sure to install the [coc-eslint](https://github.com/neoclide/coc-eslint) extension by executing this inside vim
+To make it work with **Vim** you have to install [Conquer of Completion](https://github.com/neoclide/coc.nvim) vim plugin (You can see an article on how to configure it [here](https://marioyepes.com/vim-setup-for-modern-web-development/)). And then install the [coc-eslint](https://github.com/neoclide/coc-eslint) extension by executing this inside vim
 
 ```vi
 :CocInstall coc-eslint
 ```
 
-And in your `coc-config.json` add 
+Then, in your `coc-config.json`, add
+
 ```json 
   "eslint.autoFixOnSave": true,
 ```
 
-so your files get auto fixed.
+This will make your files get auto fixed.
 
 > You can open your `coc-config.json` file in vim by issuing the `:CocConfig` command
+
+After you've completed this steps, you'll get warnings and fixes right in your editor like this:
 
 ![Vim with CoC displaying errors](vim-eslint-test.png)
 
@@ -407,5 +419,7 @@ And that's it. Your set up.
 ## Final toughs
 
 One additional piece you can add to your development environment is [`editorconfig`](https://editorconfig.org/) so your editor writes you code in the correct format from the get go. But its not really necessary.
+
+Also, there is an excellend article about ESLint for React in the [thomlom.dev](https://thomlom.dev/setup-eslint-prettier-react/) blog.
 
 And, if you want to take a look at the resulting files, you can see the final result in this [Github Repo](https://github.com/marioy47/wordpress-eslint-prettier-config)

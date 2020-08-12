@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => (
     <div className="row">
       <div className="col-sm-6 left">
         <h2 className="text-md-right">Hello,</h2>
-        <h1 className="text-md-right">I'm Mario</h1>
+        <h1 className="text-md-right">I&apos;m Mario</h1>
         <h3 className="text-md-right">
           I’m a Full Stack Developer from Medellín - Colombia
         </h3>

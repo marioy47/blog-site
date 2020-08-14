@@ -95,6 +95,14 @@ A more complete [PDF](https://github.com/ehmatthes/pcc/releases/download/v1.0.0/
 | `for key, val in my_dict.items():`  | Loop trough a dictionary                                                     |
 | `{**dic1, **dic2}`                  | Merge dictionaries                                                           |
 
+### Exceptions
+
+| Method                    | Notes                                                     |
+| ------------------------- | --------------------------------------------------------- |
+| `raise Exception("desc")` | Throws a new exception                                    |
+| `except Exception as e:`  | Catches the exception in the `e` variable                 |
+| `finally:`                | Allows you tu use variables declared in the `try` section |
+
 ## Final notes
 
 You can access [additional](https://sinxloud.com/python-cheat-sheet-beginner-advanced/) Python Cheat Sheets in the [SinxLooud](https://sinxloud.com/) site

@@ -31,6 +31,20 @@ Storybook is _Framework Agnostic_. This means that you can use it on your [React
 
 In this article I'm going to give you a brief introduction to [Storybook](https://storybook.js.org) and apply it into a **React** project.
 
+## TOC
+
+- [Project Setup](#project-setup)
+- [Install Storybook](#install-storybook)
+- [Start Storybook](#start-storybook)
+- [Storybook stories](#storybook-stories)
+- [Create our first story](#create-our-first-story)
+- [Using templates and `args`](#using-templates-and-args)
+- [Using controls](#using-controls)
+- [Global parameters](#global-parammeters)
+- [Adding external style sheets](#adding-external-style-sheets)
+- [Upgrading Storybook](#upgrading-storybook)
+- [Final toughs](#final-toughs)
+
 ## Project setup
 
 To setup Storybook, we first need a React project. So create one using `create-react-app`:
@@ -494,6 +508,66 @@ And let Storybook display the user a _Controls_ panel where you can change the s
 
 > If you don't see the panel, then type the key `A` on your keyboard, or in the menu next to the Storybook logo, slect **Show Addons**
 
+## Global Parameters
+
+Parameters allows you to configure how an [Add-on](https://storybook.js.org/docs/react/essentials/introduction) works. For instance, using parameters you can change how a [control](#using-controls) is displayed, the background on a story or the documentation of a component.
+
+Parameters can work on a particular _story_, on a particular _component_ or **globaly**.
+
+A common use case of a parameter is to add a custom background to the canvas on _all_ your stories. And since its on all the stories, you have to use `.storybook/preview.js` file.
+
+So, lest modify the [Backgrounds](https://storybook.js.org/docs/react/essentials/backgrounds) add-on, by creating a parameter that controls the _background_ of the canvas.
+
+```javascript {5-16}
+// .storybook/preview.js
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  backgrounds: {
+    values: [
+      {
+        name: "Light Bg",
+        value: "#fcfcfc",
+      },
+      {
+        name: "Dark Bg",
+        value: "#333333",
+      },
+    ],
+  },
+}
+```
+
+Here I'm creating 2 new background colors. One Light and One dark. And in the preview they would look like this:
+
+![](changing-background-dropdown.png)
+
+Remember, I'm changing the behaviour of the [Background](https://storybook.js.org/docs/react/essentials/backgrounds) Add-on. And I'm doing it at the **global** level.
+
+If I wanted to do this change only on one group of _stories_ then I would have to do something like this in the `input-field.stories.js` file:
+
+```javascript {9-13}
+// src/components/input-field/input-field.stories.js
+
+import React from "react";
+import InputField from "./input-field";
+
+export default {
+  title: "New Items/Input Field",
+  component: InputField,
+  parameters: {
+    backgrounds: {
+      values: [{ name: "WhiteBg", value: "#ffffff" }],
+    },
+  },
+};
+
+const Template = (args) => <InputField {...args} />;
+
+export const Default = Template.bind({});
+Default.args = { placeholder: "Hello World" };
+```
+
 ## Adding external Style Sheets
 
 If you look closely at our `InputField` component, you can see that I'm using a `form-control` class that has not style defined anywhere. That's because I'll be using Bootstrap as an external CSS file to add some additional styling to my input.
@@ -526,6 +600,22 @@ Since this is a configuration change, **you have to restart storybook** to view 
 Once you restart you can see that the input field is 100% wide and has a blue hue when you focus it.
 
 ![](input-with-bootstrap-style.png)
+
+**NOTE: Adding external style sheets can interfere with the add-on parameters. Like this case, the Bootstrap styles will override the background parameters added in the previous section**
+
+## Upgrading Storybook
+
+Storybook is a very actively developed project so its common that you get the following notice:
+
+![](upgrade-storybook-notice.png)
+
+To upgrade Storybook in your project you just have to execute the following command.
+
+```bash
+npx sb@next upgrade
+```
+
+Take into account that upgrading Storybook can take time. And depending on your network it can teke up to 5 minutes. So don't be scared if its taking too long to upgrade.
 
 ## Final toughs
 

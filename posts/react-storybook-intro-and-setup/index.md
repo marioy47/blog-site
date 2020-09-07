@@ -15,9 +15,13 @@ That's where [Storybook](https://storybook.js.org/) enters.
 
 Storybook is a development environment and playground for creating UI components in an isolated environment **inside** your React (or Angular or Vue o Svelte) project but **outside** your application.
 
-This means that you can develop your components, style them and see the graphical outcome before you integrate them into your application. I can't think on something more useful.
+This means that you can develop your components, style them and see the graphical outcome before you integrate them into your application.
 
-Take a look at the [official documentation](https://storybook.js.org/docs/react/get-started/introduction) video on how Storybook allows you to review components in an isolated environment:
+...I can't think on something more useful.
+
+<video autoplay="" muted="" playsinline="" loop="" style="min-width: 50%; max-width: 350px; display: block; margin: 0 auto"><source src="https://media.giphy.com/media/108lJruWBp7EBO/giphy.mp4" type="video/mp4"></video>
+
+Take a look at the video from the [official documentation](https://storybook.js.org/docs/react/get-started/introduction) on how Storybook allows you to review components in an isolated environment:
 
 <video autoplay="" muted="" playsinline="" loop="" style="max-width: 100%"><source src="https://storybook.js.org/7e71705d211e17a2967606c49059e891/storybook-hero-video-optimized.mp4" type="video/mp4"></video>
 
@@ -43,6 +47,7 @@ In this article I'm going to give you a brief introduction to [Storybook](https:
 - [Global parameters](#global-parammeters)
 - [Adding external style sheets](#adding-external-style-sheets)
 - [Upgrading Storybook](#upgrading-storybook)
+- [Decorators](#decorators)
 - [Final toughs](#final-toughs)
 
 ## Project setup
@@ -60,32 +65,6 @@ yarn create react-app .
 ![](yarn-create-react-app.png)
 
 This will generate the typical React project **files**:
-
-```bash
-$ tree -I node_modules
-.
-├── README.md
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
-├── src
-│   ├── App.css
-│   ├── App.js
-│   ├── App.test.js
-│   ├── index.css
-│   ├── index.js
-│   ├── logo.svg
-│   ├── serviceWorker.js
-│   ├── setupTests.js
-└── yarn.lock
-
-4 directories, 35 files
-```
 
 ![](tree-project-start.png)
 
@@ -130,11 +109,13 @@ yarn storybook
 
 ![](yarn-run-storybook.png)
 
-This will start a **new development server** (not the same one as the react's one), that you can access in port `6006`, showing the **demo** stories that `npm sb init` created:
+This will start a **new development server** (not the same one as the react's one), that you can access on port `6006`, showing the **demo** stories that `npm sb init` created:
 
 ![](storybook-first-start.png)
 
-And you can browse individual stories by clicking on the names of each one on the left sidebar. For instance this is how the **example** story `src/stories/Header.stories.js` looks in Storybook:
+Notice how Storybook created 3 **example** stories for us, and an _Introduction_ with some shortcuts.
+
+And you can browse those test stories by clicking on the names of each one on the left sidebar. For instance this is how the **example** story `src/stories/Header.stories.js` looks in Storybook:
 
 ![](browse-individual-story.png)
 
@@ -170,7 +151,9 @@ src/stories
 1 directory, 18 files
 ```
 
-This files where created by the `npx sb init` command and the contain a bunch of components and stories. For instance, there a component called **Button** created in `src/stories/Button.js` with the corresponding story in `src/stories/Button.stories.js`
+This files where created by the `npx sb init` command and the contain a bunch of components and stories.
+
+For instance, there is a component called **Button** created in `src/stories/Button.js` with the corresponding story in `src/stories/Button.stories.js`
 
 This is the component:
 
@@ -235,7 +218,7 @@ Button.defaultProps = {
 
 In this particular component, there is also a `.css` file that corresponds to the styles apply to it. This means that story book is capable of displaying the component **with its styles**.
 
-And this are the stories that test or display that component:
+And this **are** the stories that test or display that component:
 
 ```javascript
 // src/stories/Button.stories.js
@@ -290,6 +273,8 @@ So, in conclusion:
 - Each `.stories.js` are the stories that test or display the component
 - A component can include a `.css` file and it will be displayed
 
+> Storybook looks for `.stories.js` files because that's how its configured in `.storybook/main.js`. You can instruct Storybook to look of another sufix or prefix by configuring the `stories` setting in that file.
+
 ## Create our first story
 
 Just for fun, lets create a component that displays an `<input>` field with minal styling.
@@ -336,9 +321,9 @@ The style file is just a simple CSS file with the custom styles of the component
 }
 ```
 
-Take into account that if your project uses external styles like [Bootstrap](https://getbootstrap.com), [Material](https://material.io/), [Tailwind](https://tailwindcss.com), [Bulma](https://bulma.io), etc. This have to be added in the configuration file which will touch upon latter.
+> Take into account that if your project uses external styles like [Bootstrap](https://getbootstrap.com), [Material](https://material.io/), [Tailwind](https://tailwindcss.com), [Bulma](https://bulma.io), etc. This have to be added in the configuration file which I will touch upon latter.
 
-The component really has noting special. Its just an input that receives the `placeholder` and `type` _props_, and output the corresponding Html with the stiles that we created a second ago:
+The component really has noting special. Its just an input that receives the `placeholder` and `type` _props_, and output the corresponding HTML With the stiles that we created a second ago:
 
 ```javascript
 // src/components/input-field/input-field.js
@@ -364,7 +349,7 @@ export default InputField
 
 Notice that there is a _class_ called `form-control` that is not included in the `.css` file. We'll be working with that class latter.
 
-Finally, we create the stories!
+**Finally, we create the stories!**
 
 Quoting the Storybook documentation, "The key ingredients (of a story) are the [default export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export#Using_the_default_export) that describes the component, and [named exports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export#Using_named_exports) that describe the stories."
 
@@ -388,7 +373,7 @@ export const InputFieldBig = () => <InputField type="big" />
 
 In the previous _stories_ example, the `default` object contains information on which component this story belongs to (`InputField`) and where in the menu should it be placed.
 
-The _consts_ `InputFieldDefault`, `InputFieldSmall`, and `InputFieldBig` are the stories we'll be displayin in storybook.
+The _const's_ `InputFieldDefault`, `InputFieldSmall`, and `InputFieldBig` are the stories we'll be displaying in storybook.
 
 Here are the results in Storybook:
 
@@ -396,7 +381,9 @@ Here are the results in Storybook:
 
 ![](input-field-big.png)
 
-Notice how Storybook converted the _camelCased_ words in actual sentences on the sidebar. Pe. It changed `InputFieldDefault` to _Input Field Default_. **Take this into account when naming your stories**.
+Notice how Storybook converted the _camelCased_ words in actual sentences on the sidebar. For instance, it changed `InputFieldDefault` to _Input Field Default_. **Take this into account when naming your stories**.
+
+**You now have enough information to create your stories in Storybook**. But there are still, are a couple of additional
 
 ## Using templates and args
 
@@ -442,11 +429,40 @@ InputFieldBig.args = {
 }
 ```
 
-This might seem a little over complicated if you are using only 3 stories. But in the next section we'll see how using `args` allows you to change a component `prop` using controls.
+This might seem a little over complicated just by looking at how to code got bigger but the result is the same. But there are several advantages of using this approach:
+
+- You can **reuse** parameters from story to story
+- Combined with `PropTypes` allow you to change `prop` values (`args`) interactively (Next section)
+- You can configure the template, an those options will get passed down to the stories
+
+You can also pass `args` in the default export like so:
+
+```javascript {4-6}
+export default {
+  title: "New Items/Input Field",
+  component: InputField,
+  args: {
+    type: "small",
+  },
+}
+```
+
+Which is a nice alternative.
+
+In the next section we'll see how using `args` allows you to change a component `prop` using controls.
 
 ## Using controls
 
-To use controls, you need to use `templates` and `args` on your stories. But you also need to use [PropTypes](https://www.npmjs.com/package/prop-types) in you components.
+To change the stories `args` interactively, you have 2 options:
+
+- Use `PropTypes` in the component
+- Use the `argTypes` in the default export
+
+Let's start by using `PropTypes`
+
+### `PropTypes` for Interactive controls
+
+I actually prefer this option, since this way, by using comments, you also get [documentation on](https://storybook.js.org/docs/react/api/argtypes) your stories.
 
 For instance, in the `InputField` component, we could specify that the `type` prop is one of "normal", "big" or "small" by using the `PropTypes.oneOf` option. And that the `placeholder` is of type `string`.
 
@@ -502,11 +518,37 @@ export const Default = Template.bind({})
 Default.args = { placeholder: "Hello World" }
 ```
 
-And let Storybook display the user a _Controls_ panel where you can change the settings
+### By using `argTypes`
+
+This is an excellent option too. Specially if you would like to manage all of your storybook settings in the **story's** `export default` object. 
+
+The downsize of this method, is that you would have to add more code to your stories instead of your components, and in the case of a refactor **you would have to make changes in both parts** and not only on your component.
+
+> I like to keep my stories as small as possible.
+
+```javascript
+// src/components/input-field/input-field.stories.js
+...
+export default {
+  title: "New Items/Input Field",
+  component: InputField,
+  argTypes: {
+    type: { control: "text" }
+  }
+}
+...
+```
+
+There are extra options on the `argTypes`, that let you _fine control_ the type and labels of the control. You can take a look at the [documentation](https://storybook.js.org/docs/react/api/argtypes) to find out about them.
+
+### Using the controls
+
+This is the great part. Storybook will display the user a _Controls_ panel where you can change the settings
 
 ![](using-controls.png)
 
 > If you don't see the panel, then type the key `A` on your keyboard, or in the menu next to the Storybook logo, slect **Show Addons**
+
 
 ## Global Parameters
 
@@ -549,6 +591,91 @@ If I wanted to do this change only on one group of _stories_ then I would have t
 ```javascript {9-13}
 // src/components/input-field/input-field.stories.js
 
+import React from "react"
+import InputField from "./input-field"
+
+export default {
+  title: "New Items/Input Field",
+  component: InputField,
+  parameters: {
+    backgrounds: {
+      values: [{ name: "WhiteBg", value: "#ffffff" }],
+    },
+  },
+}
+
+const Template = args => <InputField {...args} />
+
+export const Default = Template.bind({})
+Default.args = { placeholder: "Hello World" }
+```
+
+## Action feedback
+
+There are times where your component receives a callback and you need to know if that callback is gettings executed and how the output of tha callback looks.
+
+Well... Storybook has a solution for that also. Its called [Actions](https://storybook.js.org/docs/react/essentials/actions) and it allows you to specifya `args` that are actually functions that will get called.
+
+To tests actions, lets add a `onFocus` parameter to our `<InputField />`
+
+```javascript {3,11}
+// src/components/input-field/input-field.js
+// ...
+const InputField = ({ placeholder, type, onFocus, ...props }) => {
+  const lPlacehoder = placeholder || "Text Input"
+  const lType = type || "normal"
+  return (
+    <input
+      type="text"
+      className={`form-control input-field ${lType}`}
+      placeholder={lPlacehoder}
+      onFocus={onFocus}
+      {...props}
+    />
+  )
+}
+// ...
+```
+
+And on our `.stories.js` file we have to add a new element in our `defaults`:
+
+```javascript {11}
+// src/components/input-field/input-field.stories.js
+// ...
+export default {
+  title: "New Items/Input Field",
+  component: InputField,
+  parameters: {
+    backgrounds: {
+      values: [{ name: "WhiteBg", value: "#ffffff" }],
+    },
+  },
+  argTypes: { onFocus: { action: "Focused..." } },
+}
+// ...
+```
+
+What this does is that in our **component** we now receive a new _function_ parameter that well get triggered when the field gets focused (we called the new parameter and as the action: `onFocus`).
+
+Then, in our **story** we configured _Storybook_ to show the `Focused...` paragraph when the action `onFocused` got triggered:
+
+![](on-focus-input-field.png)
+
+And now we can see if our actions are getting triggered correctly.
+
+## Decorators
+
+Let's say that we want to test this `<input>` component, but we want to know how does it look like inside a `<div>` with a `<label>`.
+
+One approach, would be to create a new component that includes our _input_ inside such a _div_. This is not a bad idea if we actually plan to use this new component. But, not so great if we just want to test out how it looks. That's a prefect use case for [decorators](https://storybook.js.org/docs/react/writing-stories/decorators).
+
+Think of decorators as a way to **wrap your component** in another component, or simply `jsx` (like in our example) so you have a better understanding on how it will look in your final application.
+
+So lets change our `input-field-stories.js` to look like this:
+
+```javascript {15-24}
+// src/components/input-field/input-field.stories.js
+
 import React from "react";
 import InputField from "./input-field";
 
@@ -560,6 +687,17 @@ export default {
       values: [{ name: "WhiteBg", value: "#ffffff" }],
     },
   },
+  argTypes: { onFocus: { action: "Focused..." } },
+  decorators: [
+    (Story) => (
+      <div className="form-group row">
+        <label className="col-form-label col-sm-2">Test Label</label>
+        <div className="col-sm-10">
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
 };
 
 const Template = (args) => <InputField {...args} />;
@@ -567,6 +705,13 @@ const Template = (args) => <InputField {...args} />;
 export const Default = Template.bind({});
 Default.args = { placeholder: "Hello World" };
 ```
+
+![](input-field-with-decorator.png)
+
+Notice that `decorators` is an array of functions, where each functions receives  a `Story` parameter. 
+
+A great use for decorators is if you are creating a component that is a `<tr>` and you need to see it inside a table.
+
 
 ## Adding external Style Sheets
 

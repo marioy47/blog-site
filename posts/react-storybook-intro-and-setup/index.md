@@ -520,7 +520,7 @@ Default.args = { placeholder: "Hello World" }
 
 ### By using `argTypes`
 
-This is an excellent option too. Specially if you would like to manage all of your storybook settings in the **story's** `export default` object. 
+This is an excellent option too. Specially if you would like to manage all of your storybook settings in the **story's** `export default` object.
 
 The downsize of this method, is that you would have to add more code to your stories instead of your components, and in the case of a refactor **you would have to make changes in both parts** and not only on your component.
 
@@ -548,7 +548,6 @@ This is the great part. Storybook will display the user a _Controls_ panel where
 ![](using-controls.png)
 
 > If you don't see the panel, then type the key `A` on your keyboard, or in the menu next to the Storybook logo, slect **Show Addons**
-
 
 ## Global Parameters
 
@@ -612,7 +611,7 @@ Default.args = { placeholder: "Hello World" }
 
 ## Action feedback
 
-There are times where your component receives a callback and you need to know if that callback is gettings executed and how the output of tha callback looks.
+There are times where your component receives a callback and you need to know if that callback is getting executed and how the output of the callback looks.
 
 Well... Storybook has a solution for that also. Its called [Actions](https://storybook.js.org/docs/react/essentials/actions) and it allows you to specifya `args` that are actually functions that will get called.
 
@@ -676,8 +675,8 @@ So lets change our `input-field-stories.js` to look like this:
 ```javascript {15-24}
 // src/components/input-field/input-field.stories.js
 
-import React from "react";
-import InputField from "./input-field";
+import React from "react"
+import InputField from "./input-field"
 
 export default {
   title: "New Items/Input Field",
@@ -689,7 +688,7 @@ export default {
   },
   argTypes: { onFocus: { action: "Focused..." } },
   decorators: [
-    (Story) => (
+    Story => (
       <div className="form-group row">
         <label className="col-form-label col-sm-2">Test Label</label>
         <div className="col-sm-10">
@@ -698,20 +697,60 @@ export default {
       </div>
     ),
   ],
-};
+}
 
-const Template = (args) => <InputField {...args} />;
+const Template = args => <InputField {...args} />
 
-export const Default = Template.bind({});
-Default.args = { placeholder: "Hello World" };
+export const Default = Template.bind({})
+Default.args = { placeholder: "Hello World" }
 ```
 
 ![](input-field-with-decorator.png)
 
-Notice that `decorators` is an array of functions, where each functions receives  a `Story` parameter. 
+Notice that `decorators` is an array of functions, where each functions receives a `Story` parameter.
 
 A great use for decorators is if you are creating a component that is a `<tr>` and you need to see it inside a table.
 
+## Showing console output
+
+I feel like I should apologise because I use `console.log()` a LOT while I'm developing. I should use it as much, but the fact is that I do.
+
+For those of us that are not that good with debugging tools and don't want to open the _Chrome Developer Tools_ to see the console output, Storybook provides the [Storybook Addon Console](https://github.com/storybookjs/storybook-addon-console) which shows the console output (errors and your own calls the `console` function) on the **Actions** panel.
+
+Contrary to the other addons we've used so far, this one does not come with Storybook out of the box. So we have to install it first:
+
+```bash
+yarn add @storybook/addon-console --dev
+```
+
+And on `.storybook/preview.js` add the following line:
+
+```javascript
+// .storybook/preview.js
+
+import "@storybook/addon-console"
+```
+
+And that's it... Well if you want simple output.
+
+If you need to have the path of the "emiting" component, that is the component that is generating the log, to be added to the output. The you should configure `preview.js` in the following way:
+
+```javascript
+// .storybook/preview.js
+
+import { addDecorator } from "@storybook/react"
+import { withConsole } from "@storybook/addon-console"
+
+addDecorator((storyFn, context) => withConsole()(storyFn)(context))
+
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+}
+```
+
+The added benefit is having the errors be displayed right on the actions section:
+
+![](console-log-and-errors.png)
 
 ## Adding external Style Sheets
 

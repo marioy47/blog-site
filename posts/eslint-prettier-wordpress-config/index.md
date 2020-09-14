@@ -416,6 +416,50 @@ code --install-extension dbaeumer.vscode-eslint esbenp.prettier-vscode
 
 And that's it. Your set up.
 
+## Tips
+
+This are common solutions to recurring problems that happen from time to time in a WordPress project.
+
+### 1. Allow CamelCase variables
+
+Its probable that you'll be passing variables from a WordPress PHP file, which uses _snake_case_ standard. To JavaScript, that uses _CamelCase_ syntax.
+
+If that's the case, you might want to add a rule to allow some _snake_case_ variables by adding a `camelcase` rule in `.eslintrc.json`
+
+```json {7}
+// .eslintrc
+{
+  "...",
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-console": "off",
+    "camelcase": ["warn", { "allow": ["element_id"] }]
+  }
+}
+```
+
+A complete explanation of `camelcase` options can be found [here](https://eslint.org/docs/2.0.0/rules/camelcase)
+
+### 2. Declare global variables
+
+If you have to use an external JavaScript library from a CDN, that declares global variables, you'll be getting a `no-undef` error on your scripts.
+
+This is the case for instance if you are using the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview#Loading_the_Maps_API). Where you include the library and you have a `google.map` variable available for your scripts.
+
+To avoid _eslint_ error about that variable not being declared, you have to create a `globals` section in your `.eslintrc.json`:
+
+```json
+// .eslintrc.json
+{
+  "...",
+  "globals": {
+    "google": false
+  }
+}
+```
+
+There are options for declaring _read only_ and _read write_ global variables. You can take a look at those options [here](https://eslint.org/docs/user-guide/configuring.html#specifying-globals)
+
 ## Final toughs
 
 One additional piece you can add to your development environment is [`editorconfig`](https://editorconfig.org/) so your editor writes you code in the correct format from the get go. But its not really necessary.

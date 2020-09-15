@@ -3,6 +3,12 @@ import SocialNetworks from "./social-networks"
 import ChevronUp from "../images/svg/chevron-up-solid.svg"
 
 const Footer = () => {
+  const windowScroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+    window.setTimeout(() => {
+      location.hash = ""
+    }, 700)
+  }
   return (
     <footer className="site-footer container">
       <div className="row">
@@ -17,7 +23,7 @@ const Footer = () => {
       </div>
       <a
         className="scroll-to-top"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        onClick={windowScroll}
         style={{ cursor: "pointer" }}
       >
         <ChevronUp />

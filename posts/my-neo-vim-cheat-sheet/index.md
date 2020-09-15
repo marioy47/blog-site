@@ -9,13 +9,20 @@ cover: vim-cheat-sheet-cover.png
 
 I love _Vim_ because I can do everything with the keyboard. The downside, is that _you have to do everything with the keyboard_.
 
-In case you didn't understand, the real problem is that you have to memorize a bunch of commands and key combinations to to do things like delete a line in the current text or how to format the current buffer.
+In case you didn't get the pun, the real problem is that you have to memorize a bunch of commands and key combinations to to do things like delete a line in the current text or how to format the current buffer.
 
 To aid myself on memorizing this commands I created this cheat sheet that works with **[my configuration](https://github.com/marioy47/dotfiles/blob/master/.vimrc)**.
 
 If you want something more complete, graphical and generic, you can visit the [Graphical vi-vim Cheat Sheet and Tutorial](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html) site.
 
 One thing tough. I try to use the default key-maps as much as I can, so this cheat sheet might still be useful to you in case you want to create you own.
+
+## TOC
+
+```toc
+from-heading: 2
+to-heading: 3
+```
 
 ## Movements and insert
 
@@ -33,16 +40,7 @@ All this a commands are for **normal** mode:
 | `A`     | Add text at the end of the line       |
 | `I`     | Add text at the end of the line       |
 
-## Advanced save
-
-All this a commands are for **normal** mode:
-
-| Command              | Action                                                  |
-| -------------------- | ------------------------------------------------------- |
-| `#,#w file-name.txt` | Saves part of a file to a new file                      |
-| `:r file-name.txt`   | Inserts contents of `file-name.txt` in current position |
-
-## Advanced movement commands
+### Advanced movement commands
 
 All this commands are for **normal** mode:
 
@@ -57,6 +55,15 @@ All this commands are for **normal** mode:
 | `16G`   | Go to line 16                                                     |
 | `<C-o>` | Previous position or previous buffer (useful when using gd or gf) |
 | `<C-i>` | Next position or next buffer                                      |
+
+## Advanced save
+
+All this a commands are for **normal** mode:
+
+| Command              | Action                                                  |
+| -------------------- | ------------------------------------------------------- |
+| `#,#w file-name.txt` | Saves part of a file to a new file                      |
+| `:r file-name.txt`   | Inserts contents of `file-name.txt` in current position |
 
 ## Delete Undo/Redo
 
@@ -98,7 +105,7 @@ Most commands, when preceded by a number, are executed multiple times:
 
 - The last 2 command work to add a new line before or after the current line if you haven't yanked anything yet
 
-## Registers
+### Registers
 
 It's like a clipboard history
 
@@ -116,6 +123,19 @@ It's like a clipboard history
 | `ciw`   | _Change Inside_ word no matter the position                            |
 | `cip`   | _Change Inside_ paragraph (between empty lines) no matter the position |
 | `ci)`   | Change (inside) the contents until the next `)`                        |
+
+## Folding
+
+| Command | Action                                     |
+| ------- | ------------------------------------------ |
+| `zr`    | reduces fold level throughout the buffer   |
+| `zR`    | opens all folds                            |
+| `zm`    | increases fold level throughout the buffer |
+| `zM`    | folds everything all the way               |
+| `za`    | open a fold your cursor is on              |
+| `zA`    | open a fold your cursor is on recursively  |
+| `zc`    | close a fold your cursor is on             |
+| `zC`    | close a fold your cursor is on recursively |
 
 ## Search
 
@@ -195,7 +215,9 @@ Spell needs to have `set spell` option active on `.vimrc` and optionally use `se
 | `]g`    | Jump to next error                |
 | `[g`    | Jump to previous error            |
 
-## NERDTree Commands
+## Plugins
+
+### NERDTree Commands
 
 This are particular to my configuration
 
@@ -212,7 +234,7 @@ This commands are to be executed while inside the NERDTree sidebar:
 | `vs`    | Open on top     |
 | `t`     | Open on new tab |
 
-## NERD Commenter
+### NERD Commenter
 
 This are the default key-maps
 
@@ -222,24 +244,25 @@ This are the default key-maps
 | `<leader>ci`       | Toggles the comment state of the selected line(s) individually.                   |
 | `<leader>cs`       | Toggle sexy Comments out the selected lines with a pretty block formatted layout. |
 
-## FZF Commands
+### FZF Commands
 
 Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](https://github.com/junegunn/fzf.vim/blob/master/doc/fzf-vim.txt)
 
 | Command      | Action                                             |
 | ------------ | -------------------------------------------------- |
-| `:History`   | Opens up the list of last edited files             |
-| `:GFiles`    | Ignores files in `.gitignore`                      |
-| `:Tags`      | Tags in the project                                |
-| `:Snippets`  | UtilSnips snippets                                 |
 | `:BCommits`  | Commits for the current buffer (Requires Fugitive) |
-| `:Rg!`       | Like grep for all the project files but faster     |
+| `:Commands`  | Searchable list of ALL commands                    |
+| `:GFiles`    | Ignores files in `.gitignore`                      |
+| `:History`   | Opens up the list of last edited files             |
+| `:Rg!`       | Like `grep` for all the project files but faster   |
+| `:Snippets`  | UtilSnips snippets                                 |
+| `:Tags`      | Tags in the project                                |
 | `<C-k><C-u>` | Executes `:Buffers`                                |
 
 - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
   tab, a new split, or in a new vertical split
 
-## GitGutter
+### GitGutter
 
 | Command            | Action                          |
 | ------------------ | ------------------------------- |
@@ -249,7 +272,7 @@ Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](
 | `<Leader>hu`       | Remove hunk                     |
 | `:GitGutterFold`   | Toggle fold of the file changes |
 
-## Fugitive
+### Fugitive
 
 This commands are to be executed on the `:Gstatus` window
 
@@ -261,7 +284,7 @@ This commands are to be executed on the `:Gstatus` window
 | `dv`         | Diff split _vertically_                  |
 | `<leader>gs` | Toggle Status (my `.vimrc`)              |
 
-## CoC commands
+### CoC commands
 
 This commands assume you used the [example configuration](https://github.com/neoclide/coc.nvim#example-vim-configuration) suggested by the [CoC GitHub page](https://github.com/neoclide/coc.nvim)
 
@@ -272,16 +295,3 @@ This commands assume you used the [example configuration](https://github.com/neo
 | `:OR`                       | Organize Imports            |
 | `:CocConfig`                | Open the configuration file |
 | `:CocInstall <plugin name>` | Install a new CoC plugin    |
-
-## Folding
-
-| Command | Action                                     |
-| ------- | ------------------------------------------ |
-| `zr`    | reduces fold level throughout the buffer   |
-| `zR`    | opens all folds                            |
-| `zm`    | increases fold level throughout the buffer |
-| `zM`    | folds everything all the way               |
-| `za`    | open a fold your cursor is on              |
-| `zA`    | open a fold your cursor is on recursively  |
-| `zc`    | close a fold your cursor is on             |
-| `zC`    | close a fold your cursor is on recursively |

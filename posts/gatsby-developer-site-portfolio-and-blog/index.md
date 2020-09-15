@@ -15,6 +15,12 @@ But after you pass the configuration steps and you have your site set up, you'll
 
 Here I'll list the steps I took to create [my personal blog/portfolio site](https://marioyepes.com) without going too much into detail since Gatsby already has an [extensive tutorial](https://gastbyjs.org/tutorial) and the [docs](https://gastbyjs.org/docs) are actually pretty good.
 
+## TOC
+
+```toc
+
+```
+
 ## Wait... I don't know what is Gatsby!
 
 To quote the Gatsby Site:
@@ -403,7 +409,7 @@ And again... edit `gatsby-config.js`
 // gatsby-config.js
 module.exports = {
   // ...
-  siteUrl: 'https://marioyepes.com',
+  siteUrl: "https://marioyepes.com",
   // ...
   plugins: [
     // ...
@@ -413,7 +419,7 @@ module.exports = {
 }
 ```
 
-One important thing to note. The sitemap is NOT generated until you actually publish your page. So if you issue `npm start` you wont see a sitemap. 
+One important thing to note. The sitemap is NOT generated until you actually publish your page. So if you issue `npm start` you wont see a sitemap.
 
 To see the sitemap you have to build and serve the page
 

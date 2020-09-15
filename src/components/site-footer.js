@@ -1,5 +1,6 @@
 import React from "react"
 import SocialNetworks from "./social-networks"
+import ChevronUp from "../images/svg/chevron-up-solid.svg"
 
 const Footer = () => {
   return (
@@ -14,6 +15,13 @@ const Footer = () => {
           <SocialNetworks />
         </nav>
       </div>
+      <a
+        className="scroll-to-top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        style={{ cursor: "pointer" }}
+      >
+        <ChevronUp />
+      </a>
     </footer>
   )
 }

@@ -13,6 +13,12 @@ Intelephense is a [Language Server Protocol](https://langserver.org/), or **LSP*
 
 If you are still confused about what what you just read, let me give you a small history lesson.
 
+## TOC
+
+```toc
+
+```
+
 ## History
 
 When Microsoft launched its [Visual Studio (Code)](https://code.visualstudio.com) editor. It decided to have the language parsing, linting and formating of code be done by an external server. And that server has to follow an special implementation described in https://langserver.org/.

@@ -14,6 +14,12 @@ So I decided to create my own documentation just for that and here it is.
 
 In this blog entry I'm going to create a very simple React App that does nothing, but that it looks good thanks to Material-UI.
 
+## TOC
+
+```toc
+
+```
+
 ## What is Material-UI ?
 
 If you are here is very probable that you already know Material-UI is... But just in case, Material-UI its just a number of React components styled using the [material design principles](https://material.io), that are ready to use in any React App.

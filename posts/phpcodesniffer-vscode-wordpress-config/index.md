@@ -12,6 +12,12 @@ I'll be using [Composer](https://getcomposer.org/) for installing all the packag
 
 Be noted that there are some standards that will not be followed like the file naming, since I want to be able to use `composer` packages with autoloading without too much hassle.
 
+## TOC
+
+```toc
+
+```
+
 ## Start the project
 
 The first step is easy.. just create a folder in you plugins directory and start composer.

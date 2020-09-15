@@ -15,9 +15,9 @@ Depending on your level of experience, some of this snips will be too basic or t
 
 ## TOC
 
-- [Python](#python)
-- [Django](#django)
-- [Numpy](#django)
+```toc
+
+```
 
 ## Python
 

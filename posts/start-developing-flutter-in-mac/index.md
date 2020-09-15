@@ -14,6 +14,12 @@ Before I begin, let me give you a good news and a bad one:
 
 The good news is that all the software we're going to install is free.... The bad one is that all the software is _HUGE_... so most of the time you'll be expending it in downloading apps from the Internet.
 
+## TOC
+
+```toc
+
+```
+
 ## Install Xcode
 
 In case you don't know, [Xcode](https://developer.apple.com/xcode/) is the official Apple tool to develop for Mac and iOS.

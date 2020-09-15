@@ -10,6 +10,13 @@ In this post I'll show you how to install [PostgreSQL](https://postgresql.org) o
 
 As I bonus, I'll show you how to access it directly in visual studio since most of the visualization tools are commercial or pretty cumbersome to use.
 
+## TOC
+
+```toc
+from-heading: 2
+to-heading: 3
+```
+
 ## Install the package
 
 This is very straight forward, specially if you have used Hombrew before:

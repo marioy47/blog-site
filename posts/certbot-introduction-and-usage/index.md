@@ -11,6 +11,12 @@ Since 2018 Google started penalizing sites that are not secured by [SSL](https:/
 
 So here I'm going to show you how to use _Let's Encrypt_ with the `certbot` command to secure your web-server in a very easy (and very free) way.
 
+## TOC
+
+```toc
+
+```
+
 ## So what is LetsEncrypt?
 
 Let's Encrypt is a nonprofit **Certificate Authority** that provides [TLS](https://wikipedia.org/wiki/Transport_Layer_Security) certificates for websites.

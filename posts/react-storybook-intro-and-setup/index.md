@@ -37,18 +37,9 @@ In this article I'm going to give you a brief introduction to [Storybook](https:
 
 ## TOC
 
-- [Project Setup](#project-setup)
-- [Install Storybook](#install-storybook)
-- [Start Storybook](#start-storybook)
-- [Storybook stories](#storybook-stories)
-- [Create our first story](#create-our-first-story)
-- [Using templates and `args`](#using-templates-and-args)
-- [Using controls](#using-controls)
-- [Global parameters](#global-parammeters)
-- [Adding external style sheets](#adding-external-style-sheets)
-- [Upgrading Storybook](#upgrading-storybook)
-- [Decorators](#decorators)
-- [Final toughs](#final-toughs)
+```toc
+
+```
 
 ## Project setup
 

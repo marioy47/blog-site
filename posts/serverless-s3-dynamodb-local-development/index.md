@@ -18,6 +18,12 @@ This is specially problematic if your solution requires the usage of services li
 
 Luckily the open source community, and Amazon itself, has come to the rescue by creating mockup services and alternatives that can be installed in you machine and allows you develop like you are in the AWS console.
 
+## TOC
+
+```toc 
+
+```
+
 ## What are we going to do
 
 The idea behind this tutorial is to create an skeleton project that you can use to start developing your own Lambda functions with S3, API Gateway and DynamoDb offline equivalents. And using JavaScript as your development language.

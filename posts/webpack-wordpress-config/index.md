@@ -13,6 +13,12 @@ Just look at Gutenberg, the new editor for WordPress... Is completely written us
 
 So if you want to work on WordPress, you need to use JavaScript... And if you want to work in JavaScript, you have to bundle your assets.
 
+## TOC
+
+```toc
+
+```
+
 ## ¿What is asset bundling you ask?
 
 Is the process of compiling all of your javascript, css and even images in **just one** javascript file, or bundle, that can be included in your HTML. Or in our case, enqueued in WordPress with `wp_enqueue_script()`.

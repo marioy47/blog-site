@@ -38,6 +38,12 @@ Among the advantages of Ansible are:
 
 > Ansible works by using SSH to execute commands on Linux/MacOS, and [WinRT](https://en.wikipedia.org/wiki/Windows_Runtime) to execute commands on Windows
 
+## TOC
+
+```toc
+
+```
+
 ## Clients setup
 
 Before we beginning, we need to setup SSH access to the remote machines we're going to use.

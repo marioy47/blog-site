@@ -15,6 +15,12 @@ _Network Settings_ or _Multisite Settings_ do not follow the same process becaus
 
 By the end of this tutorial you'll have a 1 file plugin with just a settings page that saves data on the multisite.
 
+## TOC
+
+```toc
+
+```
+
 ## Start the plugin.
 
 This is pretty easy, just create a file in the plugins directory:

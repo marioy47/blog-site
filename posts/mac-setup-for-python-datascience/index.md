@@ -10,6 +10,12 @@ Even tough is not complicated, there are a series of steps that are suggested to
 
 In this article I'll show you a series of steps you can take to achieve just this without too many fuzz.
 
+## TOC
+
+```toc
+
+```
+
 ## Install Python
 
 You could say _Duh!_ here...

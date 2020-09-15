@@ -19,6 +19,12 @@ Here I'm going to show how I setted up my Mac to create this kind of application
 
 > If you want to set up your computer with the minimum amount of hassle, then I recommend that you skip this article and head over to the [Anaconda site](https://www.anaconda.com/) for instructions on how to install Python with their distribution.
 
+## TOC
+
+```toc
+
+```
+
 ## Install Python
 
 Obviously we need to start with Python. This is what is going to power up all of the tools and modules that we're going to use here.

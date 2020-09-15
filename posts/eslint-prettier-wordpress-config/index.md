@@ -25,6 +25,12 @@ Well, the reason is that by using ESLint and Prettier, you can add the linting a
 
 So lets see how to configure them one by one.
 
+## TOC
+
+```toc
+
+```
+
 ## The Caveat
 
 Even though all tools are excellent, its not all roses.
@@ -152,19 +158,19 @@ Now, lets create a test `.js` file with some bad formatted code and code-smells.
 ```javascript
 // src/js/test-file.js
 
-var first_var;
+var first_var
 
+function aSimpleFunction() {
+  console.log("Hola mundo")
+}
 
+function anotherFunction(event) {
+  console.log("This one is used")
+}
 
-                function aSimpleFunction()
-{ console.log('Hola mundo') }
+let other = document.getElementById("the-element-id")
 
-function anotherFunction(event)
-{ console.log('This one is used'); }
-
-let other = document.getElementById('the-element-id')
-
-anotherFunction(null);
+anotherFunction(null)
 ```
 
 And execute **our local ESLint** to figure out if it has any errors:
@@ -206,10 +212,7 @@ Then we have to edit `.eslint.json` to add the **prettier plugin** and the **pre
     "browser": true,
     "es2020": true
   },
-  "extends": [
-    "eslint:recommended", 
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 11
   },
@@ -381,7 +384,7 @@ To make it work with **Vim** you have to install [Conquer of Completion](https:/
 
 Then, in your `coc-config.json`, add
 
-```json 
+```json
   "eslint.autoFixOnSave": true,
 ```
 
@@ -393,11 +396,11 @@ After you've completed this steps, you'll get warnings and fixes right in your e
 
 ![Vim with CoC displaying errors](vim-eslint-test.png)
 
-You can also issue the Vim command 
+You can also issue the Vim command
 
 ```
 :CocCommand eslint.executeAutofix
-``` 
+```
 
 to manually fix your files
 

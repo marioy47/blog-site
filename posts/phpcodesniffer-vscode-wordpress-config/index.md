@@ -12,6 +12,8 @@ I'll be using [Composer](https://getcomposer.org/) for installing all the packag
 
 Be noted that there are some standards that will not be followed like the file naming, since I want to be able to use `composer` packages with autoloading without too much hassle.
 
+If you want an introduction on PHPCodeSniffer and PHPCodeBeautifier, take a look at [this excellent presentation](https://salferrarello.com/slides/php-code-sniffing/) given by Sal Ferrarello ([@salcode](https://twitter.com/salcode)).
+
 ## TOC
 
 ```toc
@@ -330,6 +332,7 @@ And since you are using a locally installed `phpcs` you should make the followin
 ```
 
 Now, you can use the _Format Document_ command ( `⇧⌥F` in Mac) to instantly format any php file.
+
 
 ## Starter Project
 

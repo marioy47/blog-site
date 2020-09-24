@@ -43,7 +43,6 @@ So first create a `package.json` file with `npm init -y`. And then add `webpack`
 ```bash
 npm init -y
 npm install --save-dev webpack webpack-cli
-preset-env
 ```
 
 If you executed those commands correctly, you should have a file in your directory called `package.json` similar to the following:
@@ -146,7 +145,7 @@ console.log("This is the shared file")
 
 And change `src/js/frontend.js` to this:
 
-```js{2}
+```js {2}
 // src/js/frontend.js
 import "./shared"
 
@@ -160,7 +159,7 @@ And again, run `npm start` and take a look at the output file (`js/main.js`).
 
 ![Test bundling](test-bundling.png)
 
-You see the content of both files? Not only that, Do you see that they are joined together in a way that it looks that they where never part of different files? That's bundling baby... Yeah!!! (<- Austin Powers pun intended)
+You see the content of both files? Not only that, Do you see that they are joined together in a way that it looks that they where never part of different files? That's bundling baby... Yeah!!! (Austin Powers pun intended).
 
 This is exciting stuff: You can now write your scripts in multiple files and have them be **compiled** (not joined) into one.
 
@@ -170,7 +169,7 @@ Maybe you've noticed, but the output file was named `js/main.js` instead of `js/
 
 So lets do that. Lest use the name `frontend` as the entry point. Lest edit `webpack.config.js` and change some settings:
 
-```js{5-7}
+```js {5-7}
 // webpack.config.js
 const path = require("path")
 
@@ -189,7 +188,7 @@ and execute `npm start` again. You should have a `js/frontend.js` file now with 
 
 ## Adding babel
 
-Webpack is powerful, very powerful... It uses something called **loaders** that allows you to transform your source files even further.
+Webpack is powerful, very powerful... Webpack uses [loaders](https://webpack.js.org/loaders/) to "preprocess files". In other words, **loaders** allows you to transform your source files even further.
 
 There are loaders for transforming images into _base64_ strings (that you can use in your scripts afterwards), embedding CSS, convert javascript into old format, etc.
 
@@ -203,7 +202,7 @@ npm install --save-dev babel-loader @babel/core @babel/cli @babel/preset-env
 
 And change `webpack.config.js` to include a **modules** section. This section will have the loaders that we're going to use and specifications on which files should be passed trough which loaders.
 
-```js{12-23}
+```js {12-23}
 // webpack.config.js
 const path = require("path")
 
@@ -257,7 +256,7 @@ I am.
 
 To get rid of that we have to tell webpack that we are working either with _development_ or _production_ mode. And for that we need to change the _scripts_ in the `package.json` file. Specifically, we need to modify the `start` script to pass the flag `mode` like so.
 
-```json{5,6}
+```json {5,6}
 // package.json
 {
   // ...
@@ -281,7 +280,7 @@ I also created a new script called `build` without the `--watch` flag to be able
 
 ## SASS
 
-Enough about JS for now. Lets dig into css and sass bundling. But not only bundling but conversion and generation of CSS from SASS.
+Enough about JS for now. Lets dig into CSS and SASS Bundling. But not only bundling but conversion and generation of CSS from SASS.
 
 As always, it all begins by installing new packages:
 
@@ -295,7 +294,11 @@ We also have to instruct webpack to
 - Convert them to `css` by **using** the `sass-loader` and `css-loader`.
 - And then **extract** the results and save them in the `css/` directory:
 
-```js{3, 23-35,38-43}
+That last item is kind of a curveball. It turns out that Webpack bundles **everytihng**!!!. Including CSS files.  So by default your CSS would be included inside your bundle as a _JavaScript_ variable.
+
+That's why we need to tell webpack to extract the CSS and save it elsewhere... Well, if that's what you want that is (Hint: I do want that).
+
+```js {3, 23-35,38-43}
 // webpack.config.js
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -342,6 +345,11 @@ module.exports = {
 }
 ```
 
+Let me explain:
+- I included the `mini-css-extract-plugin` to extract the CSS from the final bundle.
+- I created a new rule that instructs webpack to bundle any imported SCSS or CSS files.
+- I instructed the _Extract Plugin_ to save the resulting CSS in `css/`.
+
 To test this new loader, lets make a SASS file in `src/sass/main.scss` with the contents:
 
 ```scss
@@ -358,7 +366,7 @@ h1 {
 
 And include that file in our `src/js/frontend.js` file. (If you don't include it, it wont get bundled).
 
-```js{3}
+```js {3}
 // src/js/frontend.js
 import "./shared"
 import "../sass/main.scss"
@@ -394,13 +402,15 @@ npm install --save-dev postcss-loader postcss-import pixrem autoprefixer cssnano
 
 We also have to add the loader in `webpack.config.js`:
 
-```js{17}
+```js {17}
 // webpack.config.js
 // ...
 module.exports = {
   // ...
   module: {
     // ...
+    rules: [
+      // ...
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
@@ -423,9 +433,9 @@ module.exports = {
 }
 ```
 
-And very importantly we have to configure _PostCSS_. Which can be done by creating a `postcss` section in `package.json`.
+And **very importantly** we have to configure _PostCSS_. Which can be done by creating a `postcss` section in `package.json`.
 
-```json{7-15}
+```json {7-15}
 // package.json
 {
   // ...
@@ -475,7 +485,7 @@ wget https://raw.githubusercontent.com/webpack/media/master/logo/icon-square-sma
 
 Also, for testing. Let change the `src/sass/main.scss` file:
 
-```scss{5-6,11-15}
+```scss {5-6,11-15}
 // src/sass/main.scss
 $body-bg: lightgray;
 body {
@@ -495,7 +505,7 @@ h1 {
 
 And finally, lets change the `webpack.config.js` file to include those modules.
 
-```js{10-30}
+```js {10-30}
 // webpack.config.js
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -540,9 +550,9 @@ The summary of what I did in `webpack.config.init` is to ask small files to be e
 
 Awesome... We have finished our Webpack setup. No the only thing is to convert all this into a WordPress Plugin
 
-## Wordpress Plugin
+## WordPress Plugin
 
-The only thing left to do is to add the files required to make this WordPress plugin and we're done.
+The only thing left to do is to add the files required to make this WordPress plugin and we're done. Specifically we have to copy the `package.json` and `webpack.config.js` in the root of our plugin and we'll be set.
 
 Instead of showing you what that would look like, let me point you to my [WebPack WordPress plugin starter in Github](https://github.com/marioy47/webpack-wordpress-starter) so you can take a look at the whole thing.
 

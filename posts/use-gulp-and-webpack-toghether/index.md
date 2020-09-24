@@ -159,7 +159,7 @@ npm install --save-dev gulp-sass node-sass
 
 Now that we have installed both packages, make the following changes to `gulpfile.js` adding a task to compile `scss` files into `css`:
 
-```javascript {4-14}
+```javascript {4-15}
 // gulpfile.js
 
 const gulp = require("gulp")
@@ -177,9 +177,10 @@ function styles() {
 exports.build = styles
 ```
 
-And lastly (for this step) change `package.json` to access this new **task** with just `npm run build` by creating a new _script_ entry:
+And finally (for this step) change `package.json` to access this new **task** with just `npm run build` by creating a new _script_ entry:
 
-```json {7}
+```json {8}
+// package.json
 {
   "name": "gulp-webpack-integration",
   "version": "1.0.0",
@@ -235,7 +236,8 @@ This will instruct webpack to compile the file `src/js/main.js` into `js/main.mi
 
 And finally, change the `package.json` to add a script that executes webpack in development mode for us:
 
-```json {5}
+```json {6}
+// package.json
 {
   ...
   "scripts": {
@@ -340,11 +342,12 @@ Awesome... We're done
 
 ## Some cleanup
 
-If you looked closely on the previous image, you can see that webpack is complaining about not having a _"mode"_ seated up. And its right! (you can read about what that means [here](https://marioyepes.com/posts/webpack-wordpress-config/)).
+If you looked closely on the previous image, you can see that webpack is complaining about not having a _"mode"_ seated up. And its right! (you can read about what that means [here](https://marioyepes.com/webpack-wordpress-config/#develop-vs-build)).
 
 So lets fix that by adding a node env variable the script `build` on the file `package.json`. And also adding a new script called `dev`:
 
-```json {4,5}
+```json {5,6}
+// package.json
 {
   ...
   "scripts": {

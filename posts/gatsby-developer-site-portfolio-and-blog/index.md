@@ -23,17 +23,17 @@ Here I'll list the steps I took to create [my personal blog/portfolio site](http
 
 ## Wait... I don't know what is Gatsby!
 
-To quote the Gatsby Site:
+To quote the [Gatsby Site](https://www.gatsbyjs.org):
 
 > Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps
 
-The way I thing of it is, Gatsby is a _Site Generator_ as opposed to a _Content Management System_. But with the difference that the generated site is a React App.
+The way I think of it is, Gatsby is a _Site Generator_ as opposed to a _Content Management System_. But with the difference that the generated site is a React App.
 
 Gatsby can do a lot more than to be just a Site Generator. But that's what I'm using it for right now.
 
 ## Create the site itself
 
-This part is actually easy since its just executing a couple of commands in the **terminal**:
+This part is actually easy since its just executing the `npx gatsby new` command in the **terminal**:
 
 ```bash
 mkdir blog-site
@@ -45,7 +45,7 @@ npm start
 
 If you know a little about Gatsby, notice that I didn't provided an starter theme. That means that I'm using the [default starter theme](https://github.com/gatsbyjs/gatsby-starter-default)
 
-The `code` command is to install prettier for Visual Studio Code in case you don't have it already.
+> The `code` command is to install prettier for Visual Studio Code in case you don't have it already.
 
 I really fast test the you can make, to take a peek at what will be deployed, is to execute the `npm run build` command and then open a local http server (here I'm using python):
 

@@ -109,10 +109,19 @@ Most commands, when preceded by a number, are executed multiple times:
 
 It's like a clipboard history
 
-| Command | Action                                             |
-| ------- | -------------------------------------------------- |
-| `:reg`  | List registers (List yanked test)                  |
-| `"2p`   | Pastes register 2 (after you list registers first) |
+| Command               | Action                                                                      |
+| --------------------- | --------------------------------------------------------------------------- |
+| `:reg`, `:reg [char]` | List registers. Show contents of one register                               |
+| `"<char>p`            | Paste contents of register. Pe. `"rp` register `r`. `"2p` Pastes register 2 |
+| `"<char>y`            | Yank text to the _named_ register `<char>`. Pe `"ry`                        |
+| `"<char>x`            | Cut text to register                                                        |
+| `<C-r><char>`         | Paste the contents of register in **insert mode**                           |
+| `""`                  | The register used when Copy (`y`), Cut (`x`) or Substitute (`s`)            |
+| `"0`-`"9`             | Last yanked elements being `"0` the newest ( `"0p` is the same as `p`)      |
+| `"%`                  | Current file path starting from the project root                            |
+
+- When you create a macro with `q`, p.e. `qw`, the steps of the macro will be sotred in the _register_ `w`
+- `:let @W='i;'` (Uppercase W) will **append** a new step to the register `w` (lowercase w)
 
 ## Changes
 
@@ -167,6 +176,14 @@ It's like a clipboard history
 | `vip`   | Select current paragraph (content between empty lines)  |
 | `V`     | Visual the complete line (Use jk to move the selection) |
 
+## Splits
+
+| Command      | Action                     |
+| ------------ | -------------------------- |
+| `:sp`, `:vs` | Split and _Vertical_ split |
+| `:only`      | Focus on a splt            |
+| `gi`         | Open in split in NERDTree  |
+
 ## QuickFix and Location List
 
 | Command   | Action           |
@@ -214,25 +231,9 @@ Spell needs to have `set spell` option active on `.vimrc` and optionally use `se
 | ------- | ------------------------------------------- |
 | `z=`    | Search for alternatives of the current word |
 | `zg`    | Add current word to dictionary              |
-| `zw`    | Remove current word from dictionary           |
+| `zw`    | Remove current word from dictionary         |
 | `]g`    | Jump to next error                          |
 | `[g`    | Jump to previous error                      |
-
-## Registers
-
-| Command               | Action                                                                 |
-| --------------------- | ---------------------------------------------------------------------- |
-| `"<char>y`            | Yank text to the register `<char>`. Pe `"ry`                           |
-| `"<char>x`            | Cut text to register                                                   |
-| `"<char>p`            | Paste contents of register. Pe. `"rp`                                  |
-| `:reg`, `:reg [char]` | List registers. Show contents of one register                          |
-| `<C-r><char>`         | Paste the contents of register in **insert mode**                      |
-| `""`                  | The register used when Copy (`y`), Cut (`x`) or Substitute (`s`)       |
-| `"0`-`"9`             | Last yanked elements being `"0` the newest ( `"0p` is the same as `p`) |
-| `"%`                  | Current file path starting from the project root                       |
-
-- When you create a macro with `q`, p.e. `qw`, the steps of the macro will be sotred in the _register_ `w`
-- `:let @W='i;'` (Uppercase W) will **append** a new step to the register `w` (lowercase w)
 
 ## Plugins
 

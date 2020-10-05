@@ -28,17 +28,19 @@ to-heading: 3
 
 This commands are for **normal** mode:
 
-| Command   | Action                                        |
-| --------- | --------------------------------------------- |
-| `w`       | Beginning of the next word                    |
-| `b`       | Beginning of the _previews_ word              |
-| `e`       | End of the next word                          |
-| `$`       | End of line                                   |
-| `f<char>` | Go to forward to the next character. Pe. `fx` |
-| `{`       | Go to previous _paragraph_ (empty line)       |
-| `}`       | Go to next paragraph (empty line)             |
-| `A`       | Add text at the end of the line               |
-| `I`       | Add text at the beginning of the line         |
+| Command    | Action                                                    |
+| ---------- | --------------------------------------------------------- |
+| `w`        | Beginning of the next word                                |
+| `b`        | Beginning of the _previews_ word                          |
+| `e`        | End of the next word                                      |
+| `$`        | End of line                                               |
+| `f<char>`  | Go to forward to the next character. Pe. `fx`             |
+| `{`        | Go to previous _paragraph_ (empty line)                   |
+| `}`        | Go to next paragraph (empty line)                         |
+| `A`        | Add text at the end of the line                           |
+| `I`        | Add text at the beginning of the line                     |
+| `zz`       | Place the current line in the middle of the editor window |
+| `z<enter>` | Place the current line at the top of the editor window    |
 
 ### Advanced movement commands
 

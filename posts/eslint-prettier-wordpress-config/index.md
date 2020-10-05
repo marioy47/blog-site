@@ -118,9 +118,10 @@ Here, you should be as agnostic as possible, since all the configuration will be
 
 > The final question is if you want to install `eslint` locally. You should say **Yes** here.
 
-The result of this command, is that you'll get a `.eslint.json` file similar to this:
+The result of this command, is that you'll get a `.eslintrc.json` file similar to this:
 
 ```json
+// .eslintrc.json
 {
   "env": {
     "browser": true,
@@ -161,16 +162,16 @@ Now, lets create a test `.js` file with some bad formatted code and code-smells.
 var first_var
 
 function aSimpleFunction() {
-  console.log("Hola mundo")
-}
+  console.log("Hola mundo") }
 
-function anotherFunction(event) {
-  console.log("This one is used")
-}
+            function anotherFunction(event) {
+        console.log("This one is used");
+      }
 
-let other = document.getElementById("the-element-id")
+let other = 
+document.getElementById("the-element-id")
 
-anotherFunction(null)
+          anotherFunction(                          null)
 ```
 
 And execute **our local ESLint** to figure out if it has any errors:
@@ -204,9 +205,10 @@ npm install -D prettier eslint-config-prettier eslint-plugin-prettier
 - `eslint-config-prettier` [Turns off all rules that are unnecessary or might conflict with Prettier.](https://github.com/prettier/eslint-config-prettier#eslint-config-prettier).
 - `eslint-plugin-prettier` [Runs Prettier as an ESLint rule and reports differences as individual ESLint issues](https://github.com/prettier/eslint-plugin-prettier#eslint-plugin-prettier-).
 
-Then we have to edit `.eslint.json` to add the **prettier plugin** and the **prettier config**.
+Then we have to edit `.eslintrc.json` to add the **prettier plugin** and the **prettier config**.
 
-```json{8,14}
+```json {7,12}
+// .eslintrc.json
 {
   "env": {
     "browser": true,
@@ -232,7 +234,7 @@ Awesome... We're getting code errors **and** style errors at the same time.
 
 ## WordPress configuration
 
-If you take a look at the `.eslint.json` file in the [Guetenberg Project](https://github.com/WordPress/gutenberg/blob/master/.eslintrc.js), you can see that WordPress uses A LOT of rules.
+If you take a look at the `.eslintrc.json` file in the [Guetenberg Project](https://github.com/WordPress/gutenberg/blob/master/.eslintrc.js), you can see that WordPress uses A LOT of rules.
 
 Since we're lazy, I'm going to use an already created [ESLint WordPress Package](https://www.npmjs.com/package/@wordpress/eslint-plugin)
 
@@ -244,9 +246,10 @@ So lets install it with
 npm install @wordpress/eslint-plugin --save-dev
 ```
 
-And again, edit the `.eslint.json` file adding this new package:
+And again, edit the `.eslintrc.json` file adding this new package:
 
-```json{8}
+```json {9}
+// .eslintrc.json
 {
   "env": {
     "browser": true,
@@ -277,9 +280,10 @@ In the highlighted line you can see that its recommending to use **Tabs** instea
 
 I don't know about you, but when I'm developing I really need to use the `console.log()` function in my JavaScript code... But eslint complains about that all the time.
 
-So if you want to temporary disable that check, add the following to your `.eslint.json` file:
+So if you want to temporary disable that check, add the following to your `.eslintrc.json` file:
 
-```json{15}
+```json {16}
+// .eslintrc.json
 {
   "env": {
     "browser": true,

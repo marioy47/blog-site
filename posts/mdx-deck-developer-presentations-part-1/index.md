@@ -39,7 +39,7 @@ Quoting the [Official Site](https://mdxjs.com/):
 
 This basically means that you can do something like this:
 
-```markdown
+```markdown {5-7}
 ## This is _mdx_
 
 Its like a _Markdown document_, but with embeded **React Code**:
@@ -79,10 +79,12 @@ This will
 
 - Create the directory `mdx-deck-tutorial/`
 - Create a minimal `package.json` file
+- Create the empty `slides.mdx` file for the slides of our presentation.
 - Place an `mdx-deck` command in `./node_modules/.bin/mdx-deck` that will take care of generating our presentation.
-- It will create the empty `slides.mdx` file for the slides of our presentation.
 
 ![Starting the MDX Deck project](init-mdx-deck-project.png)
+
+If I list the contents of the current fulder, minus the `node_modules` dir, I will get the following structure:
 
 ```bash
 $ tree -I node_modules
@@ -94,7 +96,7 @@ $ tree -I node_modules
 0 directories, 3 files
 ```
 
-Having all that, lets edit the resulting `pacakge.json` file by adding a new `start` script to execute `mdx-deck` for us.
+Now, lets edit the current `pacakge.json` file by adding a new `start` script to execute `mdx-deck` for us.
 
 ```json {10-12}
 // package.json
@@ -112,17 +114,18 @@ Having all that, lets edit the resulting `pacakge.json` file by adding a new `st
 }
 ```
 
-Now, the name `slides.mdx` was selected **by me**. And here it means that `mdx-deck` will try to open a file called `slides.mdx` to generate the presentation.
+Note that the name `slides.mdx` was selected **by me** at the start. And here it means that `mdx-deck` will try to open a file called `slides.mdx` to generate the presentation.
 
 ## First slides of your presentation
 
 Before we create the slides of our presentation by adding content on the `slides.mdx` file, there are some things that you have to take into account:
 
-- All the slides will be in that **one file**
+- All the slides will be in that **one file** (`slides.mdx`)
 - Each slide is **separated** by `---` (3 dashes)
 - **Almost** all Markdown syntax is valid. One exception are local images
 - You **have** to use the `.mdx` suffix. Otherwise your deck it won't picked up as a component.
 - You get a **live reload** out of the box
+- You control all the presentation aspects from the `.mdx` file. No need (although you can) to create additional files.
 
 Now that we know that, lets add the following content to our `slides.mdx` file:
 
@@ -197,6 +200,8 @@ import ImgPath from "./images/jorge-gardner-5DqvsOPKdlk-unsplash.jpg"
 If you know react (and I'm assuming you do) you can see that you are including a local image path and then adding an `<Image>` component.
 
 > The `<Image>` component is provided by MDX Deck and made available by default.
+
+> You can used something like `<img src={{ImgPath}} />` too. But `<Image>` is [more powerful](https://raw.githubusercontent.com/jxnblk/mdx-deck/28d5e6dc5d328cdd11796ff898d0435b9abe3208/examples/images/deck.mdx)
 
 Also notice that you are using the `import` right into the slide and not at the top of the file. **Its not necessary to import components at the top of the file, even tough you can**.
 
@@ -277,6 +282,8 @@ export default FirstComponent;
 ```
 ````
 
+And voilà. We beautiful code in our new slide.
+
 ![Slide with code and syntax highlight](code-highlighting.png)
 
 In the example I'm using the `prism` theme. But I could also use the `highlight` theme (I know... It's an awful name for a highlight theme).
@@ -336,9 +343,11 @@ import CounterButton from './components/counter-button.js';
 <CounterButton />;
 ```
 
+And the result is this new slide:
+
 ![Slide with a button component](button-component.png)
 
-And just like that, you have a functional component inside a presentation.
+And just like that, you have a functional component inside a presentation. If you are following along, you can check that by clicking on the button the internal counter increments.
 
 There are a couple of things to note here:
 
@@ -347,13 +356,11 @@ There are a couple of things to note here:
 
 ## Steps
 
-This is the scenario: You want to include a list of _items_ in your slide, but you want to show each item only when you press the space bar.
+This is the scenario: You want to include a list of _items_ in your slide, but you want to show each item only when you press the space bar or the "right" arrow.
 
 For that, MDX Deck includes the handy `Steps` component.
 
-When you enclose a list between `<Steps>` and the `</Steps>` tags, you get a list that only show its items when the speaker presses the space bar or the right arrow key:
-
-> This is also valid for multiple snippets of code in one slide.
+When you enclose a list (or multiple components) between `<Steps>` and the `</Steps>` tags, you get a list that only show its items when the speaker presses the space bar or the right arrow key:
 
 ```markdown {7-15}
 ---

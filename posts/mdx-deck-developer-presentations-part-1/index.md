@@ -386,7 +386,7 @@ You have layouts for
 - [Invert](https://github.com/jxnblk/mdx-deck/blob/master/docs/layouts.md#invert) to invert colors
 - [Split](https://github.com/jxnblk/mdx-deck/blob/master/docs/layouts.md#split) left & Right
 - [SplitRight](https://github.com/jxnblk/mdx-deck/blob/master/docs/layouts.md#splitright) Right & Left
-- [Horizontal)(https://github.com/jxnblk/mdx-deck/blob/master/docs/layouts.md#horizontal)
+- [Horizontal](https://github.com/jxnblk/mdx-deck/blob/master/docs/layouts.md#horizontal)
 - [Full Screen Code](https://github.com/jxnblk/mdx-deck/blob/master/docs/layouts.md#fullscreencode)
 
 Additionally, you can create your [own layouts](https://github.com/jxnblk/mdx-deck/blob/master/docs/layouts.md#layouts)!

@@ -84,7 +84,7 @@ This will
 
 ![Starting the MDX Deck project](init-mdx-deck-project.png)
 
-If I list the contents of the current fulder, minus the `node_modules` dir, I will get the following structure:
+If I list the contents of the current folder, minus the `node_modules` dir, I will get the following structure:
 
 ```bash
 $ tree -I node_modules

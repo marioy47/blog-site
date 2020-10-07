@@ -47,8 +47,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     {
@@ -112,15 +110,14 @@ module.exports = {
         ],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-mdx`,
-    //   options: {
-    //     defaultLayouts: {
-    //       default: require.resolve("./src/components/site-layout.js"),
-    //     },
-    //   },
-    // },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: `GTM-TCFF38M`,
+        includeInDevelopment: true,
+      }
+    }
   ],
 }

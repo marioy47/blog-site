@@ -1,11 +1,11 @@
 ---
-title: Increase the SLL Labs Grade in your Web Server
+title: Increase the SLL Labs Test Grade in your Web Server
 date: 2020-10-07
 tags: nginx, apache, ssl, devops, security, tls
-cover:
+cover: ssllabs-server-test.png
 ---
 
-# Increase the SLL Labs Grade in your Web Server
+# Increase the SLL Labs Test Grade in your Web Server
 
 Since Google [anounced](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) that they would be giving secure sites a ranking boost in 2014, webmasters all over the wold started taking security seriously.
 
@@ -20,7 +20,6 @@ to-heading: 3
 ## What is the SLL Server Test?
 
 Who better to tell you what the _SSL Server Test_ is than [its creators](https://https://wwww.ssllabs.com/)
-c
 
 > This free online service performs a deep analysis of the configuration of any SSL web server on the public Internet. -- [SSL Labs](https://www.ssllabs.com/ssltest/)
 
@@ -146,7 +145,7 @@ With the configuration in place. You can test and restart your server
 
 ```bash
 sudo apachectl configtest
-sudo service apache3 reload
+sudo service apache2 reload
 ```
 
 ![](test-and-reload-apache.png)

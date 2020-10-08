@@ -2,7 +2,7 @@
 title: Create developer presentations with MDX Deck - Part 1
 date: 2020-10-05
 tags: react, javascript, markdown, livecode, slides, presentations
-cover: mdx.png
+cover: code-highlighting.png
 ---
 
 # Create developer presentations with MDX Deck - Part 1
@@ -35,7 +35,7 @@ _Taken from the MDX Deck [Github Page](https://github.com/jxnblk/mdx-deck)_
 
 Quoting the [Official Site](https://mdxjs.com/):
 
-> MDX is an authorable format that lets you seamlessly write JSX in your Markdown documents. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast 🚀.
+> MDX is an authorable format that lets you seamlessly write JSX in your Markdown documents. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast 🚀. -- [MDXJs](https://mdxjs.com/):
 
 This basically means that you can do something like this:
 
@@ -49,7 +49,7 @@ import Button from "my-components/button"
 <Button />;
 ```
 
-And React would interpret it like a component with no issues.
+And React would interpret it like a component!
 
 Note that _MDX_ is alternative way to create React components. And not a replacement for Markdown. So to use MDX you need to create a React project or include React in your project with [Webpack](/webpack-wordpress-config/) or [Rollup](https://rollupjs.org/).
 
@@ -65,7 +65,7 @@ The great thing about _MDX Deck_ is that it does all the heavy lifting of creati
 
 All right, let's get our hands dirty an lest create a new presentation using MDX Deck. For that we need to create a new node project with `npm init` or `yarn init`.
 
-> I'll be using yarn since I think is faster
+I'll be using yarn since I think is faster
 
 ```bash
 mkdir mdx-deck-tutorial
@@ -75,7 +75,7 @@ touch slides.mdx
 yarn add --dev mdx-deck
 ```
 
-This will
+This will:
 
 - Create the directory `mdx-deck-tutorial/`
 - Create a minimal `package.json` file
@@ -96,7 +96,7 @@ $ tree -I node_modules
 0 directories, 3 files
 ```
 
-Now, lets edit the current `pacakge.json` file by adding a new `start` script to execute `mdx-deck` for us.
+Since accesing the `mdx-deck` command using `./node_modules/.bin/mdx-deck` is a pain, we'll be creating a new `start` script in the `pacakge.json` file to execute it for us.
 
 ```json {10-12}
 // package.json
@@ -114,7 +114,7 @@ Now, lets edit the current `pacakge.json` file by adding a new `start` script to
 }
 ```
 
-Note that the name `slides.mdx` was selected **by me** at the start. And here it means that `mdx-deck` will try to open a file called `slides.mdx` to generate the presentation.
+The `mdx-deck` comand requires the name of the `.mdx` file to execute. That's why I appended the `slides.mdx` at the end. Because that's the name that I selected for my presentation.
 
 ## First slides of your presentation
 

@@ -23,7 +23,7 @@ If you are still confused about what what you just read, let me give you a small
 
 When Microsoft launched its [Visual Studio (Code)](https://code.visualstudio.com) editor. It decided to have the language parsing, linting and formating of code be done by an external server. And that server has to follow an special implementation described in https://langserver.org/.
 
-The great thing about that is that LSP, is that is an standard and not an implementation. Allowing developers to write their own server and connect them to any editor like [Visual Studio Code](https://code.visualstudio.com) or even [Neovim](https://neovim.io/).
+The great thing about LSP, is that is an standard and not an implementation. Allowing developers to write their own server and connect them to any editor like [Visual Studio Code](https://code.visualstudio.com) or even [Neovim](https://neovim.io/).
 
 The LSP server can be written in any language but most of them are written in TypeSctipt.
 
@@ -58,7 +58,7 @@ The answer is we create and activate **stubs**!!!.
 
 Lets start with the easier one: WordPress.
 
-Is the easier one because Intelephense already includes support for WordPress auto complete but **is not activated by default**.
+Is the easier one because Intelephense already includes support for WordPress auto complete but **is not active by default**.
 
 To activate it you have to go to your editor configuration and add `wordpress` to the parameter `intelephense.stubs`
 

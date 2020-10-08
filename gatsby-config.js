@@ -113,6 +113,40 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
+          {
+            resolve: `gatsby-plugin-feed`,
+            options: {
+              feeds: [
+                {
+                  output: `/blog.xml`,
+                  title: `Mario's Blog`,
+                  match: `^/blog/`,
+                  query: `
+                    {
+                      allMarkdownRemark(
+                        sort: { order: DESC, fields: [frontmatter___date] }
+                        filter: { frontmatter: { date: { ne: null } } }
+                      ) {
+                        edges {
+                          node {
+                            frontmatter {
+                              title
+                              date
+                            }
+                            fields {
+                              slug
+                            }
+                            fileAbsolutePath
+                            excerpt
+                          }
+                        }
+                      }
+                    }
+                  `,
+                }, // feed blogs
+              ]
+            }
+          }
         ],
       },
     }, // gatsby-transformer-remark

@@ -120,6 +120,7 @@ module.exports = {
                 {
                   title: `Mario's Blog`,
                   match: `^/blog/`,
+                  output: `/rss.xml`,
                   query: `
                     {
                       allMarkdownRemark(

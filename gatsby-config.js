@@ -107,9 +107,15 @@ module.exports = {
               },
             },
           },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
         ],
       },
-    },
+    }, // gatsby-transformer-remark
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     {
@@ -117,7 +123,7 @@ module.exports = {
       options: {
         id: `GTM-TCFF38M`,
         includeInDevelopment: true,
-      }
-    }
+      },
+    },
   ],
 }

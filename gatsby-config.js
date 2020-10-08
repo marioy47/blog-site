@@ -118,7 +118,6 @@ module.exports = {
             options: {
               feeds: [
                 {
-                  output: `/blog.xml`,
                   title: `Mario's Blog`,
                   match: `^/blog/`,
                   query: `

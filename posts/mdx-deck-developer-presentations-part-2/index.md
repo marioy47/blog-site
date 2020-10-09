@@ -339,6 +339,78 @@ You just have to use the `diff` parameter, not event specifying the language, an
 
 ![CodeSurfer diff option](code-surfer-diff.png)
 
+### CodeSurfer: Columns
+
+This is also a very useful feature for code analysis when you want to explain how the code evolves in several places.
+
+Take for instance the following slide:
+
+````markdown
+---
+import { CodeSurferColumns, Step } from "code-surfer";
+
+<CodeSurferColumns themes={[github, vsDark]}>
+
+<Step subtitle="First Step">
+
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const MyComponent = ({font, children}) => {
+  return (
+	<span style={{fontFamily: font}}>{children}</span>
+  );
+}
+export default MyComponent;
+```
+
+```jsx
+MyComponent.propTypes = {
+  font: PropType.string.required
+}
+```
+
+</Step>
+
+<Step subtitle="Second Step">
+
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const MyComponent = ({font, color, children}) => {
+  return (
+	<span style={{fontFamily: font, color}}>{children}</span>
+  );
+}
+export default MyComponent;
+```
+
+```jsx
+MyComponent.propTypes = {
+  font: PropType.string.required
+  color: PropType.string.required
+}
+```
+
+</Step>
+
+</CodeSurferColumns>
+````
+
+This will generate a single slide but with a **before** and an **after**. Those are the steps.
+
+Also, on the before and after steps, you'll get 2 columns.
+
+And the transition from step to step will be animated like everything in _CodeSurfer_
+
+![CodeSurfer Columns first step](code-surfer-cols-step1.png)
+
+![CodeSurfer Columns second step](code-surfer-cols-step2.png)
+
+
+
 ## Other documentation
 
 This are a couple of projects and articles worth reading for further explanation

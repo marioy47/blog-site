@@ -1,11 +1,11 @@
 ---
-title: Configure Eslint and Prettier for WordPress Development
+title: Configure Eslint, Prettier and Husky for WordPress Development
 date: 2020-07-06
 cover: prettier+eslint.png
 tags: wordpress, javascript, eslint, prettier
 ---
 
-# Configure Eslint and Prettier for WordPress Development
+# Configure Eslint, Prettier and Husky for WordPress Development
 
 Quoting the ESLint [Getting Started Guide](https://eslint.org/docs/user-guide/getting-started)
 
@@ -378,47 +378,74 @@ Take into account that `eslint` wont fix some errors that will actually break yo
 
 Wont be fixed and its up to you to actually fix them without breaking your code.
 
-## Husky
+## Husky and lint-staged
 
-The cherry on top is the usage of [Husky](https://typicode.github.io/husky/#/). Which is a tool that connects with [Git](https://git-scm.com/) to improve your commits.
+We're almost done with the environment configuration.
 
-In our case, we're going to use Husky so every time we commit the our repo, our code gets linted and formated automatically.
+No, we're going to add 2 tools that will execute the linting and formatting tools for us when we do a `git commit`.
 
-Lets start by installing `husky` as a _Dev_ dependency:
+The first one is going to be [Husky](https://typicode.github.io/husky/), which is a tool that connects with [Git](https://git-scm.com/) to improve your commits by executing commands on the _pre_ and _post_ git hooks. Which is great if it wasn't for the fact that by default _Husky_ will lint and fix **all of the files** on our project.
+
+That's why we need the second tool; [lint-staged](https://github.com/okonet/lint-staged#readme). _Lint-staged_ will executing the linting only on the committed files and will not touch any file that hasn't been modified.
+
+Installing them is pretty easy since `lint-staged` has a command that
+
+- Will install all the required packages (`husky` and `lint-staged`)
+- Will check that we're using `eslint`
+- Will change the file `package.json` adding the required configuration 
+
+The command is:
 
 ```bash
-npm install -D husky
+npx mrm lint-staged
 ```
 
-Then, in `package.json` add the following lines after the `scripts` section:
+This will show a bunch of messages, but at end of the execution we'll have the following changes on hour `package.json`:
 
-```json {7-11}
+```json {8-9,12-19}
 {
-  . . .
-  "scripts": {
-    "lint": "eslint src/js/**/*js",
-    "lint:fix": "eslint src/js/**/*.js --fix"
+  ". . .",
+  "devDependencies": {
+    "@wordpress/eslint-plugin": "^7.3.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.2",
+    "prettier": "^2.1.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix"
+      "pre-commit": "lint-staged"
     }
   },
-  . . . 
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
 }
 ```
 
-And that's it... We're instructing _Husky_ to run the command `npm run lint:fix` before committing the changes, or in other words, in the `pre-commit` _Git Hook_. 
+The first batch of changes is pretty familiar: We just installed `husky` and `lint-staged`.
 
-Lets see what happens if we try to commit the new changes now that we have a `pre-commit` hook:
+The second batch has 2 sections:
 
-![husky pre-commit errors](husky-pre-commit-errors.png)
+- The `husky` sub-object is telling git which command to execute before committing
+- The `lint-staged` sub-object is telling git to execute `eslint --cache --fix` **on the changed files**.
+
+We have the best of both worlds: We get linting before each commit but only on the changed files... Clean and fast!
+
+Now, let's test it. Let's make a change on our bad formatted file and try to commit it to the repo:
+
+![Eslint precommit errors](husky-lint-staged-errors.png)
 
 We get an error!!!
 
-We cant commit unless **we fix the errors that eslint could not fix** (like camel case errors or unused functions errors), we [ignore the file](https://eslint.org/docs/user-guide/configuring#disabling-rules-only-for-a-group-of-files) or we add **exceptions in the file**.
+We cant commit unless **we fix the errors that eslint could not fix** (like camel case errors or unused functions errors). So we either...
 
-I opted for the third option. So I added the following at the top of the `src/js/test-file.js`:
+- We ignore linting on the file by [adding it to .eslintignore](https://eslint.org/docs/user-guide/configuring#eslintignore)
+- Or, we add exceptions on the file ([more info on that here](https://eslint.org/docs/user-guide/configuring#disabling-rules-only-for-a-group-of-files))
+
+I opted for the second option. So I added the following at the top of the `src/js/test-file.js`:
 
 ```javascript {3}
 // src/js/test-file.js
@@ -430,7 +457,6 @@ var first_var;
 ```
 
 I really do not recommend this. **Its always better to actually adhere to standards and write clean code**.
-
 
 ## Vim configuration
 

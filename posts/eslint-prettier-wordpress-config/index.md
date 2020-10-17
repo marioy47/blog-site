@@ -89,7 +89,7 @@ It's a good idea to edit your `package.json` so the information about author, ke
 ESLint and Prettier are tools that can be run in the command line. That's why some developers install them globally on their system:
 
 ```bash
-# This can be useful but NOT RECOMMENDED
+### This can be useful but NOT RECOMMENDED
 npm install -g eslint prettier
 ```
 
@@ -105,7 +105,7 @@ npx eslint --init
 
 This will start a wizard asking you for you project preferences:
 
-![Npx eslint init](npx-eslint-init.png)
+![npx eslint init](npx-eslint-init.png)
 
 As you can see, the wizard asks you for pretty basic questions:
 
@@ -311,9 +311,9 @@ As you can see there are no `no-console` errors on that output.
 
 ## Prettier local configuration
 
-This part is completelly optional, but I like to add some **local** prettier rules.
+This part is completely optional, but I like to add some **local** prettier rules so the code is a close as the final product _while I'm writing it_. For instance, I want the code to use [tabs over spaces](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/#spacing) as the WordPress coding standard recommends:
 
-This rules are taken from the [Jetpack Github site](https://github.com/Automattic/jetpack/blob/master/.prettierrc) and are kind of redundant, but work as a fallback.
+This rules are taken from the [Jetpack Github site](https://github.com/Automattic/jetpack/blob/master/.prettierrc) and are kind of redundant, but work as a fall-back.
 
 So lets create the `.prettierrc` file, and add the following:
 
@@ -378,6 +378,60 @@ Take into account that `eslint` wont fix some errors that will actually break yo
 
 Wont be fixed and its up to you to actually fix them without breaking your code.
 
+## Husky
+
+The cherry on top is the usage of [Husky](https://typicode.github.io/husky/#/). Which is a tool that connects with [Git](https://git-scm.com/) to improve your commits.
+
+In our case, we're going to use Husky so every time we commit the our repo, our code gets linted and formated automatically.
+
+Lets start by installing `husky` as a _Dev_ dependency:
+
+```bash
+npm install -D husky
+```
+
+Then, in `package.json` add the following lines after the `scripts` section:
+
+```json {7-11}
+{
+  . . .
+  "scripts": {
+    "lint": "eslint src/js/**/*js",
+    "lint:fix": "eslint src/js/**/*.js --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix"
+    }
+  },
+  . . . 
+}
+```
+
+And that's it... We're instructing _Husky_ to run the command `npm run lint:fix` before committing the changes, or in other words, in the `pre-commit` _Git Hook_. 
+
+Lets see what happens if we try to commit the new changes now that we have a `pre-commit` hook:
+
+![husky pre-commit errors](husky-pre-commit-errors.png)
+
+We get an error!!!
+
+We cant commit unless **we fix the errors that eslint could not fix** (like camel case errors or unused functions errors), we [ignore the file](https://eslint.org/docs/user-guide/configuring#disabling-rules-only-for-a-group-of-files) or we add **exceptions in the file**.
+
+I opted for the third option. So I added the following at the top of the `src/js/test-file.js`:
+
+```javascript {3}
+// src/js/test-file.js
+
+/* eslint-disable no-var, no-unused-vars, camelcase, prefer-const, prettier/prettier */
+var first_var;
+
+// ....
+```
+
+I really do not recommend this. **Its always better to actually adhere to standards and write clean code**.
+
+
 ## Vim configuration
 
 To make it work with **Vim** you have to install [Conquer of Completion](https://github.com/neoclide/coc.nvim) vim plugin (You can see an article on how to configure it [here](https://marioyepes.com/vim-setup-for-modern-web-development/)). And then install the [coc-eslint](https://github.com/neoclide/coc-eslint) extension by executing this inside vim
@@ -431,7 +485,7 @@ This are common solutions to recurring problems that happen from time to time in
 
 Its probable that you'll be passing variables from a WordPress PHP file, which uses _snake_case_ standard. To JavaScript, that uses _CamelCase_ syntax.
 
-If that's the case, you might want to add a rule to allow some _snake_case_ variables by adding a `camelcase` rule in `.eslintrc.json`
+If that's the case, you might want to add a rule to allow some *snake_case* variables by adding a `camelcase` rule in `.eslintrc.json`
 
 ```json {7}
 // .eslintrc
@@ -471,6 +525,6 @@ There are options for declaring _read only_ and _read write_ global variables. Y
 
 One additional piece you can add to your development environment is [`editorconfig`](https://editorconfig.org/) so your editor writes you code in the correct format from the get go. But its not really necessary.
 
-Also, there is an excellend article about ESLint for React in the [thomlom.dev](https://thomlom.dev/setup-eslint-prettier-react/) blog.
+Also, there is an excellent article about ESLint for React in the [thomlom.dev](https://thomlom.dev/setup-eslint-prettier-react/) blog.
 
 And, if you want to take a look at the resulting files, you can see the final result in this [Github Repo](https://github.com/marioy47/wordpress-eslint-prettier-config)

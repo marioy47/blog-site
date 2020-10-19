@@ -115,7 +115,7 @@ Inventories are a list of hosts and variables that can be group and reused for m
 So, lets create the inventory file `inventory.yml`, and add the list of remote hosts where you want to execute tasks, commands or modules.
 
 ```yml
-# inventory.yml
+### inventory.yml
 client1
 client2
 ```
@@ -196,7 +196,7 @@ If you are following along this article. You've noticed that we have to pass the
 So lets solve the `-i` issue now by creating an _ansible configuration file_ or `ansible.cfg` on the directory where we are working on with the following content
 
 ```ini
-# ansible.cfg
+### ansible.cfg
 [defaults]
 inventory = inventory.yml
 ```
@@ -244,7 +244,7 @@ At the beginning we talked about groups of hosts in the inventory. Ansible calls
 You can create a group of hosts by using hierarchy in the inventory file like so:
 
 ```yml
-# inventory.yml
+### inventory.yml
 testgroup:
   hosts:
     client1:
@@ -276,7 +276,7 @@ With what we've seen so far, we can say that we can specify variables by _host_,
 #### 1. By host
 
 ```yml
-# inventory.yml
+### inventory.yml
 testgroup:
   hosts:
     client1:
@@ -286,7 +286,7 @@ testgroup:
 #### 2. By group
 
 ```yml
-# inventory.yml
+### inventory.yml
 testgroup:
   hosts:
     client1:
@@ -298,7 +298,7 @@ testgroup:
 #### 3. Combined:
 
 ```yml
-# inventory.yml
+### inventory.yml
 testgroup:
   hosts:
     client1:
@@ -342,7 +342,7 @@ Lets do a test to see vars in action in the inventory and in the group vars.
 Lest change the inventory to look like this:
 
 ```yml
-# inventory.yml
+### inventory.yml
 testgroup:
   hosts:
     client1:
@@ -353,7 +353,7 @@ testgroup:
 And `group_vars/testgroup.yml` looks like:
 
 ```yml
-# group_vars/testgroup.yml
+### group_vars/testgroup.yml
 my_custom_string: Hola from group_vars/testgroup.yml
 ```
 
@@ -380,14 +380,14 @@ Ansible has set of [special variables](https://docs.ansible.com/ansible/latest/u
 So lets change `group_vars/testgroup.yml` to have the following contents:
 
 ```yml
-# group_vars/testgroup.yml
+### group_vars/testgroup.yml
 ansible_user: testuser
 ```
 
 And the inventory to:
 
 ```yml
-# inventory.yml
+### inventory.yml
 testgroup:
   hosts:
     client1:
@@ -434,11 +434,11 @@ ansible all -a "ls -l /tmp/new-file.txt"
 You can also create files with variables inside them that get parsed after uploading them with the [`template`](https://docs.ansible.com/ansible/latest/modules/template_module.html) module.
 
 ```bash
-# Create the template
+### Create the template
 mkdir templates/
 echo "Template file: {{my_custom_string}}" > templates/new-template.j2
 
-# Use the template
+### Use the template
 ansible all -m template -a "src=templates/new-template.j2 dest=/tmp/from-template.txt"
 ansible all -a "cat /tmp/from-template.txt"
 ```
@@ -508,7 +508,7 @@ So lets create a playbook that does the last 3 tasks for us:
 3. Install a package
 
 ```yml
-# playbook-sample1.yml
+### playbook-sample1.yml
 ---
 - hosts: testgroup
   vars:
@@ -596,7 +596,7 @@ The `- debug` option is specially useful for such a cases.
 The usage of the `debug` option almost always requires you to store the output on a variable. So let take a look at the following example:
 
 ```yml
-# playbook-debug-example.yml
+### playbook-debug-example.yml
 ---
 - hosts: testgroup
   remote_user: testuser
@@ -621,7 +621,7 @@ This is particularly important with the `command` and `shell` modules where some
 Take the following example:
 
 ```yml
-# playbook-ignore-errors.yml
+### playbook-ignore-errors.yml
 ---
 - hosts: testgroup
   remote_user: testuser
@@ -641,7 +641,7 @@ You can see that the `debug` section never gets executed.
 But we can add `ignore_errors: True` on the task.
 
 ```yml
-# playbook-ignore-errors.yml
+### playbook-ignore-errors.yml
 ---
 - hosts: testgroup
   remote_user: testuser
@@ -668,7 +668,7 @@ Most of the time you need to create an alias and restart the service for the con
 For those times, the `notify` parameter in conjunction with a `handlers` section is exactly what you need.
 
 ```yml {21,,24-27}
-# playbook-notify-example.yml
+### playbook-notify-example.yml
 ---
 - hosts: testgroup
   remote_user: testuser
@@ -720,7 +720,7 @@ In those cases, prompting the user for input is very useful.
 You can prompt the user for a variable value by using the `vars_prompt` command:
 
 ```yml
-# playbook-with-prompts.yml
+### playbook-with-prompts.yml
 ---
 - hosts: testgroup
   remote_user: testuser
@@ -753,7 +753,7 @@ So we're just going to scratch the surface in this post.
 The `when` statement is the main form of using conditionals on a playbook:
 
 ```yml
-# playbook-when-and-facts.yml
+### playbook-when-and-facts.yml
 ---
 - hosts: testgroup
   remote_user: testuser
@@ -764,7 +764,7 @@ The `when` statement is the main form of using conditionals on a playbook:
       when: ansible_os_family == "Debian"
 ```
 
-## Ansible Glaxy
+## Ansible Glaxy and final toughts
 
 To finish this post, let me talk to you about [Ansible Galaxy](https://galaxy.ansible.com/)...
 
@@ -774,6 +774,10 @@ There you can can store your plays in a way where they can be re-used in other p
 
 Going over _Ansible Galaxy_ would be a topic for a new Blog, for now just know that there is a complete universe (or Galaxy if you will) of plays that you can download and use in your own plays.
 
+And, if you want a video where a lot of this concepts get explained, you can find [this playlinst](https://www.youtube.com/playlist?list=PLFiccIuLB0OiWh7cbryhCaGPoqjQ62NpU) very useful
+
 ... Hope this article was useful to you and you find value in it.
 
 Good Bye!
+
+

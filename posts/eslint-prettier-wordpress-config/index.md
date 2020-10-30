@@ -458,6 +458,55 @@ var first_var;
 
 I really do not recommend this. **Its always better to actually adhere to standards and write clean code**.
 
+## Stylelint
+
+I think this is a little bit overkill, but if you want to lint and fix CSS/SCSS errors, then you have to use [Stylelint](https://stylelint.io/).
+
+It works very simmilar to ESLint, where you have a program that does the linting (the `eslint` command) and you have a set of rules to apply. 
+
+To install it just issue
+
+```bash
+npm install stylelint stylelint-config-wordpress --save-dev
+```
+
+The first package is the linter, and the second one is the set of rules we are going to use for WordPress.
+
+After the packages are installed, you have to 2 to additional steps to execute:
+
+- Create a `.stylelintrc.json` file that specifies which rules we are going to apply
+- Open the `pacakge.json` file and tell `husky` to also lint the `.scss` and `.css` files
+
+The `.stylelintrc.json` its pretty simple, it just configures which **rules** to apply. In our case where goint to apply the WordPress rules. After all that's why we installed them:
+
+```json
+{
+	"extends": "stylelint-config-wordpress/scss"
+}
+```
+
+The second step is in `package.json` lets configure _Husky_:
+
+```json {4}
+{
+  "...",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.(sa|sc|c)ss": "stylelint --cache --fix"
+  }
+}
+
+```
+
+And now, when you commit a `.css` or `.scss` file, they will get linted.
+
+> At the time of this writing, the WordPress ruleset has some deprecated issues. Don't worry, they will get ignored.
+
 ## Vim configuration
 
 To make it work with **Vim** you have to install [Conquer of Completion](https://github.com/neoclide/coc.nvim) vim plugin (You can see an article on how to configure it [here](https://marioyepes.com/vim-setup-for-modern-web-development/)). And then install the [coc-eslint](https://github.com/neoclide/coc-eslint) extension by executing this inside vim

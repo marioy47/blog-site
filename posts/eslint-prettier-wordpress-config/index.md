@@ -511,7 +511,7 @@ And now, when you commit a `.css` or `.scss` file, they will get linted.
 
 To make it work with **Vim** you have to install [Conquer of Completion](https://github.com/neoclide/coc.nvim) vim plugin (You can see an article on how to configure it [here](https://marioyepes.com/vim-setup-for-modern-web-development/)). And then install the [coc-eslint](https://github.com/neoclide/coc-eslint) extension by executing this inside vim
 
-```vi
+```vim
 :CocInstall coc-eslint
 ```
 

@@ -6,15 +6,17 @@ date: 2020-11-07
 
 # JavaScript Functional Programming: Introduction
 
-As with fashion, in programing there are trends that come and go. Some have die hard fans, sometimes this trends are just hype and never get used... And some times the reappear.
+As with fashion, in programming there are trends that come and go. Some have die hard fans, sometimes this trends are just hype and never get used... And some times they reappear.
 
-You could say that functional programing is one of those trends... Please don't get mad at me for saying that, I'm just trying to make a point.
+You could say that functional programming is one of those trends... Please don't get mad at me for saying that, I'm just trying to make a point.
 
-The point being that functional programing is NOT THE way to develop, nor its a new technology. Functional programing its just a way to develop that has great benefits and some caveats.
+The point being that functional programming is NOT THE way to develop, nor its a new technology. Functional programming its just a way to develop that has great benefits and some caveats.
 
-Recently, with the advent of [React Hooks](https://reactjs.org/docs/hooks-intro.html) it seems that Functional Programming is again in the spotlight.
+Recently, with the advent of [React Hooks](https://reactjs.org/docs/hooks-intro.html), it seems that Functional Programming is again in the spotlight. So let's take a look at what does it mean that JavaScript is functional and what are the benefits.
 
-So let's take a look at what does it mean that JavaScript is functional and what are the benefits.
+```toc
+
+```
 
 But first, some history.
 
@@ -26,19 +28,19 @@ Let's start by saying that functions have been a part of calculus since the 17th
 f(x) = y
 ```
 
-That's a way to represent a function (`f()`). Something that receives an input (`x`), and generates an output (`y`).
+That's a way to represent a function (`f()`). Something that receives an input (`x`), and generates an output (`y`). And that what functions are... Something that receives zero or more parameters and returns a result!
 
-Well, in 1930 Alonzo Church, at Princeton University, invented _lambda calculus_ or [λ-calculus](https://turing100.acm.org/lambda_calculus_timeline.pdf) while experimenting with _higher order functions_.
+Well, in 1930 Alonzo Church, at Princeton University, invented _lambda calculus_ or [λ-calculus](https://brilliant.org/wiki/lambda-calculus/) while experimenting with _higher order functions_.
 
 Higher-order functions are functions that can manipulate other functions and use them either as arguments, results or both. This is important, well see why latter.
 
-Then, in the late 1950's, John McCarty took the concepts derived from λ-calculus and applied them to a new programing language called [Lisp](https://lisp-lang.org/).
+Then, in the late 1950's, John McCarty took the concepts derived from λ-calculus and applied them to a new programming language called [Lisp](https://lisp-lang.org/).
 
 In Lisp, functions are a _first-class citizens_. Which means that function can be **declared as variables** and send to functions **as a parameters**. They can even be the **return** of a function (functions than when executed returns another function).
 
 ## Is JavaScript a "functional language"?
 
-JavaScript its a (non exclusively) functional programing language because in JavaScript functions are _first-class citizens_.
+JavaScript its a (non exclusively) functional programming language because in JavaScript functions are _first-class citizens_.
 
 But what does it mean that _functions are first class citizens_?
 
@@ -79,7 +81,7 @@ Will print
 Hello world
 ```
 
-They work very similar to classes, but if you look closely, you can see that we added the function to the object at _instantiation time_.
+They work very similar to classes, but if you look closely, you can see that we added the function to the object while creating the object. We didn't need to create a _Class_ and then instantiate it with `new`.
 
 ### 3. Functions can be sent as parameters
 
@@ -106,7 +108,7 @@ Told you that it was important, didn't I? 😉.
 
 ### 4. Functions can return functions
 
-```javascript
+```javascript {6-8}
 // functions-ret-functions.js
 const loggerFn = function(message) {
   console.log(message)
@@ -139,9 +141,9 @@ toUpperFn(message => console.log(message))("hola mundo")
 
 ## Imperative vs Declarative programming
 
-Good, we now know some principles of _functional programming_ and how they get implemented in JavaScript. Now let's see how this can be used for developing better programs.
+Good, we now know some principles of _functional programming_ and how they get implemented in JavaScript. But we still don't know how to use them to write better programs.
 
-But for that we have to make the distinction between Imperative vs Declarative programming.
+For that we have to make the distinction between Imperative vs Declarative programming.
 
 ### Imperative programming
 
@@ -149,7 +151,7 @@ _Imperative Programming_ focuses on explaining which steps should happen to get 
 
 ```javascript
 // imperative-programming.js
-const message = ["this is", "imperative proramming", "!"]
+const message = ["this is", "imperative programming", "!"]
 let transformed = ""
 for (let i = 0; i < message.length; i++) {
   let item = message[i].toUpperCase()
@@ -162,14 +164,14 @@ console.log(transformed)
 Will output
 
 ```text
--THIS-IS-IMPERATIVE-PRORAMMING-!
+-THIS-IS-IMPERATIVE-PROGRAMMING-!
 ```
 
 In the previous code, you can see **how** the code gets to the result. Each step is clear an concise, but is not clear _what_ **each step** achieves. Only after going trough the whole code is clear what we've done.
 
 ### Declarative Programming
 
-_Declarative Programming_ in the other hand, is a style of programming where applications are structured in a way that prioritizes **what should happen**.
+_Declarative Programming_ in the other hand, is a style of programming where applications are structured in a way that prioritizes **what should happen** (given that you use clear function names).
 
 **Functional programming is part of declarative programming**.
 
@@ -208,7 +210,7 @@ The _declarative_ in _declarative programming_ is in the 10th line:
 _.flow(upper, hyphenize, append(accum))(item)
 ```
 
-It's basically telling us what the code does:
+It's basically telling us **what** the code does:
 
 - Execute the following steps sequentially (that's what `_.flow` is for)
 - First make each component uppercase
@@ -225,7 +227,7 @@ And you might not be completely wrong.
 
 Functional programming forces you to think MORE before writing your software. But that could be taken as a good thing.
 
-Additionally there are good reasons to use functional programing:
+Additionally there are good reasons to use functional programming:
 
 - Since we only use functions, not state, the software is less prone to errors
 - Functions are very easy to test
@@ -243,7 +245,7 @@ So we've seen the differences between Imperative and Declarative programming. No
 
 Data structures are not changed (by functions) instead new copies of the data are returned.
 
-In the _Declarative Programing_ example (the previous example) you could have seen that we only required constants and that we didn't need to overwrite any value.
+In the _Declarative Programming_ example (the previous example) you could have seen that we only required constants and that we didn't need to overwrite any value.
 
 Here is an example of mutability and immutability.
 

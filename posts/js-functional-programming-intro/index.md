@@ -14,13 +14,17 @@ The point being that functional programming is NOT THE way to develop, nor its a
 
 Recently, with the advent of [React Hooks](https://reactjs.org/docs/hooks-intro.html), it seems that Functional Programming is again in the spotlight. So let's take a look at what does it mean that JavaScript is functional and what are the benefits.
 
+This is the first part of a small mini series where I'll be discusins functional programning in JavaScript. [On part 2](/js-functional-programming-concepts) I'll dig deeper on the core concepts of functional programming. An [in part 3](/js-functional-programming-patters) I'll introduce some programming patterns that can be used with functional programming like [Composition](https://en.wikipedia.org/wiki/Function_composition_%28computer_science%29) and [Currying](https://en.wikipedia.org/wiki/Currying).
+
+## TOC
+
 ```toc
 
 ```
 
 But first, some history.
 
-## History
+## The beginnings of functional programming
 
 Let's start by saying that functions have been a part of calculus since the 17th century. And if you went trough high school, you might have seen something like
 
@@ -237,170 +241,9 @@ Additionally there are good reasons to use functional programming:
 
 That last one is a little controversial since it depends on the developer, and is NOT ALWAYS TRUE. Actually, Functional programming can be more inefficient and memory intensive if you are not careful.
 
-## Functional programming core concepts
-
-So we've seen the differences between Imperative and Declarative programming. Now lets dig deeper on what functional programming looks for.
-
-### Immutability
-
-Data structures are not changed (by functions) instead new copies of the data are returned.
-
-In the _Declarative Programming_ example (the previous example) you could have seen that we only required constants and that we didn't need to overwrite any value.
-
-Here is an example of mutability and immutability.
-
-```javascript
-// immutability.js
-const mutableAge = function(person, newAge) {
-  person.age = newAge
-  return person
-}
-
-const immutableAge = (person, newAge) => {
-  return Object.assign({}, person, { age: newAge })
-}
-
-const dev1 = { name: "Carlos", age: 10 }
-const copy1 = mutableAge(dev1, 20)
-
-const dev2 = { name: "Mario", age: 15 }
-const copy2 = immutableAge(dev2, 25)
-
-console.log("Example mutable:", dev1, copy1)
-console.log("Example immutable::", dev2, copy2)
-```
-
-This will output:
-
-```text
-Example mutable: { name: 'Carlos', age: 20 } { name: 'Carlos', age: 20 }
-Example immutable:: { name: 'Mario', age: 15 } { name: 'Mario', age: 25 }
-```
-
-Obviously the second function is the immutable one and the type of function we should use on functional programming.
-
-We can rewrite the `immutableAge` function like this:
-
-```javascript
-const immutableAge = (person, newAge) => ({ ...person, age: newAge })
-```
-
-> Use the spread operator in objects **and** array to make new copies.
-
-It's like JavaScript 6 (ES6) wanted us to use _functional programming_... Right ? 😉
-
-### Purity
-
-A pure function is a function that
-
-- Takes at least 1 argument and always return something: A value or another function.
-- The return a values are obtained by computing the input values and not by external events or `static` variables.
-- They do not use (for reading or writing) global variables or global states.
-- The input values are not changed (when passing by reference for instance)
-
-As a consequence, they are very _testeable_ since there is no need of _set up_ or _tear down_ procedures.
-
-### Data transformation
-
-This "rule" is easy to understand, but hard to implement, specially if you are used to imperative programming.
-
-But take the following example:
-
-```javascript
-// data-transformation.js
-const original = ["medellin", "bogotá", "cali", "barranquilla"]
-
-const capitilized = original.map(item => item.toUpperCase())
-const filtered = original.filter(item => item.substr(0, 1) < "c")
-const cities = original.reduce((item, acc) => item + acc + ", ", "")
-
-console.log("Capitalized:", capitilized)
-console.log("Filtered:", filtered)
-console.log("Cities:", cities)
-console.log("Original:", original)
-```
-
-See how the original data is not changed?
-
-If you use _functional functions_ (I just made that up) like `map`, `reduce`, `filter`, `reduceRight`, etc. You are almost guaranteed to not transform any data.
-
-Right of the bat, you can see how data transformation can become a burden if you have to create a new variable for each step. And how this can be memory intensive if you have a lot of data (told you there where some caveats).
-
-To solve this, there is recursion and composition. But those are some advanced topics that I'll be covering in a future article.
-
-### Higher order functions
-
-I already talked about this... This are functions that **can manipulate other functions**.
-
-But in this part, lets take it a bit further.
-
-```javascript
-// higer-order-functions.js
-const traditionalSum = (a, b) => a + b
-const higerOrderSum = a => b => a + b
-
-console.log("Traditional:", traditionalSum(5, 6))
-console.log("Higer order:", higerOrderSum(5)(6))
-
-const sumFive = higerOrderSum(5)
-console.log("Currying", sumFive(6))
-```
-
-You can see how the `higerOrderSum` returns a function.
-
-Now, the interesting part is the last 2 lines. I use the `higerOrderSum` to create a new function called `sumFive`... I'm **reusing the logic of the function for a particular use case**.
-
-This is what **currying** is all about, and as recursion, I'll talk about this in a further article.
-
-### Recursion
-
-On imperative programming, you'll see the `for` loop used all the time. This is the preferred way of looping trough a list of items.
-
-There is nothing wrong with that, but on a for loop you are almost always **updating the value of a variable**.
-
-There are loops like `while` or `do` but _functional programming_ has a different soution: **recursion**.
-
-Recursion basically means to call the function on it self until a value accomplishes certain criteria.
-
-```javascript
-// recursion.js
-for (let i = 0; i < 5; i++) {
-  console.log("Foor loop:", i)
-}
-const forLoop = (value, max, fn) => {
-  if (value < max) {
-    fn(value)
-    return forLoop(value + 1, max, fn)
-  }
-  return value
-}
-forLoop(0, 5, val => console.log("Recursion:", val))
-```
-
-And the output will be:
-
-```text
-Foor loop: 0
-Foor loop: 1
-Foor loop: 2
-Foor loop: 3
-Foor loop: 4
-Recursion: 0
-Recursion: 1
-Recursion: 2
-Recursion: 3
-Recursion: 4
-```
-
-So we get the same result but with a big difference, we can reuse the functional code since `forLoop` receives a function.
-
-And if we make the function call on itself only when a process has finished, we'll be handling asynchronous process pretty easily.
-
 ## Some words about React
 
-If after reading all of this you are wondering if this is actually useful lets look at react.
-
-React uses JXS to represent content in the DOM:
+If after reading all of this you are wondering if this is actually useful. So let's look at React and how it uses JXS to represent content in the DOM:
 
 ```javascript
 // react-declarative-jsx.js
@@ -408,21 +251,23 @@ import React from "react"
 import ReactDOM from "react-dom"
 
 const HelloWorld = () => {
+  const [msg, setMsg] = useState("Hello World");
   return (
     <div className="container">
-      <h1>Hello World</h1>
+      <h1>{setMsg}</h1>
     </div>
   )
 }
 ReactDOM.render(<HelloWorld />, document.getElementById("root"))
 ```
 
-Right of the bat, you can see that the code is very declarative. You see right away what it should output with out analyzing step by step how it does it.
+Right of the bat, you can see that the code is very declarative. It's very obvious what it should be outputted with out analyzing step by step how it does it.
 
 And to top it, since React introduced hooks in version 16, they did added a _declarative_ way to manage state in the framework (I know is not a framework but it almost is).
 
 So if you are a React developer, you should have a good grasp of functional programming. It not only allow you to understand the code better, but it will make you code better at the end.
 
-On part 2 of this mini series I'll be going over composition and currying a little deeper so you can start using them in your programs.
+[On part 2 of this mini series](/js-functional-programming-concepts) I'll be going over composition and currying a little deeper so you can start using them in your programs.
 
 Finally, you can browse the code in this blog on [this GitHub repo](https://github.com/marioy47/js-functional-programming)
+

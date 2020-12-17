@@ -2,4 +2,10 @@
   min-height: calc(
     100vh - 1rem - #{$site-header-height} - #{$site-footer-height}
   );
+
+  @include media-breakpoint-down(sm) {
+    min-height: calc(
+      100vh - 1rem - #{$site-header-height} - #{$site-footer-height * 2}
+    );
+  }
 }

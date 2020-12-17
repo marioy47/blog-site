@@ -22,15 +22,17 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-
-    @include media-breakpoint-up(small) {
-      min-height: calc(100vh - 80px - 121px);
-    }
   }
 
   .left {
-    @include media-breakpoint-down(small) {
+    @include media-breakpoint-down(sm) {
+      min-height: calc(100vh - 80px - 200px);
       text-align: center;
+    }
+  }
+  .right {
+    @include media-breakpoint-down(sm) {
+      display: none;
     }
   }
 

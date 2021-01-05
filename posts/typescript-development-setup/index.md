@@ -1,11 +1,11 @@
 ---
 date: 2020-12-01
-title: Settings up TypesScript for development
+title: Settings up a TypeScript development environment
 tags: typescript, javascript, webpack, npm
 cover: https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png
 ---
 
-# Settings up TypesScript for development
+# Settings up a TypeScript development environment
 
 TypeScript is all the rage right now... Only by taking a look at the [TypeScript job openings in Stack Overflow](https://stackoverflow.com/jobs/developer-jobs-using-typescript) you can get an idea of how many companies are using it and the demanding for this kind of engineers is right now.
 
@@ -21,14 +21,13 @@ And the reasons are obvious. Its like JavaScript but better... Quite literally I
 
 One of the advantages of using TypeScript is that you get IDE notices and hits on your code **while** you are just writing it:
 
-![](ide-editor-error.png)
+![IDE showwing a TypeScript error](ide-editor-error.png)
 
 Or just get errors at compile time and not at run time:
 
-![](compiler-error.png)
+![TypeScript compiler error example](compiler-error.png)
 
 The best thing is that TypeScript compiles to JavaScript so you can use it in any web page or node project.
-
 
 If you where place TypeScript in the JavaScript ecosystem, you would get something like this:
 
@@ -198,7 +197,7 @@ To fix the problem that all `.ts` files outsice `src/` get compiled, we need to 
 
 This way we don't need to pass arguments to the `tsc` compiler.
 
-## Inherent differences
+## Some notes about TypeScript vs JavaScript
 
 Without changing the syntax, TypeScript differes from JavaScript in a few parts:
 
@@ -208,4 +207,3 @@ Without changing the syntax, TypeScript differes from JavaScript in a few parts:
 - In general, Typescript doesn't use `null` and is actually part of they're [coding guildelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)
 
 Additonally, all the ES7 syntax and properties are available on TypeScript. And this will continue to be valid for some time: TypeScript will superseed JavaScript.
-

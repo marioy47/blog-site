@@ -4,7 +4,7 @@ cover: page-with-map-shortcodes.png
 date: 2020-05-01
 client: iHealthSpot
 tags: wordpress, google maps, php, javascript, api
-summary: WordPress plugin to embed maps in any page
+summary: Custom WordPress plugin to create a Google Map for a single place or to create maps with multiple markers.
 ---
 
 # Google Maps WordPress Plugin

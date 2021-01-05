@@ -1,13 +1,13 @@
 ---
-title: Wordpress as an Appointments Scheduling System
+title: Appointments Scheduling System.
 cover: configure-schedule.png
 date: 2020-07-01
 client: iHealthSpot
 tags: wordpress, react, php, javascript, aws, sns, formsite
-summary: Creation of a WordPress plugin to enable the scheduling and confirmation of appointments
+summary: A web application where patients could schedule their appointments from their browser. Used WordPress in the back-end, React on the front-end and the communication was using the WP-JSON Rest API.
 ---
 
-# WordPress as an Appointments Scheduling System
+# Appointments Scheduling System
 
 The project consisted on adding into WordPress scheduling capabilities. Where a patient could schedule an appointment with a specific provider or doctor.
 

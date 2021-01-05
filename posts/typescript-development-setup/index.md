@@ -1,11 +1,11 @@
 ---
 date: 2020-12-01
-title: Settings up a TypeScript development environment
+title: Setting up a TypeScript development environment
 tags: typescript, javascript, webpack, npm
 cover: https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png
 ---
 
-# Settings up a TypeScript development environment
+# Setting up a TypeScript development environment
 
 TypeScript is all the rage right now... Only by taking a look at the [TypeScript job openings in Stack Overflow](https://stackoverflow.com/jobs/developer-jobs-using-typescript) you can get an idea of how many companies are using it and the demanding for this kind of engineers is right now.
 

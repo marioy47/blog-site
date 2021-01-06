@@ -2,7 +2,7 @@
 title: React Storybook Intro and Setup
 date: 2020-08-04
 tags: react, javascript, storybook
-cover: storybook-browser-first-start.png
+cover: storybook-logo.png
 ---
 
 # React Storybook Intro and Setup

@@ -1,7 +1,7 @@
 ---
 title: Install, Setup and Execute your first Django Application
 date: 2020-07-12
-cover:
+cover: Best-Django-Python-CMS-2015.png
 tags: django, python, shell, pipenv, virtualenv
 ---
 

@@ -2,6 +2,7 @@
 title: JavaScript Functional Programming - Concepts
 tags: javascript, functional, lambda, currying, composition
 date: 2020-11-22
+cover: lambda.jpg
 ---
 
 # JavaScript Functional Programming: Concepts

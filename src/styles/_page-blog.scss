@@ -14,8 +14,15 @@
       align-items: center;
       padding-top: 1rem;
       padding-bottom: 1rem;
+
+      h4 {
+        margin: 0;
+      }
     }
-    aside {
+    aside.col-sm-1 {
+      padding: 1.2rem .2rem;
+    }
+    aside.col-sm-3 {
       text-align: right;
       display: flex;
       flex-direction: column;

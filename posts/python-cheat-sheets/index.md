@@ -1,7 +1,7 @@
 ---
 title: Python Cheat Sheets (Python, Django, Pandas, Numpy)
 date: 2020-08-10
-cover: img.png
+cover: Python-Logo-PNG-Image.png
 tags: python, django, pandas, flask
 ---
 

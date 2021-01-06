@@ -2,7 +2,7 @@
 date: 2020-12-01
 title: Setting up a TypeScript development environment
 tags: typescript, javascript, webpack, npm
-cover: https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png
+cover: Typescript_logo.png
 ---
 
 # Setting up a TypeScript development environment

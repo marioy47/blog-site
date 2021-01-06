@@ -2,6 +2,7 @@
 date: 2020-05-07
 title: Simple Mac OS setup for flutter development
 tags: flutter, mac, ios, mac simulator
+cover: flutter-logo.png
 ---
 
 # Simple Mac OS setup for flutter development

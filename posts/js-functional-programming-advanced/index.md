@@ -179,8 +179,8 @@ The problem lies in the `return` statement: The function is written in a way whe
 So I where to call this function with the `n = 100000` I would get this:
 
 ```bash
-const sumAccum = (n, accum = 0) => {
-                 ^
+const sum = (n) => {
+             ^
 
 RangeError: Maximum call stack size exceeded
 ```

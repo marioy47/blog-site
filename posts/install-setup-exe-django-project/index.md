@@ -95,9 +95,7 @@ PIPENV_IGNORE_VIRTUALENVS=1 pipenv shell
 
 This will create a directory for our project, `cd` into it and initialize a virtual environment.
 
-Notice how the prompt changes, adding `(django-first-app)` at the begening of it.
-
-This tell us that we're using a virtual environment and that the name of the virtual environment is `django-first-app`.
+Notice how the prompt changes, adding `(django-first-app)` at the begening of it? This tells us that we're using a virtual environment and that the name of the virtual environment is `django-first-app`.
 
 Also, if you list the contents of the current dir, you'll find a new file called `Pipenv` with basic information of our new virtual environment
 
@@ -222,7 +220,7 @@ python manage.py runserver
 
 > Notice that we're still in our virtualenv, so the `python` comamnd refers to Python 3.8
 
-And if we open a browser on https://localhost:8000 you'll get a _success_ page:
+And if we open a browser on [https://localhost:8000](https://localhost:8000) you'll get a _success_ page:
 
 ![Django welcome screen](start-server-page.png)
 
@@ -317,7 +315,7 @@ And we're done.
 
 I recommend you stop here and pick up an actual [Django tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p), or the official [documentation](https://docs.djangoproject.com/en/3.0/intro/). But if you want a quick getting started, here it is.
 
-### 1. Create the actual app using the `manage.py` script like so:
+### 1. Create the actual app using the `manage.py` script
 
 ```bash
 python manage.py startapp hello
@@ -351,7 +349,7 @@ def hello_world(request):
     return HttpResponse('Hola mundo!')
 ```
 
-If you visit now the server, the success page will change to an error warning us that there is no rout the the root.
+If you visit now the server, the success page will change to an error warning us that there is no route the the root.
 
 ![No route error](python-runserver-hello-error.png)
 
@@ -378,7 +376,7 @@ python manage.py runserver
 
 ## Pipenv Cheat Sheet
 
-I've included here a list of useful `pipenv` commands in case yoy are curious.
+I've included here a list of useful `pipenv` commands in case you are curious.
 
 | Command                | Action                                                |
 | ---------------------- | ----------------------------------------------------- |

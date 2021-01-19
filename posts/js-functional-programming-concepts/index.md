@@ -2,7 +2,7 @@
 title: JavaScript Functional Programming - Concepts
 tags: javascript, functional, lambda, currying, composition
 date: 2020-11-22
-cover: lambda.jpg
+cover: lambda.png
 ---
 
 # JavaScript Functional Programming: Concepts
@@ -58,9 +58,11 @@ Example mutable: { name: 'Carlos', age: 20 } { name: 'Carlos', age: 20 }
 Example immutable:: { name: 'Mario', age: 15 } { name: 'Mario', age: 25 }
 ```
 
-Obviously the second function is the immutable one and the type of function we should use on functional programming.
+If you look closely to the `mutableAge` function, you can see that it receives an object called `person`, and then **changes** an element of that object. So at the end the object `person` changes.
 
-We can rewrite the `immutableAge` function like this:
+In `immutableAge` we copy the `person` object using `Object.assign` so the original `person` doesn't get changed.
+
+We can rewrite the `immutableAge` function in ES6 like this:
 
 ```javascript
 const immutableAge = (person, newAge) => ({ ...person, age: newAge })
@@ -75,7 +77,7 @@ It's like JavaScript 6 (ES6) wanted us to use _functional programming_... Right 
 A pure function is a function that
 
 - Takes at least 1 argument and always return something: A value or another function.
-- The return a values are obtained by computing the input values and not by external events or `static` variables.
+- The returned values are obtained by computing the input values and not by external events or `static` variables.
 - They do not use (for reading or writing) global variables or global states.
 - The input values are not changed (when passing by reference for instance)
 
@@ -105,7 +107,7 @@ On the other hand. The second function only requires you to pass an argument to 
 I already talked about this in the first part. _Higher Order Functions_ are functions that **can manipulate other functions** either by receiving a function as an input parameter, output a function as a result value... Or both.
 
 ```javascript
-// higer-order-functions.js
+// higher-order-functions.js
 const traditionalSum = (a, b) => a + b
 const higerOrderSum = a => b => a + b
 
@@ -132,18 +134,17 @@ Recursion basically means to call a function on it self until a value accomplish
 
 // Imperative
 for (let i = 0; i < 5; i++) {
-  console.log("Foor loop:", i)
+  console.log("For loop:", i);
 }
 
 // Declarative
-const forLoop = (value, max, fn) => {
-  if (value < max) {
-    fn(value)
-    return forLoop(value + 1, max, fn)
+const forLoop = (counter, max) => {
+  if ( counter < max) {
+    console.log("Recursion:", counter);
+    return forLoop(counter + 1, max);
   }
-  return value
-}
-forLoop(0, 5, val => console.log("Recursion:", val))
+};
+forLoop(0, 5);
 ```
 
 And the output will be:
@@ -161,11 +162,10 @@ Recursion: 3
 Recursion: 4
 ```
 
-So we get the same result but with a big difference, we can reuse the functional code since `forLoop` receives a function.
-
-And if we make the function call on itself only when a process has finished, we'll be handling asynchronous process pretty easily.
-
 Now, **be very careful with recursion**, specially on large loops. It has to be done right. Otherwise you'll get a [Stack Size Limit](https://www.freecodecamp.org/news/understanding-the-javascript-call-stack-861e41ae61d4/) error on your projects or make your software slower because you are first creating a stack of calls instead of actually evaluating the result.
 
 But there are ways to avoid this errors and actually make our code faster by following a few patters that we'll look on the next section of this series.
 
+## Final toughs
+
+On the [first part](/js-functional-programming-intro/) of this series, we explained what functional programming is and determined that JavaScript had functional programming capabilities. In this part we introduced some concepts of _pure_ functional programing and how they get implemented in JavaScript. On the [final part](/js-functional-programming-advanced/) we'll see some functional programming patterns like _composition_ and _currying_ and the benefits of using them.

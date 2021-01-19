@@ -1,3 +1,18 @@
+.blog-meta {
+  color: lighten($gray, 35%);
+  font-style: italic;
+  font-size: .85rem;
+  text-align: center;
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  > div {
+    // margin-right: .7rem;
+  }
+}
+
 .blog-node {
   .site-inner {
     max-width: 900px;

@@ -20,10 +20,13 @@ const TemplateBlog = ({ data }) => {
         image={`${image}`}
         description={`${description}`}
       />
+      <div className="blog-meta">
+        <div className="date">{data.markdownRemark.frontmatter.date}</div>
+        <div className="author">Read Time: {data.markdownRemark.timeToRead} mins</div>
+      </div>
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
     </SiteLayout>
   )
-  //   return <pre>{JSON.stringify(data, undefined, 4)}</pre>
 }
 
 export const query = graphql`
@@ -32,11 +35,13 @@ export const query = graphql`
       html
       id
       excerpt
+      timeToRead
       fields {
         slug
       }
       frontmatter {
         title
+        date(formatString: "MMMM DD, YYYY")
         cover {
           childImageSharp {
             fluid {

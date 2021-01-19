@@ -234,8 +234,8 @@ Spell needs to have `set spell` option active on `.vimrc` and optionally use `se
 | `z=`    | Search for alternatives of the current word |
 | `zg`    | Add current word to dictionary              |
 | `zw`    | Remove current word from dictionary         |
-| `]g`    | Jump to next error                          |
-| `[g`    | Jump to previous error                      |
+| `]s`    | Jump to next spell error                    |
+| `[s`    | Jump to previous spell error                |
 
 ## Plugins
 

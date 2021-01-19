@@ -2,7 +2,7 @@
 title: JavaScript Functional Programming - Introduction
 tags: javascript, functional, lambda, currying, composition
 date: 2020-11-07
-cover: lambda.jpg
+cover: lambda.png
 ---
 
 # JavaScript Functional Programming: Introduction
@@ -15,7 +15,7 @@ The point being that functional programming is NOT THE way to develop, nor its a
 
 Recently, with the advent of [React Hooks](https://reactjs.org/docs/hooks-intro.html), it seems that Functional Programming is again in the spotlight. So let's take a look at what does it mean that JavaScript is functional and what are the benefits.
 
-This is the first part of a small mini series where I'll be discusins functional programning in JavaScript. [On part 2](/js-functional-programming-concepts) I'll dig deeper on the core concepts of functional programming. An [in part 3](/js-functional-programming-patters) I'll introduce some programming patterns that can be used with functional programming like [Composition](https://en.wikipedia.org/wiki/Function_composition_%28computer_science%29) and [Currying](https://en.wikipedia.org/wiki/Currying).
+This is the first part of a small mini series where I'll be discussing functional programming in JavaScript. [On part 2](/js-functional-programming-concepts) I'll dig deeper on the core concepts of functional programming. An [in part 3](/js-functional-programming-patters) I'll introduce some programming patterns that can be used with functional programming like [Composition](https://en.wikipedia.org/wiki/Function_composition_%28computer_science%29) and [Currying](https://en.wikipedia.org/wiki/Currying).
 
 ## TOC
 
@@ -88,7 +88,7 @@ Hello world
 
 They work very similar to classes, but if you look closely, you can see that we added the function to the object while creating the object. We didn't need to create a _Class_ and then instantiate it with `new`.
 
-### 3. Functions can be sent as parameters
+### 3. Functions can be passed as parameters
 
 ```javascript {8}
 // functions-as-parameters.js
@@ -268,7 +268,6 @@ And to top it, since React introduced hooks in version 16, they did added a _dec
 
 So if you are a React developer, you should have a good grasp of functional programming. It not only allow you to understand the code better, but it will make you code better at the end.
 
-[On part 2 of this mini series](/js-functional-programming-concepts) I'll be going over composition and currying a little deeper so you can start using them in your programs.
+[On part 2 of this mini series](/js-functional-programming-concepts) I'll be going over some concepts like _Immutability_, _Purity_, and _Recursion_ to finally understand what functional programming works.
 
 Finally, you can browse the code in this blog on [this GitHub repo](https://github.com/marioy47/js-functional-programming)
-

@@ -1,11 +1,11 @@
 ---
-title: Python Cheat Sheets (Python, Django, Pandas, Numpy)
+title: Python Cheat Sheets (Python, Django, Pipenv)
 date: 2020-08-10
 cover: Python-Logo-PNG-Image.png
 tags: python, django, pandas, flask
 ---
 
-# Python Cheat Sheets (Python, Django, Pandas, Numpy)
+# Python Cheat Sheets (Python, Django, Pipenv)
 
 In this article I'll be posting a series of code snippets, gotchas and syntax description for Python and some of its notable projects like Django, Flask, Pandas, Numpy, etc.
 
@@ -102,6 +102,39 @@ A more complete [PDF](https://github.com/ehmatthes/pcc/releases/download/v1.0.0/
 | `raise Exception("desc")` | Throws a new exception                                    |
 | `except Exception as e:`  | Catches the exception in the `e` variable                 |
 | `finally:`                | Allows you tu use variables declared in the `try` section |
+
+## Django Cheat Sheet
+
+| Command                                           | Action                                                                       |
+| ------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `django-admin startproject <project_name> [path]` | Creates a new project on path (preferably `.`)                               |
+| `django-admin startapp <app_name>`                | Creates a new application on `app_name` path                                 |
+| `python manage.py runserver 0:8080`               | Starts the development server                                                |
+| `python manage.py startapp <appname>`             | Creates a new app in the project                                             |
+| `python manage.py makemigrations [appname]`       | Creates the migration **from** the models                                    |
+| `python manage.py migrate [appname]`              | Executes the migrations in the database                                      |
+| `python manage.py sqlmigrate [appname] [#id]`     | Returns the SQL for the migration specified by `<#id>` and `<appname>`       |
+| `python manage.py shell`                          | Creates an interactive shell where you can import models and execute queries |
+| `python manage.py createsuperuser`                | Creates a super user                                                         |
+
+## Pipenv Cheat
+
+I've included here a list of useful `pipenv` commands in case you are curious.
+
+| Command                | Action                                                |
+| ---------------------- | ----------------------------------------------------- |
+| `pipenv --python 3.7`  | Create a project with another Python version          |
+| `pipenv install --dev` | Install packages including _dev_ dependencies         |
+| `pipenv lock`          | _Burns_ the package versions on `Pipfile.lock` file   |
+| `pipenv clean`         | Removes all packages not in `Pipfile.lock`            |
+| `pipenv run <command>` | Runs a command using the current virtualenv           |
+| `pipenv sync`          | Installs the packages from `Pipfile.lock`             |
+| `pipenv uninstall`     | Removes a package from the env and from the `Pipfile` |
+| `pipenv --where`       | Locates the project                                   |
+| `pipenv --system`      | Install the packages system wide and not in a venv    |
+| `pipenv --rm`          | Remove the current virtual environment                |
+| `pipenv --venv`        | Locates the virtual environment                       |
+| `pipenv ---py`         | Locates the Python interpreter                        |
 
 ## Final notes
 

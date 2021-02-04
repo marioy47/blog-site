@@ -7,13 +7,13 @@ cover: gatsby-icon-4a9773549091c227cd2eb82ccd9c5e3a.png
 
 # Create a Developer Portfolio Site (with a blog) with Gatsby
 
-Creating a [Gatsby](https://gatsbyjs.org) site is not an easy task when you compare it to creating a site with WordPress, Drupal, etc. And the reason is that to a certain point you are creating your own CMS.
+Creating a [Gatsby](https://www.gatsbyjs.com/) site is not an easy task when you compare it to creating a site with WordPress, Drupal, etc. And the reason is that to a certain point you are creating your own CMS.
 
 To use Gatsby you should be familiar with a bunch of technologies like [Graphql](https://developer.facebook.com/graphql), [React](https://reactjs.org), [Markdown](https://jamstack.org), [Mdx](https://mdxjs.com), etc. And then you need to research and test a bunch of plugins to get a minimal site up and running.
 
 But after you pass the configuration steps and you have your site set up, you'll have the more performant site you'll ever create. So the advantages compensate the drawbacks.
 
-Here I'll list the steps I took to create [my personal blog/portfolio site](https://marioyepes.com) without going too much into detail since Gatsby already has an [extensive tutorial](https://gastbyjs.org/tutorial) and the [docs](https://gastbyjs.org/docs) are actually pretty good.
+Here I'll list the steps I took to create [my personal blog/portfolio site](https://marioyepes.com) without going too much into detail since Gatsby already has an [extensive tutorial](https://www.gatsbyjs.com/docs/tutorial/) and the [docs](https://gastbyjs.org/docs) are actually pretty good.
 
 ## TOC
 
@@ -21,9 +21,9 @@ Here I'll list the steps I took to create [my personal blog/portfolio site](http
 
 ```
 
-## Wait... I don't know what is Gatsby!
+## Wait... I don't know what Gatsby is!
 
-To quote the [Gatsby Site](https://www.gatsbyjs.org):
+To quote the [Gatsby Site](https://www.gatsbyjs.com/):
 
 > Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps
 
@@ -37,17 +37,17 @@ This part is actually easy since its just executing the `npx gatsby new` command
 
 ```bash
 mkdir blog-site
-cd blog-site
+cd $_
 npx gatsby new .
 code --install-extension esbenp.prettier-vscode # Only if you use VS Code.
-npm start
+yarn start
 ```
 
 If you know a little about Gatsby, notice that I didn't provided an starter theme. That means that I'm using the [default starter theme](https://github.com/gatsbyjs/gatsby-starter-default)
 
 > The `code` command is to install prettier for Visual Studio Code in case you don't have it already.
 
-I really fast test the you can make, to take a peek at what will be deployed, is to execute the `npm run build` command and then open a local http server (here I'm using python):
+I really fast test that you can make, to take a peek at what will be deployed, is to execute the `npm run build` command and then open a local http server (here I'm using python):
 
 ```shell
 npm run build

@@ -11,18 +11,19 @@ const BlogPage = ({data}) => (
     {data.allMarkdownRemark.edges.map(({node}) => {
       return (
         <article className="row" key={node.fields.slug}>
-          <aside className="col-sm-1">
+          <aside className="col-3 col-sm-2" style={{padding: `1rem 0`}}>
             {node.frontmatter.cover?.childImageSharp?.fluid &&
               <Img
                 fluid={node.frontmatter.cover.childImageSharp.fluid}
                 alt={node.frontmatter.title}
+                style={{borderRadius: `50%`, maxWidth: `50%` }}
               />
             }
           </aside>
-          <header className="col-sm-8">
+          <header className="col-9 col-sm-7">
             <h4>{node.frontmatter.title}</h4>
           </header>
-          <aside className="col-sm-3">
+          <aside className="col-12 col-sm-3">
             <time>{node.frontmatter.date}</time>
             <div className="read-more">
               <Link to={node.fields.slug}>Read More</Link>
@@ -51,7 +52,7 @@ export const query = graphql`
             tags
             cover {
               childImageSharp {
-                fluid(maxHeight: 100, maxWidth: 100) {
+                fluid(maxHeight: 60, maxWidth: 60) {
                   ...GatsbyImageSharpFluid
                 }
               }

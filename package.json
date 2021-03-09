@@ -14,6 +14,7 @@
     "gatsby-plugin-offline": "^3.2.2",
     "gatsby-plugin-react-helmet": "^3.1.14",
     "gatsby-plugin-react-svg": "^2.1.2",
+    "gatsby-plugin-recaptcha": "^1.0.5",
     "gatsby-plugin-robots-txt": "^1.5.1",
     "gatsby-plugin-sass": "^2.1.23",
     "gatsby-plugin-sharp": "^2.6.3",
@@ -35,6 +36,7 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
+    "react-recaptcha": "^2.3.10",
     "rfs": "^9.0.2"
   },
   "devDependencies": {

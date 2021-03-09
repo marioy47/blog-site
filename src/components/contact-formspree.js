@@ -1,16 +1,28 @@
 import React from "react"
+import Recaptcha from "react-recaptcha"
 
 class ContactFormspree extends React.Component {
   constructor(props) {
     super(props)
     this.submitForm = this.submitForm.bind(this)
+    this.handleCaptchaLoad = this.handleCaptchaLoad.bind(this)
+    this.verifyCallback = this.verifyCallback.bind(this)
     this.state = {
       status: "",
+      disabled: true,
     }
   }
 
+  handleCaptchaLoad(event) {
+    console.log("Loaded...")
+  }
+
+  verifyCallback(event) {
+    this.setState({ disabled: false })
+  }
+
   render() {
-    const { status } = this.state
+    const { status, disabled } = this.state
     return (
       <form
         onSubmit={this.submitForm}
@@ -38,11 +50,19 @@ class ContactFormspree extends React.Component {
             id="message-input"
           />
         </div>
+        <Recaptcha
+          sitekey="6LechCwUAAAAAJFTFg_ii5gCIVdWMN51WEchINyG"
+          className="about-recaptcha"
+          verifyCallback={this.verifyCallback}
+        />
         <div>
           {status === "SUCCESS" ? (
             <p className="success">Thanks!</p>
           ) : (
-            <button className="btn btn-lg btn-primary btn-block text-center">
+            <button
+              className="btn btn-lg btn-primary btn-block text-center"
+              disabled={disabled}
+            >
               Submit
             </button>
           )}
@@ -56,6 +76,11 @@ class ContactFormspree extends React.Component {
 
   submitForm(ev) {
     ev.preventDefault()
+    if (this.state.disabled) {
+      this.setState({ status: "" })
+      return
+    }
+
     const form = ev.target
     const data = new FormData(form)
     const xhr = new XMLHttpRequest()

@@ -144,9 +144,9 @@ module.exports = {
                     }
                   `,
                 }, // feed blogs
-              ]
-            }
-          }
+              ],
+            },
+          },
         ],
       },
     }, // gatsby-transformer-remark
@@ -158,6 +158,9 @@ module.exports = {
         id: `GTM-TCFF38M`,
         includeInDevelopment: true,
       },
+    },
+    {
+      resolve: `gatsby-plugin-recaptcha`,
     },
   ],
 }

@@ -117,7 +117,8 @@ Good, we have a fairly complete Python image where we can build our `Pipenv` and
 Now lets create the `Pipfile` and `Pipfile.lock` used for package installation with the following long command. But before that, go get a cup of coffee because this step can be long depending on your machine:
 
 ```bash
-docker run --rm -v $PWD:/app -it django-docker-image pipenv install django~=3.1.0 django-allauth~=0.44.0 psycopg2~=2.8.6 uwsgi~=2.0.19
+docker run --rm -v $PWD:/app -it django-docker-image \
+  pipenv install django~=3.1.0 django-allauth~=0.44.0 psycopg2~=2.8.6 uwsgi~=2.0.19
 ```
 
 Again, let me explain:
@@ -166,14 +167,16 @@ The `Pipfile.lock` is too long to show here, but is essential for our project si
 
 Unfortunately, `pipenv` installed a bunch of packages on the **container** and not the image. That's why we need to update the `docker/app/Dockerfile` adding this 2 new files. And while we're at it, I'll add some optimizations and create a `django` user.
 
+> To be sincere, there are ways to save the running container as an image, but I want to save every step of the process to Git.
+
 ```Dockerfile {7,41}
 # docker/app/Dockerfile
 FROM python:3.9-alpine
 
 LABEL maintainer="Mario Yepes marioyepes.com"
 
-ENV PYTHONUNBUFFERED 1
-ENV PROJECT_DIR /app/
+ENV PYTHONUNBUFFERED=1 \
+  PROJECT_DIR=/app/
 
 COPY . ${PROJECT_DIR}
 COPY --chmod=755 docker/app/entrypoint.sh /entrypoint.sh
@@ -212,7 +215,7 @@ CMD ["uwsgi", "--http", "0.0.0.0:8080", "--master", "--enable-threads", "--modul
 
 ```
 
-Whoa!!! That's one huge `Dockerfile`. How come?
+Whoa!!! That's one big `Dockerfile`. How come?
 
 Well, I'm a big fan of optimization... Even if it can be the [root of all evil](https://www.clarkdever.com/2019/03/07/premature-optimization-is-the-root-of-all-evil/). But I just loooove watching numbers shrink down when you do things right. On our `django-docker-image` image, we ended up with a file that was 800M big. But it was because we kept all the development dependencies and we haven't removed any cached files.
 
@@ -426,7 +429,7 @@ And run both containers with:
 docker-compose up
 ```
 
-Great, we have a database running... which we don't still use yet.
+Great, we have a database running... Which we won't use just yet.
 
 ## Change the `settings.py` file to use PostgreSQL and environment variables.
 

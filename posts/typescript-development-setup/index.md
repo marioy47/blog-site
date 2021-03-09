@@ -1,11 +1,11 @@
 ---
 date: 2020-12-01
-title: Setting up a TypeScript development environment
+title: TypeScript Development Setup
 tags: typescript, javascript, webpack, npm
 cover: Typescript_logo.png
 ---
 
-# Setting up a TypeScript development environment
+# Typescript Development Setup
 
 TypeScript is all the rage right now... Only by taking a look at the [TypeScript job openings in Stack Overflow](https://stackoverflow.com/jobs/developer-jobs-using-typescript) you can get an idea of how many companies are using it and the demanding for this kind of engineers is right now.
 
@@ -91,7 +91,7 @@ I include `eslint` in the first step since I use `vim` and it's one of the best 
 
 ### Install `typescript` and `eslint`
 
-You really only need the `typescript` package to start compiling, but since I'm using `vim` I also need the `eslint` package and configuration to make sure that I get real time feedback while I'm developing. 
+You really only need the `typescript` package to start compiling, but since I'm using `vim` I also need the `eslint` package and configuration to make sure that I get real time feedback while I'm developing.
 
 This is are the commands right from the project dir creation:
 
@@ -143,7 +143,7 @@ This will create 2 commands in your environment:
 
 ```bash
 npm run build
-### and 
+### and
 npm run watch
 ```
 
@@ -158,10 +158,10 @@ The more simple test is to create a `.ts` script with TypeScript syntax:
 ```typescript
 // src/basics.ts
 
-let firstVar: string;
-firstVar = "mario";
+let firstVar: string
+firstVar = "mario"
 // firstVar = 321; // This is should de marked as wrong in the editor
-console.log(firstVar);
+console.log(firstVar)
 ```
 
 ![](compile-ts-to-js.png)
@@ -201,7 +201,7 @@ This way we don't need to pass arguments to the `tsc` compiler.
 
 Without changing the syntax, TypeScript differes from JavaScript in a few parts:
 
-- TypeScript will return error when doing things like adding arrays (`[] + []`) adding  objects or adding different types (`{} + 1`).
+- TypeScript will return error when doing things like adding arrays (`[] + []`) adding objects or adding different types (`{} + 1`).
 - The equality is much more strict. For instance `1=="1"` is valid but `false` in JavaScript but not in TypeScript. And `"" == 0` is true in JavaScript.
 - In TypeScript `null` is `undefined`, meaning that `null == undefined` is true.
 - In general, Typescript doesn't use `null` and is actually part of they're [coding guildelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)

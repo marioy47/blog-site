@@ -82,7 +82,7 @@ winget install docker
 https://ohmyz.sh/
 
 ```bash
-sudo apt-get install zsh
+sudo apt-get install zsh unzip
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -114,6 +114,10 @@ asdf list all nodejs
 asdf install nodejs lts
 asdf list nodejs
 asdf global nodejs lts
+asdf plugin add yarn 
+asdf install yarn latest
+asdf list yarn
+asdf global yarn 1.22.10
 asdf current
 ```
 
@@ -126,4 +130,30 @@ asdf global neovim nightly
 nvim -v
 adsf current
 ```
+
+## Install npm modules
+
+```bash
+npm install -g pnpm yarn
+```
+
+## Restore secrets files
+
+You'll need `.ssh` folder with your gihub keys
+
+Additionally I have an `.rclone.conf`, `.netrc` file and `.aws` folder with secrets
+
+```bash
+unzip /mnt/c/Users/Mario/Downloads/backup-secret-dotfiles.zip
+```
+
+## Restores dotfiles
+
+```bash
+git clone git@github.com:marioy47/dotfiles.git
+```
+
+I like to keep it in the root of my home directory
+
+
 

@@ -1,15 +1,15 @@
 ---
-title: Install a Windows 10 development machine with docker and wsl 2
+title: Install a Windows 10 development machine with docker, WSL 2 and asdf
 cover:
 date: 2021-04-14
 tags: windows, wsl, wsl2, asdf, npm, yarn, vim, terminal
 ---
 
-# Install a Windows 10 developement machine with docker and wsl 2
+# Install a Windows 10 development machine with docker, WSL 2 and asdf
 
-Recently I had to switch from MacOS to Windows 10 for a client's project and setting up my machine resulted in being a complete challenge. Not because windows is not a good development environment, it really is good. It was because I had my [dotfiles](https://github.com/marioy47/dotfiles) so tuned up for Mac that when I tried to use them in Windows WSL they didn't worked.
+Recently I had to switch from MacOS to Windows 10 for a client's project and setting up my machine resulted in being a complete challenge. Not because windows is not a good development environment, believe me me, it really is good. It was because I had my [dotfiles](https://github.com/marioy47/dotfiles) so tuned up for Mac that when I tried to use them in Linux inside Windows WSL, they didn't worked.
 
-So I took this as an opportunity to fix some inconsistencies in my files and to make this blog post about the steps that I took to make it work.
+So I took this as an opportunity to fix some inconsistencies in my files, created a new development workflow, and to make this blog post about the steps that I took to make it work.
 
 ## TOC
 
@@ -19,7 +19,7 @@ So I took this as an opportunity to fix some inconsistencies in my files and to 
 
 ## Enable WSL2
 
-The first thing to do while setting up an Windows Development machine, is install Linux inside of it using [WSL2]().
+The first thing to do while setting up an Windows Development machine, is install Linux inside of it using [WSL2](https://docs.microsoft.com/en-us/windows/wsl/about).
 
 In case you don't know, WSL means _Windows Subsystem Linux_ and by the number you can guess that the latest version is version 2.
 
@@ -32,10 +32,18 @@ This are:
 - The Virtual Machine Platform
 - The subsystem
 
-```ps1
+I used _Power Shell_ as an _administrator_ to execute the following commands:
+
+```bash
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
+
+![Powershell error if non admin](error-administrator.png)
+
+Take into account that you have to execute _Power Shell_ as an administrator to execute both commands:
+
+![Installing windows features](install-win-features.png)
 
 Very important: **Restart**.
 
@@ -43,7 +51,7 @@ Very important: **Restart**.
 
 This tells windows which subsystem you are going to use when you start a virtual machine. In our case we have to select 2 since its the only one we have installed:
 
-```ps1
+```bash
 wsl --set-default-version 2
 wsl --list --verbose
 ```
@@ -65,6 +73,11 @@ Well, windows has an official package manager that works similar and is called _
 As of April 2021 the best way to install it is using the [releases](https://github.com/microsoft/winget-cli/release) page on the official [GitHub](https://github.com/microsoft/winget-cli) repository.
 
 > It is possible that you have to install the flight or preview version of Windows [App Installer](https://www.microsoft.com/p/app-installer/9nblggh4nns1?ocid=9nblggh4nns1_ORSEARCH_Bing&rtc=1&activetab=pivot:overviewtab) to make it work.
+
+If you installed `winget` then you can do something like this:
+
+![Install powertoys using winget](winget-powertoys.png)
+
 
 ## Install Ubuntu
 
@@ -90,13 +103,13 @@ winget install "Windows Terminal"
 
 This are the reasons for using this one instead of other alternatives:
 
-- Is built by microsoft
+- Is built by Microsoft
 - Is pretty fast to startup
-- It provides a dropdown to switch to from Linux, to Windows CMD or _Power Shell_
-- Low imput latency
+- It provides a drop-down to switch to from Linux, to Windows CMD or _Power Shell_
+- Low input latency
 - You can theme it
 
-To make it look better, I used the follwing theme:
+To make it look better, I used the following theme:
 
 ```json
 // ...
@@ -128,20 +141,24 @@ To make it look better, I used the follwing theme:
 // ...
 ```
 
+> Currently, the Terminal Settings are configured by editing a `.json` file. Supposedly this will be fixed in the future.
+
 ## Docker
 
-Now Docker.
+Installing docker is equally easy as terminal when we use `winget`.
 
-```ps1
+```bash
 winget install docker
 ```
 
 Then, after the installation is done, make sure that WSL2 is being used:
 
-- Open Docker Desktop Windows as **administrator**
+- Open _Docker Desktop_ Windows as **administrator**
 - Go to settings
 - Make sure that the checkbox to use wsl2 engine is active
 - Enable _Resource WSL integration_
+
+![Docker settings wsl2](docker-settings.png)
 
 ## Oh My Zsh and ASDF
 

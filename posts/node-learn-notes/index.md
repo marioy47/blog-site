@@ -362,3 +362,18 @@ Very much like pipes (`|`) in Unix
 Streams are instances of `EventEmitter`
 Since they process files by pieces ther are **faster** and **memory efficient**.
 
+```javascript
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer( (req, res) => {
+  const stream = fs.createReadStream( __dirname + '/data.iso');
+  stream.pipe(res);
+});
+
+server.listen(8080, () => {
+  console.log('Listening on 8080');
+});
+```
+
+The return value of the pipe() method is the destination stream, which is a very convenient thing that lets us chain multiple pipe() calls, like this:

@@ -1,6 +1,6 @@
 ---
 title: Install a Windows 10 development machine with docker, WSL 2 and asdf
-cover:
+cover: windows-linux.jpg
 date: 2021-04-14
 tags: windows, wsl, wsl2, asdf, npm, yarn, vim, terminal
 ---
@@ -78,7 +78,6 @@ If you installed `winget` then you can do something like this:
 
 ![Install powertoys using winget](winget-powertoys.png)
 
-
 ## Install Ubuntu
 
 Installing WSL2 and upgrading it's kernel just gives you that: An optimized Linux kernel inside a virtual machine, but **without any Linux tools**. You you don't have any commands like `ls`, `pwd`, `cd`, etc. You also don't have any kind of service or startup scripts.
@@ -93,7 +92,7 @@ That's why we installed `winget` at the beginning, so we could install apps fair
 
 ## Terminal
 
-The next step is to install a terminal so you can issue commands in your recently installed Linux OS. 
+The next step is to install a terminal so you can issue commands in your recently installed Linux OS.
 
 I'm not an expert so I just took the advice of several blogs an YouTube videos and installed the Windows Official Terminal.
 
@@ -141,7 +140,29 @@ To make it look better, I used the following theme:
 // ...
 ```
 
-> Currently, the Terminal Settings are configured by editing a `.json` file. Supposedly this will be fixed in the future.
+Additionally, I install the _Hasklug Nerd Font_, which can be downloaded from the [Nerdfonts](https://www.nerdfonts.com/font-downloads) website; And add the following profile to the settings:
+
+```json
+{
+  "...",
+  "profiles": [
+    "list": [
+      "...",
+      {
+          "colorScheme": "OceanicMaterial",
+          "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+          "hidden": false,
+          "name": "Ubuntu-20.04",
+          "source": "Windows.Terminal.Wsl",
+          "fontFace": "Hasklug Nerd Font",
+          "fontSize": 10,
+      },
+    ]
+  ]
+}
+```
+
+> To get to your personal prfile **json** file, you have to keep the _Alt_ key pressed when selecting the terminals drop down menu.
 
 ## Docker
 
@@ -162,7 +183,7 @@ Then, after the installation is done, make sure that WSL2 is being used:
 
 ## Oh My Zsh and ASDF
 
-So here are the main differences. While on Mac `brew` can take care of installing node, php, elixir, etc. We just don't have that in Windows/Linux. 
+So here are the main differences. While on Mac `brew` can take care of installing node, php, elixir, etc. We just don't have that in Windows/Linux.
 
 But not all hope is lost, we can use [asdf](https://asdf-vm.com/) to install runtime versions of those tools. This means, that we can install local copies of those tools and even manage multiple versions of the same tool on our virtual machine.
 
@@ -181,7 +202,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 This will ask you if you want to change your shell to `zsh` wich you should say "yes"
 
-Then edit `~/.zshrc`  and look for the `plugins` variable and make the following changes
+Then edit `~/.zshrc` and look for the `plugins` variable and make the following changes
 
 ```bash
 ZSH_THEME="bira" # Select your own here
@@ -215,8 +236,7 @@ The process is the following:
 - Install the `nodejs` plugin so we can download and install the latest version
 - List the available versions of _nodejs_ that `asdf` can install for us
 - Select and install a version for _nodejs_
-- Stablish that the installed node version (global) will be available when we execute `node` in the command 
-
+- Stablish that the installed node version (global) will be available when we execute `node` in the command
 
 ```bash
 asdf plugin add nodejs
@@ -229,7 +249,7 @@ asdf global nodejs lts
 While we're at it, let's do the same for `yarn`:
 
 ```bash
-asdf plugin add yarn 
+asdf plugin add yarn
 asdf install yarn latest
 asdf list yarn
 asdf global yarn 1.22.10

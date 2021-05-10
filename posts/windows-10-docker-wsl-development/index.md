@@ -181,6 +181,22 @@ Then, after the installation is done, make sure that WSL2 is being used:
 
 ![Docker settings wsl2](docker-settings.png)
 
+If you are installing Docker as a NON administrator user, you might be getting the  error `You are not allowed to use Docker, you must be in the "docker-users" group` when you try to launch the _Docker Desktop_ application.
+
+The solution is pretty self explanatory, you have to add your current user (in my case "Mario") to the aforementioned group, so just open the _Computer Management_ as and **Administrator** and:
+
+- Go to _Local users and groups_
+- Double click on `docker-users`
+- Go to _Users_ on the left
+- Click on _Add_
+- On the textarea add `docker-users` and _Check Names_
+- Save
+- Log out and in again
+
+![Computer Management](docker-users.png)
+
+And afterwards you should be able to launch _Docker Desktop_ with no issue and without the need to do it as an administrator.
+
 ## Oh My Zsh and ASDF
 
 So here are the main differences. While on Mac `brew` can take care of installing node, php, elixir, etc. We just don't have that in Windows/Linux.

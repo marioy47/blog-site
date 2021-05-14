@@ -102,9 +102,9 @@ winget install "Windows Terminal"
 
 This are the reasons for using this one instead of other alternatives:
 
-- Is built by Microsoft
+- Is built by Microsoft so there is good suppport for it.
 - Is pretty fast to startup
-- It provides a drop-down to switch to from Linux, to Windows CMD or _Power Shell_
+- It provides a drop-down menu to switch to from Linux, to Windows CMD or _Power Shell_
 - Low input latency
 - You can theme it
 
@@ -183,7 +183,7 @@ Then, after the installation is done, make sure that WSL2 is being used:
 
 If you are installing Docker as a NON administrator user, you might be getting the  error `You are not allowed to use Docker, you must be in the "docker-users" group` when you try to launch the _Docker Desktop_ application.
 
-The solution is pretty self explanatory, you have to add your current user (in my case "Mario") to the aforementioned group, so just open the _Computer Management_ as and **Administrator** and:
+The solution is pretty self explanatory, you have to add your current user (in my case "Mario") to the aforementioned group, so just open the _Computer Management_ control panel as and **Administrator** and:
 
 - Go to _Local users and groups_
 - Double click on `docker-users`
@@ -199,9 +199,9 @@ And afterwards you should be able to launch _Docker Desktop_ with no issue and w
 
 ## Oh My Zsh and ASDF
 
-So here are the main differences. While on Mac `brew` can take care of installing node, php, elixir, etc. We just don't have that in Windows/Linux.
+I'm spoiled, I admit it... On Mac `brew` takes care of installing node, php, elixir, etc. So I wanted something similar for Linux inside windows. That's when I found ASDF.
 
-But not all hope is lost, we can use [asdf](https://asdf-vm.com/) to install runtime versions of those tools. This means, that we can install local copies of those tools and even manage multiple versions of the same tool on our virtual machine.
+We can use [asdf](https://asdf-vm.com/) to install runtime versions of many tools with just a couple of commands. This means, that we can install local copies of those tools and even manage multiple versions of the same tool on our virtual machine.
 
 But (again but) instead of installing the `asdf` tool directly, we are going to use it as a [Oh My ASH](https://ohmyz.sh/) plugin!
 
@@ -306,3 +306,17 @@ git clone git@github.com:marioy47/dotfiles.git
 As you can see, I like to keep this directory in my home folder.
 
 And that's it, you should have now a very workable setup.
+
+## Visual Studio Community
+
+This on is pretty easy. Just use `winget` to install it:
+
+```bash
+winget search visualstudio
+winget install Microsoft.VisualStudio.Community
+```
+
+![Using winget to install Visual Studio Community](winget-visualstudio.png)
+
+![Visual Studio Community installation process](installing-visualstudio.png)
+

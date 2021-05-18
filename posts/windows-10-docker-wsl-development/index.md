@@ -111,7 +111,7 @@ This are the reasons for using this one instead of other alternatives:
 To make it look better, I used the following theme:
 
 ```json
-// ...
+    "...": "...",
     "schemes": [
         {
           "name": "OceanicMaterial",
@@ -137,7 +137,7 @@ To make it look better, I used the following theme:
           "cursorColor": "#b3b8c3"
         }
     ],
-// ...
+    "...": "..."
 ```
 
 Additionally, I install the _Hasklug Nerd Font_, which can be downloaded from the [Nerdfonts](https://www.nerdfonts.com/font-downloads) website; And add the following profile to the settings:
@@ -155,8 +155,8 @@ Additionally, I install the _Hasklug Nerd Font_, which can be downloaded from th
           "name": "Ubuntu-20.04",
           "source": "Windows.Terminal.Wsl",
           "fontFace": "Hasklug Nerd Font",
-          "fontSize": 10,
-      },
+          "fontSize": 10
+      }
     ]
   ]
 }
@@ -178,8 +178,11 @@ Then, after the installation is done, make sure that WSL2 is being used:
 - Go to settings
 - Make sure that the checkbox to use wsl2 engine is active
 - Enable _Resource WSL integration_
+- Enable the `Ubuntu-20` distro 
 
 ![Docker settings wsl2](docker-settings.png)
+
+![Docker WSL with Ubuntu selected as default distro](docker-wsl-ubuntu-20.png)
 
 If you are installing Docker as a NON administrator user, you might be getting the  error `You are not allowed to use Docker, you must be in the "docker-users" group` when you try to launch the _Docker Desktop_ application.
 
@@ -284,6 +287,20 @@ If you issue the `current` option of `asdf` you should get the actual versions y
 ```bash
 adsf current
 ```
+
+## Install PHP
+
+This is not for everybody, and is not very "Windows" related. but in case you are wondering, to install the latest version of PHP, you should add an additional deb repository:
+
+```bash
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+suto apt install php-cli
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+The final 2 commands are to install [composer](https://getcomposer.org) which are almost mandatory now a days.
 
 ## Restore secrets files
 

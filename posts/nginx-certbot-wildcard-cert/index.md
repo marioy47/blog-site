@@ -1,5 +1,6 @@
 ---
 title: Create a wildcard certificate and install it in nginx
+
 ---
 
 # Create a wildcard certificate and install it in nginx

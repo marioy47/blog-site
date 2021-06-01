@@ -150,13 +150,13 @@ Additionally, I install the _Hasklug Nerd Font_, which can be downloaded from th
       "...",
       {
           "colorScheme": "OceanicMaterial",
+          "fontFace": "Hasklug NF",
+          "fontSize": 10,
           "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
           "hidden": false,
           "name": "Ubuntu-20.04",
-          "source": "Windows.Terminal.Wsl",
-          "fontFace": "Hasklug Nerd Font",
-          "fontSize": 10
-      }
+          "source": "Windows.Terminal.Wsl"
+      },
     ]
   ]
 }

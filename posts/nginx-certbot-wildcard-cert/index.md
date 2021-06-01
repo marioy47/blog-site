@@ -1,6 +1,8 @@
 ---
 title: Create a wildcard certificate and install it in nginx
-
+tags: nginx, devops, ssl, cerbot, letsencrypt, dns, cloudfare
+cover: 
+date: 2021-06-08
 ---
 
 # Create a wildcard certificate and install it in nginx
@@ -36,4 +38,5 @@ There should be one with the name `wp01.dazzet.co` and domain `*.wp01.dazzet.co`
 
 Go to `/etc/nginx/sites-available` and create 
 
+## Nginx configuration
 

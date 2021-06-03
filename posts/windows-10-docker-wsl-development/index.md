@@ -41,7 +41,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 ![Powershell error if non admin](error-administrator.png)
 
-Take into account that you have to execute _Power Shell_ as an administrator to execute both commands:
+Take into account that you have to execute _Power Shell_ as an **administrator** to execute both commands:
 
 ![Installing windows features](install-win-features.png)
 
@@ -88,9 +88,11 @@ That's why you need to install an OS, so you can actually run Linux programs ins
 winget install ubuntu
 ```
 
-That's why we installed `winget` at the beginning, so we could install apps fairly easy and fast.
+> That's why we installed `winget` at the beginning, so we could install apps fairly easy and fast.
 
-## Terminal
+Then, Start the _Ubuntu-20.04_ **application** from the _Windows Start Menu_. This will prompt us to create our first user. 
+
+## Windows Terminal
 
 The next step is to install a terminal so you can issue commands in your recently installed Linux OS.
 
@@ -164,41 +166,76 @@ Additionally, I install the _Hasklug Nerd Font_, which can be downloaded from th
 
 > To get to your personal prfile **json** file, you have to keep the _Alt_ key pressed when selecting the terminals drop down menu.
 
-## Docker
+## Alacritty Terminal
 
-Installing docker is equally easy as terminal when we use `winget`.
+If you are a little more advanced and use `tmux` as a multiplexer, then you might want to stick to Alacritty. Which is even faster than _Windows Terminal_ but lacks some options like tabs and graphical configuration.
+
+In this case, you have to 
+
+- Install _Alacritty_
+- Make a configuration directory
+- Create a configuration file on that directory
 
 ```bash
-winget install docker
+winget install Alacritty.Alacritty
+cd %APPDATA%
+mkdir Alacritty
 ```
 
-Then, after the installation is done, make sure that WSL2 is being used:
+> The last 2 steps will create the folder where _Alacritty_ expects it's configuration.
 
-- Open _Docker Desktop_ Windows as **administrator**
-- Go to settings
-- Make sure that the checkbox to use wsl2 engine is active
-- Enable _Resource WSL integration_
-- Enable the `Ubuntu-20` distro 
+After you've executed those commands, you can place a configuration file [alacritty.yml](https://github.com/marioy47/dotfiles/.alacritty.yml) in that directory with at least the following content:
 
-![Docker settings wsl2](docker-settings.png)
+```yaml
+shell:
+  program: "C:\\Windows\\System32\\wsl.exe"
+```
 
-![Docker WSL with Ubuntu selected as default distro](docker-wsl-ubuntu-20.png)
+This will tell _Alacritty_ to use wsl as the interpreter instead of `cmd`. So when you start _Alacritty_ from the _Windows Start Menu_ you'll be taken directly to your Ubuntu Linux.
 
-If you are installing Docker as a NON administrator user, you might be getting the  error `You are not allowed to use Docker, you must be in the "docker-users" group` when you try to launch the _Docker Desktop_ application.
+## Install Linux Apps
 
-The solution is pretty self explanatory, you have to add your current user (in my case "Mario") to the aforementioned group, so just open the _Computer Management_ control panel as and **Administrator** and:
+The next step is to install some useful apps inside your linux to make it better to work with. In my case, this are:
 
-- Go to _Local users and groups_
-- Double click on `docker-users`
-- Go to _Users_ on the left
-- Click on _Add_
-- On the textarea add `docker-users` and _Check Names_
-- Save
-- Log out and in again
+- PHP's `composer`
+- NodeJS LTS
+- rTorrent
+- ZSH
 
-![Computer Management](docker-users.png)
+So we have to add a couple of Debian Package Repos and install packages obviously:
 
-And afterwards you should be able to launch _Docker Desktop_ with no issue and without the need to do it as an administrator.
+```bash
+sudo add-apt-repository ppa:ondrej/php
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs unzip rtorrent php-cli zsh
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+This will make available `php`, `node`, `npm` and `composer` available in our Linux.
+
+
+## Restore secrets files
+
+This step really depends on your setup. But in my case I have a secured `.zip` file with my _ssh_ private keys and some additional secret files like `.rclone.conf`, `.netrc` file and `.aws`.
+
+If you also do have this files this is the perfect moment to restore them:
+
+```bash
+unzip /mnt/c/Users/Mario/Downloads/backup-secret-dotfiles.zip
+```
+
+## Restores dotfiles
+
+Finally, if you have some kind of [dotfiles](https://github.com/marioy47/dotfiles), this is the final step you should take.
+
+```bash
+git clone git@github.com:marioy47/dotfiles.git
+```
+
+As you can see, I like to keep this directory in my home folder.
+
+And that's it, you should have now a very workable setup.
 
 ## Oh My Zsh and ASDF
 
@@ -225,7 +262,7 @@ Then edit `~/.zshrc` and look for the `plugins` variable and make the following 
 
 ```bash
 ZSH_THEME="bira" # Select your own here
-# ...
+### ...
 plugins=(git asdf) # Very important the asdf tool
 unsetopt BEEP
 ```
@@ -246,9 +283,10 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
 
 And now you should have the `asdf` command at your disposal
 
-## Install node
+## ASDF Plugins
 
-We are going to use `asdf` for that.
+If you preffer to install `node` and `yarn` globally or want the _nightly_ version of NeoVim, you can use `asdf` to install those packages locally and update them more frequently.
+
 
 The process is the following:
 
@@ -288,52 +326,39 @@ If you issue the `current` option of `asdf` you should get the actual versions y
 adsf current
 ```
 
-## Install PHP
+## Docker
 
-This is not for everybody, and is not very "Windows" related. but in case you are wondering, to install the latest version of PHP, you should add an additional deb repository:
-
-```bash
-sudo add-apt-repository ppa:ondrej/php
-sudo apt update
-suto apt install php-cli
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-The final 2 commands are to install [composer](https://getcomposer.org) which are almost mandatory now a days.
-
-## Restore secrets files
-
-This step really depends on your setup. But in my case I have a secured `.zip` file with my _ssh_ private keys and some additional secret files like `.rclone.conf`, `.netrc` file and `.aws`.
-
-If you also do have this files this is the perfect moment to restore them:
+Installing docker is equally easy as the _Windows Terminal_ when we use `winget` from Powershell.
 
 ```bash
-unzip /mnt/c/Users/Mario/Downloads/backup-secret-dotfiles.zip
+winget install docker
 ```
 
-## Restores dotfiles
+The catch is that, after the installation is done, we have to make sure that WSL2 is being used:
 
-Finally, if you have some kind of [dotfiles](https://github.com/marioy47/dotfiles), this is the final step you should take.
+- Open _Docker Desktop_ Windows as **administrator**
+- Go to settings
+- Make sure that the checkbox to use wsl2 engine is active
+- Enable _Resource WSL integration_
+- Enable the `Ubuntu-20` distro 
 
-```bash
-git clone git@github.com:marioy47/dotfiles.git
-```
+![Docker settings wsl2](docker-settings.png)
 
-As you can see, I like to keep this directory in my home folder.
+![Docker WSL with Ubuntu selected as default distro](docker-wsl-ubuntu-20.png)
 
-And that's it, you should have now a very workable setup.
+If you are installing Docker as a NON administrator user, you might be getting the  error `You are not allowed to use Docker, you must be in the "docker-users" group` when you try to launch the _Docker Desktop_ application.
 
-## Visual Studio Community
+The solution is pretty self explanatory, you have to add your current user (in my case "Mario") to the aforementioned group, so just open the _Computer Management_ control panel as and **Administrator** and:
 
-This on is pretty easy. Just use `winget` to install it:
+- Go to _Local users and groups_
+- Double click on `docker-users`
+- Go to _Users_ on the left
+- Click on _Add_
+- On the textarea add `docker-users` and _Check Names_
+- Save
+- Log out and in again
 
-```bash
-winget search visualstudio
-winget install Microsoft.VisualStudio.Community
-```
+![Computer Management](docker-users.png)
 
-![Using winget to install Visual Studio Community](winget-visualstudio.png)
-
-![Visual Studio Community installation process](installing-visualstudio.png)
+And afterwards you should be able to launch _Docker Desktop_ with no issue and without the need to do it as an administrator.
 

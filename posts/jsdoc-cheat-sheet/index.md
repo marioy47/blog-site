@@ -272,29 +272,6 @@ Because of the `@typedef` definition, the IDE understands that the `person` obje
 
 Is that cool or what!
 
-## VisualStudio Code and `jsconfig.json`
-
-There is a very useful option in [Visual Studio Code](https://code.visualstudio.com) where you can force it to type check your code if it's commendted.
-
-The function is called _Implicit Project Config: Check JS_ and its inside the _Javascrip_ group.
-
-If you want to enable this option for your project without the need to check that option manually. You can create a `jsconfig.json` in the root of your project with something like this:
-
-```json
-{
-  "compilerOptions": {
-    "checkJs": true,
-    "jsx": "preserve"
-  },
-  "exclude": [
-    "node_modules",
-    "docs"
-  ]
-}
-```
-
-This not only makes _VS Code_ type check your code from your JSDoc comments, but it allows you to configure where and how to make those checks.
-
 ## Documenting class properties
 
 I bet you've come across classes with instance variables that you just have no idea that they exists or don't have any idea what they do.
@@ -322,6 +299,32 @@ class MyCarClass {
 The cool thing is that the IDE will show which elements are part of the class:
 
 ![The IDE autcompletes the properties of a class](property-hover.png)
+
+## VisualStudio Code and `jsconfig.json`
+
+There is a very useful option in [Visual Studio Code](https://code.visualstudio.com) where you can force it to type check your code if it's commendted.
+
+The function is called _Implicit Project Config: Check JS_ and its inside the _Javascrip_ group.
+
+If you want to enable this option for your project without the need to check that option manually. You can create a [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig) in the root of your project with something like this:
+
+```json
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "jsx": "preserve"
+  },
+  "exclude": [
+    "node_modules",
+    "docs"
+  ]
+}
+```
+
+This not only makes _VS Code_ type check your code from your JSDoc comments, but it allows you to configure where and how to make those checks.
+
+## Generating API documentation
+
 
 ## Creating tutorials and examples
 

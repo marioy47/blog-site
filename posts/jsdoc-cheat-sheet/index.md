@@ -1,23 +1,21 @@
 ---
-title: JSDoc introduction and cheat sheet
+title: How to comment your JavaScript code with JSDoc
 cover:
 date: 2021-06-05
 tags: javascript, jsdoc, development
 ---
 
-# JSDoc Introduction and cheat sheet
+# How to comment your JavaScript code with JSDoc
 
-Lately, I've working on a JavaScript project where the original code was written by other developers a couple of months ago, and the project is actually kind of large.
+Lately, I've been working on a JavaScript project where the original code was written by other developers a couple of months ago, and the project is actually kind of large.
 
-The original code is very well put together and does what it's supposed to do very well I might add.
+The original code is very well put together and does what it's supposed to do, and very well I might add.
 
-The problem is that because I came into the project late, every time I try to add a new functionality or change some behaviour I have to ask to another developer almost always the same question: **What does this function do?** or **What kind parameters does this function needs?**, specially when the parameters are objects.
+The problem is that, because I arrived late into the project, every time I try to add a new functionality or change some behaviour I have to ask to another developer almost always the same question: **What does this function do?** or **What kind parameters does this function needs?**, specially when the parameters are objects.
 
-The problem is that the code is not documented so I find myself hunting down the function declarations and reading the code of the function to find out what type of parameters the function needs.
+The reason for this is that the code is not documented at all. So I find myself hunting down the function declarations and reading the code of the function to find out what type of parameters the function needs. And when I'm in a hurry I have to ask other developers for basic help.
 
-So I took upon my self to document the project with [JSDoc](https://jsdoc.app/) which is the standard of JavaScript documentation.
-
-Here is an small introduction to _JSDoc_ and a small _Cheat Sheet_ with the most common directives.
+So here is an small introduction to [JSDoc](https://jsdoc.app/), which is the standard for JavaScript documentation, and it's most common uses.
 
 ## TOC
 
@@ -29,10 +27,10 @@ Here is an small introduction to _JSDoc_ and a small _Cheat Sheet_ with the most
 
 So, as I said before, _JSDoc_ is the standard for JavaScript code documentation. With it you can an achieve 2 very practical things:
 
-- You get an static website, I mean actual HTML files, with all the code documentation for a project. You could publish this files so other developers have an API documentation site.
-- In-line documentation with you IDE. In other words, the IDE will tell you what the function does and what it needs when you hover over it.
+- You can "train" your IDE to understand what each function, variable or class is or needs
+- You can create API docs in the form of an static HTML site for other developers
 
-What sold me on _JSDoc_ from the very beginning was the second item. Have in-line documentation of every variable, function or class. For instance, take a look at the following undocumented code:
+To understand what _training your IDE_ means, take for instance the following code:
 
 ![JavaScript function with no JSDoc documentation](no-documentation-hover.png)
 
@@ -46,11 +44,13 @@ Compare that with the following:
 
 _Hovering over a JavaScript function that has JSDoc documentation_
 
-As you can see, I get the information on the function, the number **and type** of parameters and the return value of the function by just hovering it.
+As you can see, I get the information on the function, the number **and type** of parameters and the return value of the function by just hovering it. It even tells you the components of the third parameter.
 
 This way, every time I need to find which parameters a function needs or what does a function do, I just have to hover over the function in [Visual Studio Code](https://code.visualstudio.com) or press `Shift+k` on NeoVim to get the function documentation and an explanation of the parameters.
 
 ## How to document an element
+
+Let's start with the basics, how to document **any** element.
 
 As with Java, to document a function, variable or class. You just have to create a comment before the element you want to document. The only thing you have to keep in mind is that the comment needs to start with `/**` and end with `*/`, like so:
 
@@ -66,9 +66,49 @@ function myFunc() {
 
 That will tell the IDE (and the `jsdoc` command line) that this is an special comment.
 
-## Documenting parameters
+## Documenting a variable
 
-We already saw that to document an _element_ (function, variable, class, etc.) you just have to add a **special** comment before the element.
+Documenting a variable whether is a global variable or a local variable, just needs the `@type` directive.
+
+```javascript
+/**
+ * @type {String}
+ */
+var myStringVariable;
+
+/**
+ * This is the description of the variable
+ *
+ * @type {String}
+ */
+let myArrayVariable = [];
+```
+
+There are cases where you need to create arrays and specify that the arrays should only be composed of a certain type. You can use something like the following for those cases:
+
+```javascript
+/**
+ * This is a global variable
+ *
+ * @type {Array<string>}
+ */
+const arrayOfStrings = [];
+```
+
+What about if the array should support strings and numbers:
+
+```javascript
+/**
+ * This is an array that can contain numbers or strings.
+ *
+ * @param {Array<number|string>}
+ */
+const arrayOfNumbersOrStrings = [];
+```
+
+Whith the `|` symbol you can specify more than one possible type.
+
+## Documenting parameters
 
 Now let's see how to document function parameters with the `@param` directive. Take the following _documented_ function for instance:
 
@@ -93,31 +133,6 @@ Notice that:
 - The default values are added using `=value` next to the variable name
 
 Let's keep working with functions since that's where you'll be spending most of your time documenting.
-
-## Documenting arrays of type
-
-There are cases where you need to create arrays and specify that the arrays should only be composed of a certain type. You can use something like the following for those cases:
-
-```javascript
-/**
- * This is a global variable
- * @type {Array<string>}
- */
-const arrayOfStrings = [];
-```
-
-What about if the array should support strings and numbers:
-
-```javascript
-/**
- * This is an array that can contain numbers or strings.
- *
- * @param {Array<number|string>}
- */
-const arrayOfNumbersOrStrings = [];
-```
-
-Whith the `|` symbol you can specify more than one possible type.
 
 ## Object parameters
 
@@ -153,7 +168,7 @@ function requieresAndObject(obj1) {
 }
 ```
 
-Not so obvious, but extremely useful.
+As I said, not so obvious, but extremely useful.
 
 ## Documenting return values
 
@@ -243,26 +258,103 @@ function registerPerson(person) {
 }
 ```
 
-First, notice how document an object that doesn't exists by using `@typedef`. Also, notice how we set the name of the object `PersonObject` right after declaring the _typedef_ type.
+First, notice how to document an object it doesn't has to exists. You just need to create a comment section with a `@typedef` at the top. Also, notice how we set the name of the object `PersonObject` right after declaring of the `@typedef`.
 
-Second. Notice how each element is documented by using the `@property` directive.
+Second, notice how each **element** is documented by using the `@property` directive.
 
-Third. Notice how we can use the new _type definition_ in the `@param` section of the function.
+Third, notice how we can use the new _type definition_ in the `@param` section of the function by specifying that `person` is of type `PersonObject`.
 
 And fourth, take a look at this:
 
 ![Autocomplete takes account of the elements](typedef-autocomplete.png)
 
-Notice how, because the `@typedef` definition, the IDE understands that the `person` object has a `city`, `name`, `last`, and `isDeveloper` fields.
+Because of the `@typedef` definition, the IDE understands that the `person` object has a `city`, `name`, `last`, and `isDeveloper` fields.
 
 Is that cool or what!
 
-## Using inline options like `{@see https...}`
+## VisualStudio Code and `jsconfig.json`
+
+There is a very useful option in [Visual Studio Code](https://code.visualstudio.com) where you can force it to type check your code if it's commendted.
+
+The function is called _Implicit Project Config: Check JS_ and its inside the _Javascrip_ group.
+
+If you want to enable this option for your project without the need to check that option manually. You can create a `jsconfig.json` in the root of your project with something like this:
+
+```json
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "jsx": "preserve"
+  },
+  "exclude": [
+    "node_modules",
+    "docs"
+  ]
+}
+```
+
+This not only makes _VS Code_ type check your code from your JSDoc comments, but it allows you to configure where and how to make those checks.
+
+## Documenting class properties
+
+I bet you've come across classes with instance variables that you just have no idea that they exists or don't have any idea what they do.
+
+Well, for that you can use the `@properties` directive, very much like when we used in the `@typedef` section
+
+```javascript
+/**
+ * A class representing a car
+ *
+ * @property {String} brand - The cars brand
+ * @property {Number} model - The cars model
+ * @property {String[]} colors - The available colors
+ */
+class MyCarClass {
+  /** @constructor */
+  constructor() {
+    this.brand = "Mustang";
+    this.model = 1965;
+    this.colors = ["Red", "Black", "White"];
+  }
+}
+```
+
+The cool thing is that the IDE will show which elements are part of the class:
+
+![The IDE autcompletes the properties of a class](property-hover.png)
 
 ## Creating tutorials and examples
 
-## Support Video
+Examples can be added in the JSDoc blocks like so:
 
-https://www.youtube.com/watch?v=U329pKWKqWw
+```javascript
+/**
+ * A class representing a car
+ *
+ * @property {String} brand - The cars brand
+ * @property {Number} model - The cars model
+ * @property {String[]} colors - The available colors
+ * @example <caption>Creating a car</caption>
+ * const myCar = new MyCarClass();
+ * myCar.colors
+ * @tutorial my-car-class-tutorial
+ *
+ */
+class MyCarClass {
+  /** @constructor */
+  constructor() {
+    this.brand = "Mustang";
+    this.model = 1965;
+    this.colors = ["Red", "Black", "White"];
+  }
+}
+```
 
-Documentation: https://jsdoc.app/about-configuring-jsdoc.html
+This will require that there is a `my-car-clas-tutorial.md` file and that you run the `jsdoc` command specifying the folder where the tutorials are with `-u`:
+
+```bash
+jsdoc -u path/to/turials path/to/documentation
+```
+## Additional documentation
+
+The documentation for additional tags can be found here: https://jsdoc.app/about-configuring-jsdoc.html

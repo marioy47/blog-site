@@ -106,7 +106,7 @@ What about if the array should support strings and numbers:
 const arrayOfNumbersOrStrings = [];
 ```
 
-Whith the `|` symbol you can specify more than one possible type.
+With the `|` symbol you can specify more than one possible type.
 
 ## Documenting parameters
 
@@ -127,7 +127,7 @@ function myFunction(name, age = 21) {
 
 Notice that:
 
-- Each parameter requires a `@param` directive in the _speicial_ JSDoc comment
+- Each parameter requires a `@param` directive in the _spacial_ JSDoc comment
 - After `@param` comes the **type** of the variable between brackets, then an **optional dash** and then the **explanation** or additional comments
 - Non obligatory parameters have their names enclosed between `[` and `]`
 - The default values are added using `=value` next to the variable name
@@ -230,7 +230,19 @@ function updatePerson(person) { /* ... */ }
 function deletePerson(person) { /* ... */ }
 ```
 
-And lets say that this functions require a `PersonObject` object with **at least** a `name`, `last`, `city` and `profile` fields. How do you specify that?
+And lets say that this functions require a `PersonObject` with the following structure:
+
+```javascript
+// The `person` object for the previous functions:
+{
+  name: "Fist Name", // string
+  laset: "Last Name", // string
+  isDeveloper: true, // boolean
+  city: "Users City" // string
+}
+```
+
+How do specify that object and how do the document the functions that use that object?
 
 Well, you create a `@typedef` and then specify that this type is the input element. 
 
@@ -246,6 +258,8 @@ This sounds kind of complicated, so lets just do an example:
  * @property {Boolean} [isDeveloper=true] Set to `true` is the person is a developer
  * @property {Number} city City code for the person
  */
+
+ // No need to create a PersonObject
 
 /**
  * Function that uses the `PersonObject` defined with `@typedef`
@@ -266,7 +280,7 @@ Third, notice how we can use the new _type definition_ in the `@param` section o
 
 And fourth, take a look at this:
 
-![Autocomplete takes account of the elements](typedef-autocomplete.png)
+![Auto complete takes account of the elements](typedef-autocomplete.png)
 
 Because of the `@typedef` definition, the IDE understands that the `person` object has a `city`, `name`, `last`, and `isDeveloper` fields.
 
@@ -302,9 +316,9 @@ The cool thing is that the IDE will show which elements are part of the class:
 
 ## VisualStudio Code and `jsconfig.json`
 
-There is a very useful option in [Visual Studio Code](https://code.visualstudio.com) where you can force it to type check your code if it's commendted.
+There is a very useful option in [Visual Studio Code](https://code.visualstudio.com) where you can force it to type check your code if it's commented.
 
-The function is called _Implicit Project Config: Check JS_ and its inside the _Javascrip_ group.
+The function is called _Implicit Project Config: Check JS_ and its inside the _JavaScript_ group.
 
 If you want to enable this option for your project without the need to check that option manually. You can create a [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig) in the root of your project with something like this:
 
@@ -325,12 +339,55 @@ This not only makes _VS Code_ type check your code from your JSDoc comments, but
 
 ## Generating API documentation
 
+OK, we've seen how to document functions, variables, classes and objects so our IDE understands our code better. But we haven't created API documentation to publish in a website.
+
+Well, that's what the `jsdoc` command is for.
+
+You can install it globally with `npm i -g jsdoc` but since I don't like cluttering my environment with commands. What I do is that I install it as a _Dev_ dependency:
+
+```bash
+npm init -y # If you haven't done so already
+npm install -D jsdoc
+```
+
+And then, in the `package.json` file, create the following script:
+
+```json
+{
+  "...",
+  "scripts": {
+    "jsdoc": "jsdoc -d docs-output/ -u tutorials/ src/"
+  }
+}
+```
+
+Here I'm creating the `npm` command `jsdoc` with the following parameters:
+
+- Output the documentation files (the html) in `docs-output/`
+- Look for tutorials in `tutorials/`
+- Document the files that are in `src/`
+
+And to generate the documentation just have to execute this in the root of my project:
+
+```bash
+npm run jsdoc
+```
+
+That will output a bunch of files that can be viewed using a browser:
+
+![JSDoc API Documentation](api-documentation.png)
+
+Now, don't worry about the tutorial part. That's what I'll explain next.
 
 ## Creating tutorials and examples
 
-Examples can be added in the JSDoc blocks like so:
+I left this part for last since it has to do with the generation of API docs. And that requires de execution of the `jsdoc` command.
 
-```javascript
+But the fact is that you can create from small in-line examples of how your functions can be used. To full blown tutorials in markdown files.
+
+Let's use the `MyCarClass` to show how an example and a tutorial can be embedded:
+
+```javascript {7-9, 11}
 /**
  * A class representing a car
  *
@@ -340,7 +397,8 @@ Examples can be added in the JSDoc blocks like so:
  * @example <caption>Creating a car</caption>
  * const myCar = new MyCarClass();
  * myCar.colors
- * @tutorial my-car-class-tutorial
+ * 
+ * @tutorial my-car-class
  *
  */
 class MyCarClass {
@@ -353,11 +411,12 @@ class MyCarClass {
 }
 ```
 
-This will require that there is a `my-car-clas-tutorial.md` file and that you run the `jsdoc` command specifying the folder where the tutorials are with `-u`:
+Now, this is very important, **the file `my-car-class.md` or `my-car-class.html` should be present** in the folder you specified for storing the tutorials (we used `tutorials/` from the previous example).
 
-```bash
-jsdoc -u path/to/turials path/to/documentation
-```
+> Remember, the folder for the tutorial is specified by the `-u` parameter
+
 ## Additional documentation
 
-The documentation for additional tags can be found here: https://jsdoc.app/about-configuring-jsdoc.html
+_JSDoc_ has much, much more options, you can browser them [here](https://jsdoc.app/about-block-inline-tags.html)
+
+Also, I created a very, very small GitHub repo with some functions and classes documented [here](https://github.com/marioy47/jsdoc-tutorial). You can use it ti get inspiration on how to configure your development environment if you want.

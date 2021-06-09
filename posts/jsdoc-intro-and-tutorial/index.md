@@ -214,7 +214,7 @@ In the section [Object parameters](#object-parameters) we saw how to document an
 
 But what about the case when we have multiple functions that receive an object that's supposed to have the same fields.
 
-The following functions:
+Let's say that we have 3 functions that receive the same type of parameter:
 
 ```javascript
 function registerPerson(person) { /* ... */ }
@@ -404,7 +404,7 @@ But the fact is that you can create from small in-line examples of how your func
 
 Let's use the `MyCarClass` to show how an example and a tutorial can be embedded:
 
-```javascript {7-9, 11}
+```javascript {7-9,11}
 /**
  * A class representing a car
  *

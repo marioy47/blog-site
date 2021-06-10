@@ -9,7 +9,7 @@ tags: javascript, jsdoc, development
 
 So I just been tasked with documenting a fairly large JavaScript project where almost none of it's functions or clases have any comments and there is no information on what the function's parammeters do.
 
-So I took this opportunity to learn about [JSDoc](https://jsdoc.app/) to document element so the _IDE_ recognizes in a better way the functions from the project and to create API docs that can be published on the web.
+So I took this opportunity to learn more about [JSDoc](https://jsdoc.app/) and its ability to document elements so so the _IDE_ recognizes them in a better way. Also, wanted to create API documents and tutorials right from the source code, without the need of creating a separate project for it.
 
 ## TOC
 
@@ -17,7 +17,7 @@ So I took this opportunity to learn about [JSDoc](https://jsdoc.app/) to documen
 
 ```
 
-## JSDoc
+## What is _JSDoc_?
 
 In case you don't know, _JSDoc_ is the standard for JavaScript code documentation. With it you can an achieve 2 very practical things:
 
@@ -28,7 +28,7 @@ To understand what _training your IDE_ means, take for instance the following co
 
 ![JavaScript function with no JSDoc documentation](no-documentation-hover.png)
 
-_Hovering over a JavaScript function with no JSDoc documentation_
+ _Hovering over a JavaScript function with no JSDoc documentation_
 
 Notice how when I hover the mouse over the function `testFunction`, the IDE (in this case NeoVim) only tells you the obvious. That there are 3 parameters and that the last one is optional.
 
@@ -36,7 +36,7 @@ Compare that with the following:
 
 ![JavaScript function](documented-func-hover.png)
 
-_Hovering over a JavaScript function that has JSDoc documentation_
+ _Hovering over a JavaScript function that has JSDoc documentation_
 
 As you can see, when the function is documented I get the information on the function, the number **and type** of parameters and the return value of the function by just hovering it. It even tells you the components of the third parameter which is an object.
 
@@ -68,14 +68,14 @@ Documenting a variable whether is a global variable or a local variable, just ne
 /**
  * @type {String}
  */
-var myStringVariable;
+var myStringVariable
 
 /**
  * This is the description of the variable
  *
- * @type {String}
+ * @type {String[]}
  */
-let myArrayVariable = [];
+let myArrayVariable = []
 ```
 
 There are cases where you need to create arrays and specify that the arrays should only be composed of a certain type. You can use something like the following for those cases:
@@ -84,10 +84,14 @@ There are cases where you need to create arrays and specify that the arrays shou
 /**
  * This is a global variable
  *
- * @type {Array<string>}
+ * @type {Array<object>}
  */
-const arrayOfStrings = [];
+const arrayOfObjects = []
 ```
+
+Now, take a look how the IDE will now understand this variables:
+
+![NeoVim displaying available functions for an array of objects](array-of-objects.png)
 
 What about if the array should support strings and numbers:
 
@@ -97,7 +101,7 @@ What about if the array should support strings and numbers:
  *
  * @type {Array<number|string>}
  */
-const arrayOfNumbersOrStrings = [];
+const arrayOfNumbersOrStrings = []
 ```
 
 Whith the `|` symbol you can specify more than one possible type. **This also applies** for documenting _function parameters_ that we'll describe next.
@@ -200,26 +204,32 @@ If you are, then you really need to specify which exceptions you throw in your c
  */
 const throwErrorOnInput = (input) => {
   if (input) {
-    throw new Error(`This is an Error`);
+    throw new Error(`This is an Error`)
   }
-  throw new TypeError(`This is a TypeError`);
-};
+  throw new TypeError(`This is a TypeError`)
+}
 ```
 
 It's pretty simple actually, the only gotcha is that you have to specify all the _Exceptions_ your function throws.
 
 ## Documenting types with `@typedef`
 
-In the section [Object parameters](#object-parameters) we saw how to document an `Object` parameter on a function. 
+In the section [Object parameters](#object-parameters) we saw how to document an `Object` parameter on a function.
 
 But what about the case when we have multiple functions that receive an object that's supposed to have the same fields.
 
 Let's say that we have 3 functions that receive the same type of parameter:
 
 ```javascript
-function registerPerson(person) { /* ... */ }
-function updatePerson(person) { /* ... */ }
-function deletePerson(person) { /* ... */ }
+function registerPerson(person) {
+  /* ... */
+}
+function updatePerson(person) {
+  /* ... */
+}
+function deletePerson(person) {
+  /* ... */
+}
 ```
 
 And lets say that this functions require a `PersonObject` with the following structure:
@@ -236,7 +246,7 @@ And lets say that this functions require a `PersonObject` with the following str
 
 How do specify that object and how do the document the functions that use that object?
 
-Well, you create a `@typedef` and then specify that this type is the input element. 
+Well, you create a `@typedef` and then specify that this type is the input element.
 
 This sounds kind of complicated, so lets just do an example:
 
@@ -251,7 +261,7 @@ This sounds kind of complicated, so lets just do an example:
  * @property {Number} city City code for the person
  */
 
- // No need to create a PersonObject
+// No need to create a PersonObject
 
 /**
  * Function that uses the `PersonObject` defined with `@typedef`
@@ -260,7 +270,7 @@ This sounds kind of complicated, so lets just do an example:
  * @return {void}
  */
 function registerPerson(person) {
-	console.log(person.isDeveloper);
+  console.log(person.isDeveloper)
 }
 ```
 
@@ -295,9 +305,9 @@ Well, for that you can use the `@properties` directive, very much like when we u
 class MyCarClass {
   /** @constructor */
   constructor() {
-    this.brand = "Mustang";
-    this.model = 1965;
-    this.colors = ["Red", "Black", "White"];
+    this.brand = "Mustang"
+    this.model = 1965
+    this.colors = ["Red", "Black", "White"]
   }
 }
 ```
@@ -320,10 +330,7 @@ If you want to enable this option for your project without the need to check tha
     "checkJs": true,
     "jsx": "preserve"
   },
-  "exclude": [
-    "node_modules",
-    "docs"
-  ]
+  "exclude": ["node_modules", "docs"]
 }
 ```
 
@@ -331,9 +338,11 @@ This not only makes _VS Code_ type check your code from your JSDoc comments, but
 
 ## Generating API documentation
 
-OK, we've seen how to document functions, variables, classes and objects so our IDE understands our code better. But we haven't created API documentation to publish in a website.
+OK, we've seen how to document functions, variables, classes and objects so our IDE understands our code better. But we haven't created API documentation to publish in a website. Well, that's what the `jsdoc` command is for. 
 
-Well, that's what the `jsdoc` command is for.
+```bash
+jsdoc -u path/to/tutorials -c jsdoc-config.json -d path/to/destination path/to/sourcode
+```
 
 You can install it globally with `npm i -g jsdoc` but since I don't like cluttering my environment with commands. What I do is that I install it as a _Dev_ dependency:
 
@@ -369,33 +378,50 @@ That will output a bunch of files that can be viewed using a browser:
 
 ![JSDoc API Documentation](api-documentation.png)
 
-Now, don't worry about the tutorial part. That's what I'll explain next.
+Now, don't worry about the tutorial part. That's what I'll explain it very soon
 
-## Generating API docs
+## JSDoc configuration file
+
+In the previous section, we saw how to use the `jsdoc` command with just 3 parammeters:
+
+- Where the source code is
+- Where to output the documentation 
+- Where the tutorial files where storeed
+
+The fact is that there are a ton of configuration options to specify the supported file extensions, which files to exclude, information logging, etc. You can the complete set of parammeters [here](https://jsdoc.app/about-commandline.html)
+
+If you require very explicit or complex set of parameters to generate you documentation, you can create a config file in your projects folder and execute `jsdoc` like:
 
 ```bash
-jsdoc -u path/to/tutorials -c jsdoc-config.json -d path/to/destination path/to/sourcode
+jsdoc -c path/to/jsdoc-config.json
 ```
+
+> You can change the name of the `json` file of course
+
+Where `jsdoc-config.json` is something like
 
 ```json
 {
-    "plugins": ["markdown"],
-    "recurseDepth": 10,
-    "source": {
-        "includePattern": ".+\\.js(doc|x)?$",
-        "excludePattern": "(^|\\/|\\\\)_"
-    },
-    "sourceType": "module",
-    "tags": {
-        "allowUnknownTags": true,
-        "dictionaries": ["jsdoc","closure"]
-    },
-    "templates": {
-        "cleverLinks": false,
-        "monospaceLinks": false
-    }
+  "plugins": ["markdown"],
+  "recurseDepth": 10,
+  "source": {
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  }
 }
 ```
+
+For a list of configuration options, you can visit [this url](https://jsdoc.app/about-configuring-jsdoc.html)
+
 ## Creating tutorials and examples
 
 I left this part for last since it has to do with the generation of API docs. And that requires de execution of the `jsdoc` command.
@@ -414,16 +440,16 @@ Let's use the `MyCarClass` to show how an example and a tutorial can be embedded
  * @example <caption>Creating a car</caption>
  * const myCar = new MyCarClass();
  * myCar.colors
- * 
+ *
  * @tutorial my-car-class
  *
  */
 class MyCarClass {
   /** @constructor */
   constructor() {
-    this.brand = "Mustang";
-    this.model = 1965;
-    this.colors = ["Red", "Black", "White"];
+    this.brand = "Mustang"
+    this.model = 1965
+    this.colors = ["Red", "Black", "White"]
   }
 }
 ```

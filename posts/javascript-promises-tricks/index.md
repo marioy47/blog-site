@@ -7,9 +7,15 @@ tags: javascript, promises, async, await, iifi
 
 # Javascript Promises Tips and Tricks
 
-Most of my career I've worked with procedural languages where each instruction is executed sequentially and there is no need to handle asynchronous data or information.
+So you hear about all the time about JavaScipt's [event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ) and how the it's an event driven single threaded programming language. But you don't fully grasp the implications of that statement until you start working with async code like calling an external API with the `fetch` function.
 
-But, since I've been working with Node full time for the last year, I needed to get familiar on how the event loop works and how async code works in a single threaded language.
+When you work with asynchronous code you have delve into the world of callbacks or promises.
+
+In my case, I never had any issue understanding callbacks. They are ugly and produce the famous _callback hell_ when you can end up with functions that call functions that call functions that call... You guess it, functions. But they are easy to understand.
+
+With promises I had a little more trouble since the syntax made me think that code that once was asynchronous, it magically became synchronous. And that's not the case. It's still asynchronous, but a little more _flatter_.
+
+When _async await_ came into de picture, all became more clear once I understood that **async code need to be encapsulated in it's own function**
 
 So here there are a couple of tricks that I've learned to work with asynchronous code and most of all, how to work with _Promises_ without losing my mind.
 
@@ -21,11 +27,17 @@ So here there are a couple of tricks that I've learned to work with asynchronous
 
 ## Setup
 
+If you want to follow along, you can start by setting up an example project:
+
 ```bash
+mkdir javascript-async-await-tips
+cd $_
 npm init -y
-npx eslint --init
+npx eslint --init # Answer the questions
 npm install --save-dev eslint-plugin-prettier eslint-config-prettier
 ```
+
+Change the `.eslintrc.json` file to enable _Prettier_.
 
 ```json
 {
@@ -44,6 +56,8 @@ npm install --save-dev eslint-plugin-prettier eslint-config-prettier
 }
 ```
 
+And in `package.json` create a `lint` command to make things easier to fix.
+
 ```json
 {
   "...",
@@ -53,13 +67,19 @@ npm install --save-dev eslint-plugin-prettier eslint-config-prettier
 }
 ```
 
-## Using promises
+Since I'll be using node, I need the [axios](https://www.npmjs.com/package/axios) package to make requests, since `fetch` is only available in the browser.
 
 ```bash
 npm install axios --save
 ```
 
-```javascript
+Cool, we're ready to start creating code examples.
+
+## Creating a basic promise
+
+Let's start with a basic promise. Let's use the _Json Placeholder_ API from [Typicode](https://jsonplaceholder.typicode.com/photos) to extract some information.
+
+```javascript {11}
 // src/photos-promise.js
 const axios = require("axios")
 const photosUrl = "https://jsonplaceholder.typicode.com/photos"
@@ -81,10 +101,12 @@ console.log("End of the code")
 
 There are 2 issues with this kind of code:
 
-- The code of your application gets burried inside a `then` statement
+- The _main_ code of your application gets buried inside a `then` statement
 - The execution order can throw you off
 
-```bash
+Let's execute the script to prove that last statement:
+
+```bash {3}
 $ node src/photos-promise.js
 
 End of the code
@@ -114,15 +136,18 @@ End of the code
 ]
 ```
 
-See how the message _End of code_ comes first? That's to be expected but can make your development experience less enjoyable.
+See how the message _End of code_ comes first? That's asynchronous code works, but it also can make your development experience less enjoyable.
 
 ## Converting a promise to async await
 
-There are a couple of _gotchas_
+Using _async await_ helps your code to make more sense since you can crate **a part** of your code behave like synchronous code. Still, there are a couple of _gotchas_:
 
-- You have to enclose the promise code inside a function (In node 14.8 this is no longer the case)
+- You have to enclose the promise code inside a function
 - The function has to be preceded by the `async` code
-- The part of the code that returns a promise has to be preceded by the `await` statment
+- The part of the code that returns a promise has to be preceded by the `await` statement
+- The **new** function is also asynchronous so you might need to use an IIFE function to call it
+
+If we convert the previous promise into _async await_ this is what we'll en up with:
 
 ```javascript
 // src/photos-async-await.js
@@ -141,6 +166,8 @@ const getPhotos = async () => {
 getPhotos()
 console.log("End of code")
 ```
+
+And if we execute it this is the result:
 
 ```bash
 $ node src/photos-async-await.js
@@ -164,7 +191,11 @@ End of code
 ]
 ```
 
+Notice how we still get the `End of code` string **before** the results. That's because `getPhotos` is asynchronous.
+
 ## Using a IIFE function for top-level await
+
+To fix the issue of getting the `End of code` before the API call, we can enclose our **main code** in an _Async Self Executing Function_, or IIFE.
 
 ```javascript {14-17}
 // src/photos-async-await.js
@@ -186,10 +217,40 @@ const getPhotos = async () => {
 })()
 ```
 
+If you test this, you'll see that the `End of code` gets printed last.
+
 ## Using `Promise.all()` and `Promise.any()`
 
-The `Promise` object is not completelly useless with Async Await. Its still very useful with `Promise.all()`
+The `Promise` object is not completely useless now that Async Await exists. Its still very useful with `Promise.all()` for example:
 
-## Original video
+```javascript {7,12,19}
+// src/photos-promise-all.js
+const axios = require("axios");
+const photosUrl = "https://jsonplaceholder.typicode.com/photos";
 
-https://www.youtube.com/watch?v=_9vgd9XKlDQ
+const getPhotos = async () => {
+  try {
+    const res = await Promise.all([
+      axios({ url: `${photosUrl}/15`, method: "GET" }),
+      axios({ url: `${photosUrl}/25`, method: "GET" }),
+      axios({ url: `${photosUrl}/35`, method: "GET" }),
+    ]);
+    return res.map((item) => item["data"]);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+(async () => {
+  const photos = await getPhotos();
+  console.log(photos);
+})();
+```
+
+Before I explain, notice how we changed the URL to fetch just **one photo** by specifying a _photo id_.
+
+- In line 7 we use the `Promise.all` function to make 3 calls to an external API, one after the other.
+- Since `Promiese.all` returns an array with the results, we used a `map` to traverse the results **and return an array**
+- In line 19 we used the returned value which means that async function can have return values, but **they have to be used inside an another async function**
+
+

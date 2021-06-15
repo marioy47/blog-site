@@ -1,6 +1,6 @@
 ---
 title: How to comment your JavaScript code with JSDoc
-cover:
+cover: typedef-autocomplete.png
 date: 2021-06-05
 tags: javascript, jsdoc, development
 ---
@@ -9,7 +9,7 @@ tags: javascript, jsdoc, development
 
 So I just been tasked with documenting a fairly large JavaScript project where almost none of it's functions or clases have any comments and there is no information on what the function's parammeters do.
 
-So I took this opportunity to learn more about [JSDoc](https://jsdoc.app/) and its ability to document elements so so the _IDE_ recognizes them in a better way. Also, wanted to create API documents and tutorials right from the source code, without the need of creating a separate project for it.
+So I took this opportunity to learn more about [JSDoc](https://jsdoc.app/) and its ability to document elements so the _IDE_ recognizes them in a better way. Also, wanted to create API documents and tutorials right from the source code, without the need of creating a separate project for it.
 
 ## TOC
 
@@ -378,7 +378,7 @@ That will output a bunch of files that can be viewed using a browser:
 
 ![JSDoc API Documentation](api-documentation.png)
 
-Now, don't worry about the tutorial part. That's what I'll explain it very soon
+Now, don't worry about the "tutorial" part. I'll explain that very soon.
 
 ## JSDoc configuration file
 
@@ -388,7 +388,7 @@ In the previous section, we saw how to use the `jsdoc` command with just 3 param
 - Where to output the documentation 
 - Where the tutorial files where storeed
 
-The fact is that there are a ton of configuration options to specify the supported file extensions, which files to exclude, information logging, etc. You can the complete set of parammeters [here](https://jsdoc.app/about-commandline.html)
+The fact is that there are a ton of configuration options to specify the supported file extensions, which files to exclude, information logging, etc. You can see the complete set of parammeters [here](https://jsdoc.app/about-commandline.html)
 
 If you require very explicit or complex set of parameters to generate you documentation, you can create a config file in your projects folder and execute `jsdoc` like:
 

@@ -9,7 +9,7 @@ tags: javascript, jsdoc, development
 
 So I just been tasked with documenting a fairly large JavaScript project where almost none of it's functions or clases have any comments and there is no information on what the function's parammeters do.
 
-So I took this opportunity to learn more about [JSDoc](https://jsdoc.app/) and its ability to document elements so the _IDE_ recognizes them in a better way. Also, wanted to create API documents and tutorials right from the source code, without the need of creating a separate project for it.
+I took this opportunity to learn more about [JSDoc](https://jsdoc.app/) and its ability to document elements so the _IDE_ recognizes them in a better way. Also, wanted to create API documents and tutorials right from the source code, without the need of creating a separate project for it.
 
 ## TOC
 
@@ -108,7 +108,7 @@ Whith the `|` symbol you can specify more than one possible type. **This also ap
 
 ## Documenting parameters
 
-Now let's see how to document function parameters with the `@param` directive. Take the following _documented_ function for instance:
+Now let's see how to document function parameters with the [`@param`](https://jsdoc.app/tags-param.html) directive. Take the following _documented_ function for instance:
 
 ```javascript
 /**
@@ -134,7 +134,7 @@ Let's keep working with functions since that's where you'll be spending most of 
 
 ## Object parameters
 
-Let's say that we have the following function:
+Take the following function:
 
 ```javascript
 function requieresAndObject(obj1) {
@@ -166,6 +166,8 @@ function requieresAndObject(obj1) {
 }
 ```
 
+You need to specify that there is **an** `Object` parammeter, and **then** specify the required/optional fields of this object.
+
 As I said, not so obvious, but extremely useful.
 
 ## Documenting return values
@@ -189,7 +191,7 @@ It's a good practice to explain what the return function means in term of it's i
 
 If you've read the book [Clean Code](https://play.google.com/store/books/details/Robert_C_Martin_Clean_Code?id=_i6bDeoCQzsC) by [Robert C. Martin](https://play.google.com/store/info/name/Robert_C_Martin?id=06_4l9), you know that you should be throwing exceptions instead of returning `false` or `null` on error.
 
-If you are, then you really need to specify which exceptions you throw in your code:
+If you are, then you really need to specify which exceptions you throw in your code with [`@throws`](https://jsdoc.app/tags-throws.html):
 
 ```javascript
 /**
@@ -246,7 +248,7 @@ And lets say that this functions require a `PersonObject` with the following str
 
 How do specify that object and how do the document the functions that use that object?
 
-Well, you create a `@typedef` and then specify that this type is the input element.
+Well, you create a [`@typedef`](https://jsdoc.app/tags-typedef.html) and then specify that this type is the input element.
 
 This sounds kind of complicated, so lets just do an example:
 
@@ -292,7 +294,7 @@ Is that cool or what!
 
 I bet you've come across classes with instance variables that you just have no idea that they exists or don't have any idea what they do.
 
-Well, for that you can use the `@properties` directive, very much like when we used in the `@typedef` section
+Well, for that you can use the [`@property`](https://jsdoc.app/tags-property.html) directive, very much like when we used in the `@typedef` section
 
 ```javascript
 /**
@@ -338,7 +340,7 @@ This not only makes _VS Code_ type check your code from your JSDoc comments, but
 
 ## Generating API documentation
 
-OK, we've seen how to document functions, variables, classes and objects so our IDE understands our code better. But we haven't created API documentation to publish in a website. Well, that's what the `jsdoc` command is for. 
+OK, we've seen how to document functions, variables, classes and objects so our IDE understands our code better. But we haven't created API documentation to publish in a website. Well, that's what the [`jsdoc`](https://jsdoc.app/about-commandline.html) command is for. 
 
 ```bash
 jsdoc -u path/to/tutorials -c jsdoc-config.json -d path/to/destination path/to/sourcode
@@ -390,7 +392,7 @@ In the previous section, we saw how to use the `jsdoc` command with just 3 param
 
 The fact is that there are a ton of configuration options to specify the supported file extensions, which files to exclude, information logging, etc. You can see the complete set of parammeters [here](https://jsdoc.app/about-commandline.html)
 
-If you require very explicit or complex set of parameters to generate you documentation, you can create a config file in your projects folder and execute `jsdoc` like:
+If you require very explicit or complex set of parameters to generate you documentation, you can create a [config file](https://jsdoc.app/about-configuring-jsdoc.html) in your projects folder and execute `jsdoc` like:
 
 ```bash
 jsdoc -c path/to/jsdoc-config.json

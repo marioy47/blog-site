@@ -460,6 +460,6 @@ Now, this is very important, **the file `my-car-class.md` or `my-car-class.html`
 
 ## Additional documentation
 
-_JSDoc_ has much, much more options, you can browser them [here](https://jsdoc.app/about-block-inline-tags.html)
+_JSDoc_ has much, much more options, you can review them [here](https://jsdoc.app/)
 
 Also, I created a very, very small GitHub repo with some functions and classes documented [here](https://github.com/marioy47/jsdoc-tutorial). You can use it ti get inspiration on how to configure your development environment if you want.

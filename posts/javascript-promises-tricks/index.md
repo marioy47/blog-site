@@ -85,7 +85,7 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 end_of_line = lf
-# editorconfig-tools is unable to ignore longs strings or urls
+; editorconfig-tools is unable to ignore longs strings or urls
 max_line_length = off
 
 [*.md]
@@ -99,6 +99,101 @@ npm install axios --save
 ```
 
 Cool, we're ready to start creating code examples.
+
+## The problem with asynchronous functions
+
+Let's start explaining how asynchronous functions work and some of it's issues. And for that let's create a simple **broken** function that "reads" the contents of a file.
+
+```javascript {9,19}
+// src/read-config.js
+const fs = require("fs");
+const path = require("path");
+
+function readConfig(filename) {
+  const config = path.dirname(__dirname) + `/config/${filename}`;
+  let photosUrl = null;
+
+  fs.readFile(`${config}`, "utf8", (err, data) => {
+    if (err) {
+      throw new Error(`Could not read the file ${config}`);
+    }
+    photosUrl = data.trim();
+  });
+
+  return photosUrl;
+}
+
+console.log(readConfig("photos.txt"));
+```
+
+The idea of this function is that it will try to read the contents of a file (the name of the file is the received parameter) placed in the `config/` directory and return its contents.
+
+Now, this function **has a BIG issue**. If we execute it with `node` this is what we'll get:
+
+```bash
+$ node read-config.js
+
+null
+```
+
+The problem is that `fs.readFile` is an **asynchronous function**, which means that the program execution won't wait for that function to execute. It will continue to programs flow.
+
+So, when `fs.readFile` finishes reading the `config/photos.txt` file, `console.log`will already have been executed.
+
+## How to work with asynchronous functions
+
+To fix the previous error, we have to change the `readConfig` function so it uses callbacks to print out the contents of the `photos.txt` file:
+
+```javascript {10,12}
+// src/read-config-callback.js
+const fs = require("fs");
+const path = require("path");
+
+function readConfig(filename, callback, error) {
+  const config = path.dirname(__dirname) + `/config/${filename}`;
+
+  fs.readFile(`${config}`, "utf8", (err, data) => {
+    if (err) {
+      error(err);
+    }
+    callback(data.trim());
+  });
+}
+
+readConfig(
+  "photos.txt",
+  (contents) => {
+    console.log(`The config contents are "${contents}"`);
+    // Execute additoinal callbacks here
+  },
+  (err) => {
+    console.error(`The configuration file could not be read:`, err);
+  }
+);
+```
+
+> Notice how the function now executes the passed callbacks
+
+To work with `fs.readFile` we had to make 2 big changes:
+
+- Change the `readConfig` function so it receives **2 new parameters**:
+  - A function to execute **after** the file has been read
+  - A function to execute **if** an error occurs.
+- Execute the `readConfig` passing **2 functions as parameters**
+
+And now, the `readConfig` function won't return a string with the contents of the `photos.txt` file. Instead, it will execute functions on success or error.
+
+Also, here we start to see the famous _Callback Hell_ issue, where we have to pass callback function all over the place.
+
+> There is actually a site called [Callback Hell](http://callbackhell.com) that explains this problem.
+
+And if we execute the script, we get something like:
+
+```bash
+$ node src/read-config-callback.js
+
+The config contents are "https://jsonplaceholder.typicode.com/photos"
+```
 
 ## Creating a basic promise
 

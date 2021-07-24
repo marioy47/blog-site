@@ -13,9 +13,14 @@ When you work with asynchronous code you have delve into the world of callbacks 
 
 In my case, I never had any issue understanding callbacks. They are ugly and produce the famous _callback hell_ where you can end up with functions that call functions that call functions that call... You guess it, functions. But they are easy to understand.
 
-With promises I had a little more trouble since the syntax made me think that code that once was asynchronous, it magically became synchronous. And that's not the case. It's still asynchronous, but a little more _flatter_.
+With promises I had a little more trouble since the syntax made me think that code that once was asynchronous, it magically became synchronous. And that's not the case. It's still asynchronous, but a little more _flatter_. 
+
+> Just remember that **to chain promises, you have to _return_ a promise at the end of each `then`**.
+
 
 When _async await_ came into de picture, all became more clear once I understood that **async code need to be encapsulated in it's own _async_ function**
+
+> That's why before NodeJS 16 you had to use IIFE functions. But more on that latter.
 
 So here there are a couple of tricks that I've learned to work with asynchronous code and most of all, how to work with _Promises_ without losing my mind.
 
@@ -33,6 +38,7 @@ If you want to follow along, you can start by setting up an example project:
 mkdir javascript-async-await-tips
 cd $_
 npm init -y
+npm install --save-dev eslint prettier
 npx eslint --init # Answer the questions
 npm install --save-dev eslint-plugin-prettier eslint-config-prettier
 ```
@@ -67,7 +73,26 @@ And in `package.json` create a `lint` command to make things easier to fix.
 }
 ```
 
-I talked about the JavaScript function `fetch` as a good example of an async function, but I want to work node and NodeJS, and NodeJS does not support the fetch function. An excellent replacement for fetch, that works both on the browser as in the server, is [axios](https://www.npmjs.com/package/axios) package to make requests, since `fetch` is only available in the browser.
+Finally, create the `.editorconfig` file so your editor behaves as similar as prettier wants.
+
+```ini
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+end_of_line = lf
+# editorconfig-tools is unable to ignore longs strings or urls
+max_line_length = off
+
+[*.md]
+indent_size = false
+```
+
+I talked about the JavaScript function `fetch` as a good example of an async function, but I want to work in the terminal with the `node` command, and NodeJS does not support the fetch function. An excellent replacement for fetch, that works both on the browser as in the server, is [axios](https://www.npmjs.com/package/axios) package to make requests, since `fetch` is only available in the browser.
 
 ```bash
 npm install axios --save

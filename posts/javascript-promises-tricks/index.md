@@ -1,11 +1,11 @@
 ---
-title: Javascript Promises Tips and Tricks
+title: Javascript Promises, Async and Await tips and tricks
 cover: ferenc-almasi-ayjnmG4oUX4-unsplash.jpg
 date: 2021-06-11
 tags: javascript, promises, async, await, iifi
 ---
 
-# Javascript Promises Tips and Tricks
+# Javascript Promises, Async and Await tips and tricks
 
 So you hear about all the time about JavaScipt's [event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ) and how the it's an event driven single threaded programming language. But you don't fully grasp the implications of that statement until you start working with async code like calling an external API with the `fetch` function.
 

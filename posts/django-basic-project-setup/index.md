@@ -72,7 +72,19 @@ If you are more of a fan of installing packages with `pip` you could do:
 pip3 install pipenv
 ```
 
-And if you are on Windows or Linux, you can go to the [documentation site](https://pipenv.pypa.io/en/latest/install/#installing-pipenv) for additional installing options.
+If you are in Linux or Windows with WSL, then:
+
+```bash
+sudo apt-get update
+sudo apt-get install pip
+pip install --user pipenv
+export PATH=$PATH:~/.local/bin # Add this to your .bashrc or .zshrc files
+pipenv --version # To make sure it got installed
+```
+
+Notice that the method installs `pipenv` in your home directory in `~/.local/bin` sub-directory, and that's why you have to _export_ your `PATH` variable.
+
+Additional information on how to install Pipenv can be found int the [documentation site](https://pipenv.pypa.io/en/latest/install/#installing-pipenv).
 
 ## Install PostgreSQL
 
@@ -109,7 +121,7 @@ psql (PostgreSQL) 13.1
 
 The important part is that `pip3` and `python3` refer to the same version.
 
-## Create  virtual environment
+## Create virtual environment
 
 Now that we have Python, Pip and Pipenv installed, we need to create a folder for a project, and then a _virtual environment_ in that folder.
 
@@ -192,7 +204,7 @@ This will:
 
 Notice the `.` at the end. This prevent the creation of a new sub-directory.
 
-> I like to name my projects `config` since there is where most of the configuration files will be. A lot of people use the sufix `_project`, like `crm_project` or `test_project`,  instead.
+> I like to name my projects `config` since there is where most of the configuration files will be. A lot of people use the sufix `_project`, like `crm_project` or `test_project`, instead.
 
 If you visit `http://localhost:8000` you'll get the start Django start screen.
 
@@ -240,7 +252,7 @@ SECRET_KEY = '**************************************************'
 DEBUG=True # Not required but good to have it here
 ```
 
-> Obviously change the '****.***' for the actual key
+> Obviously change the '\***_._**' for the actual key
 
 Now, stop the development server, **exit the virtual environment and re-enter it** so the `.env` file gets read.
 
@@ -257,7 +269,7 @@ Visit `http://localhost:8080` and verify that you still get a placeholder page.
 
 ## Using pre commit hooks
 
-I love making my development environments take care of all the details a project requires. Tasks like linting and formatting should be done for me before I commit to GitHub. That's why I use [pre-commit](https://pre-commit.com/) in Python projects. 
+I love making my development environments take care of all the details a project requires. Tasks like linting and formatting should be done for me before I commit to GitHub. That's why I use [pre-commit](https://pre-commit.com/) in Python projects.
 
 > For JavaScript I use [husky](https://www.npmjs.com/package/husky)
 
@@ -410,7 +422,6 @@ To setup GitHub actions you need only to create a `.yaml` workflow file in the `
 
 > In [https://docs.github.com/en/actions](https://docs.github.com/en/actions), under the section [building and testing python](https://docs.github.com/en/actions/guides/building-and-testing-python) you can get to the [example python workflow file](https://docs.github.com/en/actions/guides/building-and-testing-python#starting-with-the-python-workflow-template) which is a good starting point for a vanilla python project. The problem with that file is that assumes that you are using `pip` and not `pipenv`.
 
-
 ```yaml {1,11}
 # .github/workflows/django-tests.yaml
 name: Execute django tests
@@ -419,41 +430,40 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.9]
 
     steps:
-    - name: Checkout the projects code
-      uses: actions/checkout@v2
+      - name: Checkout the projects code
+        uses: actions/checkout@v2
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install pipenv
-      run: |
-        python -m pip install --upgrade pipenv wheel
+      - name: Install pipenv
+        run: |
+          python -m pip install --upgrade pipenv wheel
 
-    - id: cache-pipenv
-      uses: actions/cache@v1
-      with:
-        path: ~/.local/share/virtualenvs/
-        key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+      - id: cache-pipenv
+        uses: actions/cache@v1
+        with:
+          path: ~/.local/share/virtualenvs/
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
 
-    - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
-      run: |
-        pipenv install --deploy --dev
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: |
+          pipenv install --deploy --dev
 
-    - name: Execute the tests
-      run: |
-        pipenv run python manage.py test
-      env:
-        SECRET_KEY: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      - name: Execute the tests
+        run: |
+          pipenv run python manage.py test
+        env:
+          SECRET_KEY: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
 > In this example use `xxxxxx...` for the `SECRET_KEY` actually. We need a non empty secret but just for testing.
@@ -523,7 +533,7 @@ psql -l
 
 Let me explain what each of those commands do:
 
-- Install the Python PostgreSQL connector [psycopg](https://www.psycopg.org/) 
+- Install the Python PostgreSQL connector [psycopg](https://www.psycopg.org/)
 - Create a new database in PostgreSQL
 - List the databases to verify that the new one got created
 

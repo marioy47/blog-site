@@ -58,7 +58,7 @@ This will ask a series of questions and at the end it will create a `.eslintrc.j
 
 And to make `eslint` work with `prettier` you have to edit the `.eslintrc.json` file and add a new set of rules in the `extends` section.
 
-```json {9,22}
+```json {9,19-21}
 {
   "env": {
     "browser": true,

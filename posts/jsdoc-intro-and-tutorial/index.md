@@ -28,7 +28,7 @@ To understand what _training your IDE_ means, take for instance the following co
 
 ![JavaScript function with no JSDoc documentation](no-documentation-hover.png)
 
- _Hovering over a JavaScript function with no JSDoc documentation_
+_Hovering over a JavaScript function with no JSDoc documentation_
 
 Notice how when I hover the mouse over the function `testFunction`, the IDE (in this case NeoVim) only tells you the obvious. That there are 3 parameters and that the last one is optional.
 
@@ -36,7 +36,7 @@ Compare that with the following:
 
 ![JavaScript function](documented-func-hover.png)
 
- _Hovering over a JavaScript function that has JSDoc documentation_
+_Hovering over a JavaScript function that has JSDoc documentation_
 
 As you can see, when the function is documented I get the information on the function, the number **and type** of parameters and the return value of the function by just hovering it. It even tells you the components of the third parameter which is an object.
 
@@ -185,6 +185,20 @@ const returnAString = () => {
 }
 ```
 
+But when you are returning a dictionary things are not so simple:
+
+```javascript
+/**
+ * This returns a dictionary with a `table` _key_ and a `database` _key_.
+ *
+ * @param {Array} params - An array of 2 elements
+ * @return {{table: string, database: string}} - The database and table to query
+ */
+function parseTableAndDb = (params) =>  {
+  return { table: params[0], database: params[1] };
+}
+```
+
 It's a good practice to explain what the return function means in term of it's inputs values.
 
 ## Documenting Exceptions
@@ -204,7 +218,7 @@ If you are, then you really need to specify which exceptions you throw in your c
  *
  * @returns {void}
  */
-const throwErrorOnInput = (input) => {
+const throwErrorOnInput = input => {
   if (input) {
     throw new Error(`This is an Error`)
   }
@@ -340,7 +354,7 @@ This not only makes _VS Code_ type check your code from your JSDoc comments, but
 
 ## Generating API documentation
 
-OK, we've seen how to document functions, variables, classes and objects so our IDE understands our code better. But we haven't created API documentation to publish in a website. Well, that's what the [`jsdoc`](https://jsdoc.app/about-commandline.html) command is for. 
+OK, we've seen how to document functions, variables, classes and objects so our IDE understands our code better. But we haven't created API documentation to publish in a website. Well, that's what the [`jsdoc`](https://jsdoc.app/about-commandline.html) command is for.
 
 ```bash
 jsdoc -u path/to/tutorials -c jsdoc-config.json -d path/to/destination path/to/sourcode
@@ -387,7 +401,7 @@ Now, don't worry about the "tutorial" part. I'll explain that very soon.
 In the previous section, we saw how to use the `jsdoc` command with just 3 parammeters:
 
 - Where the source code is
-- Where to output the documentation 
+- Where to output the documentation
 - Where the tutorial files where storeed
 
 The fact is that there are a ton of configuration options to specify the supported file extensions, which files to exclude, information logging, etc. You can see the complete set of parammeters [here](https://jsdoc.app/about-commandline.html)

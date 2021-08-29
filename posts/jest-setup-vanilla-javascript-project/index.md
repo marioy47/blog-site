@@ -349,7 +349,7 @@ As you can see, the report says that we're testing all (100%) of the functions b
 
 So, lest add a new test to cover the exception lines in the `filterByAge` function:
 
-```javascript {18,21}
+```javascript {18-21}
 // __tests__/filter-by-age.spec.js
 import FilterByAge from "../src/filter-by-age";
 
@@ -380,6 +380,10 @@ And if we generate the _coverage_ report again, we get the following:
 
 100% coverage... We're done here. Or are we?
 
+## Configure test coverage
+
+The first to notice is that there is a new `coverage/` direcotry with a bunch of files:
+
 ```bash
 coverage
 ├── clover.xml
@@ -399,11 +403,9 @@ coverage
 1 directory, 12 files
 ```
 
-We should add that to `.gitignore`
+We should add that folder to `.gitignore`
 
-## Configure test coverage
-
-Test coverage is only generated if we pass the `--coverage` flag to jest. But we can change that behaviour. We can can add some lines to the `package.json` to order `jest` to always show the coverage.
+Additionally, the coverage report is only generated if we pass the `--coverage` flag to jest. But we can change that behaviour. We can can add some lines to the `package.json` to order `jest` to always show the coverage.
 
 ```json {21-27}
 {
@@ -441,6 +443,8 @@ Here we're telling jest to always show the test coverage and to do it in text (w
 The HTML format can be viewed in the `coverage/` filder by openinig the `index.html` file with a browser:
 
 ![Opening the jest html coverage report using a browser](test-coverage-html.png)
+
+And with that, we're done!
 
 ## References
 

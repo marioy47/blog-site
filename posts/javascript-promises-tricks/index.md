@@ -92,15 +92,19 @@ max_line_length = off
 indent_size = false
 ```
 
-I talked about the JavaScript function `fetch` as a good example of an async function, but I want to work in the terminal with the `node` command, and NodeJS does not support the fetch function. An excellent replacement for fetch, that works both on the browser as in the server, is [axios](https://www.npmjs.com/package/axios) package to make requests, since `fetch` is only available in the browser.
+### Superagent
+
+I've talked about how the JavaScript function `fetch` as a good example of an async function, but I want to work in the terminal with the `node` command, and NodeJS does not support the fetch function. An excellent replacement for fetch, that works both on the browser as in the server, is [superagent](https://www.npmjs.com/package/superagent) package to make requests, since `fetch` is only available in the browser. Additionally, it work both using _callbacks_ and with _promises_, so it's perfect for this article.
+
+To install it, issue the now too familiar `npm install` command:
 
 ```bash
-npm install axios --save
+npm install superagent --save
 ```
 
-Cool, we're ready to start creating code examples.
+Cool, as far as setup goes, we're done. Let's code.
 
-## The problem with asynchronous functions
+## The "problem" with asynchronous functions
 
 Let's start explaining how asynchronous functions work and some of it's issues. And for that let's create a simple **broken** function that "reads" the contents of a file.
 
@@ -136,9 +140,11 @@ $ node read-config.js
 null
 ```
 
-The problem is that `fs.readFile` is an **asynchronous function**, which means that the program execution won't wait for that function to execute. It will continue to programs flow.
+The "problem" is that `fs.readFile` is an **asynchronous function**, which means that the program execution won't wait for that function to execute. It will continue to programs flow.
 
 So, when `fs.readFile` finishes reading the `config/photos.txt` file, `console.log`will already have been executed.
+
+Now, to be fair, this is not a problem, but a great advantage of the language because some tasks, like reading a file, won't stop the program flow. But it offers a great challenge for developers.
 
 ## How to work with asynchronous functions
 
@@ -162,11 +168,11 @@ function readConfig(filename, callback, error) {
 
 readConfig(
   "photos.txt",
-  (contents) => {
+  function (contents) {
     console.log(`The config contents are "${contents}"`);
     // Execute additoinal callbacks here
   },
-  (err) => {
+  function (err) {
     console.error(`The configuration file could not be read:`, err);
   }
 );

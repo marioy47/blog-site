@@ -37,7 +37,7 @@ For this example we're going to test a very simple WordPress plugin. And the bea
 
 So create an empty directory...
 
-```
+```bash
 mkdir wordpress-tdd-plugin
 cd $_
 git init
@@ -121,9 +121,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
         && echo "*** composer command installed"
 ```
 
-This will create a "Virtual Machine" (Is not a virtual machine but it help to think of it as one) based in the [official wordpress image](https://hub.docker.com/_/wordpress/) with 3 modifications:
+This will create a "Virtual Machine" (Is not a virtual machine but it helps to think of it as one) based in the [official Docker WordPress image](https://hub.docker.com/_/wordpress/) with 3 modifications:
 
-- First we add some packages to the underlying OS: `unzip`, `curl`, `sudo`, `subversion`, `mysql` (mariadb-client)
+- First we add some packages to the underlying OS: `unzip`, `curl`, `sudo`, `subversion`, `mariadb-client`
 - Then we install `wp-cli` and create a script that executes it as the `www-data` user and is aware of our WordPress installation path
 - Finally we install `composer` and create a script that runs it as the `www-data` and is aware of the path of our plug-in
 
@@ -134,6 +134,8 @@ docker build -t wp-tdd-image .
 docker images # to verify it's creation
 ```
 
+> Note that I'm building the image with the `wp-tdd-image` _tag_.
+
 ![First docker image creation](first-docker-image.png)
 
 This creates the Docker Image, but it doesn't run it. For that we need to execute it:
@@ -141,8 +143,6 @@ This creates the Docker Image, but it doesn't run it. For that we need to execut
 ```bash
 docker run --rm -p 8080:80 wp-tdd-image
 ```
-
-> Note that I'm building the image with the `wp-tdd-image` _tag_.
 
 And to verify that is actually running, visit http://localhost:8080. **Do not run the installer. It will fail since we still haven't provided a database**.
 
@@ -211,8 +211,8 @@ volumes:
 Let's explain a little this `docker-compose.yml`. First the part of the MySQL image:
 
 - I'm using the `mariadb` image since is more lightweight that MySQL and is binary compatible.
-- The name of the database **host** will be `tdd-plugin-db`
-- I'm using "wordpress" as the user, db name and password for the database
+- The name of the **database host** will be `tdd-plugin-db`
+- I'm using `wordpress` as the username, db name and password
 - The password for the MySQL root user is `root`
 - I'm persisting the MySQL _datafiles_ so the remain the same between containers
 
@@ -224,7 +224,7 @@ Now, for the WordPress image, I'm telling `docker-compose` to use the `Dockerfil
 - **Share the local directory** with the container with the path `/var/www/html/wp-content/plugins/wordpress-tdd-plugin`
 - Run in port `8080`
 
-Finally, lets start **install** WordPress by starting this environment a visiting `http://localhost:8080` to get the WordPress install wizard
+Finally, let's **install** WordPress by starting this environment a visiting `http://localhost:8080` to get the WordPress install wizard
 
 ```bash
 docker-compose up
@@ -256,22 +256,23 @@ docker-compose exec wp wp-cli scaffold plugin-tests wordpress-tdd-plugin
 
 > `wordpres-tdd-plugin` is the name of our current plug-in
 
+This command is supposed to _scaffold_, or initialize, the testing files in your plug-in directory. The `docker-compose exec wp` part of the command is to have it be executed inside the current running container.
+
 ![Scaffold fails](scaffold-plugin-tests-fail.png)
 
 It fails... The reason being that the Docker container is trying to execute the command as the `www-data` user and your local machine either does not have that user, or that users exists but doesn't have write access to your directory.
 
 To solve this issue, we have to do our **first trick**:
 
-- Create the `bin/` and `tests/` directory with global write and execute permissions
+- Create the `bin/` and `tests/` directory inside your plug-in directory, with global write and execute permissions
 - Create the `.tavis.yml`, `.phpcs.xml.dist` and `phpunit.xml.dist` files with global write permissions.
 
 ![Creating scaffold placeholder files](scaffold-plugin-success.png)
 
-And we should now have the following structure:
+This time it works! And now we should have the following structure:
 
 ```bash
 $ tree .
-tree .
 .
 ├── Dockerfile
 ├── bin
@@ -286,9 +287,11 @@ tree .
 2 directories, 7 files
 ```
 
-### What did we do?
+We still don't have tests, or even WordPress mock functions. But at least we have the means to create them.
 
-Before we continue, lets explain what the `docker-compose exec wp wp-cli scaffold plugin-tests wordpress-tdd-plugin` command does:
+So, What did we do????
+
+What the `docker-compose exec wp wp-cli scaffold plugin-tests wordpress-tdd-plugin` command does is:
 
 - `docker-compose exec wp` tells docker to execute what comes next **inside the already running** `wp` docker container
 - `wp-cli scaffold-tests wordpress-tdd-plugin` instructs `wp-cli` to create the testing files for the plugin `wordpress-tdd-plugin` plugin
@@ -356,24 +359,29 @@ In the last step we added the `install-wp-tests` command to our container. Now w
 docker-compose exec wp install-wp-tests 
 ```
 
-What this does is to create a "mock" WordPress inside the container in the path `/tmp/wordpress`. This will enable us to make tests without the need to mock `get_option` and `add_shortcode` ourselves.
+What this does is to create a "mock" WordPress inside the container in the path `/tmp/wordpress`. This will enable us to make tests without the need to mock `get_option` and `add_shortcode`, or any other WordPress function, ourselves.
 
-Then we need to install PHPUnit in our plugin directory **but using the same trick of creating empty files**:
+Then we need to install PHPUnit in our plug-in directory **but using the same trick of creating empty files**:
 
 ```bash
-touch composer.json composer.log
+touch composer.json composer.lock
 mkdir vendor
 chmod 777 vendor composer.json composer.lock
 docker-compose exec wp composer require phpunit/phpunit=^7
 docker-compose exec wp install-wp-tests
 ```
 
-Notice that we are unsing PHPUnit version **7** since that is the current version that WordPress supports.
+- The first 2 commands creates some empty files and an empty directory
+- Then, with `chmod` we make those files and directory writeable by **anyone**
+- Next we install the PHPUnit package using the `composer` command inside our container
+- Finally we create the Mock (testing) WordPress environment
+
+Notice that we are using PHPUnit version **7** since that is the current version that WordPress supports.
 
 
 ## Executing the `sample-tests.php` 
 
-We're almost done with the setup. We just need to add a new `script` in our `composer.json` file so we can run our tests easily:
+We're almost done with the setup. We just need to add a new `scripts` in our `composer.json` file so we can run our tests easily:
 
 ```json {5-7}
 {
@@ -388,7 +396,7 @@ We're almost done with the setup. We just need to add a new `script` in our `com
 
 And edit the `phpunit.xml.dist` file, enabling the sample test:
 
-```xml {11,13}
+```xml {13}
 <?xml version="1.0"?>
 <phpunit
     bootstrap="tests/bootstrap.php"

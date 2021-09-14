@@ -25,7 +25,7 @@ Well, you are in the right place, because here I'm going to show you how to conf
 
 Even though you the final environment is pretty portable, you still need to install a couple of pieces of software, being the more obvious [Docker](https://docker.com)
 
-Optionally, but strongly recommended, is that you install [`composer`](http://getcomposer.org) in your development machine. This is optional since we are going to install `composer` in our _Docker_ container, but having a local instance will speed up your development process.
+Optionally, you can install [`composer`](http://getcomposer.org) in your development machine. This is optional since we are going to install `composer` in our _Docker_ container, but having a local instance will speed up your development process. Specially if you want to execute `phpcs` or `phpcbf` (wich we won't touch in this article) against your code.
 
 Before we continue, make sure you have access to the `docker-compose` command. Unless you have a very old version of _Docker_, you must have access to it.
 

@@ -483,3 +483,5 @@ We're done for this article. But if you want to dig deeper into WordPress testin
 - [WP-CLI documentation for scaffolding test files](https://developer.wordpress.org/cli/commands/scaffold/plugin-tests/)
 - [WordPress official documentation on Plugin Integration](https://make.wordpress.org/cli/handbook/misc/plugin-unit-tests/)
 - [Unit Testing Wordpress Plugins with PHPUnit](https://wpmudev.com/blog/unit-testing-wordpress-plugins-phpunit/). It doesn't focus on the setup but the testing itself
+
+And if you want to take a look at the generated files for this article, you can visit the [GitHub repo](https://github.com/marioy47/wordpress-tdd-plugin)

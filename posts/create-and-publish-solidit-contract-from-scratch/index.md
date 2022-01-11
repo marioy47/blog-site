@@ -11,7 +11,7 @@ For the last year I've been really interested in Blockchain technologies and spe
 
 So in this article I'm going to create a very simple contract assuming only that I have installed node and Visual Studio Code. No extensions and no global `npm packages` are needed to follow along.
 
-In this article, I **will not** be explaining what Solidity and blockchain are, or what smart contracts is. Those subjects for another article... Maybe ü§∑.
+In this article, I **will not** be explaining what Solidity and blockchain are, or what smart contracts is. Those subjects for another article... Maybe 🤷‍♂️
 
 ## TOC
 
@@ -109,16 +109,16 @@ This will create the project structure and some initial files you'll need for th
 
 The `tree`¬† command should return something like this:
 
-```markdown
+```bash
 .
-‚îú‚îÄ‚îÄ contracts
-‚îÇ¬†¬† ‚îî‚îÄ‚îÄ Migrations.sol
-‚îú‚îÄ‚îÄ migrations
-‚îÇ¬†¬† ‚îî‚îÄ‚îÄ 1_initial_migration.js
-‚îú‚îÄ‚îÄ package-lock.json
-‚îú‚îÄ‚îÄ package.json
-‚îú‚îÄ‚îÄ test
-‚îî‚îÄ‚îÄ truffle-config.js
+├── contracts
+│   └── Migrations.sol
+├── migrations
+│   └── 1_initial_migration.js
+├── package-lock.json
+├── package.json
+├── test
+└── truffle-config.js
 
 3 directories, 5 files
 ```
@@ -453,12 +453,8 @@ truffle(develop)> contractValue.toString();
 truffle(develop)>
 ```
 
-## Deploy you contract to a public testnet
-
 ## Extras
 
 - Truffle tutorial for beginers https://www.youtube.com/watch?v=62f757RVEvU
-
-- Petchop tutorial https://trufflesuite.com/guides/pet-shop/index.html
 
 - An excellent playlist which is more `npm` friendly: https://www.youtube.com/playlist?list=PLw-9a9yL-pt0tD7ZBci5ybHy-T2XuHBtV

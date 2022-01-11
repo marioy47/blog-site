@@ -1,9 +1,11 @@
 ---
 title: Creating and Publishing a Solidity Contract from Scratch
-date: 2021-01-10
+date: 2022-01-10
 cover: solidity-logo.png
 tags: solidity, smart contracts, ethereum, smart chain, binance, truffle, ganache
 ---
+
+# Creating and Publishing a Solidity Contract from Scratch
 
 For the last year I've been really interested in Blockchain technologies and specially the creation of _Solidity Contracts_. Unfortunately most of the tutorials that you find on the Internet assume that you don't want publish contract on a blockchain, that you don't want to use a local blockchain or that you have a dev environment already in place.
 
@@ -181,7 +183,7 @@ modules.exports = {
     },
   },
   // ...
-};
+}
 ```
 
 Now we can do the compiling with:
@@ -222,17 +224,17 @@ The test we're going to create for our contract is very simple. We're going to s
 ```javascript
 // test/SimpleStorage.js
 
-const SimpleStorage = artifacts.require("SimpleStorage.sol");
+const SimpleStorage = artifacts.require("SimpleStorage.sol")
 
 contract("SimpleStorage", function () {
   it("should return the stored data", async function () {
-    const expected = 10;
-    const storage = await SimpleStorage.new();
-    await storage.updateData(expected);
-    const actual = await storage.readData();
-    assert(actual.toString() === expected.toString());
-  });
-});
+    const expected = 10
+    const storage = await SimpleStorage.new()
+    await storage.updateData(expected)
+    const actual = await storage.readData()
+    assert(actual.toString() === expected.toString())
+  })
+})
 ```
 
 Note 1: Numbers on JavaScript are floats, and they are much smaller than regular numbers on Smart Contracts. That's why on your tests the results of contracts are returned as [_BigNum_](https://github.com/indutny/bn.js/) or `bn.js` objects. So, on your tests, you have to use the `.toString()`¬†function, and make comparisons against strings for your asserts to work.
@@ -272,17 +274,17 @@ By default Truffle gives you the `1_initial_migration.js`¬† file, which you s
 ```javascript
 // migrations/2_simple_storage.js
 
-const SimpleStorage = artifacts.require("SimpleStorage.sol");
+const SimpleStorage = artifacts.require("SimpleStorage.sol")
 
 module.exports = (deployer) => {
-  deployer.deploy(SimpleStorage);
-};
+  deployer.deploy(SimpleStorage)
+}
 ```
 
 As a side note, if the `SimpleStorage`¬†object required arguments on the constructor, you could have added it in the _deployer_ line like:
 
 ```javascript
-deployer.deploy(SimpleStorage, "fist arg", "second arg");
+deployer.deploy(SimpleStorage, "fist arg", "second arg")
 ```
 
 By default, migration scripts are pretty simple. That's because we're creating just one contract that does not depend on other contracts or libraries. If where where to create complex constructors for our contracts we would need to use promises and async/await to execute them.
@@ -452,6 +454,7 @@ truffle(develop)>
 ```
 
 ## Deploy you contract to a public testnet
+
 ## Extras
 
 - Truffle tutorial for beginers https://www.youtube.com/watch?v=62f757RVEvU
@@ -459,4 +462,3 @@ truffle(develop)>
 - Petchop tutorial https://trufflesuite.com/guides/pet-shop/index.html
 
 - An excellent playlist which is more `npm` friendly: https://www.youtube.com/playlist?list=PLw-9a9yL-pt0tD7ZBci5ybHy-T2XuHBtV
-

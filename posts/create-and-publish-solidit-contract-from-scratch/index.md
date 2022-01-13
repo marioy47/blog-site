@@ -11,7 +11,7 @@ For the last year I've been really interested in Blockchain technologies and spe
 
 So in this article I'm going to create a very simple contract assuming only that I have installed node and Visual Studio Code. No extensions and no global `npm packages` are needed to follow along.
 
-In this article, I **will not** be explaining what Solidity and blockchain are, or what smart contracts is. Those subjects for another article... Maybe 🤷‍♂️
+In this article, I **will not** be explaining what Solidity and blockchain are, or what smart contracts is. Those subjects for another article... Maybe 🤷.
 
 ## TOC
 
@@ -23,10 +23,10 @@ In this article, I **will not** be explaining what Solidity and blockchain are, 
 
 Before we begin, lets start by getting our editor ready for Solidity development. For [Visual Studio Code](https://code.visualstudio.com) I recommend 2 extensions:
 
-- Solidity by Juan Blanco
-- DeFI by Eric Lau
+- [Solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) by Juan Blanco
+- [DeFi](https://marketplace.visualstudio.com/items?itemName=ericglau.defi-ls) by Eric Lau
 
-The [Solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) Visual Studio Code extension by [Juan Blanco](https://github.com/juanfranblanco) is a must since it offers:
+The Solidity Visual Studio Code extension by [Juan Blanco](https://github.com/juanfranblancol) is a must since it offers:
 
 - Syntax Highlighting
 - Code completion
@@ -34,11 +34,13 @@ The [Solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.so
 - Supports Prettier reformatting
 - Allows you to run Mythx for security analysis
 
-The [DeFi](https://marketplace.visualstudio.com/items?itemName=ericglau.defi-ls) extension by Eric Lau is a nice addition if you are thinking or creating real life contracts that are actually going to be on a real blockchain:
+The DeFi extension by Eric Lau is a nice addition if you are thinking or creating real life contracts that are actually going to be on a real blockchain. Some of the reasons are:
 
-- Code snippets for DeFi protocols
-- Code completion for token addresses
-- Gives you realtime data when you hover over a token address
+- Gives you code snippets for specific DeFi protocols
+- Gives you code completion for token addresses
+- Gives you real-time data when you hover over a token address
+
+To install this extension directly from the terminal you just have to issue:
 
 ```bash
 code --install-extension JuanBlanco.solidity
@@ -49,11 +51,11 @@ If you are using [Vim](https://www.vim.org) or [NeoVim](https://neovim.io) then 
 
 ## Truffle Intro
 
-You can think of _Smart Contracts_ as back end software that need to be deployed in an Application Container or _Virtual Machine_. Being the _Ethereum Virtual Machine_ the most used one.
+You can think of _Smart Contracts_ as back end applications that need to be deployed in an Application Container or _Virtual Machine_. There are multiple virtual machines, but by far the _Ethereum Virtual Machine_ the most used one. It's so popular that is used in different networks like the [Binance Chain](https://docs.binance.org/) or the [Polygon](https://polygon.technology/get-started/) chain.
 
-Blockchain contracts can be written in multiple programming languages, being Solidity and Vyper the most used ones. Solidity resembles C++ while Vyper resembles Python.
+Additionally the _Ethereum Virtual Machine_ "compatible" contracts can be written in multiple programming languages, being Solidity and Vyper the most used ones. Solidity resembles C++ while Vyper resembles Python.
 
-But before deploying a Smart Contract to a blockchain, you need to test it, migrate it and compile it. That's where a _Smart Contract Framework_ comes to play. They include all the tools to develop, compile, test, migrate and deploy Smart Contracts.
+But before deploying a Smart Contract to a blockchain, you need to test it, migrate it and compile it. That's where a Smart Contract _Framework_ comes into play. They include all the tools to develop, compile, test, migrate and deploy Smart Contracts on a blockchain.
 
 In the case of Ethereum Virtual Machine contracts, there are 3 very famous frameworks:
 
@@ -65,16 +67,17 @@ Of the 3, [Truffle](https://trufflesuite.com/) is the most popular framework for
 
 Some of the properties of Truffle are:
 
+- All the tooling is in JavaScript
 - Supports compilation, deployment and testing of smart contracts
-- For deployment uses a **local** blockchain called _Ganashe_
-- For testing it uses the [Mocha](https://mocha.org) testing framework
+- It provides a **local** blockchain called _Ganache_
+- For testing it uses the [Mocha](https://mocha.org) framework
 - It requires Node already installed
 
-Even tough Truffle is an [npm pacakge](https://www.npmjs.com/package/truffle) you still write your contracts in Solidity (or Vyper) but the testing, configuration and deployment are done using JavaScript archives.
+Even tough Truffle is an [npm pacakge](https://www.npmjs.com/package/truffle) you still write your contracts in Solidity or Vyper but the testing, configuration and deployment are done using JavaScript.
 
 ## Setup a truffle project
 
-Most of the Truffle tutorials you can find on the net, ask you to install truffle globally with `npm -g truffle`, but I really don't like that option since difference in versions can come into play which is not good if you are working on a team and not by yourself. So that's why I use `npx`¬† and install it locally:
+Most of the Truffle tutorials you can find on the net, ask you to install truffle globally with `npm -g truffle`, but I really don't like that option since difference in versions can come into play, which is not good if you are working on a team and not by yourself. So that's why I use `npx` and install it locally:
 
 ```bash
 mkdir truffle-test-project
@@ -82,7 +85,6 @@ cd $_
 npm init -y
 npm install --save-dev truffle
 npm audit fix
-npx truffle version
 ```
 
 The `npm audit fix` is to remove some of the warnings but not all of them.
@@ -102,14 +104,14 @@ Up to this point you have a _Node Project_ in place. To actually create a smart 
 
 ```bash
 npx truffle init
-tree -I node_modules # To get a list of files
 ```
 
 This will create the project structure and some initial files you'll need for the development of your smart contract.
 
-The `tree`¬† command should return something like this:
+The `tree` command should return something like this:
 
 ```bash
+$ tree -I node_modules # To get a list of files
 .
 ├── contracts
 │   └── Migrations.sol
@@ -127,9 +129,9 @@ We're done as far a setup goes. Now we have to create a test contract.
 
 ## Creating the first contract
 
-One of the things the define Truffle is that the project structure is always the same. This means that our contracts will be stored in the `contracts/`¬†directory and the should have the `.sol`¬†extension.
+One of the things the define Truffle is that the project structure is always the same. This means that our contracts will be stored in the `contracts/` directory and the should have the `.sol` extension.
 
-If you go into that folder, you'll find a `Migrations.sol` contract, which helps with the migrations and is used internally by Truffle. Don't delete it, but don't mind it either.
+If you go into that folder, you'll find a `Migrations.sol` contract, which helps with the migrations and is used internally by Truffle. Don't delete it, but also don't mind it either.
 
 For our contract, we'll be creating the `contracts/SimpleStorage.sol` file with the following contents:
 
@@ -162,7 +164,7 @@ Now that we have our contract created, lets compile it.
 
 ## Compiling with truffle
 
-Actually, compiling Solidity contracts is very easy, just issue `npx truffle compile`, but there is a caveat. By default Truffle will compile your contracts with version of your compiler `0.5.0`. So if you want to use newer features of solidity, you can change this version by editing the `truffle-config.js`¬†file, and on the section `compilers` uncomment and change the version to something more current like `0.8.10`
+Actually, compiling Solidity contracts is very easy, just issue `npx truffle compile`, but there is a caveat. By default Truffle will compile your contracts with version of your compiler `0.5.0`. So if you want to use newer features of solidity, you can change this version by editing the `truffle-config.js` file, and on the section `compilers` uncomment and change the version to something more current like `0.8.10`
 
 ```javascript {7}
 modules.exports = {
@@ -206,7 +208,9 @@ ___________________________
 
 As you can see, Truffle stores the compile contracts in the `build/contracts/` folder as `.jsonc` files. And if you open them you can find the encoded bytecode that will get deployed in the blockchain.
 
-Note: If you have incompatibility of Solidity versions between contracts the compiler will fail
+> Note 1: _Jsonc_ files support comments
+
+> Note 2: If you have incompatibility of Solidity versions between contracts the compiler will fail
 
 ## Testing your contract
 
@@ -214,7 +218,7 @@ This part is not absolutely required, but will help us understand how to interac
 
 Some things to consider about testing Solidity Smart Contracts in Truffle:
 
-- The test are stored in the `test/`¬†folder
+- The test are stored in the `test/` folder
 - They are written in JavaScript
 - They use [Mocha](https://mochajs.org) as the testing library
 - Truffle provides an `artifacts.require()` function that you can use in your JavaScript testing file to import your Solidity contract as a JavaScript Object
@@ -237,9 +241,9 @@ contract("SimpleStorage", function () {
 })
 ```
 
-Note 1: Numbers on JavaScript are floats, and they are much smaller than regular numbers on Smart Contracts. That's why on your tests the results of contracts are returned as [_BigNum_](https://github.com/indutny/bn.js/) or `bn.js` objects. So, on your tests, you have to use the `.toString()`¬†function, and make comparisons against strings for your asserts to work.
+> Note 3: Numbers on JavaScript are floats, and they are much smaller than regular numbers on Smart Contracts. That's why on your tests the results of contracts are returned as [_BigNum_](https://github.com/indutny/bn.js/) or `bn.js` objects. So, on your tests, you have to use the `.toString()` function, and make comparisons against strings for your asserts to work.
 
-Note 2: Mocha recommends you use `function() {}`¬†instead of `()=> {}` in the tests since in some _asserts_ use the `this`¬†object, and assume it to point to the current function.
+> Note 4: Mocha recommends you use `function() {}` instead of `()=> {}` in the tests since in some _asserts_ use the `this` object, and assume it to point to the current function.
 
 To run the test you need to execute `npx truffle test`.
 
@@ -269,7 +273,7 @@ So you can think on the blockchain as a database (this is not 100% accurate, but
 
 With Truffle, you create your migrations the `migrations/` folder and you create them as JavaScript scripts with the convention of create them as numbered files so you migrate them in the right order.
 
-By default Truffle gives you the `1_initial_migration.js`¬† file, which you shouldn't delete, as a managing script for future migrations. To create the migration of our contract we would need to create the `migrations/2_simple_storage_migration.js` file and place the following code:
+By default Truffle gives you the `1_initial_migration.js` file, which you shouldn't delete, as a managing script for future migrations. To create the migration of our contract we would need to create the `migrations/2_simple_storage_migration.js` file and place the following code:
 
 ```javascript
 // migrations/2_simple_storage.js
@@ -281,7 +285,7 @@ module.exports = (deployer) => {
 }
 ```
 
-As a side note, if the `SimpleStorage`¬†object required arguments on the constructor, you could have added it in the _deployer_ line like:
+As a side note, if the `SimpleStorage` object required arguments on the constructor, you could have added it in the _deployer_ line like:
 
 ```javascript
 deployer.deploy(SimpleStorage, "fist arg", "second arg")
@@ -295,7 +299,7 @@ Now lets get deploy that contract on a local blockchain, but for that lest first
 
 When you install _Truffle_ you get a built in version of _Ganache_, which is a local blockchain, that is managed by Truffle. This means that in order to start it up you actually use the `truffle` command.
 
-Note: You can install Ganache by itself in case you want to use the same blockchain for multiple projects
+> Note 5: You can install Ganache by itself in case you want to use the same blockchain for multiple projects
 
 ```bash
 npx truffle develop
@@ -332,7 +336,7 @@ Private Keys:
 
 Mnemonic: check guess glad cruise project oven digital couple truck frost estate chuckle
 
-‚ö†Ô∏è Important ‚ö†Ô∏è : This mnemonic was created for you by Truffle. It is not secure.
+⚠️  Important ⚠️ : This mnemonic was created for you by Truffle. It is not secure.
 Ensure you do not use it on production blockchains, or else you risk losing funds.
 
 truffle(develop)>
@@ -403,7 +407,7 @@ Things to notice:
 
 Unfortunately, interacting with the contract like [Remix](https://remix.ethereum.org) allows you to is not possible. You have to use commands **while still in the Ganashe console**.
 
-The cool thing is that you can use JavaScript to do it. So creating variables with `let`¬†or `const` is possible.
+The cool thing is that you can use JavaScript to do it. So creating variables with `let` or `const` is possible.
 
 ```bash
 truffle(develop)> let myContract;
@@ -453,7 +457,13 @@ truffle(develop)> contractValue.toString();
 truffle(develop)>
 ```
 
+Remember, you are doing this in a local blockchain and not on an real one. That's why the commands take so little to execute and it's so "cheap" to make a transaction.
+
+Doing this on a real blockchain can cost you a lot of money.
+
 ## Extras
+
+There a couple of YouTube videos that show you this process:
 
 - Truffle tutorial for beginers https://www.youtube.com/watch?v=62f757RVEvU
 

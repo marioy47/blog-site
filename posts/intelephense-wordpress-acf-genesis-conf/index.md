@@ -21,7 +21,7 @@ If you are still confused about what what you just read, let me give you a small
 
 ## History
 
-When Microsoft launched its [Visual Studio (Code)](https://code.visualstudio.com) editor. It decided to have the language parsing, linting and formating of code be done by an external server. And that server has to follow an special implementation described in https://langserver.org/.
+When Microsoft launched its [Visual Studio (Code)](https://code.visualstudio.com) editor. It decided to have the language parsing, linting and formating of code be done by an external server. And that server has to follow an special implementation described in <https://langserver.org/>.
 
 The great thing about LSP, is that is an standard and not an implementation. Allowing developers to write their own server and connect them to any editor like [Visual Studio Code](https://code.visualstudio.com) or even [Neovim](https://neovim.io/).
 
@@ -43,10 +43,9 @@ Intelephense, as any good LSP implementation, reads all the `.php` files in your
 
 Then, using the _DocComments_ of the function, class, definition, etc. Creates the pop-up documentation that you see in you editor when you start to type.
 
-![](example-completition.png)
+![Visual Studio Code completition example](example-completition.png)
 
 The problem, is that Intelephense recognizes all of the native PHP keywords, definitions and functions and the functions **in your project**, but external names, or names that come from external libraries are completely unknown to it.
-
 
 The problem to solve is **how do we make Intelephense recognize** WordPress functions, Genesis Framework functions and [ACF](https://www.advancedcustomfields.com/) functions so it auto completes them.
 
@@ -66,11 +65,11 @@ To activate it you have to go to your editor configuration and add `wordpress` t
 
 Just open the configuration in the _Intelephense_ section:
 
-![](vscode-intelephense-confi.png)
+![Intelephense Cofiguration](vscode-intelephense-confi.png)
 
 And **add** `wordpress` to the list.
 
-![](vscode-add-wordpress.png)
+![Assing Wordpress to Intelephense configuration](vscode-add-wordpress.png)
 
 And you have WordPress support. Its that simple.
 
@@ -104,10 +103,13 @@ This one is also pretty easy... Actually easier than WordPress, but it has to be
 
 You just need to require the [paulthewalton/acf-stubs](https://github.com/paulthewalton/acf-stubs) as a `--dev` dependency using composer.
 
-![](install-acf-stubs.png)
+```bash
+composer require --dev paulthewalton/acf-stubs "*"
+```
+
+![Install acf stubs with composer command](install-acf-stubs.png)
 
 As I said before, _Intelephense_, both in VSCode and Neovim will read the files in your `vendor/` directory so you don't need to do anything else.
-
 
 ## Genesis Framework
 
@@ -115,30 +117,35 @@ This one also has to be done per project and not per editor, but requires an add
 
 The first thing you have to do is to install **globally** the `stubs-generator` tool using composer.
 
+```bash
+composer global require php-stubs/generator
+```
+
 > This has to be done only once, not per project.
 
-![](composer-install-stub-generator.png)
 
-With the `stub-generator` command installed, place yourself into the **project directory** where you want to generate the stubs and execute 
+![Install the  generate-stubs command globally](composer-install-stub-generator.png)
+
+With the `generate-stubs` command installed, place yourself into the **project directory** where you want to generate the stubs and execute
 
 ```bash
 generate-stubs /path/to/wordpress/wp-content/themes/genesis --out genesis-stubs.php
 ```
 
-![](generate-stubs.png)
+![Generate-stubs command in action](generate-stubs.png)
 
 In this example I didn't use an absolute path but a relative path since its easier.
 
 > You can use any name, I selected `genesis-stubs.php` in this example.
 
-![](new-file-in-dir.png)
+![Sutubs in action on an IDE](new-file-in-dir.png)
 
 Then, open _Neovim_ or _VSCode_ and test that the Genesis Framework Functions get auto copleted.
 
-![](intelephense-genesis-cover.png)
+![Testing that the IDE recognizes genesis functions](intelephense-genesis-cover.png)
 
 If all works. Add this new file to the `.gitignore` file so it doesn't get committed to git
 
-![](add-stub-to-gitignore.png)
+![Adding the stub file to .gitignore](add-stub-to-gitignore.png)
 
 And thats it... You have autompletion for Native PHP, WordPress, Genesis and ACF.

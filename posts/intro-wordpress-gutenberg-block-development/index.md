@@ -374,8 +374,6 @@ And when you prevew the page:
 
 ![User Form Block in the Frontend](user-form-block-frontend.png)
 
-![](https://imgur.com/BkL7VNe)
-
 Notice how the contents of the block are what the `edit` and `save` callbacks returned!
 
 ## Passing attributes to the block
@@ -548,7 +546,7 @@ But there is still a missing step....
 
 If you list the contents of the `blocks/today/build/` directory, you'll see that there is a new `index.css` file; that file contains the compiled styles from the `edit.scss`. We have to notify WordPress of that new file so it can apply those styles to the block, and we do that by registering that style both in the back-end as in the block in the `.php` file:
 
-```php {12-17,23}
+```php {14-19,25}
 <?
 // gutenberg-multiple-blocks.php
 
@@ -556,7 +554,7 @@ function register_user_form_block() {
 	$assets = include_once __DIR__ . '/blocks/today/build/index.asset.php';
 
 	wp_register_script(
-		'gutenberg-multi-today',
+    'gutenberg-multi-today',
 		plugins_url('./blocks/today/build/index.js', __FILE__),
 		$assets['dependencies'],
 		$assets['version']
@@ -682,7 +680,7 @@ And now, we have a _Dark Mode_ preview and it shows on the block:
 
 For this we need to change the `Save` callback in `save.js`:
 
-```javascript {4,7,10}
+```javascript {4,7-9,12}
 // blocks/today/src/save.js
 
 import { __ } from "@wordpress/i18n"
@@ -975,7 +973,7 @@ Notice that we just changed our component to have a drop-down that let's you sel
 
 And since all the changes we do in the back-end, we have to do on the front-end. Let's change the `Save` component to display what the user selected:
 
-```javascript {9-15,26-29}
+```javascript {9-15,26-28}
 // blocks/today/src/save.js
 
 import { __ } from "@wordpress/i18n"
@@ -1211,7 +1209,7 @@ function render_mylatests_block($attributes, $content) {
 
 ![Displaying the latests posts on the front-end](latests-posts-front-end.png)
 
-## Displaying the latests posts on the front end
+## Displaying the latests posts on the back end
 
 Displaying posts on the back-end is not so straight forward since we have to instruct Gutenberg to fetch the posts using the [WordPress Rest API](https://developer.wordpress.org/rest-api/).
 
@@ -1309,7 +1307,7 @@ Again... The `attributes` parameter is how we communicate between the front and 
 
 Next. Change the `Edit` component to filter out the posts depending on the selected category:
 
-```javascript {12,16,23-29,43-44}
+```javascript {12,16,23-31,45-46}
 // blocks/mylatests/src/edit.js
 
 import { __ } from "@wordpress/i18n"

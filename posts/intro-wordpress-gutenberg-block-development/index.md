@@ -1420,3 +1420,9 @@ function render_mylatests_block($attributes, $content) {
 Notice how the `$attributes` variable just became useful!.
 
 And with that we're done. We created a static and a dynamic Gutenberg block.
+
+## Final toughts and Github repo
+
+Theres is still a lot of things that you can do with Gutenberg blocks. Here I presented just a glimpse of what can be done.
+
+The complete source code generated in this article can be accessed in <https://github.com/marioy47/wordpress-gutenberg-multiple-blocks>

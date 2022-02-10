@@ -15,6 +15,12 @@ Unfortunately, the [official documentation](https://developer.wordpress.org/bloc
 
 So, in this article I'll try to show as succinct, but as complete as possible, how to start to create Gutenberg blocks in a progressive manner. And also how to have them being displayed in the front end of a site built with WordPress.
 
+## TOC
+
+```toc
+
+```
+
 ## Development environment setup
 
 The first thing you need to have installed is [Node](https://nodejs.org). Gutenberg is written in [React](https://reactjs.org) so that's a must.

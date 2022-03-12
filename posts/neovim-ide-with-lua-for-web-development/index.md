@@ -599,7 +599,7 @@ Isn't that special ;)
 
 ## Syntax highlighting improvements with Tree-sitter
 
-One thing that I said previously is that NeoVim 0.5, now supports [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) out of the box. For those how don't know (I didn't knew), Tree-sitter is a parsing library that allows IDE's to parse and understand the **structure** of the source code in a very efficient manner. This parsing improves the syntax highlighting since it helps the IDE to understand what keywords and modifiers mean in the source code. For instancee, in php file you chan have PHP blocks, Html blocks, JavaScripts blocks, etc. Tree-sitter helps NeoVim understand what are block of codes and what language each block is written in.
+One thing that I said previously is that NeoVim 0.5, now supports [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) out of the box. For those how don't know (I didn't knew), Tree-sitter is a parsing library that allows IDE's to parse and understand the **structure** of the source code in a very efficient manner. This parsing improves the syntax highlighting since it helps the IDE to understand what keywords and modifiers mean in the source code. For instancee, in php file you can have PHP blocks, Html blocks, JavaScripts blocks, etc. Tree-sitter helps NeoVim understand what are block of codes and what language each block is written in.
 
 While NeoVim has the parsing library included, what it doesn't have out of the box are the **language parsers**. For each language you want to have _good_ highlighting, you have to download and install a parser. And that's not... Confortable. But if we install the `nvim-treesitter/nvim-treesitter` plugin, you can install language parsers with the comand
 
@@ -679,7 +679,7 @@ The important thing here is not the actual colors, but the fact that NeoVim now 
 
 Having NeoVim understand the structure of the code with Treesitter is great, but you still need things like _autocompletion_ and inline function help to  be productive while developing. That's where LSP or _Language Server Protocol_ enters.
 
-The [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), as it name implies, is a protocol where an IDE, in this case NeoVim, connects to a server to retrieve information about a programming language. Things like _what is a variable_ or _how to identify a function or a class_ is what is interchanged.
+The [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), as it name implies, is a protocol where an IDE, in this case NeoVim, connects to a server to retrieve information about a programming language. Things like _what is a variable_ or _how to identify a function or a class_ is the information that gets interchanged.
 
 After you install a configuration file, you'll get:
 
@@ -693,7 +693,9 @@ After you install a configuration file, you'll get:
 
 NeoVim supports the LSP protocol out of the box, but you have to install the configuration file **for each language server** you want to use. And that's an issue we have to solve.
 
-As an example, let's add support just for PHP in NeoVim. First, **select and install** a language server, which is a separate program, in you computer. For PHP there are several language server options, but the best right now is [Intelphense](https://www.npmjs.com/package/intelephense), which is an npm package:
+As an example, let's add support just for PHP in NeoVim. First, **select and install** a language server, which is a separate program, in you computer.
+
+For PHP there are several language server options, but the best right now is [Intelphense](https://www.npmjs.com/package/intelephense), which is an npm package:
 
 ```bash
 npm install -g intelephense
@@ -704,13 +706,15 @@ Having installed the language server in you machine, go to `lua/plugins.lua` to 
 ```lua {6}
 -- plugins.lua
 -- ...
-use { -- Configure LSP client and Use an LSP server installer.
+use { -- Configure LSP client for Intelephense
   'neovim/nvim-lspconfig',
   config = function()
     require('lspconfig').intelephense.setup({
       on_attach = function(client, bufnr)
         -- Enable (omnifunc) completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+        -- Here we should add additional keymaps and configuration options.
       end,
       flags = {
         debounce_text_changes = 150,
@@ -727,7 +731,7 @@ To test it out, you can create a `.php` file and execute `:LspInfo`. You'll see 
 
 ![LspInfo popup](lsp-info-popup.png)
 
-Also, you'll start to get diagnostic information.
+Also, you'll start to get _some_ diagnostic information.
 
 ![Errors from LSP in a php script](lsp-show-errors.png)
 
@@ -739,7 +743,7 @@ Which is great. But doing this for 10-15 languages is very cumbersome and not pr
 
 ## Using a LSP server installer
 
-Having LSP support and configuring it with a function is good an dandy, but right now we would need to create the previous setup **for every language** that we want to support. And projects like WordPress require support for PHP, JavaScipt, Yaml, Dockerfile, docker-compose, TOML, SASS, CSS, etc. That's why we need the [`nvim-lsp-installer`](https://github.com/williamboman/nvim-lsp-installer) plugin. To make this process of installing and configuring servers more simple and **right from vim** without the need of external commands.
+Having LSP support and configuring it with a function is good an dandy, but right now we would need to add `require('lspconfig').<server>.setup(...)` function **for every language** that we want to support. And projects like WordPress require support for PHP, JavaScipt, Yaml, Dockerfile, docker-compose, TOML, SASS, CSS, etc. That's why we need the [`nvim-lsp-installer`](https://github.com/williamboman/nvim-lsp-installer) plugin. To make this process of installing and configuring servers more simple and **right from vim** without the need of external commands.
 
 The first thing we need to do is to **remove** the previous configuration, and replace it with the following:
 
@@ -763,7 +767,7 @@ Notice that we added the [`williamboman/nvim-lsp-installer`](https://github.com/
 
 Also, notice that we're requiring the `lua/config/lsp.lua` file as the configuration file. That's why we need to create that file whith the [sugested configuration](https://github.com/neovim/nvim-lspconfig#suggested-configuration).
 
-```lua {43-56}
+```lua {95-103}
 -- lua/config/lsp.lua
 
 local lsp_installer = require("nvim-lsp-installer")
@@ -868,7 +872,7 @@ lsp_installer.on_server_ready(function(server)
     })
 end)
 
--- Decluter editor by hiding diagnostic messages (it's just too noisy)
+-- De clutter the editor by only showing diagnostic messages when the cursor is over the error
 vim.diagnostic.config({
     virtual_text = false, -- Do not show the text in front of the error
     float = {
@@ -927,7 +931,7 @@ But there is a catch! `nvim-cmp` only provides the autocomplete functionality. I
 
 And here comes the second catch... There are some LSP servers that provide _snippets_. And if we are going to use them, we need 2 additional plugins: One _snippet engine_ and a _snippet source_. So we need to install a _sorce_ plugin for each one of the sources we want to support. In our case just the LSP source plugin ([`hrsh7th/cmp-nvim-lsp`](https://github.com/hrsh7th/cmp-nvim-lsp)) and the snippets plugin([`saadparwaiz1/cmp_luasnip`](https://github.com/saadparwaiz1/cmp_luasnip)).
 
-Argggg a third catch! The snippets source needs a _Snippets Engine_ to tell NeoVim where should the cursor jump or which possible parammeters we need to use the snippet. So the third plugin we're going to use is [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip).
+Argggg a third catch! The snippets source needs a _Snippets Engine_ to tell NeoVim where should the cursor jump or which possible parameters we need to use the snippet. So the third plugin we're going to use is [`L3MON4D3/LuaSnip`](https://github.com/L3MON4D3/LuaSnip).
 
 
 At the end, this is what we need to add to our `lua/plugins.lua` file:
@@ -999,7 +1003,7 @@ cmp.setup({
             end
         end,
     },
-    -- Where to look for atucomplete items.
+    -- Where to look for auto-complete items.
     sources = {
         { name = "nvim_lsp" },
         { name = "luasnip" },
@@ -1083,14 +1087,14 @@ local utils = require("null-ls.utils")
 
 null_ls.setup({
     root_dir = utils.root_pattern("composer.json", "package.json", "Makefile", ".git"), -- Add composer
-    diagnostics_format = "#{m} (#{c}) [#{s}]", -- Makes PHPCS errors more readeable
+    diagnostics_format = "#{m} (#{c}) [#{s}]",    -- Makes PHPCS errors more readeable
     sources = {
-        null_ls.builtins.completion.spell, -- You still need to execute `:set spell`
-        null_ls.builtins.diagnostics.eslint, -- Add eslint to js projects
+        null_ls.builtins.completion.spell,        -- You still need to execute `:set spell`
+        null_ls.builtins.diagnostics.eslint,      -- Add eslint to js projects
         null_ls.builtins.diagnostics.phpcs.with({ -- Change how the php linting will work
             prefer_local = "vendor/bin",
         }),
-        null_ls.builtins.formatting.stylua, -- You need to install stylue first: `brew install stylua`
+        null_ls.builtins.formatting.stylua,       -- You need to install stylua first: `brew install stylua`
         null_ls.builtins.formatting.phpcbf.with({ -- Use the local installation first
             prefer_local = "vendor/bin",
         }),
@@ -1100,7 +1104,7 @@ null_ls.setup({
 
 As you can see, we're changing the `setup` of `null-ls` with the following:
 
-- If you find a `composer.json` file, assume that's the root of the project
+- If you find a `composer.json`, `package.json`, `Makefile`, etc. File, assume that's the root of the project
 - Change the format of the diagnostic information so is more readable. Specially since the PHPCS error codes can be very large strings
 - Activate `spell`, `eslint` and `stylua` as formatters/linters
 - Try to execute a **local** version of `phpcs` and `phpcbf`
@@ -1121,7 +1125,7 @@ In this article we covered the essentials to make NeoVim a viable IDE for Web De
 
 ## Resources
 
-The first resource is my own [NeoVim configuration repository](). There you can find my complete configuration with some of the plugins I just mentioned plus some others that I just can live without.
+The first resource is my own [NeoVim configuration repository](https://github.com/marioy47/nvim-lua-config). There you can find my complete configuration with some of the plugins I just mentioned plus some others that I just can't live without.
 
 Aditionally, if you want to go deeper into configuring NeoVim, there are some videos and blogs that I really recommend
 

@@ -1107,7 +1107,7 @@ As you can see, we're changing the `setup` of `null-ls` with the following:
 
 And that's it. We have a complete IDE for PHP, JavaScript, (S)CSS, Json development.
 
-## Nice tho haves
+## Nice to haves
 
 In this article we covered the essentials to make NeoVim a viable IDE for Web Development. Specially WordPress/Gutenberg development. There are still much more things you can do to improve your editor:
 

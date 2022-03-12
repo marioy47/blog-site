@@ -1,7 +1,7 @@
 ---
 title: NeoVim Lua configuration for PHP and JavaScript (WordPress, Gutenberg) development
 tags: vim, ide, editor, lua, neovim, react, php, javascript
-date: 2022-01-29
+date: 2022-03-11
 cover: nvim-logo.png
 ---
 

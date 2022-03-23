@@ -232,41 +232,9 @@ print(aTable[2]) -- World
 
 OK, enough of Lua. Let's start talking about vim configuration with Lua.
 
-## Using Lua in your configuration
+## Configuration structure and file naming
 
-When using Lua to configure NeoVim there are 2 things to consider first:
-
-- Prepare your environment
-- Pass configuration values to NeoVim using the `vim` object
-
-One very important thing before we start the configuration: **On vimscript you used the `no` prefix for reversed configuration. For instance `set nonumber` will disable line numbering. On Lua you have to use boolean value: `vim.opt.number = false`**.
-
-### Preparing your environment
-
-The first step to configure NeoVim with Lua is to change the original `~/.config/nvim/init.vim` configuration file for `~/.config/nvim/init.lua`. But since this will make your editor almost useless until you finish, then I suggest you create an external directory an _symlink_ it.
-
-```bash
-mkdir nvim-lua-config
-touch nvim-lua-config/init.lua
-mv ~/.config/nvim ~/.config/nvim-back # Save the old nvim directory if exists
-ln -s nvim-lua-config ~/.config/nvim
-```
-
-There is another option, and its start NeoVim with an alternate configuration file using the `-u` flag:
-
-```bash
-mkdir nvim-lua-config
-cd $_
-touch init.lua
-XDG_CONFIG_HOME=./stdpath XDG_DATA_HOME=./data nvim -u init.lua
-```
-
-This will start NeoVim with just the defaults and it will allow you to tests your configuration. But this method will start failing when we start doing plugin configurations.
-
-> You can get more information on what the `XDG_CONFIG_HOME` and `XDG_DATA_HOME`  variables are by executing `:help XDG_DATA_HOME` while inside NeoVim
-
-
-There are 3 options on using Lua in your configuration:
+There are three options on using Lua in your configuration:
 
 **1. Using your current `init.vim` file with Lua Blocks**
 
@@ -280,17 +248,13 @@ print("of Lua")
 EOF
 ```
 
-We already said that this is not the path we're going to take.
-
-**2. Preceding any Lua statement with `lua`**
+**2. Preceding any Lua statement with `lua` in your `init.vim` file**
 
 ```vim
 " init.vim
 
 lua print("And this is just one line")
 ```
-
-Also, not the route we're going to take.
 
 **3. Using a `init.lua` file with blocks of `vimscript`**
 
@@ -303,7 +267,23 @@ vim.cmd[[set number]]) -- this is a vimscript statement
 
 That last one is how we're going to configure NeoVim using Lua!
 
-### Pass configuration values to NeoVim using the `vim` object
+The first step to configure NeoVim with Lua is to change the original `~/.config/nvim/init.vim` configuration file for `~/.config/nvim/init.lua`. But since this will make your editor almost useless until you finish, then I suggest you create an external directory an _symlink_ it.
+
+```bash
+mkdir nvim-lua-config
+mkdir nvim-lua-config/lua
+touch nvim-lua-config/init.lua nvim-lua-config/lua/options.lua
+mv ~/.config/nvim ~/.config/nvim-back # Save the old nvim directory if exists
+ln -s nvim-lua-config ~/.config/nvim
+```
+
+Did you noticed that where creating 2 files: `init.lua` and `lua/options.lua`? That's one of the awesome things about Lua, we can split the configuration in multiple files and include them usin the `require` statement.
+
+In our case, the `init.lua` file will only be a bunch of `require` statements.
+
+And the reason for putting the `options.lua` file inside a `lua/` sub-directory is becasue **NeoVim will automatically look for files to require in the `~/.config/nvim/lua` directory**
+
+## Pass configuration values to NeoVim using the `vim` object
 
 If you are going to use a pure (not so pure as we'll see) Lua configuration file, you have to get acquainted with the `vim` object inside your configuration file:
 
@@ -325,6 +305,9 @@ The `vim` object is the global object for all the vim configuration when **in a 
 
 The one you'll use almost exclusively is `vim.opt`!
 
+One very important thing before we start the configuration: **On vimscript you used the `no` prefix for reversed configuration. For instance `set nonumber` will disable line numbering. On Lua you have to use boolean value: `vim.opt.number = false`**.
+
+
 Since `init.lua` is a script. You can do cool things like:
 
 ```lua
@@ -336,7 +319,7 @@ set.shiftwidth = 2
 set.expandtab = true
 ```
 
-## First set of configuration options.
+## First set of configuration options
 
 Lets start with the basics. Making your NeoVim even more modern. So create an `lua/options.lua` file and add the options:
 
@@ -613,11 +596,11 @@ So in your `lua/plugins.lua` file, after the _tokionight_ section, add the follo
 -- lua/plugins.lua
 -- ...
 use({ -- Install and configure tree-sitter languages
-	"nvim-treesitter/nvim-treesitter",
-	run = ":TSUpdate",
-	config = function()
-		require("config.treesitter")
-	end,
+ "nvim-treesitter/nvim-treesitter",
+ run = ":TSUpdate",
+ config = function()
+  require("config.treesitter")
+ end,
 })
 -- ...
 ```
@@ -630,25 +613,25 @@ Also, if you take a look a line 7, you can se that where are requiring the file 
 -- lua/config/nvim-treesitter.lua
 
 require("nvim-treesitter.configs").setup({
-	-- To install additional languages, do: `:TSInstall <mylang>`. `:TSInstall maintained` to install all maintained
-	ensure_installed = "maintained",
-	sync_installed = true,
-	highlight = {
-		enable = true, -- This is a MUST
-		additional_vim_regex_highlighting = { "php" },
-	},
-	indent = {
-		enable = false, -- Really breaks stuff if true
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
-		},
-	},
+ -- To install additional languages, do: `:TSInstall <mylang>`. `:TSInstall maintained` to install all maintained
+ ensure_installed = "maintained",
+ sync_installed = true,
+ highlight = {
+  enable = true, -- This is a MUST
+  additional_vim_regex_highlighting = { "php" },
+ },
+ indent = {
+  enable = false, -- Really breaks stuff if true
+ },
+ incremental_selection = {
+  enable = true,
+  keymaps = {
+   init_selection = "gnn",
+   node_incremental = "grn",
+   scope_incremental = "grc",
+   node_decremental = "grm",
+  },
+ },
 })
 
 -- Enable folds (zc and zo) on functions and classes but not by default
@@ -751,14 +734,14 @@ The first thing we need to do is to **remove** the previous configuration, and r
 -- lua/plugins.lua
 -- ...
 use({ -- Configure LSP client and Use an LSP server installer.
-	"neovim/nvim-lspconfig",
-	requires = {
-		"williamboman/nvim-lsp-installer", -- Installs servers within neovim
-		"onsails/lspkind-nvim",            -- adds vscode-like pictograms to neovim built-in lsp
-	},
-	config = function()
-		require("config.lsp")
-	end,
+ "neovim/nvim-lspconfig",
+ requires = {
+  "williamboman/nvim-lsp-installer", -- Installs servers within neovim
+  "onsails/lspkind-nvim",            -- adds vscode-like pictograms to neovim built-in lsp
+ },
+ config = function()
+  require("config.lsp")
+ end,
 })
 -- ...
 ```
@@ -841,13 +824,13 @@ local settings = {
     },
     json = {
         schemas = {
-        	{
-        		description = "NPM configuration file",
-        		fileMatch = {
-        			"package.json",
-        		},
-        		url = "https://json.schemastore.org/package.json",
-        	},
+         {
+          description = "NPM configuration file",
+          fileMatch = {
+           "package.json",
+          },
+          url = "https://json.schemastore.org/package.json",
+         },
         },
     },
 }
@@ -933,23 +916,22 @@ And here comes the second catch... There are some LSP servers that provide _snip
 
 Argggg a third catch! The snippets source needs a _Snippets Engine_ to tell NeoVim where should the cursor jump or which possible parameters we need to use the snippet. So the third plugin we're going to use is [`L3MON4D3/LuaSnip`](https://github.com/L3MON4D3/LuaSnip).
 
-
 At the end, this is what we need to add to our `lua/plugins.lua` file:
 
 ```lua
 -- lua/plugins.lua
 -- ...
 use({ -- CMP completion engine
-	"hrsh7th/nvim-cmp",
-	requires = {
-		"onsails/lspkind-nvim",     -- Icons on the popups
-		"hrsh7th/cmp-nvim-lsp",     -- LSP source for nvim-cmp
-		"saadparwaiz1/cmp_luasnip", -- Snippets source
-		"L3MON4D3/LuaSnip",         -- Snippet engine
-	},
-	config = function()
-		require("config.cmp")
-	end,
+ "hrsh7th/nvim-cmp",
+ requires = {
+  "onsails/lspkind-nvim",     -- Icons on the popups
+  "hrsh7th/cmp-nvim-lsp",     -- LSP source for nvim-cmp
+  "saadparwaiz1/cmp_luasnip", -- Snippets source
+  "L3MON4D3/LuaSnip",         -- Snippet engine
+ },
+ config = function()
+  require("config.cmp")
+ end,
 })
 -- ...
 ```
@@ -1129,7 +1111,6 @@ The first resource is my own [NeoVim configuration repository](https://github.co
 
 Aditionally, if you want to go deeper into configuring NeoVim, there are some videos and blogs that I really recommend
 
-
 - [Lua intro for vim configuration](https://www.youtube.com/watch?v=prnrwpOEsmo) presentation here: <https://smithbm2316.github.io/vimconf-2021/#/18>
 - [Everything you need to know to configure NeoVim using Lua](https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/) which weirdly enough it has some missing parts.
 - [Vim from scratch](https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) and the GitHub repo [here](https://github.com/LunarVim/Neovim-from-scratch)
@@ -1141,4 +1122,3 @@ Aditionally, if you want to go deeper into configuring NeoVim, there are some vi
 - [A good blog about lua](https://dev.to/casonadams/neovim-lsp-to-replace-vscode-n8c)
 - [A Very detailed but complex nvim configuration](https://github.com/Allaman/nvim/)
 - [NeoVim & VSCode integration guide](https://github.com/CozyPenguin/vscode-nvim-setup)
-

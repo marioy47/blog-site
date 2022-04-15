@@ -21,9 +21,9 @@ wp_die( print_r( $my_var, true ) );
 
 When you are working with REST calls, you really need a debugger in those cases when you are not sure what the contents of a WordPress object or variable have. So Debuggin here is a must.
 
-But, even tough setting up a debugger in PHP is not an easy tasks, is not that well documented. Specially when you are working with Docker.
+But, even tough setting up a debugger in PHP is an easy task, is not that well documented. Specially when you are working with Docker.
 
-So here are the steps I take to setup debugging when using WordPress inside the [Official Docker Container](https://hub.docker.org/_/wordpress).
+So here are the steps I take to setup debugging when using WordPress inside the [Official WordPress Docker Image](https://hub.docker.org/_/wordpress).
 
 ## TOC
 
@@ -86,19 +86,21 @@ networks:
 
 Most of the magic on the `docker-compose.yaml` file happens is in the placement of environment variables. For information on what the variables for [MariaDB](https://hub.docker.com/_/mariadb) and [WordPress](https://hub.docker.com/_/mariadb) mean, head over to the respective [dockehub](https://hub.docker.com) pages.
 
-Notice how I'm instructing Docker to **run WordPress in port 3000**
+Also, notice how I'm instructing Docker to **run WordPress in port 3000**
 
 Finally, just start the image
 
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
-Now, open up a browser on <http://localhost:3000> and install WordPress:
+Now, open up a browser on <http://localhost:3000> and install WordPress like you normally would.
 
 ![WordPress installation wizard](wordpress-installation-wizard.png)
 
-## Create a plugin for Xdebug info
+And we're done for the first part.
+
+## Create a WordPress plugin to show Xdebug info
 
 In the previous step we told Docker that the current directory (`./`) is mapped to a plugin directory (`/var/www/html/wp-content/plugins/wordpress-docker-xdebug`). So, just by placing the following code in the `plugin.php` file, we'll be creating a new plugin…
 
@@ -140,10 +142,11 @@ function add_php_info_page() {
 }
 
 function php_info_page_body() {
-    if ( function_exists( '_xdebug_info' ) ) {
+    $message = '<h2>No Xdebug enabled</h2>';
+    if ( function_exists( 'xdebug_info' ) ) {
         xdebug_info();
     } else {
-        echo '<h2>No Xdebug enabled</h2>';
+        echo $message;
     }
 }
 ```
@@ -158,13 +161,21 @@ Up to here we have a full WordPress installation with a plugin that will tell us
 
 First a disclosure. You could actually make this work without using a custom image, and sticking to commands inside the `docker-compose.yaml` file. But this would make the file way too complicated, and very rigid. That's why we are going to create a custom, and **very simple**, Docker image.
 
+To add a **custom** docker image we have to do 2 things:
+
+- Create a `Dockerfile` with the configuration of our custom image
+- Update `docker-compose.yaml` to use our custom image instead of the official WordPress image
+
 So on the `Dockerfile` add the following:
 
 ```dockerfile
+# Source image
 FROM wordpress:5-apache
 
+# Use a variable to make things cleaner
 ARG XDEBUG_INI="/usr/local/etc/php/conf.d/xdebug.ini"
 
+# Install AND configure Xdebug
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "[xdebug]" > $XDEBUG_INI \
@@ -185,7 +196,7 @@ Lets explain a little:
   - Enable the extension using the `docker-php-ext-enable` command
   - We create the `/user/local/etc/conf.d/xdebug.ini` using multiple `echo` calls
 
-Next, you need to **modify** the `docker-compose.yaml` file. Just changing the image for the cutom one we just created in the `Dockerfile`:
+Next, you need to **modify** the `docker-compose.yaml` file. Just changing the image for the custom one we just created in the `Dockerfile`:
 
 ```yaml {3}
 # ...
@@ -218,23 +229,23 @@ And now, if you visit the _Xdebug info_ page, you should see something like this
 
 ![Xdebug info page with filled info](tools-xdebug-info-installed.png)
 
-Great! and now let's start debugging:
+Great we're done with Docker.
 
 ## Explaining some _Gotchas_
 
-OK, so we've been running over the `xdebug` configuration. Lets explain some things:
+OK, so we've been breezing over the `xdebug` configuration. We should explain some things before we continue:
 
 ### How does Xdebug works
 
 In a very summarized way, what xdebug does is that when **debugging is active** it will try to connect to port **9003** of the `xdebug.client_host` to send **and receive** debugging information.
 
-The way to instruct Xdebug that it should connect to our IDE is by passing the `XDEBUG_TRIGGER` URL parammeter when calling our script: <http://localhost:3000/?XDEBUG_TRIGGER>
+The way to instruct Xdebug that it should connect to our IDE, or in other words activate debugging, is by passing the `XDEBUG_TRIGGER` **URL parameter or cookie** when calling our script. For example <http://localhost:3000/wp-admin/tools.php?page=php-info-page&XDEBUG_TRIGGER>
 
-We can also pass that variable as a cookie variable. More on that latter.
+This can be a drag... Passing an URL parameter all the time. Latter we will see how to make that process easier with cookies.
 
 ### The xdebug.ini file
 
-The `xdebug.ini` file should be placed in PHP's `conf.d` directory, which can change from installation to installation. In my case, to figure out where this directory was placed, I executed `php -i` **inside the WordPress** container, and review the output searching for where the `ini` files where placed.
+The `xdebug.ini` file should be placed in PHP's `conf.d` directory, which can change from installation to installation. In my case, to figure out where this directory was placed, I executed `php -i` **inside the WordPress container**, and review the output searching for where the `ini` files where placed.
 
 In case your are wondering how this file loos, here are the contents:
 
@@ -256,7 +267,7 @@ Fortunately, Docker provides use with a [workaround](https://docs.docker.com/des
 
 ### Installing Xdebug
 
-Another advantage of using Docker's WordPress image is that it comes with [`pecl`](https://pecl.php.net/) pre-configured and it provides the `docker-php-ext-enable` command, which allows us enable/disable extensions with just one command:
+Another advantage of using Docker's WordPress image is that it comes with [`pecl`](https://pecl.php.net/) pre-configured and it provides the `docker-php-ext-enable` command, which allows us enable/disable extensions with just one command. So to install xdebug **inside the container**, we could just issue the following:
 
 ```bash
 pecl install xdebug
@@ -266,10 +277,12 @@ service apache2 reload
 
 ## Configure Visual Studio Code
 
+Ok, we should now understand what we did in the Docker configuration and we need to do to use debugging in our IDE.
+
 To configure VSCode we need 2 things:
 
-- Install the [PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension
-- Create the `.vscode/launch.json` by using the _Run_ menu
+- Install the [PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension. This will allow VSCode to listen on a given port (in our case 9003) for debug information.
+- Create the `.vscode/launch.json` by using the _Run_ menu to configure _PHP Debug_
 
 To create the `.json` file just add a new launch configuration:
 
@@ -304,8 +317,7 @@ And on the resulting file **modify** the entry _Listen for Xdebug_ to look like 
 Take into account that:
 
 - Xdebug 2 uses port 9000. Xdebug 3 uses port 9003. That's why we need to specify the port
-- Use the `hostname` : `0.0.0.0` This comes from the _PHP Debug_ extension documentation
-- Update the `pathMappings`: `"/var/www/html": "${worspaceRoot}" since that's where our WordPress live **inside** our container
+- Update the `pathMappings` to point to `"/container/path/to/the/plugin": "${worspaceRoot}"` since that's where our code lives **inside** our container
 
 ## Start a debugging session
 

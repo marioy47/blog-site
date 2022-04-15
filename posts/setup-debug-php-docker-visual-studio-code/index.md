@@ -317,7 +317,7 @@ To start a debugging session just:
 
 Remember, you have to pass the `XDEBUG_TRIGGER` variable either as an URL parameter or as a cookie parameter to the script you are debuggin.
 
-![Start debuggin in Visual Studio Code](vscode-start-debuggin.mp4)
+`youtube: https://youtube.com/shorts/MQdC3FrBFIA`
 
 And since passing the `XDEBUG_TRIGGER` variable constantly can be very frustrating, I recommend using the [Xdebug helper for chrome](https://github.com/mac-cain13/xdebug-helper-for-chrome) extension and have it pass that variable as a cookie for you:
 

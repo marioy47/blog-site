@@ -2,17 +2,18 @@
 title: Create a query to display custom fields and custom taxonomies in WordPress
 date: 2022-05-19
 tags: wordpress, databases, sql, phpmyadmin
+cover: mysql-logo.png
 ---
 
-# Create a query to display custom fields and custom taxonomies in WordPress
+# Create a SQL query to display custom fields and custom taxonomies in WordPress
 
-The tasks was simple, or so I tought: _Create a **sql** query to display the **custom fields** for a **custom post type** that have a set of specific **custom tags**_.
+They said the task was simple: _Create a **sql** query to display the **custom fields** for a **custom post type** that have a set of specific **custom tags** so our reporting tool can consume it_.
 
-Errrr. Not so simple.
+Wait what? That doesn't sound so simple.
 
 Let's back up, let me describe the project that I'm currently working on and what the client needed so we can understand what I'm talking about:
 
-Currently I'm working on a WordPress project where we have a custom post type called `student` to register, you gessed it... Students. On that custom post type, we have also custom fields to save the students `first_name`, `last_name`, `email_address`, `school_zip`  and `school_name`. Finally, for that custom post type, we created a custom taxonomy called `submission_year` since is possible for a student to have multiple records on the `student` post type.
+Currently I'm working on a WordPress project where we have a custom post type called `student` to register, you guessed it... Students. On that custom post type, we have also custom fields to save the students `first_name`, `last_name`, `email_address`, `school_zip`  and `school_name`. Finally, for that custom post type, we created a custom taxonomy called `submission_year` since is possible for a student to have multiple records on the `student` post type.
 
 Now, let's say it again: Create a **sql** query to display the `first_name`, `last_name`, `email_address`, `school_zip`  and `school_name` for the **students** that have a submitted record for the **current year**.
 
@@ -24,7 +25,7 @@ Let me show you how I came up with the solution for this report.
 
 ```
 
-## The WordPress ER
+## The WordPress Entity Relationship (ER) model
 
 If we want to understand the final solution for the requested report, we need to understand the [WordPress database structure](https://codex.wordpress.org/Database_Description). Which is actually not that complicated for 2 reasons:
 
@@ -47,7 +48,7 @@ The task then is to find a _path_ to join the `wp_postmeta` table with the `wp_t
 
 ## Starting the query
 
-The best place to start this kind of joins, is by finding any _Many to Many_ table included in the _path_ we just talked about. In our case that would be the `wp_term_relationships table.
+You would think that the best place to start the query is in the `wp_posts` table, since that's where the student information is right? Wrong! The best place to start this kind of joins, is by finding any _Many to Many_ tables included in the _path_ we just talked about. In our case that would be the `wp_term_relationships table.
 
 Then we create our first query. A query to join the `wp_term_relationships` with `wp_term_taxonomy` and `wp_posts` table:
 
@@ -66,20 +67,20 @@ WHERE
   AND students.post_type = 'student'
 ```
 
-This query basically will show us **all** the publised students with the _issue_ that we still will get multiple submission for each student. Remember, a student can have multiple submission with different _terms_.
+This query basically will show us **all** the published students, but with the _issue_ that we still will get **multiple** submission for each student. Remember, a student can have multiple submission with different _terms_ (which are the edition year in our case).
 
 Additionally, notice:
 
-- We're using alias for our tables so our query is more readeable
-- We're filtering the posts to only show the students that are publised
+- We're using alias for our tables so our query is more readable
+- We're filtering the posts to only show the students that are published
 
 And the tidbit: The `object_id`  is the key that joins the `wp_term_relationships`  with the `wp_post`. That one took me by surprise actually.
 
 ## Displaying the required fields
 
-Until now, we just joined the iner tables required in our query. Lets continue by joining the `wp_term_relationships` and `wp_terms` so we can filter out student without a submission for a specific year and actually get the information that we require like first and last name, zip code, etc.
+Until now, we just joined the inner tables required in our query. Lets continue by joining the `wp_terms` so we can filter out student without a submission for a specific year and  the `wp_postmeta` table to actually get the information that we require like first and last name, zip code, etc.
 
-```sql
+```sql {10-14,19-20}
 SELECT
   students.post_title,
   meta.meta_key,
@@ -103,9 +104,13 @@ WHERE
 ORDER BY students.ID, meta.meta_key
 ```
 
-And now we start having meaningful results:
+If we execute this query this is what we'll get:
 
 ![Query results with meta data](query-results-rows.png)
+
+Meaningful results!
+
+The problem we have now is that we don't get a row per student, but a row for every custom field. That's not good for a reporting tool. Let's fix that.
 
 ## One student per line
 
@@ -113,7 +118,7 @@ We could have stopped with our query in the last section. But wouldn't it be nic
 
 Well, we can! We just have to change the join to the `wp_postmeta` table and execute it multiple times:
 
-```sql
+```sql {14-19}
 SELECT
   students.ID,
   first_name.meta_value AS first_name,
@@ -145,8 +150,10 @@ And this will result in:
 
 ![Query results, one student per line](query-results-columns.png)
 
+Alas, the report we actually want. And with just one student per line. We're done!
+
 Take into account that if a student doesn't have meta, all the fields will be `NULL` for that student.
 
 ## Resources
 
-If you want to understand what each WordPress table stores, then I suggest [this blog post](https://blogvault.net/wordpress-database-schema/) by _Sufia Banu_.
+Here I explained what I did to accomplish the task. But if you want to understand what each WordPress table stores, then I suggest [this blog post](https://blogvault.net/wordpress-database-schema/) by _Sufia Banu_.

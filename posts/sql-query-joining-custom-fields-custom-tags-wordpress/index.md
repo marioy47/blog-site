@@ -36,7 +36,7 @@ Here is the current ER for WordPress 5.9, which is the latest one as the time of
 
 ![WordPress ER diagram](https://codex.wordpress.org/images/2/25/WP4.4.2-ERD.png)
 
-So, instead of having a table and a field for each type of data you want to store like other CMS's, WordPress reuses the few table it has to store [serialized](https://www.php.net/manual/en/function.serialize.php) data.
+So, instead of having a table and a field for each type of data you want to store like other CMS's, WordPress reuses the few tables it has to store [serialized](https://www.php.net/manual/en/function.serialize.php) data.
 
 I'm not saying WordPress does it better, I'm saying that WordPress keeps things simple (which most of the time is better 😏).
 
@@ -48,7 +48,7 @@ The task then is to find a _path_ to join the `wp_postmeta` table with the `wp_t
 
 ## Starting the query
 
-You would think that the best place to start the query is in the `wp_posts` table, since that's where the student information is right? Wrong! The best place to start this kind of joins, is by finding any _Many to Many_ tables included in the _path_ we just talked about. In our case that would be the `wp_term_relationships table.
+You would think that the best place to start the query is in the `wp_posts` table, since that's where the student information is right? Wrong! The best place to start this kind of joins, is by finding any _Many to Many_ tables included in the _path_ we just talked about. In our case that would be the `wp_term_relationships` table.
 
 Then we create our first query. A query to join the `wp_term_relationships` with `wp_term_taxonomy` and `wp_posts` table:
 
@@ -67,7 +67,7 @@ WHERE
   AND students.post_type = 'student'
 ```
 
-This query basically will show us **all** the published students, but with the _issue_ that we still will get **multiple** submission for each student. Remember, a student can have multiple submission with different _terms_ (which are the edition year in our case).
+This query basically will show us **all** the published students, but with the _issue_ that we still will get **multiple** submissions for each student. Remember, a student can have multiple submission with different _terms_ (which are the edition year in our case).
 
 Additionally, notice:
 
@@ -78,7 +78,7 @@ And the tidbit: The `object_id`  is the key that joins the `wp_term_relationshi
 
 ## Displaying the required fields
 
-Until now, we just joined the inner tables required in our query. Lets continue by joining the `wp_terms` so we can filter out student without a submission for a specific year and  the `wp_postmeta` table to actually get the information that we require like first and last name, zip code, etc.
+Until now, we just joined the inner tables required in our query. Lets continue by joining the `wp_terms` so we can filter out students without a submission for a specific year and  the `wp_postmeta` table to actually get the information that we require, like first and last name, zip code, etc.
 
 ```sql {10-14,19-20}
 SELECT
@@ -116,7 +116,7 @@ The problem we have now is that we don't get a row per student, but a row for ev
 
 We could have stopped with our query in the last section. But wouldn't it be nice if could have one student per row, instead of multiple rows per student?
 
-Well, we can! We just have to change the join to the `wp_postmeta` table and execute it multiple times:
+Well, we can! We just have to change the join to the `wp_postmeta` table adding a filtering query, and execute it multiple times:
 
 ```sql {14-19}
 SELECT

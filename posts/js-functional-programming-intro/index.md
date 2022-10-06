@@ -17,6 +17,8 @@ Recently, with the advent of [React Hooks](https://reactjs.org/docs/hooks-intro.
 
 This is the first part of a small mini series where I'll be discussing functional programming in JavaScript. [On part 2](/js-functional-programming-concepts) I'll dig deeper on the core concepts of functional programming. An [in part 3](/js-functional-programming-patters) I'll introduce some programming patterns that can be used with functional programming like [Composition](https://en.wikipedia.org/wiki/Function_composition_%28computer_science%29) and [Currying](https://en.wikipedia.org/wiki/Currying).
 
+> If you want a more in depth introduction made by someone much more smarter than me, head to the article [Composing Software](https://medium.com/javascript-scene/composing-software-the-book-f31c77fc3ddc) by [Eric Elliot](https://medium.com/@_ericelliott) (look towards the end).
+
 ## TOC
 
 ```toc

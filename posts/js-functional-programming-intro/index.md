@@ -186,19 +186,22 @@ If we where to rewrite that previous code declaratively, we should do something 
 
 ```javascript {11}
 // declarative-programming.js
-const _ = require("lodash")
+const makeUppercase = msg => msg.toUpperCase()
+const hypenize = msg => msg.replace(/ /g, '-')
+const appendTo = msg => accum => accum + '-' + msg
+const pipe = (...fns) => x => fns.reduce( (res, fn) => fn(res), x)
 
-const upper = msg => msg.toUpperCase()
-const hyphenize = msg => msg.replace(/ /g, "-")
-const append = msg => acc => acc + "-" + msg
+const message = ['this is', 'declarative programming', '!']
 
-const message = ["this is", "DECLARATIVE programming", "!"]
-
-const transformed = message.reduce((item, accum) =>
-  _.flow(upper, hyphenize, append(accum))(item)
+const transformed = message.reduce( (item, accum) =>
+    pipe(
+        makeUppercase,
+        hypenize,
+        appendTo(accum)
+    )(item)
 )
 
-console.log(transformed)
+console.log(transformed);
 ```
 
 > Right now is not important to understand the code. The important thing is to show how the code is written.
@@ -209,17 +212,9 @@ The previous code will output:
 THIS-IS-DECLARATIVE-PROGRAMMING-!
 ```
 
-Now, this may seem like an overkill since we're doing very little logic and we actually had to import the [Lodash](https://lodash.com/) library so I could use the [`flow`](https://lodash.com/docs/4.17.15#flow) function.
+Now, this may seem like an overkill since we're doing very little logic but when we're working with a 10.000 line project is a blessing since the code is basically telling us **what** the code does:
 
-The _declarative_ in _declarative programming_ is in the 10th line:
-
-```javascript
-_.flow(upper, hyphenize, append(accum))(item)
-```
-
-It's basically telling us **what** the code does:
-
-- Execute the following steps sequentially (that's what `_.flow` is for)
+- Execute the following steps sequentially (that's what `pipe` is for), passing the result of each function as the parammeter of the next.
 - First make each component uppercase
 - Then convert spaces into hyphens
 - Then append it to the what was already created (accumulated)

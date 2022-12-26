@@ -7,7 +7,7 @@ cover: ansible-with-cfg.png
 
 # Ansible introduction for developers
 
-> All the code in this article can be found in [GitHub](https://github.com/marioy47/ansible-testlab) along a very simple Vagrant test lab.
+> All the code in this article can be found in [GitHub](https://github.com/marioy47/learn-ansible-testlab) along a very simple Vagrant test lab.
 
 So you need to setup _yet another_ LEMP (Linux, Nginx, MariaDB, PHP) server on Digital Ocean or EC2 that also includes additional services like a [Redis](https://redis.io/) cache and [Letsencrpyt](https://certbot.eff.org/) for SSL certificate creation.
 

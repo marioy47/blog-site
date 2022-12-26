@@ -1,5 +1,5 @@
 ---
-title: Configure Eslint, Prettier and Husky for WordPress Development
+title: Configure Eslint, Prettier, Husky and Lint-Staged for WordPress Development
 date: 2020-07-06
 cover: prettier+eslint.png
 tags: wordpress, javascript, eslint, prettier
@@ -168,7 +168,7 @@ function aSimpleFunction() {
         console.log("This one is used");
       }
 
-let other = 
+let other =
 document.getElementById("the-element-id")
 
           anotherFunction(                          null)
@@ -392,7 +392,7 @@ Installing them is pretty easy since `lint-staged` has a command that
 
 - Will install all the required packages (`husky` and `lint-staged`)
 - Will check that we're using `eslint`
-- Will change the file `package.json` adding the required configuration 
+- Will change the file `package.json` adding the required configuration
 
 The command is:
 
@@ -462,7 +462,7 @@ I really do not recommend this. **Its always better to actually adhere to standa
 
 I think this is a little bit overkill, but if you want to lint and fix CSS/SCSS errors, then you have to use [Stylelint](https://stylelint.io/).
 
-It works very simmilar to ESLint, where you have a program that does the linting (the `eslint` command) and you have a set of rules to apply. 
+It works very simmilar to ESLint, where you have a program that does the linting (the `eslint` command) and you have a set of rules to apply.
 
 To install it just issue
 

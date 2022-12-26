@@ -283,6 +283,16 @@ In our case, the `init.lua` file will only be a bunch of `require` statements.
 
 And the reason for putting the `options.lua` file inside a `lua/` sub-directory is becasue **NeoVim will automatically look for files to require in the `~/.config/nvim/lua` directory**
 
+## Removing configuration cache
+
+As I said before, Lua can be compiled to bytecode for faster startup and execution. NeoVim takes advantage of this property and keeps a copiled version of the `.lua` configuration files in `~/.local/share/nvim`. Just in case your system is different, you can find this path executing:
+
+```lua
+:lua print(vim.fn.stdpath("data"))
+```
+
+In case you settings are not being updated, you just have to delete this folder.
+
 ## Pass configuration values to NeoVim using the `vim` object
 
 If you are going to use a pure (not so pure as we'll see) Lua configuration file, you have to get acquainted with the `vim` object inside your configuration file:
@@ -1111,6 +1121,7 @@ The first resource is my own [NeoVim configuration repository](https://github.co
 
 Aditionally, if you want to go deeper into configuring NeoVim, there are some videos and blogs that I really recommend
 
+- [Vim Cheat Sheet](https://devhints.io/vim) The best cheat sheet I've found so far.
 - [Lua intro for vim configuration](https://www.youtube.com/watch?v=prnrwpOEsmo) presentation here: <https://smithbm2316.github.io/vimconf-2021/#/18>
 - [Everything you need to know to configure NeoVim using Lua](https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/) which weirdly enough it has some missing parts.
 - [Vim from scratch](https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) and the GitHub repo [here](https://github.com/LunarVim/Neovim-from-scratch)

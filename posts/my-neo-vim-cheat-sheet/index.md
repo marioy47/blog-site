@@ -33,6 +33,7 @@ This commands are for **normal** mode:
 | `w`        | Beginning of the next word                                |
 | `b`        | Beginning of the _previews_ word                          |
 | `e`        | End of the next word                                      |
+| `o`        | To get to the other end of the **selection**              |
 | `$`        | End of line                                               |
 | `f<char>`  | Go to forward to the next character. Pe. `fx`             |
 | `{`        | Go to previous _paragraph_ (empty line)                   |
@@ -46,43 +47,43 @@ This commands are for **normal** mode:
 
 All this commands are for **normal** mode:
 
-| Command | Action                                                            |
-| ------- | ----------------------------------------------------------------- |
-| `gg`    | Go to beginning of file                                           |
-| `G`     | Go to end of file                                                 |
-| `<C-f>` | Page Down (Page Forward)                                          |
-| `<C-b>` | Page Up (Page Backward)                                           |
-| `gd`    | Go to _definition_ of word or function in current file            |
-| `gf`    | To to _definition_ in other file                                  |
-| `16G`   | Go to line 16                                                     |
-| `<C-o>` | Previous position or previous buffer (useful when using gd or gf) |
-| `<C-i>` | Next position or next buffer                                      |
+| Command     | Action                                                            |
+| ----------- | ----------------------------------------------------------------- |
+| `gg`        | Go to beginning of file                                           |
+| `G`         | Go to end of file                                                 |
+| `<C-f>`     | Page Down (Page Forward)                                          |
+| `<C-b>`     | Page Up (Page Backward)                                           |
+| `gd`        | Go to _definition_ of word or function in current file            |
+| `gf`        | To to _definition_ in other file                                  |
+| `<number>G` | Go to line `<number>`. P.e. `16G`                                 |
+| `<C-o>`     | Previous position or previous buffer (useful when using gd or gf) |
+| `<C-i>`     | Next position or next buffer                                      |
 
 ## Advanced save
 
 This commands are for **normal** mode:
 
-| Command              | Action                                                  |
-| -------------------- | ------------------------------------------------------- |
-| `#,#w file-name.txt` | Saves part of a file to a new file                      |
-| `:r file-name.txt`   | Inserts contents of `file-name.txt` in current position |
+| Command                              | Action                                                  |
+| ------------------------------------ | ------------------------------------------------------- |
+| `<number1>,<number2>w file-name.txt` | Saves lines to a new file. P.e. `12,43w`                |
+| `:r <file-name.txt>`                 | Inserts contents of `file-name.txt` in current position |
 
 ## Delete Undo/Redo
 
 This commands are for **normal** mode:
 
-| Command | Action                                         |
-| ------- | ---------------------------------------------- |
-| `x`     | Cut (Works in visual mode too)                 |
-| `s`     | Cut (Substitute) char and place in insert mode |
-| `de`    | Delete to end of word                          |
-| `d0`    | Delete to the beginning of the line            |
-| `db`    | Delete back                                    |
-| `dfx`   | Delete until the next `x`                      |
-| `:.,$d` | Delete until the end of the buffer             |
-| `u`     | Undo                                           |
-| `U`     | Undo on the whole line                         |
-| `<C-r>` | Redo                                           |
+| Command    | Action                                         |
+| ---------- | ---------------------------------------------- |
+| `x`        | Cut (Works in visual mode too)                 |
+| `s`        | Cut (Substitute) char and place in insert mode |
+| `de`       | Delete to end of word                          |
+| `d0`       | Delete to the beginning of the line            |
+| `db`       | Delete back                                    |
+| `df<char>` | Delete until the next `<char>`. P.e `dfx`      |
+| `:.,$d`    | Delete until the end of the buffer             |
+| `u`        | Undo                                           |
+| `U`        | Undo on the whole line                         |
+| `<C-r>`    | Redo                                           |
 
 ## Repeat
 
@@ -111,18 +112,16 @@ Most commands, when preceded by a number, are executed multiple times:
 
 It's like a clipboard history
 
-| Command               | Action                                                                      |
-| --------------------- | --------------------------------------------------------------------------- |
-| `:reg`, `:reg [char]` | List registers. Show contents of one register                               |
-| `"<char>p`            | Paste contents of register. Pe. `"rp` register `r`. `"2p` Pastes register 2 |
-| `"<char>y`            | Yank text to the _named_ register `<char>`. Pe `"ry`                        |
-| `"<char>x`            | Cut text to register                                                        |
-| `<C-r><char>`         | Paste the contents of register in **insert mode**                           |
-| `""`                  | The register used when Copy (`y`), Cut (`x`) or Substitute (`s`)            |
-| `"0`-`"9`             | Last yanked elements being `"0` the newest ( `"0p` is the same as `p`)      |
-| `"%`                  | Current file path starting from the project root                            |
+| Command               | Action                                                                 |
+| --------------------- | ---------------------------------------------------------------------- |
+| `:reg`, `:reg [char]` | List registers. Show contents of one register                          |
+| `"<number>p`          | Paste contents of register. P.e. `"2p` Pastes register 2               |
+| `<C-r><char>`         | Paste the contents of register in **insert mode**                      |
+| `""`                  | The register used when Copy (`y`), Cut (`x`) or Substitute (`s`)       |
+| `"0`-`"9`             | Last yanked elements being `"0` the newest ( `"0p` is the same as `p`) |
+| `"%`                  | Current file path starting from the project root                       |
 
-- When you create a macro with `q`, p.e. `qw`, the steps of the macro will be sotred in the _register_ `w`
+- When you create a macro with `q`, p.e. `qw`, the steps of the macro will be stored in the _register_ `w`
 - `:let @W='i;'` (Uppercase W) will **append** a new step to the register `w` (lowercase w)
 
 ## Changes
@@ -140,7 +139,7 @@ It's like a clipboard history
 | Command     | Action                                           |
 | ----------- | ------------------------------------------------ |
 | `zi`        | Fold enable                                      |
-| `zf2j`      | Fold the next 2 lines                            |
+| `zf2j`      | Fold the next 2 lines (depends of the fold type) |
 | `:20,40 fo` | Fold from line 20 to 40                          |
 | `zfa}`      | Fold until the next `}`                          |
 | `zo zO`     | Open current fold. Open recursively              |
@@ -280,6 +279,7 @@ Its really helpful to use `:help fzf-vim-comands` to browse the [documentation](
 | `:Snippets`  | UtilSnips snippets                                 |
 | `:Tags`      | Tags in the project                                |
 | `<C-k><C-u>` | Executes `:Buffers`                                |
+| `<C-6>`      | Loops through the 2 most recent buffers            |
 
 - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new
   tab, a new split, or in a new vertical split
@@ -327,6 +327,7 @@ A complete tutorial can be viewed [here](https://www.youtube.com/watch?v=NsHAG4G
 | `ys<motion><char>` | You surround. Pe, `ysiw'`, `ysa2w"`                                                                   |
 | `cs<char><char>`   | Change surrounding. Pe. `cs'"` Change surrounding `'` with `"`. Or `cstt` change tag with another tag |
 | `ds<char>`         | Delete surrounding. Pe. `ds'` Remove surrounding quote. `dst` will delete a tag                       |
+| `dW`               | Delete word _including_ it's surrounding space                                                        |
 | `yss<char>`        | The line. Pe `yss"` Surround the line with `"`                                                        |
 | `yssf`, `ysiwf`    | You surround with a function (It will prompt you for the function name). `iw` its _inside a word_     |
 | `ysst`, `ysiwt`    | You surround with an html tag. (it will prompt you for the tag)                                       |

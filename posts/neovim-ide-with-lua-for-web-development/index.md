@@ -267,6 +267,8 @@ vim.cmd[[set number]]) -- this is a vimscript statement
 
 That last one is how we're going to configure NeoVim using Lua!
 
+## Creating a new configuration file
+
 The first step to configure NeoVim with Lua is to change the original `~/.config/nvim/init.vim` configuration file for `~/.config/nvim/init.lua`. But since this will make your editor almost useless until you finish, then I suggest you create an external directory an _symlink_ it.
 
 ```bash
@@ -316,7 +318,6 @@ The `vim` object is the global object for all the vim configuration when **in a 
 The one you'll use almost exclusively is `vim.opt`!
 
 One very important thing before we start the configuration: **On vimscript you used the `no` prefix for reversed configuration. For instance `set nonumber` will disable line numbering. On Lua you have to use boolean value: `vim.opt.number = false`**.
-
 
 Since `init.lua` is a script. You can do cool things like:
 
@@ -596,7 +597,7 @@ One thing that I said previously is that NeoVim 0.5, now supports [Tree-sitter](
 
 While NeoVim has the parsing library included, what it doesn't have out of the box are the **language parsers**. For each language you want to have _good_ highlighting, you have to download and install a parser. And that's not... Confortable. But if we install the `nvim-treesitter/nvim-treesitter` plugin, you can install language parsers with the comand
 
-```
+```bash
 :TSInstall php
 ```
 

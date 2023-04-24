@@ -1,11 +1,11 @@
---- 
+---
 title: Prepare Django for Docker deployment and development.
 date: 2021-02-16
 tags: django, docker, uwsgi, pipenv
 cover: django-docker-alpine.png
---- 
+---
 
-# Prepare Django for Docker deployment and development.
+# Prepare Django for Docker deployment and development
 
 One of the caveats of Python development is managing version compatibility between some packages and the systems interpreter. Some versions of Python don't play well with legacy code and some packages simply do not compile in certain environments. Also, some packages are written in _C_ and _Rust_ which need to be compiled upon installation.
 
@@ -17,16 +17,17 @@ Additionally, I'll create it in a way that some useful packages like Allauth and
 
 By the way, I assume that you have some basic knowledge of Python, Docker and Django.
 
-### TOC
+## TOC
 
 ```toc
 
 ```
+
 ## Project structure
 
 Before we start le me show you what our project structure will look like:
 
-```console
+```text
 .
 ├── Pipfile
 ├── Pipfile.lock
@@ -90,7 +91,7 @@ We'll I'm only installing `pipenv` in this image, but since I'm going to use it 
 - I'm creating the image from `python:3.9-alpine`.
 - Then I'll install some compiling dependencies with `apk` before I install the python packages.
   - `python3-dev build-base linux-headers pcre-dev` are reqruied for uWSGI
-  - `jpeg-dev` and ` zlib-dev` for Django's image fields 
+  - `jpeg-dev` and `zlib-dev` for Django's image fields
   - `libffi-dev libressl-dev rust cargo` are required for django-allauth
   - `postgresql-dev` Is for Psycopg2
 
@@ -133,7 +134,7 @@ Again, let me explain:
 
 Also note that I used versions since I wanted to make sure that everything will work on production.
 
-And just like magic we should have in the current directory the resulting `Pipfile`: 
+And just like magic we should have in the current directory the resulting `Pipfile`:
 
 ```console
 $ ls -l
@@ -161,6 +162,7 @@ uwsgi = "~=2.0.19"
 [requires]
 python_version = "3.9"
 ```
+
 The `Pipfile.lock` is too long to show here, but is essential for our project since it will instruct python which versions to install on the _Container Building_ step.
 
 ## Add the `Pipfile` and `Pipfile.lock` to the image
@@ -205,7 +207,7 @@ RUN apk add --update --no-cache --virtual .tmp \
     )" \
     && apk add --virtual .rundeps $runDeps \
     && apk del .tmp \
-    && adduser -D django 
+    && adduser -D django
 
 
 USER django
@@ -281,7 +283,7 @@ version: '3'
 services:
   # Django application
   app:
-    build: 
+    build:
       context: .
       dockerfile: docker/app/Dockerfile
     container_name: django-docker-app
@@ -304,7 +306,7 @@ docker-compose run app /bin/bash
 What I just did with that `docker-compose.yml` file was to replicate the commands:
 
 ```bash
-docker build -f docker/app/Dockerfile . -t django-docker-image 
+docker build -f docker/app/Dockerfile . -t django-docker-image
 docker run -v $PWD:/app -it django-docker-image /bin/sh
 ```
 
@@ -345,7 +347,7 @@ And since we have a Django application we can finally test it with:
 docker-compose up
 ```
 
-You can open the `http://localhost:8080` URL with your browser and check that the Django placeholder pages is running. 
+You can open the `http://localhost:8080` URL with your browser and check that the Django placeholder pages is running.
 
 Notice that the port is `8080` which is the port we configured in the `Dockerfile`on the `uwsgi` line.
 
@@ -387,7 +389,7 @@ services:
   # PostgreSQL Database
   postgres:
     image: postgres:13-alpine
-    container_name: django-docker-db 
+    container_name: django-docker-db
     ports:
       - "5432:5432"
     env_file:
@@ -414,7 +416,7 @@ According to [Postgre's Dockerhub page](https://hub.docker.com/_/postgres/) we n
 
 And since those variables have to be shared with the Django App, it easier to create the `.env` file with this values:
 
-```sh
+```bash
 # .env
 
 # Database configuration
@@ -431,7 +433,7 @@ docker-compose up
 
 Great, we have a database running... Which we won't use just yet.
 
-## Change the `settings.py` file to use PostgreSQL and environment variables.
+## Change the `settings.py` file to use PostgreSQL and environment variables
 
 We have to do 2 things in the `config/settings.py` file:
 
@@ -576,7 +578,7 @@ services:
 #...
   # Nginx as proxy server.
   nginx:
-    build: 
+    build:
       context: .
       dockerfile: docker/nginx/Dockerfile
     container_name: django-docker-proxy
@@ -602,19 +604,20 @@ COPY docker/nginx/dev.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8080
 
 RUN mkdir -p /appfiles/media \
-	&& mkdir -p /appfiles/static \
-	&& chmod 777 /appfiles/media \
-	&& chmod 755 /appfiles/static
+  && mkdir -p /appfiles/static \
+  && chmod 777 /appfiles/media \
+  && chmod 755 /appfiles/static
 ```
 
 And test that everything works by executing
 
 ```bash
-docker-compose down 
+docker-compose down
 docker-compose rm
 docker-compose up -d
 ```
-And verify that you can access `0.0.0.0` but on port **8080** (http://localhost:8080)
+
+And verify that you can access `0.0.0.0` but on port **8080** (<http://localhost:8080>)
 
 Make an additional test: Create a file in `files/media/` on your laptop and verify that you have access to it:
 

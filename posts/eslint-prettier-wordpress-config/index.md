@@ -560,7 +560,7 @@ This are common solutions to recurring problems that happen from time to time in
 
 Its probable that you'll be passing variables from a WordPress PHP file, which uses _snake_case_ standard. To JavaScript, that uses _CamelCase_ syntax.
 
-If that's the case, you might want to add a rule to allow some *snake_case* variables by adding a `camelcase` rule in `.eslintrc.json`
+If that's the case, you might want to add a rule to allow some _snake_case_ variables by adding a `camelcase` rule in `.eslintrc.json`
 
 ```json {7}
 // .eslintrc

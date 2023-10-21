@@ -1,69 +1,18 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "dependencies": {
-    "bootstrap": "^4.5.0",
-    "gatsby": "^2.21.28",
-    "gatsby-image": "^2.2.31",
-    "gatsby-plugin-feed": "^2.5.14",
-    "gatsby-plugin-google-tagmanager": "^2.3.15",
-    "gatsby-plugin-manifest": "^2.4.3",
-    "gatsby-plugin-offline": "^3.2.2",
-    "gatsby-plugin-react-helmet": "^3.1.14",
-    "gatsby-plugin-react-svg": "^2.1.2",
-    "gatsby-plugin-recaptcha": "^1.0.5",
-    "gatsby-plugin-robots-txt": "^1.5.1",
-    "gatsby-plugin-sass": "^2.1.23",
-    "gatsby-plugin-sharp": "^2.6.3",
-    "gatsby-plugin-sitemap": "^2.4.7",
-    "gatsby-plugin-webfonts": "^1.1.3",
-    "gatsby-remark-autolink-headers": "^2.3.11",
-    "gatsby-remark-embed-video": "^3.1.1",
-    "gatsby-remark-external-links": "^0.0.4",
-    "gatsby-remark-images": "^3.3.3",
-    "gatsby-remark-prismjs": "^3.3.23",
-    "gatsby-remark-responsive-iframe": "^2.4.17",
-    "gatsby-remark-table-of-contents": "^0.1.1",
-    "gatsby-source-filesystem": "^2.3.3",
-    "gatsby-transformer-remark": "^2.8.8",
-    "gatsby-transformer-sharp": "^2.3.3",
-    "node-sass": "^4.13.0",
-    "prism-themes": "^1.3.0",
-    "prismjs": "^1.17.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-helmet": "^5.2.1",
-    "react-recaptcha": "^2.3.10",
-    "rfs": "^9.0.2"
-  },
-  "devDependencies": {
-    "eslint": "^7.6.0",
-    "eslint-plugin-react": "^7.20.5",
-    "prettier": "^1.19.1"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
+  "name": "blog-site-temp",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "clean": "gatsby clean",
-    "lint": "eslint src/**/*.js"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "dependencies": {
+    "@astrojs/mdx": "^1.1.2",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.2",
+    "astro": "^3.3.2"
   }
 }

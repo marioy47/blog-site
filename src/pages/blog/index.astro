@@ -1,0 +1,43 @@
+---
+import HeadMeta from '../../components/head-meta.astro';
+import SiteHeader from '../../components/site-header.astro';
+import SiteFooter from '../../components/site-footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import FormattedDate from '../../components/formatted-date.astro';
+
+const posts: array = await getCollection('posts', ({data}) => {
+  return import.meta.env.PROD ? !data.draft: true;
+});
+posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<HeadMeta title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<SiteHeader />
+		<main>
+      <h1>Mario's Blog</h1>
+      <ul>
+        {posts.map(post => 
+          <li>
+            <a href={`/blog/${post.slug}/`}>
+              <img src={post.data.cover} alt="An image" />
+              <h2>{post.data.title}</h2>
+              {/* <FormattedDate date={post.data.date} /> */}
+            </a>
+
+            <pre style="display: none">{JSON.stringify(post.data,null,4)}</pre>
+          </li>
+          )}
+      </ul>
+		</main>
+		<SiteFooter />
+	</body>
+</html>
+
+

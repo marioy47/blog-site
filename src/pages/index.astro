@@ -1,0 +1,20 @@
+---
+import HeadMeta from '../components/head-meta.astro';
+import SiteHeader from '../components/site-header.astro';
+import SiteFooter from '../components/site-footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<HeadMeta title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<SiteHeader title={SITE_TITLE} />
+		<main>
+			<h1>Hello,<strong>I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</span></h1>
+		</main>
+		<SiteFooter />
+	</body>
+</html>

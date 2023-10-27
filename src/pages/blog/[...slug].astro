@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
+import GlobalLayout from '../../layouts/global-layout.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('posts');
@@ -11,11 +12,16 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'posts'>;
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 ---
+<GlobalLayout>
+  <Content />
 
-<Content />
+  <pre>
+    {JSON.stringify(post, null, 4)}
+  </pre>
 
-<pre>
-  {JSON.stringify(post, null, 4)}
-</pre>
+  <pre>
+  {JSON.stringify(headings, null, 4)}
+  </pre>
+</GlobalLayout>

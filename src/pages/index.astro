@@ -19,20 +19,18 @@ import imgMarioBw from '../images/img-mario-bw.png';
     --text-1: var(--gray-1);
     --link: var(--gray-0);
     --link-visited: var(--gray-2);
-
   }
   main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--size-2);
+    gap: var(--size-6);
     min-height: 90vh;
     margin-inline: auto;
-    max-inline-size: calc(var(--size-content-2) * 4);
     place-items: center;
   }
   h1 {
     text-align: right;
-    font-size: clamp(1.5rem, 2.5vw, 5rem);
+    font-size: clamp(1.5rem, 2.5vw, 3.2rem);
     animation: var(--animation-slide-in-up) forwards;
   }
   h1 strong {
@@ -41,7 +39,6 @@ import imgMarioBw from '../images/img-mario-bw.png';
   }
   picture img {
     border-radius: 50%;
-    max-width: clamp(35vw, 35vw, 40vw); 
+    max-width: 80%;
   }
 </style>
-

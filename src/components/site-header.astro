@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import HeaderLink from './site-header-link.astro';
 import iconDeveloper from '../images/svg/icon-developer.svg?raw';
-
 ---
 
 <header>
@@ -24,13 +23,12 @@ import iconDeveloper from '../images/svg/icon-developer.svg?raw';
 </header>
 
 <style>
-  header nav {
+  nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-inline: auto;
-    max-inline-size: calc(var(--size-content-2) * 4);
-    padding: var(--size-2);
+    padding-top: var(--size-2);
+    padding-bottom: var(--size-2);
   }
   menu {
     list-style: none; 

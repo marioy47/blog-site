@@ -13,7 +13,7 @@ posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 		<main>
       <h1>Mario's Blog</h1>
       {posts.map(post => 
-        <article>
+        <article data-tags={post.data.tags.join(',')}>
           <a href={`/blog/${post.slug}/`}>
             <img src={post.data.cover.src} width={100} height={100} alt="An image" />
             <h2>{post.data.title}</h2>

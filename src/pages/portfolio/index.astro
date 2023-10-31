@@ -11,18 +11,22 @@ projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
     <h1>Mario Yepes Portfolio</h1>
 		<main>
       {projects.map(project => (
-        <article>
+        <article data-project-id={project.slug} data-tags={project.data.tags.join(',')}>
           <a href={`/portfolio/${project.slug}`}>
             <Image src={project.data.cover} width={450} alt={`Screenshot for ${project.data.title}`} />
           </a>
           <h2>{project.data.title}</h2>
           <p><strong>Client: </strong>{project.data.client}</p>
           <p>{project.data.summary}</p>
-          <ul>{project.data.tags.map( tech => <li>{tech}</li>)}</ul>
+          <ul>{project.data.tags.map( tech => <li><a href={`/portfolio/#${tech}`}>{tech}</a></li>)}</ul>
           <a href={`/portfolio/${project.slug}`}>Read More</a>
         </article>
       ))}
 </GlobalLayout>
+
+<script>
+import '../../scripts/toggle-display-tags.js';
+</script>
 
 <style>
 h1 {

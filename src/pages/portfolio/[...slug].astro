@@ -17,15 +17,18 @@ const { Content, headings } = await post.render();
 <GlobalLayout>
   <article>
     <header>
-      <label>By {post.data.author ?? `Mario Yepes`}</label>
-      <time datetime={post.data.date.toISOString()}>{post.data.date.toDateString()}</time>
+      <h1>{post.data.title}</h1>
+      <div>
+        <strong>Creation date: </strong>
+        <time datetime={post.data.date.toISOString()}>{post.data.date.toDateString()}</time>
+      </div>
     </header>
     <main>
       <Content />
     </main>
     <aside>
-        In:
-        {post.data.tags.map(tag => <a href=`/blog/?tag=${tag}`>{tag}</a> )}
+        Used technologies:
+        {post.data.tags.map(tag => <a href=`/portfolio/#${tag}`>{tag}</a> )}
     </aside>
   </article>
 </GlobalLayout>
@@ -33,6 +36,9 @@ const { Content, headings } = await post.render();
 <style is:global>
 h1 {
   text-align: center;
+}
+header > div {
+  padding: var(--size-6) 0;
 }
 footer {
   margin-top: calc(var(--size-3) * 3);

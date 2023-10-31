@@ -1,8 +1,8 @@
 ---
 title: Python Cheat Sheets (Python, Django, Pipenv)
 date: 2020-08-10
-cover: Python-Logo-PNG-Image.png
-tags: python, django, pandas, flask
+cover: ./Python-Logo-PNG-Image.png
+tags: [ python, django, pandas, flask ]
 ---
 
 # Python Cheat Sheets (Python, Django, Pipenv)

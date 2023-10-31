@@ -1,8 +1,8 @@
 ---
 title: How to comment your JavaScript code with JSDoc
-cover: typedef-autocomplete.png
+cover: ./typedef-autocomplete.png
 date: 2021-06-05
-tags: javascript, jsdoc, development
+tags: [ javascript, jsdoc, development ]
 ---
 
 # How to comment your JavaScript code with JSDoc

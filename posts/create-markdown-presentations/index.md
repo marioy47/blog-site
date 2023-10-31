@@ -1,7 +1,7 @@
 ---
 title: Creating and publishing presentations using Markdown
-cover: markdown.png
-tags: markdown, javascript, python, terminal, revealjs
+cover: ./markdown.png
+tags: [ markdown, javascript, python, terminal, revealjs ]
 date: 2023-04-24
 ---
 

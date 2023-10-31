@@ -1,8 +1,8 @@
 ---
 title: Javascript Promises, Async and Await tips and tricks
-cover: ferenc-almasi-ayjnmG4oUX4-unsplash.jpg
+cover: ./ferenc-almasi-ayjnmG4oUX4-unsplash.jpg
 date: 2021-06-11
-tags: javascript, promises, async, await, iifi
+tags: [ javascript, promises, async, await, iifi ]
 ---
 
 # Javascript Promises, Async and Await tips and tricks

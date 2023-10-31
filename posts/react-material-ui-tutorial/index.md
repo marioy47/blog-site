@@ -1,7 +1,7 @@
 ---
 title: Getting Started with React Material-UI
 date: 2020-02-20
-tags: javascript, material-ui, css, react
+tags: [ javascript, material-ui, css, react ]
 ---
 
 # Getting Started with React Material-UI

@@ -1,8 +1,8 @@
 ---
 title: Increase the SLL Labs Test Grade in your Web Server
 date: 2020-10-07
-tags: nginx, apache, ssl, devops, security, tls
-cover: ssllabs-server-test.png
+tags: [ nginx, apache, ssl, devops, security, tls ]
+cover: ./ssllabs-server-test.png
 ---
 
 # Increase the SLL Labs Test Grade in your Web Server

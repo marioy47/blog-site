@@ -1,7 +1,7 @@
 ---
 title: Install and Manage PostgreSQL in a Mac with Homebrew
 date: 2020-03-13
-tags: postgres, macos, database, brew, homebrew, sql
+tags: [ postgres, macos, database, brew, homebrew, sql ]
 ---
 
 # Install and Manage PostgreSQL in a Mac with Homebrew

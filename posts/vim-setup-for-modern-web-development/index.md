@@ -1,8 +1,8 @@
 ---
 title: Vim setup for Web Development - Php, JavaScript, (S)CSS, JXS, WordPress, Python
 date: 2020-05-25
-tags: vim, wordpress, php, neovim, node, coc
-cover: vim-web-developmet-cover.png
+tags: [ vim, wordpress, php, neovim, node, coc ]
+cover: ./vim-web-developmet-cover.png
 ---
 
 # Vim setup for Web Development: Php, WordPress, JavaScript, JXS, (S)CSS, Python and Flutter.

@@ -1,7 +1,7 @@
 ---
 title: Setup a Mac OS computer to develop DataScience solutions with Python and VSCode
 date: 2020-03-04
-tags: python, datascience, brew, visualstudio
+tags: [ python, datascience, brew, visualstudio ]
 ---
 
 # Setup a Mac OS computer to develop DataScience solutions with Python and VSCode

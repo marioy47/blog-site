@@ -1,8 +1,8 @@
 ---
 title: Create a query to display custom fields and custom taxonomies in WordPress
 date: 2022-05-19
-tags: wordpress, databases, sql, phpmyadmin
-cover: mysql-logo.png
+tags: [ wordpress, databases, sql, phpmyadmin ]
+cover: ./mysql-logo.png
 ---
 
 # Create a SQL query to display custom fields and custom taxonomies in WordPress

@@ -1,8 +1,8 @@
 ---
 title: Install a Windows 10 development machine with docker, WSL 2 and asdf
-cover: windows-linux.jpg
+cover: ./windows-linux.jpg
 date: 2021-04-14
-tags: windows, wsl, wsl2, asdf, npm, yarn, vim, terminal
+tags: [ windows, wsl, wsl2, asdf, npm, yarn, vim, terminal ]
 ---
 
 # Install a Windows 10 development machine with docker, WSL 2 and asdf

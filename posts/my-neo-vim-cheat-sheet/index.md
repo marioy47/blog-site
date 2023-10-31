@@ -1,8 +1,8 @@
 ---
 title: My (Neo)Vim Cheat Sheet
 date: 2020-04-30
-tags: vim, neovim, php, python, node
-cover: vim-cheat-sheet-cover.png
+tags: [ vim, neovim, php, python, node ]
+cover: ./vim-cheat-sheet-cover.png
 ---
 
 # My (Neo)Vim Cheat Sheet

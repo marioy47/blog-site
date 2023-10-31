@@ -1,8 +1,8 @@
 ---
 title: JavaScript Functional Programming - Advanced Topics
-tags: javascript, functional, lambda, currying, composition
+tags: [ javascript, functional, lambda, currying, composition ]
 date: 2021-01-19
-cover: lambda.png
+cover: ./lambda.png
 ---
 
 # JavaScript Functional Programming: Advanced Topics

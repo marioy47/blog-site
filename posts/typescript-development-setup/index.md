@@ -1,8 +1,8 @@
 ---
 date: 2020-12-01
 title: TypeScript Development Setup
-tags: typescript, javascript, webpack, npm
-cover: Typescript_logo.png
+tags: [ typescript, javascript, webpack, npm ]
+cover: ./Typescript_logo.png
 ---
 
 # Typescript Development Setup

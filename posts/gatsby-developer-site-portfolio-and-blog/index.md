@@ -1,8 +1,8 @@
 ---
 title: Create a Developer Portfolio Site (with a blog) with Gatsby
 date: 2019-11-10
-tags: gatsby, react, javascript, graphql, npx
-cover: gatsby-icon-4a9773549091c227cd2eb82ccd9c5e3a.png
+tags: [ gatsby, react, javascript, graphql, npx ]
+cover: ./gatsby-icon-4a9773549091c227cd2eb82ccd9c5e3a.png
 ---
 
 # Create a Developer Portfolio Site (with a blog) with Gatsby

@@ -1,8 +1,8 @@
 ---
 title: Static and Dynamic blocks with WordPress Gutenberg
 date: 2022-01-18
-tags: wordpress, gutenberg, javascript, php, development
-cover: Johannes-Gutenberg.jpeg
+tags: [ wordpress, gutenberg, javascript, php, development ]
+cover: ./Johannes-Gutenberg.jpeg
 ---
 
 # Static and Dynamic blocks with WordPress Gutenberg

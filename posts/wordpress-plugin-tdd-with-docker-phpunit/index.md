@@ -1,7 +1,7 @@
 ---
 title: WordPress Plug-in Development using TDD, Docker and WpUnitTestCase
-cover: tdd-flow.png
-tags: wordpress, tdd, docker, phpunit, mocking
+cover: ./tdd-flow.png
+tags: [ wordpress, tdd, docker, phpunit, mocking ]
 date: 2021-09-03
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Creating and Publishing a Solidity Contract from Scratch
 date: 2022-01-10
-cover: solidity-logo.png
-tags: solidity, smart contracts, ethereum, smart chain, binance, truffle, ganache
+cover: ./solidity-logo.png
+tags: [ solidity, smart contracts, ethereum, smart chain, binance, truffle, ganache ]
 ---
 
 # Creating and Publishing a Solidity Contract from Scratch

@@ -1,8 +1,8 @@
 ---
 title: Create developer presentations with MDX Deck - Part 1
 date: 2020-10-05
-tags: react, javascript, markdown, livecode, slides, presentations
-cover: code-highlighting.png
+tags: [ react, javascript, markdown, livecode, slides, presentations ]
+cover: ./code-highlighting.png
 ---
 
 # Create developer presentations with MDX Deck - Part 1

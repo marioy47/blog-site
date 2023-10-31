@@ -1,7 +1,7 @@
 ---
 title: Develop for AWS S3, DynamoDB, RDS and API Gateway locally using Serverless
 date: 2020-04-16
-tags: aws, s3, lambda, rds, serverless, yml, node
+tags: [ aws, s3, lambda, rds, serverless, yml, node ]
 ---
 
 # Develop for AWS S3, DynamoDB, RDS and API Gateway locally using Serverless

@@ -1,8 +1,8 @@
 ---
 title: JavaScript Functional Programming - Introduction
-tags: javascript, functional, lambda, currying, composition
+tags: [ javascript, functional, lambda, currying, composition ]
 date: 2020-11-07
-cover: lambda.png
+cover: ./lambda.png
 ---
 
 # JavaScript Functional Programming: Introduction

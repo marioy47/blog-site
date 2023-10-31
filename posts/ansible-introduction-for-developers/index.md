@@ -1,8 +1,8 @@
 ---
 title: Ansible introduction for developers
 date: 2020-01-06
-tags: linux, windows, ssh, winrt, ansible, sysadmin
-cover: ansible-with-cfg.png
+tags: [ linux, windows, ssh, winrt, ansible, sysadmin ]
+cover: ./ansible-with-cfg.png
 ---
 
 # Ansible introduction for developers

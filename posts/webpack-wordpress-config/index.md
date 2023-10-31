@@ -1,7 +1,7 @@
 ---
 title: Using Webpack to compile Javascript in an Wordpress Plugin
-cover: webpack-logo.png
-tags: webpack, wordpress, development, node
+cover: ./webpack-logo.png
+tags: [ webpack, wordpress, development, node ]
 date: 2019-10-28
 ---
 

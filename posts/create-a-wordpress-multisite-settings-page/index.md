@@ -1,8 +1,8 @@
 ---
 title: Create a WordPress Multisite Settings Page
 date: 2020-02-23
-tags: wordpress, multisite, settings
-cover: wordpress-1810453_960_720.jpg
+tags: [ wordpress, multisite, settings ]
+cover: ./wordpress-1810453_960_720.jpg
 ---
 
 # Create a WordPress Multisite Settings Page

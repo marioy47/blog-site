@@ -1,8 +1,8 @@
 ---
 title: Certbot Introduction and Basic Usage with Nginx and Apache
 date: 2020-03-11
-tags: certbot, letsencrypt, ssl, certs, nginx
-cover: certbot-OG.png
+tags: [ certbot, letsencrypt, ssl, certs, nginx ]
+cover: ./certbot-OG.png
 ---
 
 # Certbot Introduction and Basic Usage with Nginx and Apache

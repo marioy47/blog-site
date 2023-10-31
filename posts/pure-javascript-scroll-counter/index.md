@@ -1,7 +1,7 @@
 ---
 title: Create a Pure Javascript Scroll Counter
 date: 2020-05-13
-tags: javascript
+tags: [ javascript ]
 ---
 
 # Create a pure Javascript Scroll Counter

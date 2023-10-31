@@ -1,8 +1,8 @@
 ---
 title: Batch upload videos to youtube using Youtube Uploader
 date: 2020-06-03
-tags: youtube, github, google api
-cover: 01-yt-uploader-cover.png
+tags: [ youtube, github, google api ]
+cover: ./01-yt-uploader-cover.png
 ---
 
 # Batch upload videos to youtube using Youtube Uploader

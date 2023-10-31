@@ -1,7 +1,7 @@
 ---
 title: Setting up Jest for a browser based JavaScript project
-cover: ferenc-almasi-pW3TdRsH8yM-unsplash.jpg
-tags: react, javascript, testing, react testing library, development
+cover: ./ferenc-almasi-pW3TdRsH8yM-unsplash.jpg
+tags: [ react, javascript, testing, react testing library, development ]
 date: 2021-08-07
 ---
 

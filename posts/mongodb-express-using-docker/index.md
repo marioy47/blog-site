@@ -1,8 +1,8 @@
 ---
 title: Mongo DB and Mongo Express using Docker
 date: 2021-02-05
-tags: docker, kubernetes, node, mongodb, cli, docker-compose
-cover: docker-mongo-express.png
+tags: [ docker, kubernetes, node, mongodb, cli, docker-compose ]
+cover: ./docker-mongo-express.png
 ---
 
 # Mongo and Mongo Express trough Docker

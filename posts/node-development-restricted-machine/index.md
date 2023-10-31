@@ -1,7 +1,7 @@
 ---
 title: Setup a restricted machine for node development
-tags: node, bash, git, ps1
-cover: changed-terminal.png
+tags: [ node, bash, git, ps1 ]
+cover: ./changed-terminal.png
 date: 2021-08-03
 ---
 

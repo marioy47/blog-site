@@ -1,8 +1,8 @@
 ---
 title: Prepare Django for Docker deployment and development.
 date: 2021-02-16
-tags: django, docker, uwsgi, pipenv
-cover: django-docker-alpine.png
+tags: [ django, docker, uwsgi, pipenv ]
+cover: ./django-docker-alpine.png
 ---
 
 # Prepare Django for Docker deployment and development

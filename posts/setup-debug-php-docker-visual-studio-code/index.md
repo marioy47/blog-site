@@ -1,8 +1,8 @@
 ---
 title: Wordpress (PHP) debugging in your IDE using Docker and Xdebug
-cover: xdebug-logo.png
+cover: ./xdebug-logo.png
 date: 2022-04-15
-tags: docker, wordpress, php, xdebug, vscode, vim
+tags: [ docker, wordpress, php, xdebug, vscode, vim ]
 ---
 
 # Wordpress (PHP) debugging in your IDE using Docker and Xdebug

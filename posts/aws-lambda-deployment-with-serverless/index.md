@@ -1,8 +1,8 @@
 ---
 title: Deploy your first AWS Lambda function using the Serverless Framework
 date: 2020-03-22
-tags: aws, amazon, lambda, cloud, serverless
-cover: serverless-aws-create.png
+tags: [ aws, amazon, lambda, cloud, serverless ]
+cover: ./serverless-aws-create.png
 ---
 
 # Deploy your first AWS Lambda function using the Serverless Framework

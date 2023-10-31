@@ -1,7 +1,7 @@
 ---
 title: Use Gulp and Webpack together for you asset bundling needs
 date: 2020-01-15
-tags: npm, node, gulp, webpack, javascript, scss, sass, css
+tags: [ npm, node, gulp, webpack, javascript, scss, sass, css ]
 ---
 
 # Use Gulp and Webpack together for you asset bundling needs

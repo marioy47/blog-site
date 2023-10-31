@@ -1,8 +1,8 @@
 ---
 title: Configure Intelephense to recognize WordPress, Genesis Framework and ACF Functions
 date: 2020-07-24
-cover: intelephense-genesis-cover.png
-tags: wordpress, genesis, composer, intelephense, coc
+cover: ./intelephense-genesis-cover.png
+tags: [ wordpress, genesis, composer, intelephense, coc ]
 ---
 
 # Configure Intelephense to recognize WordPress, Genesis Framework and ACF Functions

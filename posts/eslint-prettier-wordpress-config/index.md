@@ -1,8 +1,8 @@
 ---
 title: Configure Eslint, Prettier, Husky and Lint-Staged for WordPress Development
 date: 2020-07-06
-cover: prettier+eslint.png
-tags: wordpress, javascript, eslint, prettier
+cover: ./prettier+eslint.png
+tags: [ wordpress, javascript, eslint, prettier ]
 ---
 
 # Configure Eslint, Prettier and Husky for WordPress Development

@@ -1,8 +1,8 @@
 ---
 title: Django tooling with Pipenv, Pre-Commit, GitHub actions and PostgreSQL
 date: 2021-01-30
-cover: Is-blogging-relevant-anymore.jpeg
-tags: python, django, pipenv, virtualenv
+cover: ./Is-blogging-relevant-anymore.jpeg
+tags: [ python, django, pipenv, virtualenv ]
 ---
 
 # Django tooling with Pipenv, Pre-Commit, GitHub actions and PostgreSQL

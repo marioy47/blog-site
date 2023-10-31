@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import GlobalLayout from '../../layouts/global-layout.astro';
 import FormattedDate from '../../components/formatted-date.astro';
+import '../../styles/portfolio-index.css';
 
 const projects: array = await getCollection('projects');
 projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
@@ -11,7 +12,7 @@ projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
     <h1>Mario Yepes Portfolio</h1>
 		<main>
       {projects.map(project => (
-        <article data-project-id={project.slug} data-tags={project.data.tags.join(',')}>
+        <article data-article-id={project.slug} data-tags={project.data.tags.join(',')}>
           <a href={`/portfolio/${project.slug}`}>
             <Image src={project.data.cover} width={450} alt={`Screenshot for ${project.data.title}`} />
           </a>
@@ -19,7 +20,7 @@ projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
           <p><strong>Client: </strong>{project.data.client}</p>
           <p>{project.data.summary}</p>
           <ul>{project.data.tags.map( tech => <li><a href={`/portfolio/#${tech}`}>{tech}</a></li>)}</ul>
-          <a href={`/portfolio/${project.slug}`}>Read More</a>
+          <a href={`/portfolio/${project.slug}`}>Read More &rarr;</a>
         </article>
       ))}
 </GlobalLayout>
@@ -27,46 +28,3 @@ projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 <script>
 import '../../scripts/toggle-display-tags.js';
 </script>
-
-<style>
-h1 {
-  text-align: center;
-}
-main {
-  max-width: 100%;
-  margin-inline: auto;
-}
-article {
-  width: 160ch;
-  display: grid;
-  grid-template-areas:
-    "image title"
-    "image client"
-    "image summary"
-    "image tech"
-    "image link";
-  grid-template-columns: 2fr 3fr;
-  padding: var(--size-6) var(--size-3);
-  margin-top: calc(var(--size-6) * 3 );
-}
-
-article:hover {
-  box-shadow: var(--shadow-6);
-}
-
-article > *:nth-child(1) { grid-area: image; }
-article > *:nth-child(2) { grid-area: title; }
-article > *:nth-child(3) { grid-area: client; }
-article > *:nth-child(4) { grid-area: summary; }
-article > *:nth-child(5) { grid-area: tech; }
-article > *:nth-child(6) { grid-area: link; text-align: right; }
-
-ul {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  justify-content: flex-end;
-  font-size: 0.9rem;
-}
-</style>

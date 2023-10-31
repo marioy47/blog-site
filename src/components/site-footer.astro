@@ -30,12 +30,18 @@ const {hideScroll = false } = Astro.props;
     width: 5ch;
     height: 5ch;
     border: 1px solid var(--gray-0);
-    box-shadow: var(--shadow-4);
+    box-shadow: var(--shadow-3);
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    cursor: pointer;
+    transition: .3s all ease;
+
+    &:hover {
+      box-shadow: var(--shadow-6);
+    }
   }
 </style>
 

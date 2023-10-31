@@ -1,6 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import GlobalLayout from '../../layouts/global-layout.astro';
+import '../../styles/portfolio-slug.css';
+
 type Props = CollectionEntry<'posts'>;
 
 export async function getStaticPaths() {
@@ -18,37 +20,25 @@ const { Content, headings } = await post.render();
   <article>
     <header>
       <h1>{post.data.title}</h1>
-      <div>
-        <strong>Creation date: </strong>
-        <time datetime={post.data.date.toISOString()}>{post.data.date.toDateString()}</time>
-      </div>
     </header>
     <main>
       <Content />
     </main>
     <aside>
-        Used technologies:
-        {post.data.tags.map(tag => <a href=`/portfolio/#${tag}`>{tag}</a> )}
+      <div>
+        <strong>Client: </strong>
+        {post.data.client}
+      </div>
+      <div>
+        <strong>Project date: </strong>
+        {post.data.date.toDateString()}
+      </div>
+      <div>
+        <strong>Used tech: </strong>
+        <ul>
+          {post.data.tags.map(tag => <li><a href=`/portfolio/#${tag}`>{tag}</a></li>)}
+        </ul>
+      </div>
     </aside>
   </article>
 </GlobalLayout>
-
-<style is:global>
-h1 {
-  text-align: center;
-}
-header > div {
-  padding: var(--size-6) 0;
-}
-footer {
-  margin-top: calc(var(--size-3) * 3);
-}
-article :where(h1, h2, h3) {
-  margin-block-start: 1em;
-  margin-block-end: .2em;
-}
-aside a {
-  display: inline-block;
-  margin-left: var(--size-3);
-}
-</style>

@@ -1,0 +1,17 @@
+
+h1, h2, h3 {
+  margin-block-start: 1em;
+  margin-block-end: .2em;
+}
+aside a {
+  display: inline-block;
+  margin-left: var(--size-3);
+}
+aside ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-end;
+  font-size: 0.9rem;
+}

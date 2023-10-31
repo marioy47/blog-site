@@ -1,7 +1,7 @@
 
 function toggleDisplayArticle(tags) {
     Object.keys(tags).forEach(article => {
-      const selector = `[data-project-id=${article}]`;
+      const selector = `[data-article-id=${article}]`;
       if (tags[article].find(element => `#${element }` == location.hash)) {
         document.querySelector(selector).removeAttribute('style');
         console.log('showing', selector);
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tags = {};
   const [...articles ] = document.querySelectorAll('article')
   articles.forEach(article => {
-    tags[article.dataset.projectId] = article.dataset.tags.split(',');
+    tags[article.dataset.articleId] = article.dataset.tags.split(',');
   });
   if (location.hash) {
     toggleDisplayArticle(tags);

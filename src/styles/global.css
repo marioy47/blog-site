@@ -104,6 +104,10 @@ article {
   margin: 0 auto;
 }
 
+h1 {
+  text-align: center;
+}
+
 p {
   margin-bottom: calc( var(--size-3) * 2);
 }

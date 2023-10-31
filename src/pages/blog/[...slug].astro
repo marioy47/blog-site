@@ -1,6 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import GlobalLayout from '../../layouts/global-layout.astro';
+import '../../styles/blog-slug.css';
+
 type Props = CollectionEntry<'posts'>;
 
 export async function getStaticPaths() {
@@ -24,25 +26,11 @@ const { Content, headings } = await post.render();
       <Content />
     </main>
     <aside>
-        In:
-        {post.data.tags.map(tag => <a href=`/blog/?tag=${tag}`>{tag}</a> )}
+        <ul>
+          <li><strong>Tags: </strong></li>
+          {post.data.tags.map( tech => <li><a href={`/blog/#${tech}`}>{tech}</a></li>)}
+        </ul>
     </aside>
   </article>
 </GlobalLayout>
 
-<style is:global>
-h1 {
-  text-align: center;
-}
-footer {
-  margin-top: calc(var(--size-3) * 3);
-}
-article :where(h1, h2, h3) {
-  margin-block-start: 1em;
-  margin-block-end: .2em;
-}
-aside a {
-  display: inline-block;
-  margin-left: var(--size-3);
-}
-</style>

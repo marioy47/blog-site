@@ -21,10 +21,11 @@ const { title, description, image = shareImg.src } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
+<link rel="preload" href="/fonts/fira-sans-v17-latin-200.woff2" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/fira-sans-v17-latin-300.woff2" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="/fonts/fira-sans-v17-latin-300italic.woff2" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/fira-sans-v17-latin-700.woff2" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/fira-sans-v17-latin-italic.woff2" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/fira-sans-v17-latin-regular.woff2" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="/fonts/fira-sans-v17-latin-700italic.woff2" as="font" type="font/woff" crossorigin />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

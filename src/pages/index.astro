@@ -14,9 +14,10 @@ import imgMarioBw from '../images/img-mario-bw.png';
 </GlobalLayout>
 
 <style>
-  html {
+  :root {
     --surface-1: var(--indigo-10);
     --text-1: var(--gray-1);
+    --brand: var(--gray-1);
     --link: var(--gray-0);
     --link-visited: var(--gray-2);
   }
@@ -24,7 +25,7 @@ import imgMarioBw from '../images/img-mario-bw.png';
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--size-6);
-    min-height: 90vh;
+    min-height: calc(100vh - 8rem);
     margin-inline: auto;
     place-items: center;
   }

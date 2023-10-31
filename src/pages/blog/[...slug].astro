@@ -16,26 +16,33 @@ const { Content, headings } = await post.render();
 ---
 <GlobalLayout>
   <article>
-    <label>By {post.data.author ?? `Mario Yepes`}</label>
-    <time datetime={post.data.date.toISOString()}>{post.data.date.toDateString()}</time>
-    <Content />
+    <header>
+      <label>By {post.data.author ?? `Mario Yepes`}</label>
+      <time datetime={post.data.date.toISOString()}>{post.data.date.toDateString()}</time>
+    </header>
+    <main>
+      <Content />
+    </main>
+    <aside>
+        In:
+        {post.data.tags.map(tag => <a href=`/blog/?tag=${tag}`>{tag}</a> )}
+    </aside>
   </article>
-
-  <pre>
-    {JSON.stringify(post, null, 4)}
-  </pre>
-
-  <pre>
-  {JSON.stringify(headings, null, 4)}
-  </pre>
 </GlobalLayout>
 
 <style is:global>
 h1 {
   text-align: center;
 }
+footer {
+  margin-top: calc(var(--size-3) * 3);
+}
 article :where(h1, h2, h3) {
   margin-block-start: 1em;
   margin-block-end: .2em;
+}
+aside a {
+  display: inline-block;
+  margin-left: var(--size-3);
 }
 </style>

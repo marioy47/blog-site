@@ -19,7 +19,6 @@ posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
             <h2>{post.data.title}</h2>
             <time>{post.data.date.toDateString()}</time>
           </a>
-          <pre style="display: none">{JSON.stringify(post.data,null,4)}</pre>
         </article>
         )}
 		</main>
@@ -36,14 +35,26 @@ article a {
   justify-content: center;
   min-height: calc( var(--size-3) * 4 );
   gap: var(--size-3);
-  margin-bottom: calc(var(--size-3) * 3);
-  border-bottom: 1px solid var(--gray-3);
+  border-bottom: 1px solid var(--gray-6);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+@media (max-width: 460px) {
+  article a {
+    grid-template-columns: 0 5fr 2fr;
+  }
 }
 article a:hover {
   box-shadow: var(--shadow-4);
   text-decoration: none;
 }
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
 img {
-  display: 
+  display: inline-block;
+  box-shadow: var(--shadow-3);
 }
 </style>

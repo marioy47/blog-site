@@ -6,6 +6,7 @@ import iconGithub from '../images/svg/github-brands.svg?raw';
 import iconCodersRank from '../images/svg/coders-rank.svg?raw';
 ---
 
+<a id="scroll-to-top" class="arrow-up" aria-label="Scroll to top">&uarr;</a>
 <footer>
   <div aria-label="Copyright">
     &copy; {today.getFullYear()} Mario Yepes. All rights reserved.
@@ -17,3 +18,28 @@ import iconCodersRank from '../images/svg/coders-rank.svg?raw';
     <li><a target="_blank" href="https://profile.codersrank.io/user/marioy47" aria-label="Coders Rank Profile" set:html={iconCodersRank}></a></li>
   </ul>
 </footer>
+
+<style>
+  .arrow-up {
+    position: fixed;
+    bottom: 6ch;
+    right: 1ch;
+    display: block;
+    width: 5ch;
+    height: 5ch;
+    border: 1px solid var(--gray-0);
+    box-shadow: var(--shadow-4);
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+</style>
+
+<script>
+document.getElementById('scroll-to-top').addEventListener('click', () => {
+  window.scrollTo(0, 0);
+});
+
+</script>

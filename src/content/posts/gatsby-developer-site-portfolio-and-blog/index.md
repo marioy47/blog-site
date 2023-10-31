@@ -405,7 +405,7 @@ npm install --save gatsby-plugin-sitemap gatsby-plugin-robots-txt
 
 And again... edit `gatsby-config.js`
 
-```js{4,8-9}
+```javascript {4,8-9}
 // gatsby-config.js
 module.exports = {
   // ...

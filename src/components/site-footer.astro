@@ -4,16 +4,18 @@ import iconTwitter from '../images/svg/twitter-brands.svg?raw'
 import iconLinkedin from '../images/svg/linkedin-brands.svg?raw'
 import iconGithub from '../images/svg/github-brands.svg?raw';
 import iconCodersRank from '../images/svg/coders-rank.svg?raw';
+
+const {hideScroll = false } = Astro.props;
 ---
 
-<a id="scroll-to-top" class="arrow-up" aria-label="Scroll to top">&uarr;</a>
+{hideScroll ? '': <a id="scroll-to-top" class="arrow-up" aria-label="Scroll to top">&uarr;</a> }
 <footer>
   <div aria-label="Copyright">
     &copy; {today.getFullYear()} Mario Yepes. All rights reserved.
   </div>
   <ul aria-label="Mario's Social networks">
-    <li><a target="_blank" href="https://twitter.com/marioy47"  aria-label="Mario's Twitter" set:html={iconTwitter}></a></li>
     <li><a target="_blank" href="https://linkedin.com/in/marioyepes" aria-label="Mario's Linkedin" set:html={iconLinkedin}></a></li>
+    <li><a target="_blank" href="https://twitter.com/marioy47"  aria-label="Mario's Twitter" set:html={iconTwitter}></a></li>
     <li><a target="_blank" href="https://github.com/marioy47" aria-label="Mario's GitHub" set:html={iconGithub}></a></li>
     <li><a target="_blank" href="https://profile.codersrank.io/user/marioy47" aria-label="Coders Rank Profile" set:html={iconCodersRank}></a></li>
   </ul>
@@ -22,7 +24,7 @@ import iconCodersRank from '../images/svg/coders-rank.svg?raw';
 <style>
   .arrow-up {
     position: fixed;
-    bottom: 6ch;
+    bottom: 7ch;
     right: 1ch;
     display: block;
     width: 5ch;

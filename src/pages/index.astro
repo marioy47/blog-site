@@ -3,7 +3,7 @@ import GlobalLayout from '../layouts/global-layout.astro';
 import {Image} from 'astro:assets';
 import imgMarioBw from '../images/img-mario-bw.png';
 ---
-<GlobalLayout>
+<GlobalLayout hideScroll={true}>
 		<main>
 			<h1>Hello,<strong>I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</span></h1>
       <picture>
@@ -14,32 +14,37 @@ import imgMarioBw from '../images/img-mario-bw.png';
 </GlobalLayout>
 
 <style>
-  :root {
-    --surface-1: var(--indigo-10);
-    --text-1: var(--gray-1);
-    --brand: var(--gray-1);
-    --link: var(--gray-0);
-    --link-visited: var(--gray-2);
-  }
-  main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--size-6);
-    min-height: calc(100vh - 8rem);
-    margin-inline: auto;
-    place-items: center;
-  }
+:root {
+  --surface-1: var(--indigo-10);
+  --text-1: var(--gray-1);
+  --brand: var(--gray-1);
+  --link: var(--gray-0);
+  --link-visited: var(--gray-2);
+}
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--size-6);
+  min-height: calc(100vh - 8rem);
+  margin-inline: auto;
+  place-items: center;
+}
+h1 {
+  text-align: right;
+  font-size: clamp(1.5rem, 2.5vw, 3.2rem);
+  animation: var(--animation-slide-in-up) forwards;
+}
+@media (max-width: 700px) {
   h1 {
-    text-align: right;
-    font-size: clamp(1.5rem, 2.5vw, 3.2rem);
-    animation: var(--animation-slide-in-up) forwards;
+    text-align: center;
   }
-  h1 strong {
-    display: block;
-    font-size: 1.5em;
-  }
-  picture img {
-    border-radius: 50%;
-    max-width: 80%;
-  }
+}
+h1 strong {
+  display: block;
+  font-size: 1.5em;
+}
+picture img {
+  border-radius: 50%;
+  max-width: 80%;
+}
 </style>

@@ -4,6 +4,8 @@ import SiteHeader from '../components/site-header.astro';
 import SiteFooter from '../components/site-footer.astro';
 import '../styles/global.css'; 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const {hideScroll} = Astro.props;
 ---
 
 <!doctype html>
@@ -14,6 +16,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<SiteHeader title={SITE_TITLE} />
     <slot />
-		<SiteFooter />
+		<SiteFooter hideScroll={hideScroll} />
 	</body>
 </html>

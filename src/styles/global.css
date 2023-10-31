@@ -1,5 +1,7 @@
-@import "https://unpkg.com/open-props"; 
-@import "https://unpkg.com/open-props/normalize.min.css"; 
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+@import "https://unpkg.com/open-props/buttons.min.css";
+
 
 /* fira-sans-200 - latin */
 @font-face {
@@ -75,8 +77,25 @@ html {
 }
 
 body > * {
-  padding-left: var(--size-2);
-  padding-right: var(--size-2);
+  padding-left: var(--size-3);
+  padding-right: var(--size-3);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+nav menu {
+  list-style: none; 
+  margin: 0;
+  display: flex;
+  gap: var(--size-4);
+}
+nav menu > * {
+  padding-inline: 0;
 }
 
 article {
@@ -126,6 +145,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 4rem;
 }
 
 footer ul {
@@ -133,11 +153,11 @@ footer ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: var(--size-2);
+  gap: var(--size-4);
 }
 
 footer a {
   display: block;
-  width: var(--size-7);
+  width: 2.5rem;
 }
 

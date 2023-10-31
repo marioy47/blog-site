@@ -1,9 +1,9 @@
 ---
 title: PTM & Tuti Soap Integration
-cover: tuti-ptm-homepage.png
+cover: ./tuti-ptm-homepage.png
 date: 2020-02-15
 client: Tronex
-tags: php, wordpress, soap, javascript, bitbucket, git, unit-test
+tags: [php, wordpress, soap, javascript, bitbucket, git, unit-test]
 summary: Integrate PTM (a "minute plan reseller") system with Tuti (A small business provisioner) E-commerce using Soap.
 ---
 
@@ -95,29 +95,29 @@ The settings page for this project was somewhat long since you needed to configu
 - A selection box to chose which products of all the available will be offered in the e-commerce
 - A template for the generation of a PDF with barcode information
 
-![Settings Page](tuti-ptm-settings-page.png)
+![Settings Page](./tuti-ptm-settings-page.png)
 
 ### Account Page
 
 In the account page we added a new path for showing the last sells recorded in PTM and the PTM Balance:
 
-![Account Balances](tuti-ptm-user-balances.png)
+![Account Balances](./tuti-ptm-user-balances.png)
 
 ### List of products
 
 PTM offered almost 150. But only 20 where configured in Tuti's system.
 
-![List of PTM products](tuti-ptm-prod-list.png)
+![List of PTM products](./tuti-ptm-prod-list.png)
 
 ### Sell minute plans
 
 For each PTM product, there was a form to sell minute plans.
 
-![Sell minutes](tuti-ptm-sell-minutes.png)
+![Sell minutes](./tuti-ptm-sell-minutes.png)
 
 The form had to send information using ajax requests and the number and type of fields changed from product to product.
 
-![Username/Password error on the remote service](tuti-ptm-user-error.png)
+![Username/Password error on the remote service](./tuti-ptm-user-error.png)
 
 If the username password is wrong on the remote server, the business owner could not sell minutes.
 
@@ -127,4 +127,4 @@ The system generates a PDF with a barcode.
 
 The content and placement of the barcode is configured in the settings page by using a liquid template
 
-![PDF Generation](tuti-ptm-pdf.png)
+![PDF Generation](./tuti-ptm-pdf.png)

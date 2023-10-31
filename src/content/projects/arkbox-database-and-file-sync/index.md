@@ -1,13 +1,11 @@
 ---
 title: Multiple data sources synchronization using AWS Lambda
-cover: lambda-function.png
+cover: ./lambda-function.png
 date: 2020-04-30
 client: Undisclosed
-tags: aws, database, cloud, javascript, serverless, s3, rds, postgresql, mssql
+tags: [aws, database, cloud, javascript, serverless, s3, rds, postgresql, mssql]
 summary: Synchronize a MS SQL database and S3 Bucket with a PostgreSQL database using lambda functions written in JavaScript.
 ---
-
-# Multiple data sources synchronization using AWS Lambda
 
 In this project I was part of a team of 2 engineers in charge of creating a _Business Intelligence_ system for a software development client in Medellín, Colombia.
 
@@ -42,7 +40,7 @@ There where several challenges aside of being a new development platform for me.
 
 AWS Lambda is designed (at the time of this writing) to be used and developed using their online tool. This makes the version control much harder and also makes the overall development slower.
 
-![Lambda Online Editor](lambda-online-editor.png)
+![Lambda Online Editor](./lambda-online-editor.png)
 
 I ended up solving this problem by simulating AWS S3, AWS Dynamo and AWS RDS using [Serverless Offline](/serverless-s3-dynamodb-local-development/). I also installed an instance [PostgreSQL Locally](/install-postgresql-on-mac-with-brew/).
 

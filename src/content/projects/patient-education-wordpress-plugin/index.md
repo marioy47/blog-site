@@ -1,15 +1,13 @@
 ---
 title: Patient Education WordPress Plugin
-cover: pe-cover-image.png
+cover: ./pe-cover-image.png
 date: 2018-06-18
 client: iHealthSpot
-tags: wordpress, jquery, javascript, php, bitbucket
+tags: [wordpress, jquery, javascript, php, bitbucket]
 summary: Wordpess plugin that allowed the client to embed a mediacal diagnostics database inside any site page
 ---
 
-# "Patient Education" WordPress Plugin
-
-![Cover Image](pe-cover-image.png)
+![Cover Image](./pe-cover-image.png)
 
 This plugin was created for [iHealthSpot](https://ihealthspot.com), which is a Miami based company that offers website design and hosting for medical practices and hospitals.
 
@@ -44,12 +42,12 @@ There are many sites using this plugin, but one of the best examples is in the [
 
 ### Configuration of the plugin in one site
 
-![Patient Education Dashboard](pe-complete-dashboard.png)
+![Patient Education Dashboard](./pe-complete-dashboard.png)
 
 ### The "Patient Education" database in displayed in one site
 
-![Patient Education Frontend](pe-complete-list.png)
+![Patient Education Frontend](./pe-complete-list.png)
 
 ### Displaying One Article
 
-![Patient Education Article](pe-article.png)
+![Patient Education Article](./pe-article.png)

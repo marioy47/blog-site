@@ -1,15 +1,13 @@
 ---
-title: Custom Directory Wordpress Plugin
-cover: wp-custom-dir-result.png
+title: _Custom Directory_ Wordpress Plugin
+cover: ./wp-custom-dir-result.png
 date: 2020-01-10
 client: Personal Project
-tags: wordpress, webpack, javascript, php, github
+tags: [wordpress, webpack, javascript, php, github]
 summary: Wordpress plugin for creating a sortable list of items with filtering options
 ---
 
-# "Custom Directory" WordPress Plugin
-
-![Cover Image](wp-custom-dir-result.png)
+![Cover Image](./wp-custom-dir-result.png)
 
 This plugin I did it as a personal project.
 
@@ -63,15 +61,15 @@ This are some screenshots that show different parts of the plugin
 
 ### Configuration screen
 
-![Configuration Screen](wp-custom-dir-config.png)
+![Configuration Screen](./wp-custom-dir-config.png)
 
 ### Embedded Help
 
-![Embedded Help](wp-custom-dir-help.png)
+![Embedded Help](./wp-custom-dir-help.png)
 
 ### Directory Sample
 
-![Directory Sample](wp-custom-dir-result.png)
+![Directory Sample](./wp-custom-dir-result.png)
 
 ## Live coding sessions
 

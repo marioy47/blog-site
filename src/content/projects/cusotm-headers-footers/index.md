@@ -1,15 +1,13 @@
 ---
 title: Custom Headers & Footers
-cover: custom-header-footer-featured.png
+cover: ./custom-header-footer-featured.png
 date: 2019-11-26
 client: iHealthSpot
-tags: wordpress, php, bitbucket, git
+tags: [wordpress, php, bitbucket, git]
 summary: Allows you to add any type of code on the header or footer of a WP page
 ---
 
-# "Custom Headers & Footers" WordPress Plugin
-
-![Cover Image](custom-header-footer-featured.png)
+![Cover Image](./custom-header-footer-featured.png)
 
 This plugin was made for the company [iHealthSpot](https://ihealthspot.com) so the marketing team could add any kind of tag on the header or footer of a page.
 
@@ -41,11 +39,11 @@ The hard part of this plugin was the creation of a black list of code patters th
 
 ### Custom Headers & Footers with JavaScript code
 
-![Adding JS code](custom-header-footer-js.png)
+![Adding JS code](./custom-header-footer-js.png)
 
 ### Custom Headers & Footers with CSS code
 
-![Adding CSS code](custom-header-footer-css.png)
+![Adding CSS code](./custom-header-footer-css.png)
 
 ### Live Coding
 

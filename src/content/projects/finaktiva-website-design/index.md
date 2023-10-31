@@ -1,13 +1,11 @@
 ---
 title: Finaktiva Website Design
-cover: finaktiva-home.png
+cover: ./finaktiva-home.png
 date: 2019-09-01
 client: Finaktiva
-tags: figma, design, svg, webdesign, trello, javascript
+tags: [figma, design, svg, webdesign, trello, javascript]
 summary: Design and project management for Finaktiva's new website
 ---
-
-# Finaktiva Website Design
 
 This was a simple 1 week project that required a very simple website design for a local fin-tech called [Finaktiva](https://finaktiva.com)
 

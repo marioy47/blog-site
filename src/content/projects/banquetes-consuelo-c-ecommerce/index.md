@@ -1,13 +1,11 @@
 ---
 title: Banquetes Consuelo C Ecommerce Implementation
-cover: consueloc-homepage.png
+cover: ./consueloc-homepage.png
 date: 2018-11-24
 client: Banquetes Consuelo C
-tags: woocommerce, ecommerce, wordpress, php, javascript, jquery, figma, design, svg, webdesign, trello
+tags: [woocommerce, ecommerce, wordpress, php, javascript, jquery, figma, design, svg, webdesign, trello]
 summary: Conversion of the website "Banquetes Consuelo C" to a quotation tool by using the e-commerce plugin WooCommerce and some custom code.
 ---
-
-# Banquetes Consuelo C Ecommerce Implementation
 
 This is one of the oldest sites that I created. And is for a local catering company.
 
@@ -15,23 +13,23 @@ This site was done using WooCommerce but with modifications so the cart works as
 
 ## Home page
 
-![Banquetes Consuelo C Home](consueloc-home-complete.png)
+![Banquetes Consuelo C Home](./consueloc-home-complete.png)
 
 ## Store Page
 
-![Banquetes Consuelo C Store page](consueloc-store.png)
+![Banquetes Consuelo C Store page](./consueloc-store.png)
 
 ## Product Page
 
-![Banquetes Consuelo C Product page](consueloc-prod.png)
+![Banquetes Consuelo C Product page](./consueloc-prod.png)
 
 ## Cart Page
 
-![Banquetes Consuelo C Cart page](consueloc-cart.png)
+![Banquetes Consuelo C Cart page](./consueloc-cart.png)
 
 ## Checkout Page
 
-![Banquetes Consuelo C Checkout page](consueloc-checkout.png)
+![Banquetes Consuelo C Checkout page](./consueloc-checkout.png)
 
 There is a new design for the site, but its still not in production.
 

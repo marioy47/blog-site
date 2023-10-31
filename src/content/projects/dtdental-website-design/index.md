@@ -1,9 +1,9 @@
 ---
 title: Dt. Dental Website Design
-cover: dtdental-home.png
+cover: ./dtdental-home.png
 date: 2019-04-10
 client: Dt. Technologies
-tags: figma, design, svg, webdesign, trello
+tags: [figma, design, svg, webdesign, trello]
 summary: Design and project management for Dt. Dental's website
 ---
 

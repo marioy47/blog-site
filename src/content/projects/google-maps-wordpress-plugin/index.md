@@ -1,13 +1,11 @@
 ---
 title: Google Maps WordPress Plugin
-cover: page-with-map-shortcodes.png
+cover: ./page-with-map-shortcodes.png
 date: 2020-05-01
 client: iHealthSpot
-tags: wordpress, google maps, php, javascript, api
+tags: [wordpress, google maps, php, javascript, api]
 summary: Custom WordPress plugin to create a Google Map for a single place or to create maps with multiple markers.
 ---
-
-# Google Maps WordPress Plugin
 
 The project consisted on creating a WordPress plugin that allowed a WordPress _site editor_ (a person) to embed a Google Map with multiple markers, using just a shortcode.
 
@@ -47,13 +45,13 @@ The solution was a _Locations_ plugin with the following components:
 
 ### Plugin activation and notifications
 
-![](plugin-activation.png)
+![](./plugin-activation.png)
 
 Upon activation, the plugin asks the _site editor_ to configure the Google Maps API
 
 ### Settings page
 
-![](settings-page-before-configuration.png)
+![](./settings-page-before-configuration.png)
 
 The Settings where you can enter the Google Maps API Key.
 
@@ -63,11 +61,11 @@ The HTML templates use the [tiwg](https://twig.symfony.com/) template engine so 
 
 This is an example of a settings page with all the fields.
 
-![](settings-after-configuration.png)
+![](./settings-after-configuration.png)
 
 ### Marker creation page
 
-![](configuring-single-place.png)
+![](./configuring-single-place.png)
 
 On the plugin you have to create markers (called places per client request) and then add those markers to a map.
 
@@ -77,13 +75,13 @@ This is the marker creation page. There you can specify how the marker is diplay
 
 Once the marker fields are completed, you can access it on the front-end.
 
-![](single-place-front.png)
+![](./single-place-front.png)
 
 As you can see, the content of the _place page_ or _marker page_ is dictated by what you provided on _template field_ on the _settings page_.
 
 ### Map creation page
 
-![](map-with-2-places-creation.png)
+![](./map-with-2-places-creation.png)
 
 The _map creation_ page, is very similar to the _marker creation_ page. With two big differences:
 
@@ -92,11 +90,11 @@ The _map creation_ page, is very similar to the _marker creation_ page. With two
 
 Contrary to the markers, a _Map Page_ **is not** created. So, to display the map, you have to use the shortcode inside a page or post.
 
-![](page-with-map-shortcodes-dashboard.png)
+![](./page-with-map-shortcodes-dashboard.png)
 
 And this will be the result.
 
-![](page-with-map-shortcodes.png)
+![](./page-with-map-shortcodes.png)
 
 ## Challenges
 

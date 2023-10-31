@@ -1,13 +1,11 @@
 ---
 title: Appointments Scheduling System.
-cover: configure-schedule.png
+cover: ./configure-schedule.png
 date: 2020-07-01
 client: iHealthSpot
-tags: wordpress, react, php, javascript, aws, sns, formsite
+tags: [wordpress, react, php, javascript, aws, sns, formsite]
 summary: A web application where patients could schedule their appointments from their browser. Used WordPress in the back-end, React on the front-end and the communication was using the WP-JSON Rest API.
 ---
-
-# Appointments Scheduling System
 
 The project consisted on adding into WordPress scheduling capabilities. Where a patient could schedule an appointment with a specific provider or doctor.
 
@@ -55,11 +53,11 @@ The front-end would communicate with the back-end using the new REST API
 
 On the back-end a staff member could create a schedule for a doctor and select which days she/he would be available for appointments.
 
-![List of configured schedules](schedules-list.png)
+![List of configured schedules](./schedules-list.png)
 
 Also, a range of unavailable dates can be configured.
 
-![A schedule for a doctor](configure-schedule.png)
+![A schedule for a doctor](./configure-schedule.png)
 
 ## Challenges
 

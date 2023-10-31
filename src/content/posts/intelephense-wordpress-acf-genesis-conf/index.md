@@ -81,7 +81,7 @@ So first install and [configure](https://marioyepes.com/vim-setup-for-modern-web
 
 This will open the `con-settings.json` file. There add `wordpress` to the list of stubs:
 
-```json{11}
+```json {11}
 {
   "intelephense.stubs": [
     "...",

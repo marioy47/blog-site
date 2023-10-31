@@ -186,7 +186,7 @@ In that file is recommended to make the following changes:
 
 To fix the problem that all `.ts` files outsice `src/` get compiled, we need to add the following to `tsconfig.json`
 
-```json{5}
+```json {5}
 {
   {
     "..."

@@ -71,7 +71,7 @@ To make our life easier, I'm going to add the **start** script in that same fie,
 
 Lets just edit the _scripts_ section replacing the _test_ script with the following:
 
-```json{8}
+```json {8}
 // package.json
 {
   "name": "test-webpack",

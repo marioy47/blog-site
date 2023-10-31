@@ -94,7 +94,7 @@ The idea behind that variable is that _detecting_ and _saving_ **Network** optio
 
 Now lets add some functionality. Lets create a new Page called `Custom Settings` in the `Settings` section of the **admin sidebar**
 
-```php{7,15-26,31-50}
+```php {7,15-26,31-50}
 <?php
   /**
    * Class Constructor.

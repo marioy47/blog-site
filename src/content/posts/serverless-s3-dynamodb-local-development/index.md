@@ -65,7 +65,7 @@ Now that we have the initial project created, lets make this a _serverless_ proj
 
 All of this can be achieved with the following commands
 
-```bash{5}
+```bash {5}
 cd Projects # Or where you store your projects
 mkdir serverles-aws-local-devenv
 cd serverles-aws-local-devenv
@@ -101,7 +101,7 @@ This are very personal preferences on how I develop, so you might not agree with
 
 After the `serverless.yml` is cleaned up, you'll end up with:
 
-```yaml{10}
+```yaml {10}
 # serverless.yml
 service: serverless-aws-local-devenv
 
@@ -139,7 +139,7 @@ So, to make it work we need to make 2 changes:
 - Create an `events` section inside our `hello` function, adding a URL path for the execution
 - Create a `plugins` section and add the newly installed plugin
 
-```yaml{11-14,16-17}
+```yaml {11-14,16-17}
 # serverless.yml
 service: serverless-aws-local-devenv
 
@@ -161,7 +161,7 @@ plugins:
 
 Also, I changed the `lambda/handler.js` function so it recognizes the URL parameter:
 
-```javascript{5,10}
+```javascript {5,10}
 // lambdas/handler.js
 "use strict"
 
@@ -300,7 +300,7 @@ Ok, so. If you don't have it. Install JRE.
 
 You can follow the excellent tutorial on [https://mkyong.com/java/how-to-install-java-on-mac-osx/](https://mkyong.com/java/how-to-install-java-on-mac-osx/). But the gist of it is:
 
-```bash{3}
+```bash {3}
 brew tap adoptopenjdk/openjdk
 brew search jdk
 brew cask install adoptopenjdk14
@@ -330,7 +330,7 @@ If you noticed, you have to issue the `serverless dynamodb install` command. Thi
 
 The next step is to create a resource in your `serverless.yml` very similarly as we did in the S3 Bucket installation:
 
-```yaml{5,12-24,32-48}
+```yaml {5,12-24,32-48}
 # serverless.yml
 . . .
 plugins:
@@ -444,7 +444,7 @@ npm install aws-sdk --save-dev
 
 Then, update the `serverless.yml` adding a new function.
 
-```yaml{10-15}
+```yaml {10-15}
 # serverless.yml
 . . .
 functions:
@@ -470,7 +470,7 @@ plugins:
 
 I called the new function `users` and it points to the function `index` in the file `lambdas/users.js`. So lets create that file with the following content:
 
-```javascript{5-10}
+```javascript {5-10}
 // lambdas/users.js
 
 const AWS = require("aws-sdk")
@@ -545,7 +545,7 @@ npm install serverless-dotenv-plugin --save-dev
 
 And then I have to update the `serverless.yml` file to use some environment variables for things like naming the _DynamoDB Table_ and a custom variable to specify that we're using a local environment:
 
-```yaml{4,14,26}
+```yaml {4,14,26}
 # serverless.yml
 . . .
 plugins:

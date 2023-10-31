@@ -127,7 +127,7 @@ Now that we have Python, Pip and Pipenv installed, we need to create a folder fo
 
 So execute the following:
 
-```bash{3}
+```bash {3}
 mkdir django-first-app
 cd $_
 PIPENV_IGNORE_VIRTUALENVS=1 pipenv --python 3.9 shell

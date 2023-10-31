@@ -347,8 +347,6 @@ export default App
 
 Notice that we are including all the _Material-UI_ elements ant that now everthihng is inclosed in `<Paper>` instead of a `<div>`
 
-![Image of the form enclosed in a card](./)
-
 ## Alter the CSS
 
 ## Create a Theme

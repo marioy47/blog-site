@@ -180,7 +180,7 @@ You can use multiple themes **in a single slide** with _CodeSurfer_. You just ha
 
 You can find a showcase of themes [here](https://codesurfer.pomb.us/themes/) and [here](https://github.com/pomber/code-surfer/blob/code-surfer-v2/packs/themes/src/index.ts) is the list of available themes.
 
-![CodeSurfer themes](./https://user-images.githubusercontent.com/1911623/66016573-97df9c00-e4ad-11e9-9095-225d5c9b46a8.png)
+![CodeSurfer themes](https://user-images.githubusercontent.com/1911623/66016573-97df9c00-e4ad-11e9-9095-225d5c9b46a8.png)
 -- _Taken from the [CodeSurfer](https://codesurfer.pomb.us/#themes) page_
 
 ### CodeSurfer "code" parameters

@@ -149,7 +149,7 @@ In the `serverless.yml` file we can add all the configuration we want to be appl
 
 After all the comments are removed, the `serverless.yml` file looks like this:
 
-```yml{6}
+```yml {6}
 # serverless.yml
 service: serverless-aws-1
 provider:

@@ -213,7 +213,7 @@ Then we have to modify our `serverless.yml` file to:
 - Configure the plugin with a `custom` section for the S3 parameters
 - Create a resource of type `AWS::S3::Bucket`
 
-```yml{17,20-23,25-30}
+```yml {17,20-23,25-30}
 # serverless.yml
 service: serverless-aws-local-devenv
 

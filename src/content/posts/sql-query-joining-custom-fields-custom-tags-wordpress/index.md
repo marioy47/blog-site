@@ -34,7 +34,7 @@ If we want to understand the final solution for the requested report, we need to
 
 Here is the current ER for WordPress 5.9, which is the latest one as the time of this writing:
 
-![WordPress ER diagram](./https://codex.wordpress.org/images/2/25/WP4.4.2-ERD.png)
+![WordPress ER diagram](https://codex.wordpress.org/images/2/25/WP4.4.2-ERD.png)
 
 So, instead of having a table and a field for each type of data you want to store like other CMS's, WordPress reuses the few tables it has to store [serialized](https://www.php.net/manual/en/function.serialize.php) data.
 

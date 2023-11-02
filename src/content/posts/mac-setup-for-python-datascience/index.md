@@ -13,10 +13,6 @@ In this article I'll show you a series of steps you can take to achieve just thi
 
 ## TOC
 
-```toc
-
-```
-
 ## Install Python
 
 You could say _Duh!_ here...

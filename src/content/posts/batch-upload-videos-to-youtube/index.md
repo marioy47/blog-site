@@ -21,10 +21,6 @@ So lets see how you can grab this tool and how can you install it to upload vide
 
 ## TOC
 
-```toc
-
-```
-
 ## Installation
 
 _YouTube Uploader_ is written in [Go](https://golang.org). And if a tool is written in Go it's very, very likely that the product is a binary file and that is multi platform.

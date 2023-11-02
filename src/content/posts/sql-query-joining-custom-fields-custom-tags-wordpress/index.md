@@ -21,10 +21,6 @@ Let me show you how I came up with the solution for this report.
 
 ## TOC
 
-```toc
-
-```
-
 ## The WordPress Entity Relationship (ER) model
 
 If we want to understand the final solution for the requested report, we need to understand the [WordPress database structure](https://codex.wordpress.org/Database_Description). Which is actually not that complicated for 2 reasons:

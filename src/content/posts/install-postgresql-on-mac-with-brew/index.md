@@ -13,11 +13,6 @@ As I bonus, I'll show you how to access it directly in visual studio since most 
 
 ## TOC
 
-```toc
-from-heading: 2
-to-heading: 3
-```
-
 ## Install the package
 
 This is very straight forward, specially if you have used Hombrew before:

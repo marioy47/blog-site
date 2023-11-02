@@ -27,10 +27,6 @@ So here are the steps I take to setup debugging when using WordPress inside the 
 
 ## TOC
 
-```toc
-
-```
-
 ## Setup WordPress in a container
 
 Ok, lets start by creating the development environment for a custom plugin:

@@ -13,10 +13,6 @@ So I took this as an opportunity to fix some inconsistencies in my files, create
 
 ## TOC
 
-```toc
-
-```
-
 ## Enable WSL2
 
 The first thing to do while setting up an Windows Development machine, is install Linux inside of it using [WSL2](https://docs.microsoft.com/en-us/windows/wsl/about).

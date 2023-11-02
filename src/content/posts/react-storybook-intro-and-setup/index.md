@@ -37,10 +37,6 @@ In this article I'm going to give you a brief introduction to [Storybook](https:
 
 ## TOC
 
-```toc
-
-```
-
 ## Project setup
 
 To setup Storybook, we first need a React project. So create one using `create-react-app`:

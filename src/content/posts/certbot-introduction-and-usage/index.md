@@ -13,10 +13,6 @@ So here I'm going to show you how to use _Let's Encrypt_ with the `certbot` comm
 
 ## TOC
 
-```toc
-
-```
-
 ## So what is LetsEncrypt?
 
 Let's Encrypt is a nonprofit **Certificate Authority** that provides [TLS](https://wikipedia.org/wiki/Transport_Layer_Security) certificates for websites.

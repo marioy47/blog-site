@@ -26,10 +26,6 @@ So here there are a couple of tricks that I've learned to work with asynchronous
 
 ## TOC
 
-```toc
-
-```
-
 ## Setup
 
 If you want to follow along, you can start by setting up an example project:

@@ -15,10 +15,6 @@ Depending on your level of experience, some of this snips will be too basic or t
 
 ## TOC
 
-```toc
-
-```
-
 ## Python
 
 A more complete [PDF](https://github.com/ehmatthes/pcc/releases/download/v1.0.0/beginners_python_cheat_sheet_pcc_all.pdf) version can be found in the [Python Crash Course Site](https://ehmatthes.github.io/pcc/).

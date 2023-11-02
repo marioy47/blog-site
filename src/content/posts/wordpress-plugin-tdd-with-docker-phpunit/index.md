@@ -17,10 +17,6 @@ Well, you are in the right place, because here I'm going to show you how to conf
 
 ## TOC
 
-```toc
-
-```
-
 ## Pre-requisites
 
 Even though you the final environment is pretty portable, you still need to install a couple of pieces of software, being the more obvious [Docker](https://docker.com)

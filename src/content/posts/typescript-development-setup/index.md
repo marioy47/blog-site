@@ -44,10 +44,6 @@ If you want a more in depth intro into TypeScript I can not recommend enough the
 
 ## TOC
 
-```toc
-
-```
-
 ## Setup globally
 
 The easies way to setup TypeScript so you can start write projects is by installing the TypeScript's `tsc` compiler globally.

@@ -15,10 +15,6 @@ Additionally we're going to do this procedure using the `docker` command, and th
 
 ## TOC
 
-```toc
-
-```
-
 ## Prerequisites
 
 The only prerequisite to follow allong is to have [Docker installed](https://docs.docker.com/engine/install/).

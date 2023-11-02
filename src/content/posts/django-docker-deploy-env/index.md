@@ -19,10 +19,6 @@ By the way, I assume that you have some basic knowledge of Python, Docker and Dj
 
 ## TOC
 
-```toc
-
-```
-
 ## Project structure
 
 Before we start le me show you what our project structure will look like:

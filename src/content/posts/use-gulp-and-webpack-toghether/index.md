@@ -26,10 +26,6 @@ I'm not going to cover how to do complex things like deployment or clean up sinc
 
 ## TOC
 
-```toc
-
-```
-
 ## Project setup.
 
 First lets create a project directory with some sub directories:

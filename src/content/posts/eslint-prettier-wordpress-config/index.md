@@ -27,10 +27,6 @@ So lets see how to configure them one by one.
 
 ## TOC
 
-```toc
-
-```
-
 ## The Caveat
 
 Even though all tools are excellent, its not all roses.

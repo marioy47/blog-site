@@ -13,10 +13,6 @@ Now, we are going to discuss some functional programming patterns that allows yo
 
 ## TOC
 
-```toc
-
-```
-
 ## Currying
 
 > Currying is the mean to transform a function of arity n to n functions of arity 1 - [@michelre](https://www.codementor.io/@michelre)

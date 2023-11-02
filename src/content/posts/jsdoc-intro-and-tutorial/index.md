@@ -13,10 +13,6 @@ I took this opportunity to learn more about [JSDoc](https://jsdoc.app/) and its 
 
 ## TOC
 
-```toc
-
-```
-
 ## What is _JSDoc_?
 
 In case you don't know, _JSDoc_ is the standard for JavaScript code documentation. With it you can an achieve 2 very practical things:

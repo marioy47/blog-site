@@ -8,8 +8,10 @@ import iconCodersRank from '../images/svg/coders-rank.svg?raw';
 const {hideScroll = false } = Astro.props;
 ---
 
-{hideScroll ? '': <a id="scroll-to-top" class="arrow-up" aria-label="Scroll to top">&uarr;</a> }
 <footer>
+  <div>
+    {hideScroll ? <span></span>: <a id="scroll-to-top" aria-label="Scroll to top">&uarr;</a> }
+  </div>
   <div aria-label="Copyright">
     &copy; {today.getFullYear()} Mario Yepes. All rights reserved.
   </div>
@@ -22,32 +24,11 @@ const {hideScroll = false } = Astro.props;
 </footer>
 
 <style>
-  .arrow-up {
-    position: fixed;
-    bottom: 7ch;
-    right: 1ch;
-    display: block;
-    width: 5ch;
-    height: 5ch;
-    border: 1px solid var(--gray-0);
-    box-shadow: var(--shadow-3);
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: .3s all ease;
-
-    &:hover {
-      box-shadow: var(--shadow-6);
-    }
-  }
+@import '../styles/site-footer.scss';
 </style>
 
 <script>
 document.getElementById('scroll-to-top').addEventListener('click', () => {
   window.scrollTo(0, 0);
 });
-
 </script>

@@ -1,9 +1,9 @@
 ---
 import {Image} from 'astro:assets';
-import GlobalLayout from '../layouts/global-layout.astro';
+import SiteLayout from '../layout/site-layout.astro';
 import imgMario from '../images/img-mario-lado.jpg';
 ---
-<GlobalLayout hideScroll={true}>
+<SiteLayout hideScroll={true}>
   <main>
     <h1>Hola, Soy Mario</h1>
     <section>
@@ -31,50 +31,8 @@ import imgMario from '../images/img-mario-lado.jpg';
         <a class="btn" href="https://docs.google.com/document/d/1lP4DPa3Pztid-yCrT8chuKTm_6SRp0Lo7PTq_dmfKI0/export?format=pdf">Download my Rèsumè</a>
     </section>
   </main>
-</GlobalLayout>
+</SiteLayout>
 
 <style>
-main {
-  width: 120ch;
-  max-width: 100%;
-  margin-inline: auto;
-  min-height: calc(100vh - 8rem);
-  display: grid;
-  grid-template-areas: 
-    "title title"
-    "intro picture"
-    "resume resume";
-  grid-template-rows: repeat(aut-fill, minmax(3rem, 1fr));
-}
-
-@media (max-width: 700px) {
-  main {
-    grid-template-areas: 
-      "title"
-      "intro"
-      "resume"
-      "picture";
-    grid-template-rows: auto;
-  }
-}
-
-main > h1 {
-  grid-area: title;
-  text-align: center;
-}
-
-main > section:nth-of-type(1) {
-  grid-area: intro;
-}
-main > section:nth-of-type(2) {
-  grid-area: picture;
-}
-main > section:nth-of-type(3) {
-  grid-area: resume;
-  text-align: center;
-}
-
-img {
-  border-radius: 50%;
-}
+@import '../styles/page-about.scss';
 </style>

@@ -1,4 +1,6 @@
-
+article {
+  --size-content-4: 100ch;
+}
 h1, h2, h3 {
   margin-block-start: 1em;
   margin-block-end: .2em;
@@ -14,4 +16,8 @@ aside ul {
   list-style: none;
   justify-content: flex-end;
   font-size: 0.9rem;
+}
+
+img {
+  margin-inline: auto;
 }

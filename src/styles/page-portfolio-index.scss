@@ -1,0 +1,49 @@
+
+h1 {
+  text-align: center;
+  margin-bottom: calc(var(--size-3) * 3);
+} 
+
+article {
+  border-radius: var(--radius-2);
+  padding: var(--size-3);
+  margin-bottom: calc(var(--size-3) * 3);
+  transition: .3s all ease;
+
+  display: grid;
+  gap: var(--size-3);
+  grid-template-areas:
+    "image title"
+    "image client"
+    "image summary"
+    "image tech"
+    "image link";
+  grid-template-columns: 2fr 3fr;
+
+  @media (max-width: 700px) {
+    grid-template-areas: "title" "image" "client" "summary" "tech" "link";
+    grid-template-columns: 1fr;
+  }
+
+  &:hover {
+    box-shadow: var(--shadow-3);
+  }
+
+  & > *:nth-child(1) { grid-area: image; }
+  & > *:nth-child(2) { grid-area: title; }
+  & > *:nth-child(3) { grid-area: client; }
+  & > *:nth-child(4) { grid-area: summary; }
+  & > *:nth-child(5) { grid-area: tech; }
+  & > *:nth-child(6) { grid-area: link; text-align: right; }
+}
+
+// Tag list
+article ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}

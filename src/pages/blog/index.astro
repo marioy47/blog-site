@@ -1,16 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import GlobalLayout from '../../layouts/global-layout.astro';
+import SiteLayout from '../../layout/site-layout.astro';
 import FormattedDate from '../../components/formatted-date.astro';
-import '../../styles/blog-index.css';
 
 const posts: array = await getCollection('posts', ({data}) => {
   return import.meta.env.PROD ? !data.draft: true;
 });
 posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 ---
-<GlobalLayout>
+<SiteLayout>
 		<main>
       <h1>Mario's Blog</h1>
       {posts.map(post => 
@@ -22,14 +21,18 @@ posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
           <ul>
             {post.data.tags.map(tag => <li><a href=`/blog/#${tag}`>{tag}</a></li>)} 
           </ul>
-          <time>{post.data.date.toDateString()}</time>
+          <FormattedDate date={post.data.date} />
           <a href={`/blog/${post.slug}/`}> Read Article &rarr; </a>
         </article>
         )}
 		</main>
-</GlobalLayout>
+</SiteLayout>
 
 <script>
 import '../../scripts/toggle-display-tags.js';
 </script>
+
+<style>
+@import '../../styles/page-blog-index.scss';
+</style>
 

@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import iconDeveloper from '../images/svg/icon-developer.svg?raw';
+import { SITE_PAGES } from '../consts.ts';
+const currentPath = Astro.url?.pathname?.replace(/\/$/, '');
+---
+<header>
+	<nav>
+		<a href="/" aria-label="Front page" class="site-logo" set:html={iconDeveloper}></a>
+		<menu>
+      {Object.keys(SITE_PAGES).map( item => 
+        <li>
+          <a href=`${item}` class={currentPath === item ? 'active': ''}> {SITE_PAGES[item]} </a>
+        </li>
+      )}
+		</menu>
+	</nav>
+</header>
+
+<style>
+@import '../styles/site-header.scss';
+</style>

@@ -4,9 +4,11 @@ import { Image } from 'astro:assets';
 import SiteLayout from '../../layout/site-layout.astro'
 
 const projects: array = await getCollection('projects');
+import {SITE_TITLE} from '../../consts.ts';
+
 projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 ---
-<SiteLayout>
+<SiteLayout title={`Portfolio | ${SITE_TITLE}`}>
     <h1>Mario Yepes Portfolio</h1>
 		<main>
       {projects.map(project => (

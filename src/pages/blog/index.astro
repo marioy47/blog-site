@@ -3,13 +3,14 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import SiteLayout from '../../layout/site-layout.astro';
 import FormattedDate from '../../components/formatted-date.astro';
+import {SITE_TITLE} from '../../consts.ts';
 
 const posts: array = await getCollection('posts', ({data}) => {
   return import.meta.env.PROD ? !data.draft: true;
 });
 posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 ---
-<SiteLayout>
+<SiteLayout title={`Blog Posts | ${SITE_TITLE}`}>
 		<main>
       <h1>Mario's Blog</h1>
       {posts.map(post => 

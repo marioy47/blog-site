@@ -1,0 +1,76 @@
+
+:root {
+  --font-sans: 'Fira Sans', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  --size-content-4: 120ch;
+  --size-content-3: var(--size-content-4);
+  --size-header-4: 80ch;
+  --size-header-2: var(--size-header-4);
+}
+
+html {
+  line-height: 1.75;
+  --link-visited: var(--indigo-5);
+
+  @media (prefers-color-scheme: dark) {
+    --link-visited: var(--indigo-4);
+    --link-hover: var(--indigo-5);
+  }
+}
+
+main {
+  padding-inline: var(--size-3);
+}
+
+a {
+  font-weight: bolder;
+
+  &:hover {
+    text-decoration-color: var(--link-hover);
+  }
+}
+
+h1 {
+  font-size: clamp(1.953rem, 1.2698rem + 2.3762vw, 3.052rem);
+}
+h2 {
+  font-size: clamp(1.563rem, 1.0172rem + 1.8984vw, 2.441rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 0.813rem + 1.52vw, 1.953rem);
+}
+
+:where(p,ul,ol,dl,h6) {
+  font-size: clamp(1rem, 0.9378rem + 0.2162vw, 1.1rem);
+}
+
+:where(code,kbd,samp,pre) {
+  font-size: clamp(0.9rem, 0.8378rem + 0.2162vw, 1rem);
+}
+
+:where(ol,ul) {
+    padding-inline-start: var(--size-4);
+}
+
+:where(p) {
+  margin-bottom: var(--size-3);
+  max-inline-size: none;
+}
+
+:where(li,dd) {
+    max-inline-size: none;
+}
+
+pre:has(code) {
+  padding: var(--size-3);
+  border-radius: var(--size-2);
+  box-shadow: var(--shadow-6);
+  max-width: 80ch;
+  margin-top: var(--size-3);
+  margin-bottom: calc(var(--size-3) * 3);
+  margin-inline: auto;
+}
+
+main {
+  margin-inline: auto;
+  max-inline-size: var(--size-content-4);
+}

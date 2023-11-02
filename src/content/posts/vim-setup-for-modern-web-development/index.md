@@ -511,7 +511,7 @@ That's where the [Vim Poliglot](https://github.com/sheerun/vim-polyglot) comes i
 
 To install it you have to follow the same procedure. Add the plugin in `config.vim` and save, source, `:PlugInstall` and source again.
 
-```vim{3}
+```vim {3}
 " config.vim
 call plug#begin('~/.vim/plugged')
 " ...

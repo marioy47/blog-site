@@ -1,0 +1,56 @@
+
+header {
+  padding-inline: var(--size-3);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > a {
+  display: flex;
+  height: 6rem;
+  padding-block: 1rem;
+  transition: all 0.3s ease;
+
+  @media (max-width: 700px) {
+    height: 3rem;
+  }
+
+  &:hover {
+    transform: scale(120%);
+  }
+}
+
+nav > menu {
+  list-style: none; 
+  display: flex;
+  gap: var(--size-3);
+
+  // Adding an animated underline on hover
+  a {
+    border-bottom: 0 solid transparent;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: '';
+      bottom: -2px;
+      left: 0;
+      display: block;
+      width: 0;
+      height: 2px;
+      background-color: var(--link);
+      transition: all 0.3s ease;
+    }
+    &:hover {
+      text-decoration: none;
+
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+}

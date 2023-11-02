@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import GlobalLayout from '../../layouts/global-layout.astro';
-import '../../styles/blog-slug.css';
+import SiteLayout from '../../layout/site-layout.astro';
+import FormatedDate from '../../components/formatted-date.astro';
 
 type Props = CollectionEntry<'posts'>;
 
@@ -16,11 +16,11 @@ export async function getStaticPaths() {
 const post = Astro.props;
 const { Content, headings } = await post.render();
 ---
-<GlobalLayout>
+<SiteLayout>
   <article>
     <header>
       <label>By {post.data.author ?? `Mario Yepes`}</label>
-      <time datetime={post.data.date.toISOString()}>{post.data.date.toDateString()}</time>
+      <FormatedDate date={post.data.date} />
     </header>
     <main>
       <Content />
@@ -32,5 +32,8 @@ const { Content, headings } = await post.render();
         </ul>
     </aside>
   </article>
-</GlobalLayout>
+</SiteLayout>
 
+<style>
+@import '../../styles/slug-blog.scss';
+</style>

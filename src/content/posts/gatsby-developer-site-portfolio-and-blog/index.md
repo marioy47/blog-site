@@ -17,10 +17,6 @@ Here I'll list the steps I took to create [my personal blog/portfolio site](http
 
 ## TOC
 
-```toc
-
-```
-
 ## Wait... I don't know what Gatsby is!
 
 To quote the [Gatsby Site](https://www.gatsbyjs.com/):

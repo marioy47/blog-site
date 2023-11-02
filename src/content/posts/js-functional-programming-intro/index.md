@@ -21,10 +21,6 @@ This is the first part of a small mini series where I'll be discussing functiona
 
 ## TOC
 
-```toc
-
-```
-
 But first, some history.
 
 ## The beginnings of functional programming

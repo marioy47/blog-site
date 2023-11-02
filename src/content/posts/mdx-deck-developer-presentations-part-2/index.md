@@ -23,10 +23,6 @@ In this part we'll be seeing how to use [third party components](https://github.
 
 ## TOC
 
-```toc
-to-heading: 3
-```
-
 ## Speaker notes
 
 If your are using full screen slides, is possible that you require the complete area of the slide to display your ideas, leaving no space for explanatory text.

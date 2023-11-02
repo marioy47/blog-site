@@ -24,10 +24,6 @@ So here is how I tried to personalize that machine so I could be more comfortabl
 
 ## TOC
 
-```toc
-
-```
-
 ## Enable global packages for NodeJS
 
 One of the most problematic things I found with the handed setup, is that I could not install npm packages **globally**.

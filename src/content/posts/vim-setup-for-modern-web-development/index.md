@@ -23,10 +23,6 @@ We'll be setting up:
 
 ## TOC
 
-```toc
-
-```
-
 ## Disclaimer
 
 This article is not for Vim beginners. I assume that you know where your `.vimrc` or `init.vim` file resides. Also how to use (Neo)Vim _plugin managers_ and how to save and quit from Vim.

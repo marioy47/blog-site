@@ -19,10 +19,6 @@ I'm going to assume that you already know what Jest is and that you are familiar
 
 ## TOC
 
-```toc
-
-```
-
 ## Linting and formatting first
 
 Since my setup consists in [Neovim](/vim-setup-for-modern-web-development/) with [CoC](https://github.com/neoclide/coc.nvim). I need to install [Eslint](https://eslint.org) and [Prettier](https://prettier.io) manually on the project so I have automatic code formatting and linting.

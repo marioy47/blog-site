@@ -24,10 +24,6 @@ I this article, I'll document the process, and also explain some of the **advanc
 
 ## TOC
 
-```toc
-
-```
-
 ## Why Lua and Why now?
 
 In July 2021, [version 0.5](https://neovim.io/news/2021/07) of NeoVim was released with a few **very** important features:

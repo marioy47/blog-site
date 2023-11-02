@@ -27,10 +27,6 @@ _Taken from the MDX Deck [Github Page](https://github.com/jxnblk/mdx-deck)_
 
 ## TOC
 
-```toc
-
-```
-
 ## Wait a minute, what is MDX?
 
 Quoting the [Official Site](https://mdxjs.com/):

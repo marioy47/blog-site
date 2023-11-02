@@ -17,10 +17,6 @@ By the end of this tutorial you'll have a 1 file plugin with just a settings pag
 
 ## TOC
 
-```toc
-
-```
-
 ## Start the plugin.
 
 This is pretty easy, just create a file in the plugins directory:

@@ -15,10 +15,6 @@ In this article, I **will not** be explaining what Solidity and blockchain are, 
 
 ## TOC
 
-```toc
-
-```
-
 ## Setup your editor
 
 Before we begin, lets start by getting our editor ready for Solidity development. For [Visual Studio Code](https://code.visualstudio.com) I recommend 2 extensions:

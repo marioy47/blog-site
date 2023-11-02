@@ -28,10 +28,6 @@ But it turns out that there is more than one way to do it. Here I'll show a few.
 
 ## TOC
 
-```toc
-
-```
-
 ## So how do you create _Slides_ with Markdown?
 
 Before we get into the actual tools to convert Markdown to PDF, or HTML, lets first talk on how to create a Markdown presentation. In other words, how to create slides.

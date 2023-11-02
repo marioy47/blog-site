@@ -40,10 +40,6 @@ Among the advantages of Ansible are:
 
 ## TOC
 
-```toc
-
-```
-
 ## Clients setup
 
 Before we beginning, we need to setup SSH access to the remote machines we're going to use.

@@ -17,10 +17,6 @@ If you want an introduction on PHPCodeSniffer and PHPCodeBeautifier, take a look
 
 ## TOC
 
-```toc
-
-```
-
 ## Start the project
 
 The first step is easy.. just create a folder in you plugins directory and start composer.

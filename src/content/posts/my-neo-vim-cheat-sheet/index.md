@@ -19,11 +19,6 @@ One thing tough. I try to use the default key-maps as much as I can, so this che
 
 ## TOC
 
-```toc
-from-heading: 2
-to-heading: 3
-```
-
 ## Movements and insert
 
 This commands are for **normal** mode:

@@ -13,10 +13,6 @@ Since Google [anounced](https://webmasters.googleblog.com/2014/08/https-as-ranki
 
 ### TOC
 
-```toc
-to-heading: 3
-```
-
 ## What is the SLL Server Test?
 
 Who better to tell you what the _SSL Server Test_ is than [its creators](https://https://wwww.ssllabs.com/)

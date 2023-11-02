@@ -29,10 +29,6 @@ Not only that... The provider will charge you only by the times your app get cal
 
 ## TOC
 
-```toc
-
-```
-
 ## Caveats of Serverless
 
 So what's the catch? Why do I need to write this article?

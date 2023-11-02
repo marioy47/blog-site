@@ -10,9 +10,10 @@ aside a {
   margin-left: var(--size-3);
 }
 aside ul {
+  max-inline-size: var(--size-content-4);
   display: flex;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+  padding: calc(var(--size-3) * 2) 0;
   list-style: none;
   justify-content: flex-end;
   font-size: 0.9rem;

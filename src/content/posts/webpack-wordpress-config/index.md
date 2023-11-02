@@ -15,10 +15,6 @@ So if you want to work on WordPress, you need to use JavaScript... And if you wa
 
 ## TOC
 
-```toc
-
-```
-
 ## ¿What is asset bundling you ask?
 
 Is the process of compiling all of your javascript, css and even images in **just one** javascript file, or bundle, that can be included in your HTML. Or in our case, enqueued in WordPress with `wp_enqueue_script()`.

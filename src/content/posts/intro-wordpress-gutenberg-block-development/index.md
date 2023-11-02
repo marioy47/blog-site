@@ -17,10 +17,6 @@ So, in this article I'll try to show as succinct, but as complete as possible, h
 
 ## TOC
 
-```toc
-
-```
-
 ## Development environment setup
 
 The first thing you need to have installed is [Node](https://nodejs.org). Gutenberg is written in [React](https://reactjs.org) so that's a must.

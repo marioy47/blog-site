@@ -15,10 +15,6 @@ Just a little heads up... This is part of the series is very conceptual even tou
 
 ## TOC
 
-```toc
-
-```
-
 ## Immutability
 
 When we say that functional programming **looks for** immutability, we're saying that data structures are not changed (by functions) instead new copies of the data are returned.

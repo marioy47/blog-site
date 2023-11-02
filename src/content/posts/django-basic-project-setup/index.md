@@ -22,10 +22,6 @@ Is important to note that this is not a Django guide, nor a development tutorial
 
 ## TOC
 
-```toc
-
-```
-
 ## Install Python and Pip
 
 Obviously we need to start with Python. This is what is going to power up all of the tools and modules that we're going to use here.

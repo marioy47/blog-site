@@ -2,8 +2,9 @@
 import {Image} from 'astro:assets';
 import SiteLayout from '../layout/site-layout.astro';
 import imgMario from '../images/img-mario-lado.jpg';
+import {SITE_TITLE} from '../consts.ts';
 ---
-<SiteLayout hideScroll={true}>
+<SiteLayout title={`About | ${SITE_TITLE}`} hideScroll={true}>
   <main>
     <h1>Hola, Soy Mario</h1>
     <section>

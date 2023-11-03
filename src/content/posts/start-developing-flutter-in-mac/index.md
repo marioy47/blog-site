@@ -44,7 +44,7 @@ The steps to install Flutter are then:
 - Add the `$FLUTTER_HOME/bin` to your path `$FLUTTER_HOME` is the dir where the flutter repo got stored, in my case `~/Projects/flutter/`
 - Execute `flutter doctor` to make sure everything works
 
-```bash{3}
+```bash {3}
 cd ~/Projects
 git clone https://github.com/flutter/flutter.git -b stable
 echo 'PATH="$PATH:`pwp`/flutter/bin' >> ~/.zshrc # Or ~/.bachrc

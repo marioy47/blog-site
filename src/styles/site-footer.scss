@@ -26,12 +26,12 @@ footer {
 // The scroll to top link.
 footer > div > a {
   position: fixed;
+  z-index: 100;
+  background-color: rgba(white, 0.5);
   bottom: 2ch;
   left: 2ch;
-  display: block;
   width: 5ch;
   height: 5ch;
-  border: 1px solid var(--gray-0);
   box-shadow: var(--shadow-3);
   padding: 0;
   display: flex;
@@ -43,6 +43,7 @@ footer > div > a {
   transition: .3s all ease;
 
   &:hover {
+    background-color: rgba(white, 0.9);
     box-shadow: var(--shadow-6);
   }
 }

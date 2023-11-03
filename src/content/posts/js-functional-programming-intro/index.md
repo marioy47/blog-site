@@ -27,7 +27,7 @@ But first, some history.
 
 Let's start by saying that functions have been a part of calculus since the 17th century. And if you went trough high school, you might have seen something like
 
-```text
+```
 f(x) = y
 ```
 
@@ -59,7 +59,7 @@ varFn("lambda function")
 
 Will return
 
-```text
+```
 Hello lambda function
 ```
 
@@ -80,7 +80,7 @@ obj.showMessage("World")
 
 Will print
 
-```text
+```
 Hello world
 ```
 
@@ -101,7 +101,7 @@ executeLogger(logger)
 
 Will output
 
-```text
+```
 Hello - Inside function as param
 ```
 
@@ -128,7 +128,7 @@ loggerToUpperFn("hola mundo")
 
 Will output
 
-```text
+```
 The message is: HOLA MUNDO
 ```
 
@@ -166,7 +166,7 @@ console.log(transformed)
 
 Will output
 
-```text
+```
 -THIS-IS-IMPERATIVE-PROGRAMMING-!
 ```
 
@@ -204,7 +204,7 @@ console.log(transformed);
 
 The previous code will output:
 
-```text
+```
 THIS-IS-DECLARATIVE-PROGRAMMING-!
 ```
 

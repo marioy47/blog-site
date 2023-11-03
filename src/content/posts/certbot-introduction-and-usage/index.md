@@ -261,7 +261,7 @@ With Apache the process is similar, its just that the directives are different.
 
 So lests start by creating a new _Virtual Host_ with a new configuration file in `/etc/apache2/sites-available/certbot-test.conf` and add the following content:
 
-```apacheconf {10-12}
+```apache {10-12}
 # /etc/apache2/sites-available/certbot-test.conf
 
 <IfModule mod_ssl.c>

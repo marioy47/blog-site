@@ -242,7 +242,7 @@ Look at that! No arrow function but a regular function. We're doing great so far
 
 ¿Aren't you annoyed by the warning?
 
-```text
+```
 WARNING in configuration
 The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
 You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/

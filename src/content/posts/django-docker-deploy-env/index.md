@@ -23,7 +23,7 @@ By the way, I assume that you have some basic knowledge of Python, Docker and Dj
 
 Before we start le me show you what our project structure will look like:
 
-```text
+```
 .
 ├── Pipfile
 ├── Pipfile.lock
@@ -64,7 +64,7 @@ Like I said in the previous item, I'll store all the Docker assets in the `docke
 
 The first `Dockerfile`, the Python's `Dockerfile` will be placed in `docker/app/Dockerfile` and it will have the following contents:
 
-```Dockerfile
+```docker
 # docker/app/Dockerfile
 FROM python:3.9-alpine
 
@@ -167,7 +167,7 @@ Unfortunately, `pipenv` installed a bunch of packages on the **container** and n
 
 > To be sincere, there are ways to save the running container as an image, but I want to save every step of the process to Git.
 
-```Dockerfile {7,41}
+```docker {7,41}
 # docker/app/Dockerfile
 FROM python:3.9-alpine
 
@@ -591,7 +591,7 @@ services:
 
 Then create a `Dockerfile` to build the nginx image:
 
-```Dockerfile
+```docker
 # docker/nginx/Dockerfile
 FROM nginx:1-alpine
 

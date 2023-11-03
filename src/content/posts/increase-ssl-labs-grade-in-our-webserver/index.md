@@ -94,7 +94,7 @@ The default configuration is as follows:
 
 So paste this section in `/etc/apache2/sites-available/default`:
 
-```apacheconf
+```apache
 # /etc/apache2/sites-available/default
 <VirtualHost *:80>
     RewriteEngine On
@@ -121,7 +121,7 @@ So paste this section in `/etc/apache2/sites-available/default`:
 
 And paste the following in `/etc/apache2/mods-available/ssl.conf`
 
-```apacheconf
+```apache
 SSLProtocol             all -SSLv3 -TLSv1 -TLSv1.1
 SSLCipherSuite          ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
 SSLHonorCipherOrder     off

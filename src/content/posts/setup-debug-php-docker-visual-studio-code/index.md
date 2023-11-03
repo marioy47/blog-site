@@ -301,11 +301,11 @@ And select the **PHP** option
 
 And on the resulting file **modify** the entry _Listen for Xdebug_ to look like this:
 
-```jsonp {9-12}
+```json {9-12}
 {
   "version": "0.2.0",
   "configurations": [
-    // ...
+    "...",
     {
       "name": "Listen for XDebug",
       "type": "php",
@@ -316,7 +316,7 @@ And on the resulting file **modify** the entry _Listen for Xdebug_ to look like 
       },
       "log": true
     }
-    // ...
+    "..."
   ]
 }
 ```

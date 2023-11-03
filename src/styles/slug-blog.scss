@@ -1,9 +1,13 @@
 article {
   --size-content-4: 100ch;
+  overflow-x: scroll;
 }
 h1, h2, h3 {
   margin-block-start: 1em;
   margin-block-end: .2em;
+  max-inline-size: 100%;
+  margin-top: 2em;
+  margin-bottom: .7em;
 }
 aside a {
   display: inline-block;

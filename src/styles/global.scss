@@ -31,7 +31,13 @@ a {
 
 h1 {
   font-size: clamp(1.953rem, 1.2698rem + 2.3762vw, 3.052rem);
+  text-align: center;
+  margin-inline: auto;
+  max-inline-size: var(--size-content-3);
+  padding-bottom: calc(var(--size-3) * 3);
+  animation: var(--animation-slide-in-up) forwards;
 }
+
 h2 {
   font-size: clamp(1.563rem, 1.0172rem + 1.8984vw, 2.441rem);
 }

@@ -1,6 +1,8 @@
 
 // Make every article item a grid of 3 columns.
 article {
+  padding-block: calc(var(--size-3) * 2);
+  border-bottom: 1px solid var(--gray-4);
   display: grid;
   gap: var(--size-4);
   grid-template-columns: fit-content(20%) 1fr fit-content(20%);
@@ -8,25 +10,13 @@ article {
     "image title date"
     "image tags read";
 
-
-
   @media (max-width: 700px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr 3fr ;
     grid-template-areas:
       "title title"
       "image date"
       "image tags"
       "image read";
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "title"
-      "date"
-      "tags"
-      "image"
-      "read";
   }
 
   & > *:nth-child(1) { grid-area: image; display: flex; }
@@ -36,34 +26,44 @@ article {
   & > *:nth-child(5) { grid-area: read; display: flex; }
 }
 
-article {
-  padding-block: calc(var(--size-3) * 2);
-  border-bottom: 1px solid var(--gray-4);
-}
-
-h1 {
-  text-align: center;
-  margin-inline: auto;
-  padding-bottom: calc(var(--size-3) * 3);
-}
-
-img {
-  object-fit: contain;
-}
-
 h2 {
   font-size: 1.4rem;
   font-weight: bolder;
 }
 
-/* Style the tags */
-article ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  font-size: .8rem;
+img {
+  object-fit: contain;
+  margin-inline: auto;
 }
 
+/* Style the tags */
+article ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: .9rem;
+  gap: 1em;
+  justify-content: flex-start;
+  line-height: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 700px) {
+    justify-content: flex-end;
+
+  }
+  align-items: right;
+
+  li {
+    padding: 0;
+  }
+}
+
+article time {
+  justify-content: flex-end;
+}
+
+article a:last-of-type {
+  justify-content: flex-end;
+}

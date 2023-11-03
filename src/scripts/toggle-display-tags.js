@@ -12,7 +12,7 @@ function toggleDisplayArticle(tags) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('astro:page-load', () => {
   const tags = {};
   const [...articles ] = document.querySelectorAll('article')
   articles.forEach(article => {

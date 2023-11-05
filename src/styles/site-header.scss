@@ -1,32 +1,33 @@
 
+// Add padding to the sides of the header
 header {
   padding-inline: var(--size-3);
 }
 
-nav {
+header > nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  align-items: center;
 }
 
-nav > a {
-  display: flex;
+header > nav > a {
+  margin-block: auto;
+  margin-inline: 0;
+  padding-block: var(--size-1);
   height: 6rem;
-  padding-block: 1rem;
   transition: all 0.3s ease;
 
   @media (max-width: 700px) {
-    height: 3rem;
-    padding-block: .3rem;
+    inline-size: 3rem;
+    block-size: 3rem;
   }
 
   &:hover {
-    transform: scale(120%);
+    transform: scale(120%) translateY(10%) translateX(10%);
   }
 }
 
-nav > menu {
+header > nav > menu {
   list-style: none; 
   display: flex;
   gap: var(--size-3);
@@ -35,17 +36,19 @@ nav > menu {
   a {
     border-bottom: 0 solid transparent;
     position: relative;
+
     &:after {
-      position: absolute;
+      background-color: var(--link);
+      display: block;
       content: '';
+      height: 2px;
+      width: 0;
+      position: absolute;
       bottom: -2px;
       left: 0;
-      display: block;
-      width: 0;
-      height: 2px;
-      background-color: var(--link);
       transition: all 0.3s ease;
     }
+
     &:hover {
       text-decoration: none;
 

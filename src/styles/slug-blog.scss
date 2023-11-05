@@ -2,17 +2,26 @@ article {
   --size-content-4: 100ch;
   overflow-x: scroll;
 }
-h1, h2, h3 {
-  margin-block-start: 1em;
-  margin-block-end: .2em;
-  max-inline-size: 100%;
-  margin-top: 2em;
-  margin-bottom: .7em;
+
+article header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray-6);
+  margin-block: 1em 0;
+  max-inline-size: var(--size-content-3);
+  margin-inline: auto;
 }
+
+h1, h2, h3 {
+  margin-block: 1em .3em;
+  max-inline-size: 100%;
+}
+
 aside a {
   display: inline-block;
   margin-left: var(--size-3);
 }
+
 aside ul {
   max-inline-size: var(--size-content-4);
   display: flex;

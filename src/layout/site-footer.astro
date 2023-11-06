@@ -8,7 +8,7 @@ import iconCodersRank from '../images/svg/coders-rank.svg?raw';
 const {hideScroll = false } = Astro.props;
 ---
 
-<footer>
+<footer class:list={hideScroll ? 'no-scroll': ''}>
   <div>
     {hideScroll ? <span></span>: <a id="scroll-to-top" aria-label="Scroll to top">&uarr;</a> }
   </div>

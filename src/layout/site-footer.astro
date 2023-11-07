@@ -28,9 +28,5 @@ const {hideScroll = false } = Astro.props;
 </style>
 
 <script>
-document.addEventListener('astro:page-load', () => {
-  document.getElementById('scroll-to-top').addEventListener('click', () => {
-    window.scrollTo(0, 0);
-  });
-});
+import '../scripts/layout-site-footer.ts';
 </script>

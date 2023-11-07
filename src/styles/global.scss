@@ -39,6 +39,7 @@ h1 {
 h2 {
   font-size: clamp(1.563rem, 1.0172rem + 1.8984vw, 2.441rem);
 }
+
 h3 {
   font-size: clamp(1.25rem, 0.813rem + 1.52vw, 1.953rem);
 }
@@ -49,6 +50,10 @@ h3 {
 
 :where(code,kbd,samp,pre) {
   font-size: clamp(0.9rem, 0.8378rem + 0.2162vw, 1rem);
+}
+
+table :where(:not(pre)>code,kbd) {
+    white-space: wrap;
 }
 
 :where(ol,ul) {

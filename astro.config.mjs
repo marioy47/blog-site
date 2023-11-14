@@ -8,6 +8,9 @@ export default defineConfig({
 	site: 'https://marioyepes.com',
 	integrations: [mdx(), sitemap()],
   markdown: {
-    remarkPlugins: [remarkToc]
+    remarkPlugins: [remarkToc],
+    shikiConfig: {
+      theme: "material-theme-ocean"
+    }
   }
 });

@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../layout/site-layout.astro';
+---
+<SiteLayout>
+  <main>
+    <h1>Upsss Page not found</h1>
+    <p>Try going to the <a href="/">home page</a></p>
+  </main>
+</SiteLayout>
+
+<style>
+main {
+  display: grid;
+  gap: var(--size-3);
+  min-height: calc(100dvh - 6rem - 4rem);
+  background-color: var(--primary);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  text-align: center
+}
+</style>

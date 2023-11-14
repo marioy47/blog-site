@@ -3,7 +3,7 @@ const toggleDisplayArticle = (tags, filter) => {
     Object.keys(tags).forEach(article => {
       const selector = `[data-article-id=${article}]`;
       if (tags[article].find(element => element === filter)) {
-        document.querySelector(selector).removeAttribute('style');
+        document.querySelector(selector).setAttribute('style', '');
       } else {
         document.querySelector(selector).setAttribute('style', 'display: none');
       } 

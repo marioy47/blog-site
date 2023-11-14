@@ -9,8 +9,8 @@ import {SITE_TITLE} from '../../consts.ts';
 projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 ---
 <SiteLayout title={`Portfolio | ${SITE_TITLE}`}>
-    <h1>Mario Yepes Portfolio</h1>
 		<main>
+      <h1>Mario Yepes Portfolio</h1>
       {projects.map(project => (
         <article data-article-id={project.slug} data-tags={project.data.tags.join(',')}>
           <a href={`/portfolio/${project.slug}`}>
@@ -28,6 +28,7 @@ projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 <script>
 import '../../scripts/toggle-display-article.ts';
 </script>
+
 
 <style>
 @import '../../styles/page-portfolio-index.scss';

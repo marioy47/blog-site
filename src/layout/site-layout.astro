@@ -2,6 +2,9 @@
 import HeadMeta from './head-meta.astro';
 import SiteHeader from './site-header.astro';
 import SiteFooter from './site-footer.astro';
+import TagManagerHead from '../components/tagmanager-head.astro';
+import TagManagerBody from '../components/tagmanager-body.astro';
+
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
@@ -10,14 +13,16 @@ const {hideScroll, title = SITE_TITLE } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<HeadMeta title={title} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<SiteHeader title={SITE_TITLE} />
+  <head>
+    <HeadMeta title={title} description={SITE_DESCRIPTION} />
+    <TagManagerHead />
+  </head>
+  <body>
+    <TagManagerBody />
+    <SiteHeader title={SITE_TITLE} />
     <slot />
-		<SiteFooter hideScroll={hideScroll} />
-	</body>
+    <SiteFooter hideScroll={hideScroll} />
+  </body>
 </html>
 
 <style is:global>

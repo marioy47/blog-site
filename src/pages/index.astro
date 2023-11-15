@@ -9,7 +9,11 @@ import {SITE_TITLE} from '../consts.ts';
 		<main>
 			<h1>Hello,<strong>I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</span></h1>
       <picture>
-        <Image src={imgMarioBw} alt="Mario Yepes toon photo"/>
+        <Image
+        src={imgMarioBw}
+        widths={[280, 300, 380]}
+        alt="Mario Yepes toon photo"
+        loading="eager" />
       </picture>
 		</main>
 </SiteLayout>

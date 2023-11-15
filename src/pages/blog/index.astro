@@ -13,10 +13,16 @@ posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 <SiteLayout title={`Blog Posts | ${SITE_TITLE}`}>
 		<main>
       <h1>Mario's Blog</h1>
-      {posts.map(post => 
+      {posts.map((post, idx) =>
         <article data-article-id={post.slug} data-tags={post.data.tags.join(',')}>
           <a href={`/blog/${post.slug}/`}>
-            <img src={post.data.cover.src} width={100} height={100} alt="An image" />
+            <img
+              src={post.data.cover.src}
+              width={100}
+              height={100}
+              alt="An image"
+              loading={idx > 3 ? "lazy": "eager"}
+            />
           </a>
           <h2>{post.data.title}</h2>
           <ul>

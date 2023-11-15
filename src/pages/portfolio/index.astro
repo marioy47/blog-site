@@ -11,10 +11,15 @@ projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
 <SiteLayout title={`Portfolio | ${SITE_TITLE}`}>
 		<main>
       <h1>Mario Yepes Portfolio</h1>
-      {projects.map(project => (
+      {projects.map((project, idx) => (
         <article data-article-id={project.slug} data-tags={project.data.tags.join(',')}>
           <a href={`/portfolio/${project.slug}`}>
-            <Image src={project.data.cover} width={450} alt={`Screenshot for ${project.data.title}`} />
+            <Image
+              src={project.data.cover}
+              width={450}
+              alt={`Screenshot for ${project.data.title}`}
+              loading={idx > 0 ? null : "eager"}
+            />
           </a>
           <h2>{project.data.title}</h2>
           <p><strong>Client: </strong>{project.data.client}</p>

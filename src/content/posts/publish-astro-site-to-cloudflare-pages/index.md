@@ -8,7 +8,7 @@ cover: ./cloudflare-pages-astro.png
 
 # Creating a simple site with Astro and publish it to CloudFlare Pages
 
-If you look at the [first post](webpack-wordpress-config/) in this site, you'll notice that I used to use [GatsbyJS](https://gatsbyjs.com) for publishing this blog, and that worked fine for a while. But some issues started to arise:
+If you look at the [second post](../gatsby-developer-site-portfolio-and-blog/) in this site, you'll notice that I used to use [GatsbyJS](https://gatsbyjs.com) for publishing this blog, and that worked fine for a while. But some issues started to arise:
 
 - Upgrading packages started to become difficult
 - I ran into deprecations of _Gatsby Packages_

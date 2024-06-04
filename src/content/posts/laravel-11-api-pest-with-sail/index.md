@@ -55,7 +55,7 @@ If you execute `sail artisan db:show`, you should get something like...
   users ........................................................... 32.00 KB
 ```
 
-8 tables. Let's take a note of that.
+9 tables. Let's take a note of that.
 
 ## Replace `phpunit` with `pest`
 
@@ -148,4 +148,6 @@ And you should get something like
 
 ```
 
-And that's it... You have an API application with `pest` support.
+**10** tables! One more than the first migration.
+
+And that's it... You have an **API** application with `pest` support.

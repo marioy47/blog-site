@@ -74,6 +74,3 @@ So after several attempts, it was decided to create the scheduler as a React app
 At first, I tried to make the fron-end talk to the back-end using the [ajax API](https://codex.wordpress.org/AJAX_in_Plugins). Which up to a certain point, provided all I needed.
 
 But when the requirement of adding custom question to the patient arose, I had to switch the `ajax-admin.php` to use instead the [WordPress REST API](https://developer.wordpress.org/rest-api/) which is more flexible.
-
-
-

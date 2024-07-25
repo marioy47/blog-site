@@ -422,7 +422,7 @@ After installing it, you need to create the `./.markdownlintrc.json` file with a
 
 To avoid `markdownlint-cli` to examine EVERY folder, we should create a `.markdownlintignore` file with the paths we don't want it to examine:
 
-```gitignore
+```ini
 vendor/**
 node_modules/**
 ```

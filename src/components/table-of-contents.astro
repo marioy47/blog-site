@@ -1,0 +1,66 @@
+---
+// src/components/table-of-contents.astro
+
+import type { MarkdownHeading } from "astro";
+
+/**
+ * @param {MarkdownHeading[]} headings Array of objects with the heading on the document.
+ * @param {string} title The heading or title in top of the Table of Comments
+ * @param {boolean} open Should the table of contents be expanded or collapsed
+ * @param {string} id The `id` HTML attribute we want for the TOC `<details>` element.
+ * @param {string} className The `class` HTML attribute for the `<details>` element.
+ */
+interface Props {
+	headings: MarkdownHeading[];
+	title?: string;
+	open?: boolean;
+	id?: string;
+	className?: string;
+}
+/**
+ * @param {MarkdownHeading[]} subheadings Level 2 headings.
+ */
+type MarkdownSubHeading = MarkdownHeading & {
+	subheadings: MarkdownHeading[];
+};
+
+const { headings, title = "Table Of Contents", open = true, id, className } = Astro.props;
+
+/**
+ * Extract level 2 and level 3 headgins.
+ *
+ * @link https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3
+ */
+const grouppedHeadings = headings.reduce((accum, heading) => {
+	if (2 === heading.depth) {
+		accum.push({ ...heading, subheadings: [] });
+	} else {
+		accum.at(-1)?.subheadings.push(heading);
+	}
+	return accum;
+}, [] as MarkdownSubHeading[]);
+---
+
+<details open={open} id={id} class={className}>
+	<summary>{title}</summary>
+	<nav>
+		<ol>
+			{
+				grouppedHeadings.map((heading) => (
+					<li>
+						<a href={`#${heading.slug}`}>{heading.text}</a>
+						{heading.subheadings.length > 0 && (
+							<ol>
+								{heading.subheadings.map((subheading) => (
+									<li>
+										<a href={`#${subheading.slug}`}>{subheading.text}</a>
+									</li>
+								))}
+							</ol>
+						)}
+					</li>
+				))
+			}
+		</ol>
+	</nav>
+</details>

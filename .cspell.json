@@ -1,0 +1,23 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "astro",
+    "astrojs",
+    "fira",
+    "mario",
+    "pagefind",
+    "tsconfigs",
+    "tseslint",
+    "yepes"
+  ],
+  "ignorePaths": [
+    ".cspell.json",
+    ".git/",
+    ".gitattributes",
+    ".gitignore",
+    ".gitignore",
+    ".vscode/**",
+    "node_modules",
+  ]
+}

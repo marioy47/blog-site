@@ -1,45 +1,63 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import SiteLayout from '../../layout/site-layout.astro';
-import FormattedDate from '../../components/formatted-date.astro';
-import {SITE_TITLE} from '../../consts.ts';
+import { Icon } from "astro-icon/components";
+import { ViewTransitions } from "astro:transitions";
+import { getCollection, type CollectionEntry } from "astro:content";
+import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
+import "../../styles/global.css";
 
-const posts: array = await getCollection('posts', ({data}) => {
-  return import.meta.env.PROD ? !data.draft: true;
+type YearlyPosts = {
+	[year: string]: CollectionEntry<"blog">[];
+};
+
+const posts = await getCollection("blog", ({ data }) => {
+	return import.meta.env.PROD ? !data.draft : true;
 });
-posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+/**
+ * Array of array of posts. The keys are the posts years.
+ */
+const postsByYear = posts.reduce((accum: YearlyPosts, post) => {
+	const year = post.data.date.getFullYear().toString();
+	if (!(year in accum)) {
+		accum[year] = [];
+	}
+	accum[year].push(post);
+	return accum;
+}, {});
+
+/**
+ * Array of years: `["2024", "2021", "2020"]`. Just the years where blog posts where found.
+ */
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
-<SiteLayout title={`Blog Posts | ${SITE_TITLE}`}>
-		<main>
-      <h1>Mario's Blog</h1>
-      {posts.map((post, idx) =>
-        <article data-article-id={post.slug} data-tags={post.data.tags.join(',')}>
-          <a href={`/blog/${post.slug}/`}>
-            <img
-              src={post.data.cover.src}
-              width={100}
-              height={100}
-              alt="An image"
-              loading={idx > 3 ? "lazy": "eager"}
-            />
-          </a>
-          <h2>{post.data.title}</h2>
-          <ul>
-            {post.data.tags.map(tag => <li><a href=`/blog/#${tag}`>{tag}</a></li>)} 
-          </ul>
-          <FormattedDate date={post.data.date} />
-          <a href={`/blog/${post.slug}/`}> Read Article &rarr; </a>
-        </article>
-        )}
-		</main>
-</SiteLayout>
 
-<script>
-import '../../scripts/toggle-display-article.ts';
-</script>
-
-<style>
-@import '../../styles/page-blog-index.scss';
-</style>
-
+<html lang="en">
+	<head>
+		<title>Blog Posts</title>
+		<ViewTransitions />
+	</head>
+	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+		<Icon name="tabler:brand-astro" size={32} title="Blog Logo" />
+		<ToggleLightDarkMode />
+		<h1>Blog entries</h1>
+		<ul>
+			{
+				years.map((year) => (
+					<li>
+						<h2>{year}</h2>
+						<ul>
+							{postsByYear[year].map((post) => (
+								<li>
+									<a href={`/blog/${post.slug}`}>
+										&rarr; {post.data.title} - {post.data.date.toDateString()}{" "}
+									</a>
+								</li>
+							))}
+						</ul>
+					</li>
+				))
+			}
+		</ul>
+	</body>
+</html>

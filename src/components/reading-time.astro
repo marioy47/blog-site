@@ -1,0 +1,36 @@
+---
+// src/components/reading-time.astro
+
+/**
+ * @param {string} content Full content to calculate. Can be HTML.
+ * @param {number} wordsPerMinute By default 200.
+ * @param {string} before What it should display before the WPM number.
+ * @param {string} after What shold be display after the WPM number.
+ */
+interface Props {
+	content: string;
+	wordsPerMinute?: number;
+	before?: string;
+	after?: string;
+}
+
+/**
+ * @param {string} content The content to measure.
+ * @param {number} wordsPerMinute How many wordsPerMinute a person reads?
+ * @link https://github.com/rebelchris/astro-reading-time/blob/master/src/lib/readingtime.js
+ */
+const getReadingTime = (content: string, wordsPerMinute: number) => {
+	if (!content) return;
+	const clean = content.replace(/<\/?[^>]+(>|$)/g, "");
+	const numberOfWords = clean.split(/\s/g).length;
+	return Math.ceil(numberOfWords / wordsPerMinute);
+};
+
+const { content, before, after, wordsPerMinute = 200 } = Astro.props;
+---
+
+<label class="reading-time">
+	{before ?? <span class="reading-time__before">{before}</span>}
+	<span class="reading-time__value">{getReadingTime(content, wordsPerMinute)}</span>
+	{after ?? <span class="reading-time__after">{after}</span>}
+</label>

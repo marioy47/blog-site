@@ -1,40 +1,51 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import SiteLayout from '../../layout/site-layout.astro';
-import FormatedDate from '../../components/formatted-date.astro';
-import {SITE_TITLE} from '../../consts.ts';
+// src/pages/blog/[p...slug].astro
 
-type Props = CollectionEntry<'posts'>;
+import FormattedDate from "../../components/formatted-date.astro";
+import ReadingTime from "../../components/reading-time.astro";
+import ScrollToTop from "../../components/scroll-to-top.astro";
+import Toc from "../../components/table-of-contents.astro";
+import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
+import { ViewTransitions } from "astro:transitions";
+import { getCollection, type CollectionEntry } from "astro:content";
 
-export async function getStaticPaths() {
-	const posts = await getCollection('posts');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
+import "../../styles/global.css";
+
+type Props = CollectionEntry<"blog">;
+
+export const getStaticPaths = async () => {
+	const entries = await getCollection("blog");
+	return entries.map((entry) => ({
+		params: { slug: entry.slug, title: entry.data.title },
+		props: entry,
 	}));
-}
+};
 
-const post = Astro.props;
-const { Content, headings } = await post.render();
+const entry = Astro.props;
+const { Content, headings } = await entry.render();
 ---
-<SiteLayout title={`${post.data.title} | ${SITE_TITLE}`}>
-  <article>
-    <header>
-      <label>By {post.data.author ?? `Mario Yepes`}</label>
-      <FormatedDate date={post.data.date} />
-    </header>
-    <main>
-      <Content />
-    </main>
-    <aside>
-        <ul>
-          <li><strong>Tags: </strong></li>
-          {post.data.tags.map( tech => <li><a href={`/blog/#${tech}`}>{tech}</a></li>)}
-        </ul>
-    </aside>
-  </article>
-</SiteLayout>
 
-<style>
-@import '../../styles/slug-blog.scss';
-</style>
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<title>{entry.data.title}</title>
+		<ViewTransitions />
+	</head>
+	<body class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+		<ToggleLightDarkMode title="Toggle light or dark mode" />
+		<article class="prose prose-stone mx-auto lg:prose-xl dark:prose-invert">
+			<h1>{entry.data.title}</h1>
+			<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
+			<FormattedDate date={entry.data.date} />
+			<Toc headings={headings} />
+			<Content />
+		</article>
+		<ScrollToTop content="Scroll To TOC" top={50} />
+		<script>
+			import { addCopyCodeButtons } from "../../scripts/copy-code-button";
+			import { addClickablePopupDialogToElements } from "../../scripts/add-clickable-popup-dialog-to-elements";
+			addCopyCodeButtons("📋", "✅");
+			addClickablePopupDialogToElements("article img");
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+/* src/styles/global.css */
+
+@import url("font-face.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Make shiki use class-based theme change
+ *
+ * @link https://shiki.matsu.io/guide/dual-themes#class-based-dark-mode
+ */
+html.dark .astro-code,
+html.dark .astro-code span {
+	color: var(--shiki-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
+}
+
+.astro-code .line.highlighted {
+	display: inline-block;
+	width: 100%;
+	background-color: black !important;
+}
+
+html.dark .astro-code .line.highlighted span,
+html.dark .astro-code span.line.highlighted {
+	background-color: white !important;
+}
+
+dialog::backdrop {
+	backdrop-filter: blur(4px);
+}

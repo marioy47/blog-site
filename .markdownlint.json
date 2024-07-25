@@ -1,4 +1,7 @@
 {
-  "MD013": false,
-  "MD025": false
+  "default": true,
+  "heading-style": {
+    "style": "atx"
+  },
+  "line-length": false
 }

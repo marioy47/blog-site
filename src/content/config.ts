@@ -14,7 +14,7 @@ const blog = defineCollection({
 	},
 });
 
-const projects = defineCollection({
+const portfolio = defineCollection({
 	type: "content",
 	schema: ({ image }) => {
 		return z.object({
@@ -28,4 +28,4 @@ const projects = defineCollection({
 	},
 });
 
-export const collections = { blog, projects };
+export const collections = { blog, portfolio };

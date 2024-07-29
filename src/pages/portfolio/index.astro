@@ -1,47 +1,39 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
-import SiteLayout from "../../layout/site-layout.astro";
 
-const projects = await getCollection("projects");
-import { SITE_TITLE } from "../../consts.ts";
+const projects = await getCollection("portfolio");
 
 projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<SiteLayout title={`Portfolio | ${SITE_TITLE}`}>
-	<main>
-		<h1>Mario Yepes Portfolio</h1>
-		{
-			projects.map((project, idx) => (
-				<article data-article-id={project.slug} data-tags={project.data.tags.join(",")}>
-					<a href={`/portfolio/${project.slug}`}>
-						<Image src={project.data.cover} width={450} alt={`Screenshot for ${project.data.title}`} loading={idx > 0 ? null : "eager"} />
-					</a>
-					<h2>{project.data.title}</h2>
-					<p>
-						<strong>Client: </strong>
-						{project.data.client}
-					</p>
-					<p>{project.data.summary}</p>
-					<ul>
-						{project.data.tags.map((tech) => (
-							<li>
-								<a href={`/portfolio/#${tech}`}>{tech}</a>
-							</li>
-						))}
-					</ul>
-					<a href={`/portfolio/${project.slug}`}>Read More &rarr;</a>
-				</article>
-			))
-		}
-	</main>
+<html>
+	<body>
+		<main>
+			<h1>Mario Yepes Portfolio</h1>
+			{
+				projects.map((project) => (
+					<article data-article-id={project.slug} data-tags={project.data.tags.join(",")}>
+						<h2>{project.data.title}</h2>
+						<p>
+							<strong>Client: </strong>
+							{project.data.client}
+						</p>
+						<p>{project.data.summary}</p>
+						<ul>
+							{project.data.tags.map((tech: string) => (
+								<li>
+									<a href={`/portfolio/#${tech}`}>{tech}</a>
+								</li>
+							))}
+						</ul>
+						<a href={`/portfolio/${project.slug}`}>Read More &rarr;</a>
+					</article>
+				))
+			}
+		</main>
 
-	<script>
-		import "../../scripts/toggle-display-article.ts";
-	</script>
-
-	<style>
-		@import "../../styles/page-portfolio-index.scss";
-	</style>
-</SiteLayout>
+		<script>
+			import "../../scripts/toggle-display-article.ts";
+		</script>
+	</body>
+</html>

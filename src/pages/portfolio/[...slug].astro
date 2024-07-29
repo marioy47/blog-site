@@ -1,12 +1,9 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import SiteLayout from "../../layout/site-layout.astro";
-import { SITE_TITLE } from "../../consts.ts";
-
-type Props = CollectionEntry<"projects">;
+type Props = CollectionEntry<"portfolio">;
 
 export async function getStaticPaths() {
-	const posts = await getCollection("projects");
+	const posts = await getCollection("portfolio");
 	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,
@@ -17,39 +14,37 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<SiteLayout title={`${post.data.title} | ${SITE_TITLE}`}>
-	<main>
-		<header>
-			<h1>{post.data.title}</h1>
-		</header>
-		<article>
-			<Content />
-		</article>
-		<aside>
-			<div>
-				<strong>Client: </strong>
-				{post.data.client}
-			</div>
-			<div>
-				<strong>Project date: </strong>
-				<ul>
-					{
-						post.data.tags.map((tag) => (
-							<li>
-								<a href={`/portfolio/#${tag}`}>{tag}</a>
-							</li>
-						))
-					}
-				</ul>
-				{post.data.date.toDateString()}
-			</div>
-			<div>
-				<strong>Used tech: </strong>
-			</div>
-		</aside>
-	</main>
-</SiteLayout>
-
-<style>
-	@import "../../styles/slug-portfolio.scss";
-</style>
+<html>
+	<body>
+		<main>
+			<header>
+				<h1>{post.data.title}</h1>
+			</header>
+			<article>
+				<Content />
+			</article>
+			<aside>
+				<div>
+					<strong>Client: </strong>
+					{post.data.client}
+				</div>
+				<div>
+					<strong>Project date: </strong>
+					<ul>
+						{
+							post.data.tags.map((tag: string) => (
+								<li>
+									<a href={`/portfolio/#${tag}`}>{tag}</a>
+								</li>
+							))
+						}
+					</ul>
+					{post.data.date.toDateString()}
+				</div>
+				<div>
+					<strong>Used tech: </strong>
+				</div>
+			</aside>
+		</main>
+	</body>
+</html>

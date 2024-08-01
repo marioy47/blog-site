@@ -7,7 +7,7 @@ const projects = await getCollection("portfolio");
 projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<SiteLayout>
+<SiteLayout title="Projects">
 	<main>
 		<h1>Mario Yepes Portfolio</h1>
 		{

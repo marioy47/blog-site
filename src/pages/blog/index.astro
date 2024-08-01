@@ -29,7 +29,7 @@ const postsByYear = posts.reduce((accum: YearlyPosts, post) => {
 const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
-<SiteLayout>
+<SiteLayout title="Blog Articles">
 	<h1>Blog entries</h1>
 	<ul>
 		{

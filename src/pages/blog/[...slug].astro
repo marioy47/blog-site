@@ -27,10 +27,10 @@ const { Content, headings } = await entry.render();
 		<Toc headings={headings} />
 		<Content />
 	</article>
+	<script>
+		import { addCopyCodeButtons } from "../../scripts/copy-code-button";
+		import { addClickablePopupDialogToElements } from "../../scripts/add-clickable-popup-dialog-to-elements";
+		addCopyCodeButtons("📋", "✅");
+		addClickablePopupDialogToElements("article img");
+	</script>
 </SiteLayout>
-<script>
-	import { addCopyCodeButtons } from "../../scripts/copy-code-button";
-	import { addClickablePopupDialogToElements } from "../../scripts/add-clickable-popup-dialog-to-elements";
-	addCopyCodeButtons("📋", "✅");
-	addClickablePopupDialogToElements("article img");
-</script>

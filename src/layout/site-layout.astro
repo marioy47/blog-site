@@ -1,6 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-// import Search from "astro-pagefind/components/Search";
+import Search from "astro-pagefind/components/Search";
 import { GoogleTagmanager } from "@digi4care/astro-google-tagmanager";
 import { SEO, type SEOProps } from "astro-seo";
 import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
@@ -56,8 +56,9 @@ const headItems: SEOProps = {
 		{import.meta.env.GTM_VERIFICATION_ID ? <GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} /> : ""}
 		<ViewTransitions />
 	</head>
-	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
-		<header class="flex px-2 py-4">
+	<body class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+		<Search transition:animate="fade" />
+		<header class="sticky top-0 flex border-b-[1px] border-solid border-gray-700 border-opacity-20 px-2 py-4 backdrop-blur-md">
 			<a href="/" aria-label="Link to Front page">
 				<Icon name="icon-developer" size={40} title="Blog Logo" />
 			</a>
@@ -83,12 +84,24 @@ const headItems: SEOProps = {
 			</div>
 		</header>
 		<slot />
-		<footer>
-			<Icon name="tabler:brand-x" size={32} title="Twitter" />
-			<Icon name="tabler:brand-github" size={32} title="My Github" />
-			<Icon name="tabler:brand-linkedin" size={32} title="Linked In" />
-			<Icon name="tabler:code" size={32} title="Coders Rank" />
-			<ScrollToTop>Arriba</ScrollToTop>
+		<footer class="flex h-16 items-center justify-between border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
+			<ScrollToTop className="cursor-pointer opacity-50 hover:opacity-100">
+				<Icon name="tabler:circle-arrow-up-filled" size={42} title="Scroll to top" />
+			</ScrollToTop>
+			<div class="flex justify-end gap-3">
+				<a href="https://x.com/marioy47" target="_blank">
+					<Icon name="tabler:brand-x" size={32} title="Twitter" />
+				</a>
+				<a href="https://github.com/marioy47" target="_blank">
+					<Icon name="tabler:brand-github" size={32} title="My Github" />
+				</a>
+				<a href="https://www.linkedin.com/in/marioyepes/" target="_blank">
+					<Icon name="tabler:brand-linkedin" size={32} title="Linked In" />
+				</a>
+				<a href="https://profile.codersrank.io/user/marioy47" target="_blank">
+					<Icon name="tabler:code" size={32} title="Coders Rank" />
+				</a>
+			</div>
 		</footer>
 	</body>
 </html>

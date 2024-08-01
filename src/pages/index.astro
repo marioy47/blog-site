@@ -1,66 +1,15 @@
 ---
 // src/pages/index.astro
-import { ViewTransitions } from "astro:transitions";
-import Search from "astro-pagefind/components/Search";
-import { GoogleTagmanager } from "@digi4care/astro-google-tagmanager";
-import { SEO, type SEOProps } from "astro-seo";
-import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
-
-import "../styles/global.css";
-
-// It would make more sense to create a Layout and/or components to handle the `<head>`
-const { title, description, image, authors } = Astro.props;
-const headItems: SEOProps = {
-	title: title ?? import.meta.env.SITE_TITLE ?? "No title",
-	titleTemplate: import.meta.env.SITE_TITLE_TEMPLATE ?? "%s | My Site",
-	description: description ?? import.meta.env.SITE_DESCRIPTION ?? "This is my site",
-	openGraph: {
-		basic: {
-			type: "website",
-			title: title ?? import.meta.env.SITE_TITLE ?? "Undefined title",
-			image: image ?? import.meta.env.SITE_IMAGE ?? "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
-		},
-		article: {
-			authors: authors ?? ["Mario Yepes"],
-			tags: [],
-		},
-	},
-	twitter: {
-		card: "summary_large_image",
-		image: image ?? import.meta.env.TWITTER_IMAGE ?? "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
-		creator: authors?.join(" ") ?? import.meta.env.TWITTER_CREATOR ?? "@marioy47",
-	},
-	extend: {
-		meta: [
-			{ name: "generator", content: Astro.generator },
-			{ name: "viewport", content: "width=device-width" },
-		],
-		link: [
-			{ rel: "alternate", type: "application/rss+xml", title: `RSS feed for ${title ?? "this site"}`, href: new URL("rss.xml", Astro.site).toString() },
-			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-300.woff2" },
-			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-300italic.woff2" },
-			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-700.woff2" },
-			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-700italic.woff2" },
-			{ rel: "preload", href: "/fonts/jetbrains-mono-v18-latin-regular.woff2" },
-			{ rel: "sitemap", href: "/sitemap-index.xml" },
-		],
-	},
-};
+import SiteLayout from "../layout/site-layout.astro";
+import { Image } from "astro:assets";
+import imgMarioBw from "../images/img-mario-bw.png";
 ---
 
-<html lang="en">
-	<head>
-		<SEO {...headItems} />
-		<GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} />
-		<ViewTransitions />
-	</head>
-	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
-		<ToggleLightDarkMode title="Toggle light or dark mode" />
-		<h1>A Developer Blog</h1>
-		<Search />
-		<a href="blog/">Go to the Blog</a>
-		<br />
-		<a href="portfolio/">Go to the Portfolio</a>
-	</body>
-</html>
+<SiteLayout>
+	<main>
+		<h1>Hello,<strong>I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</h1>
+	</main>
+	<picture>
+		<Image src={imgMarioBw} widths={[280, 300, 380]} alt="Mario Yepes toon photo" loading="eager" />
+	</picture>
+</SiteLayout>

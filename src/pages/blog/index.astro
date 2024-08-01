@@ -1,9 +1,6 @@
 ---
-import { Icon } from "astro-icon/components";
-import { ViewTransitions } from "astro:transitions";
+import SiteLayout from "../../layout/site-layout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
-import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
-import "../../styles/global.css";
 
 type YearlyPosts = {
 	[year: string]: CollectionEntry<"blog">[];
@@ -32,32 +29,24 @@ const postsByYear = posts.reduce((accum: YearlyPosts, post) => {
 const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
-<html lang="en">
-	<head>
-		<title>Blog Posts</title>
-		<ViewTransitions />
-	</head>
-	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
-		<Icon name="tabler:brand-astro" size={32} title="Blog Logo" />
-		<ToggleLightDarkMode />
-		<h1>Blog entries</h1>
-		<ul>
-			{
-				years.map((year) => (
-					<li>
-						<h2>{year}</h2>
-						<ul>
-							{postsByYear[year].map((post) => (
-								<li>
-									<a href={`/blog/${post.slug}`}>
-										&rarr; {post.data.title} - {post.data.date.toDateString()}{" "}
-									</a>
-								</li>
-							))}
-						</ul>
-					</li>
-				))
-			}
-		</ul>
-	</body>
-</html>
+<SiteLayout>
+	<h1>Blog entries</h1>
+	<ul>
+		{
+			years.map((year) => (
+				<li>
+					<h2>{year}</h2>
+					<ul>
+						{postsByYear[year].map((post) => (
+							<li>
+								<a href={`/blog/${post.slug}`}>
+									&rarr; {post.data.title} - {post.data.date.toDateString()}{" "}
+								</a>
+							</li>
+						))}
+					</ul>
+				</li>
+			))
+		}
+	</ul>
+</SiteLayout>

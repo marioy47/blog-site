@@ -1,4 +1,5 @@
 ---
+import SiteLayout from "../../layout/site-layout.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("portfolio");
@@ -6,34 +7,32 @@ const projects = await getCollection("portfolio");
 projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<html>
-	<body>
-		<main>
-			<h1>Mario Yepes Portfolio</h1>
-			{
-				projects.map((project) => (
-					<article data-article-id={project.slug} data-tags={project.data.tags.join(",")}>
-						<h2>{project.data.title}</h2>
-						<p>
-							<strong>Client: </strong>
-							{project.data.client}
-						</p>
-						<p>{project.data.summary}</p>
-						<ul>
-							{project.data.tags.map((tech: string) => (
-								<li>
-									<a href={`/portfolio/#${tech}`}>{tech}</a>
-								</li>
-							))}
-						</ul>
-						<a href={`/portfolio/${project.slug}`}>Read More &rarr;</a>
-					</article>
-				))
-			}
-		</main>
+<SiteLayout>
+	<main>
+		<h1>Mario Yepes Portfolio</h1>
+		{
+			projects.map((project) => (
+				<article data-article-id={project.slug} data-tags={project.data.tags.join(",")}>
+					<h2>{project.data.title}</h2>
+					<p>
+						<strong>Client: </strong>
+						{project.data.client}
+					</p>
+					<p>{project.data.summary}</p>
+					<ul>
+						{project.data.tags.map((tech: string) => (
+							<li>
+								<a href={`/portfolio/#${tech}`}>{tech}</a>
+							</li>
+						))}
+					</ul>
+					<a href={`/portfolio/${project.slug}`}>Read More &rarr;</a>
+				</article>
+			))
+		}
+	</main>
+</SiteLayout>
 
-		<script>
-			import "../../scripts/toggle-display-article.ts";
-		</script>
-	</body>
-</html>
+<script>
+	import "../../scripts/toggle-display-article.ts";
+</script>

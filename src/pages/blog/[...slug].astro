@@ -1,15 +1,9 @@
 ---
-// src/pages/blog/[p...slug].astro
-
 import FormattedDate from "../../components/formatted-date.astro";
 import ReadingTime from "../../components/reading-time.astro";
-import ScrollToTop from "../../components/scroll-to-top.astro";
 import Toc from "../../components/table-of-contents.astro";
-import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
-import { ViewTransitions } from "astro:transitions";
 import { getCollection, type CollectionEntry } from "astro:content";
-
-import "../../styles/global.css";
+import SiteLayout from "../../layout/site-layout.astro";
 
 type Props = CollectionEntry<"blog">;
 
@@ -25,27 +19,18 @@ const entry = Astro.props;
 const { Content, headings } = await entry.render();
 ---
 
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-	<head>
-		<title>{entry.data.title}</title>
-		<ViewTransitions />
-	</head>
-	<body class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
-		<ToggleLightDarkMode title="Toggle light or dark mode" />
-		<article class="prose prose-stone mx-auto lg:prose-xl dark:prose-invert">
-			<h1>{entry.data.title}</h1>
-			<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
-			<FormattedDate date={entry.data.date} />
-			<Toc headings={headings} />
-			<Content />
-		</article>
-		<ScrollToTop content="Scroll To TOC" top={50} />
-		<script>
-			import { addCopyCodeButtons } from "../../scripts/copy-code-button";
-			import { addClickablePopupDialogToElements } from "../../scripts/add-clickable-popup-dialog-to-elements";
-			addCopyCodeButtons("📋", "✅");
-			addClickablePopupDialogToElements("article img");
-		</script>
-	</body>
-</html>
+<SiteLayout title={entry.data.title}>
+	<article class="prose prose-stone mx-auto lg:prose-xl dark:prose-invert">
+		<h1>{entry.data.title}</h1>
+		<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
+		<FormattedDate date={entry.data.date} />
+		<Toc headings={headings} />
+		<Content />
+	</article>
+</SiteLayout>
+<script>
+	import { addCopyCodeButtons } from "../../scripts/copy-code-button";
+	import { addClickablePopupDialogToElements } from "../../scripts/add-clickable-popup-dialog-to-elements";
+	addCopyCodeButtons("📋", "✅");
+	addClickablePopupDialogToElements("article img");
+</script>

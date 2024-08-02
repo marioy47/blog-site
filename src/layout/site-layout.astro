@@ -56,11 +56,11 @@ const headItems: SEOProps = {
 		{import.meta.env.GTM_VERIFICATION_ID ? <GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} /> : ""}
 		<ViewTransitions />
 	</head>
-	<body class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
-		<Search transition:animate="fade" />
-		<header class="sticky top-0 flex border-b-[1px] border-solid border-gray-700 border-opacity-20 px-2 py-4 backdrop-blur-md">
+	<body class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-300">
+		<header class="site-header sticky top-0 z-10 border-b-[1px] border-solid border-gray-700 border-opacity-20 backdrop-blur-md">
+			<Search transition:animate="fade" id="pagefind-form" className="ease overflow-hidden transition-all duration-300" />
 			<a href="/" aria-label="Link to Front page">
-				<Icon name="icon-developer" size={40} title="Blog Logo" />
+				<Icon name="icon-developer" size={50} title="Blog Logo" />
 			</a>
 			<nav class="flex flex-1 justify-center font-bold">
 				<menu>
@@ -79,12 +79,13 @@ const headItems: SEOProps = {
 					</ul>
 				</menu>
 			</nav>
-			<div class="w-14 flex-none">
-				<ToggleLightDarkMode />
+			<div>
+				<Icon name="tabler:search" size={24} id="toggle-search" />
 			</div>
+			<ToggleLightDarkMode />
 		</header>
 		<slot />
-		<footer class="flex h-16 items-center justify-between border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
+		<footer class="site-footer flex h-16 items-center justify-between border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
 			<ScrollToTop className="cursor-pointer opacity-50 hover:opacity-100">
 				<Icon name="tabler:circle-arrow-up-filled" size={42} title="Scroll to top" />
 			</ScrollToTop>
@@ -105,3 +106,18 @@ const headItems: SEOProps = {
 		</footer>
 	</body>
 </html>
+
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const toggleSearch = document.getElementById("toggle-search");
+		const pageFindDiv = document.getElementById("pagefind-form");
+		toggleSearch?.addEventListener("click", () => {
+			const heightVar = pageFindDiv?.style.getPropertyValue("--height");
+			if (heightVar !== "auto") {
+				pageFindDiv?.style.setProperty("--height", "auto");
+			} else {
+				pageFindDiv?.style.setProperty("--height", "0");
+			}
+		});
+	});
+</script>

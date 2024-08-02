@@ -31,3 +31,53 @@ html.dark .astro-code span.line.highlighted {
 dialog::backdrop {
 	backdrop-filter: blur(4px);
 }
+
+:root {
+	--pagefind-ui-font: "Fira Sans";
+	--pagefind-ui-text: initial;
+	--pagefind-ui-border-width: 1px;
+	--pagefind-ui-background: inherit;
+}
+
+.site-header {
+	/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+	align-items: center;
+	display: grid;
+	grid-template-rows: 3.5em auto;
+	grid-template-columns: 4em 0 auto 3em 4em;
+	grid-template-areas:
+		"logo . navigation togglesearch toggledark"
+		"search search search search search";
+}
+
+.site-header > * {
+	justify-self: center;
+}
+
+.site-header > *:nth-child(1) {
+	--height: 0; /* The find form should be hidden by default */
+
+	grid-area: search;
+	height: var(--height);
+	justify-self: auto;
+}
+
+.site-header > *:nth-child(2) {
+	grid-area: logo;
+}
+
+.site-header > *:nth-child(3) {
+	grid-area: navigation;
+}
+
+.site-header > *:nth-child(4) {
+	grid-area: togglesearch;
+}
+
+.site-header > *:nth-child(5) {
+	grid-area: toggledark;
+}
+
+.pagefind-ui {
+	@apply bg-gray-100 dark:bg-gray-800;
+}

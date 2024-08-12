@@ -8,11 +8,12 @@
 interface Props {
 	date: Date;
 	locale?: string;
+	className?: string;
 }
-const { date, locale = "en-us" } = Astro.props;
+const { date, locale = "en-us", className } = Astro.props;
 ---
 
-<time datetime={date.toISOString()}>
+<time datetime={date.toISOString()} class={className}>
 	{
 		date.toLocaleDateString(locale, {
 			year: "numeric",

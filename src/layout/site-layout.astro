@@ -56,11 +56,11 @@ const headItems: SEOProps = {
 		{import.meta.env.GTM_VERIFICATION_ID ? <GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} /> : ""}
 		<ViewTransitions />
 	</head>
-	<body class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-300">
-		<header class="site-header sticky top-0 z-10 border-b-[1px] border-solid border-gray-700 border-opacity-20 backdrop-blur-md">
-			<Search transition:animate="fade" id="pagefind-form" className="ease overflow-hidden transition-all duration-300" />
+	<body class="bg-slate-100 leading-relaxed text-gray-900 dark:bg-slate-900 dark:text-gray-300">
+		<header class="site-header sticky top-0 z-10 grid grid-cols-[4em_0_auto_2em_4em] grid-rows-[4rem_auto] items-center border-b-[1px] border-solid border-gray-700 border-opacity-20 backdrop-blur-md">
+			<Search transition:animate="fade" id="pagefind-form" className="ease h-0 overflow-hidden transition-all duration-300" />
 			<a href="/" aria-label="Link to Front page">
-				<Icon name="icon-developer" size={50} title="Blog Logo" />
+				<Icon name="icon-developer" size={50} title="Blog Logo" class="transition-all hover:translate-x-3 hover:translate-y-3 hover:scale-150" />
 			</a>
 			<nav class="flex flex-1 justify-center font-bold">
 				<menu>
@@ -72,20 +72,20 @@ const headItems: SEOProps = {
 							<a href="/portfolio">Portfolio</a>
 						</li>
 						<li>
-							<li>
-								<a href="/about">About</a>
-							</li>
+							<a href="/about">About</a>
 						</li>
 					</ul>
 				</menu>
 			</nav>
-			<div>
+			<div class="flex justify-center">
 				<Icon name="tabler:search" size={24} id="toggle-search" />
 			</div>
-			<ToggleLightDarkMode />
+			<ToggleLightDarkMode className="flex justify-end" />
 		</header>
+
 		<slot />
-		<footer class="site-footer flex h-16 items-center justify-between border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
+
+		<footer class="flex h-16 items-center justify-between border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
 			<ScrollToTop className="cursor-pointer opacity-50 hover:opacity-100">
 				<Icon name="tabler:circle-arrow-up-filled" size={42} title="Scroll to top" />
 			</ScrollToTop>
@@ -107,10 +107,43 @@ const headItems: SEOProps = {
 	</body>
 </html>
 
-<script>
+<style is:global>
+	.site-header {
+		grid-template-areas:
+			"logo . navigation togglesearch toggledark"
+			"search search search search search";
+	}
+
+	.site-header > *:nth-child(1) {
+		grid-area: search;
+	}
+
+	.site-header > *:nth-child(2) {
+		grid-area: logo;
+	}
+
+	.site-header > *:nth-child(3) {
+		grid-area: navigation;
+	}
+
+	.site-header > *:nth-child(4) {
+		grid-area: togglesearch;
+	}
+
+	.site-header > *:nth-child(5) {
+		grid-area: toggledark;
+	}
+</style>
+
+<script is:inline>
+	// Toggle search form when mgnify-glass icon gets clicked
 	document.addEventListener("astro:page-load", () => {
 		const toggleSearch = document.getElementById("toggle-search");
 		const pageFindDiv = document.getElementById("pagefind-form");
+		if (pageFindDiv) {
+			pageFindDiv.style.setProperty("--height", "0");
+			pageFindDiv.style.height = "var(--height)";
+		}
 		toggleSearch?.addEventListener("click", () => {
 			const heightVar = pageFindDiv?.style.getPropertyValue("--height");
 			if (heightVar !== "auto") {

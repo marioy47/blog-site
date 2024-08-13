@@ -6,10 +6,10 @@ import imgMarioBw from "../images/img-mario-bw.png";
 ---
 
 <SiteLayout title="Welcome">
-	<main>
-		<h1>Hello,<strong>I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</h1>
+	<main class="mx-auto grid min-h-[calc(100svh_-_8rem)] max-w-screen-lg grid-rows-2 items-center justify-center gap-5 md:grid-cols-[40%_auto] md:grid-rows-1">
+		<h1 class="order-2 text-center text-4xl md:order-1 md:text-right">Hello,<strong class="block">I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</h1>
+		<picture class="order-1 mx-auto md:order-2">
+			<Image src={imgMarioBw} widths={[280, 300, 380]} alt="Mario Yepes toon photo" loading="eager" class="rounded-full object-cover" />
+		</picture>
 	</main>
-	<picture>
-		<Image src={imgMarioBw} widths={[280, 300, 380]} alt="Mario Yepes toon photo" loading="eager" />
-	</picture>
 </SiteLayout>

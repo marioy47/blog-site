@@ -34,7 +34,7 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 	<h1 class="text-center text-4xl font-bold">Blog entries</h1>
 	{
 		years.map((year) => (
-			<section class="mx-auto mb-10 max-w-screen-lg">
+			<section class="mx-auto mb-10 max-w-screen-md">
 				<h2 class="mb-4 text-2xl font-semibold">{year}</h2>
 				<ul class="divide-y divide-slate-300 border-b border-t border-slate-300">
 					{postsByYear[year].map((post, idx) => (

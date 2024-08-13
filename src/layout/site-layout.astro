@@ -1,10 +1,10 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import Search from "astro-pagefind/components/Search";
-import { GoogleTagmanager } from "@digi4care/astro-google-tagmanager";
-import { SEO, type SEOProps } from "astro-seo";
 import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
+import { GoogleTagmanager } from "@digi4care/astro-google-tagmanager";
 import { Icon } from "astro-icon/components";
+import { SEO, type SEOProps } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
 import ScrollToTop from "../components/scroll-to-top.astro";
 
 import "../styles/global.css";
@@ -56,7 +56,7 @@ const headItems: SEOProps = {
 		{import.meta.env.GTM_VERIFICATION_ID ? <GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} /> : ""}
 		<ViewTransitions />
 	</head>
-	<body class="bg-slate-100 leading-relaxed text-gray-900 dark:bg-slate-900 dark:text-gray-300">
+	<body class="bg-slate-100 leading-relaxed text-gray-900 dark:bg-cyan-site-theme dark:text-gray-300">
 		<header class="site-header sticky top-0 z-10 grid grid-cols-[4em_0_auto_2em_4em] grid-rows-[4rem_auto] items-center border-b-[1px] border-solid border-gray-700 border-opacity-20 backdrop-blur-md">
 			<Search transition:animate="fade" id="pagefind-form" className="ease h-0 overflow-hidden transition-all duration-300" />
 			<a href="/" aria-label="Link to Front page">

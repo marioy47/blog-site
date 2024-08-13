@@ -23,8 +23,8 @@ export default defineConfig({
 		shikiConfig: {
 			// List of themes here: https://shiki.style/themes
 			themes: {
-				dark: "rose-pine-dawn",
 				light: "rose-pine-moon",
+				dark: "solarized-light",
 			},
 			transformers: [transformerMetaHighlight()],
 		},

@@ -50,15 +50,14 @@ const headItems: SEOProps = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<SEO {...headItems} />
 		{import.meta.env.GTM_VERIFICATION_ID ? <GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} /> : ""}
 		<ViewTransitions />
 	</head>
 	<body class="bg-slate-100 leading-relaxed text-gray-900 dark:bg-cyan-site-theme dark:text-gray-300">
-		<header class="site-header sticky top-0 z-10 grid h-16 grid-cols-[4em_0_auto_2em_4em] grid-rows-[4rem_auto] items-center shadow-lg shadow-slate-200 backdrop-blur-md dark:shadow-slate-800">
-			<Search transition:animate="fade" id="pagefind-form" className="ease h-0 overflow-hidden transition-all duration-300" />
+		<header class="sticky top-0 z-10 grid grid-cols-[4em_auto_2em_4em] grid-rows-[4rem_auto] items-center shadow-lg shadow-slate-200 backdrop-blur-md dark:shadow-slate-800">
 			<a href="/" aria-label="Link to Front page">
 				<Icon name="icon-developer" size={50} title="Blog Logo" class="transition-all hover:translate-x-3 hover:translate-y-3 hover:scale-150" />
 			</a>
@@ -81,6 +80,7 @@ const headItems: SEOProps = {
 				<Icon name="tabler:search" size={24} id="toggle-search" />
 			</div>
 			<ToggleLightDarkMode className="flex justify-end" />
+			<Search id="pagefind-form" className="col-span-4 h-0 overflow-hidden transition-all" />
 		</header>
 
 		<slot />
@@ -107,50 +107,13 @@ const headItems: SEOProps = {
 	</body>
 </html>
 
-<style is:global>
-	.site-header {
-		grid-template-areas:
-			"logo . navigation togglesearch toggledark"
-			"search search search search search";
-	}
-
-	.site-header > *:nth-child(1) {
-		grid-area: search;
-	}
-
-	.site-header > *:nth-child(2) {
-		grid-area: logo;
-	}
-
-	.site-header > *:nth-child(3) {
-		grid-area: navigation;
-	}
-
-	.site-header > *:nth-child(4) {
-		grid-area: togglesearch;
-	}
-
-	.site-header > *:nth-child(5) {
-		grid-area: toggledark;
-	}
-</style>
-
 <script is:inline>
 	// Toggle search form when mgnify-glass icon gets clicked
 	document.addEventListener("astro:page-load", () => {
 		const toggleSearch = document.getElementById("toggle-search");
 		const pageFindDiv = document.getElementById("pagefind-form");
-		if (pageFindDiv) {
-			pageFindDiv.style.setProperty("--height", "0");
-			pageFindDiv.style.height = "var(--height)";
-		}
 		toggleSearch?.addEventListener("click", () => {
-			const heightVar = pageFindDiv?.style.getPropertyValue("--height");
-			if (heightVar !== "auto") {
-				pageFindDiv?.style.setProperty("--height", "auto");
-			} else {
-				pageFindDiv?.style.setProperty("--height", "0");
-			}
+			pageFindDiv?.classList.toggle("h-0");
 		});
 	});
 </script>

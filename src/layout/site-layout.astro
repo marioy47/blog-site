@@ -56,14 +56,14 @@ const headItems: SEOProps = {
 		{import.meta.env.GTM_VERIFICATION_ID ? <GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} /> : ""}
 		<ViewTransitions />
 	</head>
-	<body class="bg-slate-100 leading-relaxed text-gray-900 dark:bg-cyan-site-theme dark:text-gray-300">
-		<header class="sticky top-0 z-10 grid grid-cols-[4em_auto_2em_4em] grid-rows-[4rem_auto] items-center shadow-lg shadow-slate-200 backdrop-blur-md dark:shadow-slate-800">
+	<body class="bg-slate-100 leading-relaxed text-slate-900 dark:bg-cyan-site-theme dark:text-slate-300">
+		<header class="sticky top-0 z-10 mb-8 grid grid-cols-[4em_auto_2em_4em] grid-rows-[3rem_auto] items-center p-2 shadow-lg shadow-slate-200 backdrop-blur-md dark:shadow-slate-800">
 			<a href="/" aria-label="Link to Front page">
 				<Icon name="icon-developer" size={50} title="Blog Logo" class="transition-all hover:translate-x-3 hover:translate-y-3 hover:scale-150" />
 			</a>
 			<nav class="flex flex-1 justify-center font-bold">
 				<menu>
-					<ul class="flex gap-2">
+					<ul class="flex gap-3">
 						<li>
 							<a href="/blog">Blog</a>
 						</li>
@@ -85,8 +85,8 @@ const headItems: SEOProps = {
 
 		<slot />
 
-		<footer class="flex h-16 items-center justify-between border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
-			<ScrollToTop className="cursor-pointer opacity-50 hover:opacity-100">
+		<footer class="flex h-16 items-center justify-end border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
+			<ScrollToTop className="fixed bottom-1 left-1 cursor-pointer opacity-50 hover:opacity-100">
 				<Icon name="tabler:circle-arrow-up-filled" size={42} title="Scroll to top" />
 			</ScrollToTop>
 			<div class="flex justify-end gap-3">

@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../../layout/site-layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
+import FormattedDate from "../../components/formatted-date.astro";
 type Props = CollectionEntry<"portfolio">;
 
 export async function getStaticPaths() {
@@ -16,11 +17,9 @@ const { Content } = await post.render();
 ---
 
 <SiteLayout title={post.data.title}>
-	<main>
-		<header>
-			<h1>{post.data.title}</h1>
-		</header>
-		<article>
+	<main class="mx-auto grid max-w-screen-lg md:grid-cols-[auto_auto]">
+		<article class="prose prose-a:font-semibold prose-a:text-orange-600">
+			<h1 class="text-4xl font-bold">{post.data.title}</h1>
 			<Content />
 		</article>
 		<aside>
@@ -30,7 +29,11 @@ const { Content } = await post.render();
 			</div>
 			<div>
 				<strong>Project date: </strong>
-				<ul>
+				<FormattedDate date={post.data.date} />
+			</div>
+			<div>
+				<strong>Technologies:</strong>
+				<ul class="pl-4 capitalize">
 					{
 						post.data.tags.map((tag: string) => (
 							<li>
@@ -39,10 +42,6 @@ const { Content } = await post.render();
 						))
 					}
 				</ul>
-				{post.data.date.toDateString()}
-			</div>
-			<div>
-				<strong>Used tech: </strong>
 			</div>
 		</aside>
 	</main>

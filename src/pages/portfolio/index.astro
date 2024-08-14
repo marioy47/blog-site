@@ -8,25 +8,36 @@ projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <SiteLayout title="Projects">
-	<main>
-		<h1>Mario Yepes Portfolio</h1>
+	<main class="m-auto max-w-screen-md p-2">
+		<h1 class="text-center text-4xl font-bold">Mario Yepes Portfolio</h1>
 		{
 			projects.map((project) => (
-				<article data-article-id={project.slug} data-tags={project.data.tags.join(",")}>
-					<h2>{project.data.title}</h2>
-					<p>
+				<article class="grid gap-2 border-b border-b-slate-300 py-10 md:grid-cols-[50%_auto]" data-article-id={project.slug} data-tags={project.data.tags.join(",")}>
+					<h2 class="text-3xl font-semibold md:col-span-2">{project.data.title}</h2>
+					<img class="md:row-span-4" src={project.data.cover.src} alt={`Screenshot for project ${project.data.title}`} />
+					<div>
 						<strong>Client: </strong>
 						{project.data.client}
-					</p>
-					<p>{project.data.summary}</p>
-					<ul>
-						{project.data.tags.map((tech: string) => (
-							<li>
-								<a href={`/portfolio/#${tech}`}>{tech}</a>
-							</li>
-						))}
-					</ul>
-					<a href={`/portfolio/${project.slug}`}>Read More &rarr;</a>
+					</div>
+					<div>
+						<strong>Summary:</strong>
+						{project.data.summary}
+					</div>
+					<div class="flex gap-2">
+						<strong>Tags:</strong>
+						<ul class="flex flex-wrap gap-2">
+							{project.data.tags.map((tech: string) => (
+								<li>
+									<a class="text-orange-600 hover:underline" href={`/portfolio/#${tech}`}>
+										{tech}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+					<a class="ml-auto inline-block font-bold text-orange-600 hover:underline" href={`/portfolio/${project.slug}`}>
+						Read More &rarr;
+					</a>
 				</article>
 			))
 		}

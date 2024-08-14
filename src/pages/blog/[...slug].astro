@@ -21,10 +21,12 @@ const { Content, headings } = await entry.render();
 
 <SiteLayout title={entry.data.title}>
 	<article class="prose prose-stone mx-auto 2xl:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
-		<h1 class="border-b-red-700">{entry.data.title}</h1>
-		<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
-		<FormattedDate date={entry.data.date} />
-		<Toc headings={headings} />
+		<h1>{entry.data.title}</h1>
+		<div class="flex justify-between text-sm italic">
+			<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
+			<FormattedDate date={entry.data.date} />
+		</div>
+		<Toc headings={headings} className="mb-8" />
 		<Content />
 	</article>
 	<script>
@@ -75,5 +77,9 @@ const { Content, headings } = await entry.render();
 
 	h2 {
 		scroll-margin-top: 5rem;
+	}
+
+	details summary {
+		@apply mt-4 text-xl font-semibold;
 	}
 </style>

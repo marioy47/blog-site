@@ -12,6 +12,7 @@ interface Props {
 	wordsPerMinute?: number;
 	before?: string;
 	after?: string;
+	className?: string;
 }
 
 /**
@@ -26,10 +27,10 @@ const getReadingTime = (content: string, wordsPerMinute: number) => {
 	return Math.ceil(numberOfWords / wordsPerMinute);
 };
 
-const { content, before, after, wordsPerMinute = 200 } = Astro.props;
+const { content, before, after, className, wordsPerMinute = 200 } = Astro.props;
 ---
 
-<label class="reading-time">
+<label class={className}>
 	{before ?? <span class="reading-time__before">{before}</span>}
 	<span class="reading-time__value">{getReadingTime(content, wordsPerMinute)}</span>
 	{after ?? <span class="reading-time__after">{after}</span>}

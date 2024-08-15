@@ -9,10 +9,17 @@ import ScrollToTop from "../components/scroll-to-top.astro";
 
 import "../styles/global.css";
 
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	authors?: Array<string>;
+}
+
 const { title, description, image, authors } = Astro.props;
 const headItems: SEOProps = {
 	title: title ?? import.meta.env.SITE_TITLE ?? "No SITE_TITLE env variable",
-	titleTemplate: import.meta.env.SITE_TITLE_TEMPLATE ?? "%s | No SITE_TITLE_TEMPLATE env variable",
+	titleTemplate: import.meta.env.SITE_TITLE_TEMPLATE ?? `%s | ${import.meta.env.SITE_TITLE}`,
 	description: description ?? import.meta.env.SITE_DESCRIPTION ?? "This is my site",
 	openGraph: {
 		basic: {

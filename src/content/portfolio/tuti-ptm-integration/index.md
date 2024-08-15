@@ -7,8 +7,6 @@ tags: [php, wordpress, soap, javascript, bitbucket, git, unit-test]
 summary: Integrate PTM (a "minute plan reseller") system with Tuti (A small business provisioner) E-commerce using Soap.
 ---
 
-# PTM & Tuti Soap Integration
-
 This is one of the more complex projects that I've built for a client.
 
 The main idea of the project was to integrate [Tuti's](https://tuti.com.co) WordPress E-commerce with [PTM's](https://ptm.com.co) WebService.

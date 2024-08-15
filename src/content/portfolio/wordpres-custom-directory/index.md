@@ -1,5 +1,5 @@
 ---
-title: _Custom Directory_ Wordpress Plugin
+title: Custom Directory Wordpress Plugin
 cover: ./wp-custom-dir-result.png
 date: 2020-01-10
 client: Personal Project

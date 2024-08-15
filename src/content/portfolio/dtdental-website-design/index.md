@@ -7,8 +7,6 @@ tags: [figma, design, svg, webdesign, trello]
 summary: Design and project management for Dt. Dental's website
 ---
 
-# Dt. Dental Website Design
-
 Dt. Technologies is a local software company that is focused in creating solutions for dental practices.
 
 It's main product is the software _Dt. Dental_ which allows a dentists to manage his/her practice. From the creation of appointments to the management of clinical records.

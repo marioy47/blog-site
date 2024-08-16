@@ -1,7 +1,7 @@
 ---
 title: Use Gulp and Webpack together for you asset bundling needs
 date: 2020-01-15
-tags: [ npm, node, gulp, webpack, javascript, scss, sass, css ]
+tags: [npm, node, gulp, webpack, javascript, scss, sass, css]
 cover: ./gulp-webpack-dirs.png
 ---
 
@@ -22,7 +22,7 @@ So here, I'm going to show you have to use `gulp` with `webpack` for task automa
 
 I'm not going to cover how to do complex things like deployment or clean up since I just want to show you how to make this 2 tools work together.
 
-## Project setup.
+## Project setup
 
 First lets create a project directory with some sub directories:
 
@@ -35,7 +35,7 @@ tree
 
 You should have then the following structure:
 
-```
+```bash
 .
 └── src
     ├── js
@@ -67,9 +67,9 @@ Now create `src/js/hola-mundo.js` With the following contents:
 ```javascript
 // src/js/hola-mundo.js
 
-export default HolaMundo = name => {
-  console.log(`Hello ${name} from hola-mundo.js`)
-}
+export default HolaMundo = (name) => {
+  console.log(`Hello ${name} from hola-mundo.js`);
+};
 ```
 
 And finally create `src/js/main.js` with
@@ -77,9 +77,9 @@ And finally create `src/js/main.js` with
 ```javascript
 // src/js/main.js
 
-import HolaMundo from "./hola-mundo.js"
+import HolaMundo from "./hola-mundo.js";
 
-HolaMundo("Mario")
+HolaMundo("Mario");
 ```
 
 As you can see, this are very basic files, but enough for testing our setup.
@@ -133,7 +133,7 @@ And create a `gulpfile.js` with just this code:
 ```javascript
 // gulpfile.js
 
-const gulp = require("gulp")
+const gulp = require("gulp");
 ```
 
 Just for testing: execute `node_modules/.bin/gulp --tasks` to find out if all is good.
@@ -155,19 +155,16 @@ Now that we have installed both packages, make the following changes to `gulpfil
 ```javascript {4-15}
 // gulpfile.js
 
-const gulp = require("gulp")
-const sass = require("gulp-sass")
+const gulp = require("gulp");
+const sass = require("gulp-sass");
 
-sass.compiler = require("node-sass")
+sass.compiler = require("node-sass");
 
 function styles() {
-  return gulp
-    .src("src/scss/*.scss")
-    .pipe(sass())
-    .pipe(gulp.dest("css/"))
+  return gulp.src("src/scss/*.scss").pipe(sass()).pipe(gulp.dest("css/"));
 }
 
-exports.build = styles
+exports.build = styles;
 ```
 
 And finally (for this step) change `package.json` to access this new **task** with just `npm run build` by creating a new _script_ entry:
@@ -212,7 +209,7 @@ Then create a basic `webpack.config.js` file to instruct webpack where are the j
 ```javascript
 // webpack.config.js
 
-const path = require("path")
+const path = require("path");
 
 module.exports = {
   entry: {
@@ -222,7 +219,7 @@ module.exports = {
     filename: "[name].min.js",
     path: path.resolve(__dirname, "js"),
   },
-}
+};
 ```
 
 This will instruct webpack to compile the file `src/js/main.js` into `js/main.min.js`.
@@ -260,7 +257,7 @@ Then, we have to modify `webpack.config.js` so any `js` file is converted to old
 ```javascript {13-24}
 // webpack.config.js
 
-const path = require("path")
+const path = require("path");
 
 module.exports = {
   entry: {
@@ -282,7 +279,7 @@ module.exports = {
       },
     ],
   },
-}
+};
 ```
 
 The output of `npm run webpack` should't change, since we just told it to convert old format javascript. But we also should not get any errors.
@@ -304,27 +301,24 @@ Then make the following changes to the `gulpfile.js`
 ```javascript {5,15-21}
 // gulpfile.js
 
-const gulp = require("gulp")
-const sass = require("gulp-sass")
-const webpack = require("webpack-stream")
+const gulp = require("gulp");
+const sass = require("gulp-sass");
+const webpack = require("webpack-stream");
 
-sass.compiler = require("node-sass")
+sass.compiler = require("node-sass");
 
 function styles() {
-  return gulp
-    .src("src/scss/*.scss")
-    .pipe(sass())
-    .pipe(gulp.dest("css/"))
+  return gulp.src("src/scss/*.scss").pipe(sass()).pipe(gulp.dest("css/"));
 }
 
 function scripts() {
   return gulp
     .src(".")
     .pipe(webpack(require("./webpack.config.js")))
-    .pipe(gulp.dest("js/"))
+    .pipe(gulp.dest("js/"));
 }
 
-exports.build = gulp.parallel(styles, scripts)
+exports.build = gulp.parallel(styles, scripts);
 ```
 
 And test it out:
@@ -357,7 +351,7 @@ Next we need to modify `webpack.config.js` to be aware of this new variable:
 ```javascript {25}
 // webpack.config.js
 
-const path = require("path")
+const path = require("path");
 
 module.exports = {
   entry: {
@@ -380,7 +374,7 @@ module.exports = {
     ],
   },
   mode: process.env.NODE_ENV == "production" ? "production" : "development",
-}
+};
 ```
 
 And verify that there aren't any complaints.

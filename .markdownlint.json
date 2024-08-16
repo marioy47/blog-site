@@ -5,7 +5,7 @@
   },
   "line-length": false,
   "no-inline-html": {
-    "allowed_elements": ["iframe"]
+    "allowed_elements": ["iframe", "video", "source"]
   },
   "no-hard-tabs": {
     "code_blocks": false

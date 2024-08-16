@@ -301,7 +301,7 @@ And that will go over all of the certificates stored in `/etc/letsencrypt/live` 
 
 You can even add a `cron` job in your machine that does that automatically for you once a week.
 
-```
+```bash
 # /etc/crontab
 3 0 * * 1 certbot renew
 ```

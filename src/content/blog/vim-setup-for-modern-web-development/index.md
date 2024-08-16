@@ -245,7 +245,7 @@ Most of this issues are [related to the terminal](https://gist.github.com/XVilka
 
 The only solution that worked for me, was to create the file `xterm-256color-italic.terminfo` with the contents:
 
-```
+```bash
 xterm-256color-italic|xterm with 256 colors and italic,
   sitm=\E[3m, ritm=\E[23m,
   use=xterm-256color,

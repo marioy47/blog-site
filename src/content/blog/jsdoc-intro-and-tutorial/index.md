@@ -20,7 +20,7 @@ To understand what _training your IDE_ means, take for instance the following co
 
 ![JavaScript function with no JSDoc documentation](./no-documentation-hover.png)
 
-_Hovering over a JavaScript function with no JSDoc documentation_
+- _Hovering over a JavaScript function with no JSDoc documentation_
 
 Notice how when I hover the mouse over the function `testFunction`, the IDE (in this case NeoVim) only tells you the obvious. That there are 3 parameters and that the last one is optional.
 
@@ -28,7 +28,7 @@ Compare that with the following:
 
 ![JavaScript function](./documented-func-hover.png)
 
-_Hovering over a JavaScript function that has JSDoc documentation_
+- _Hovering over a JavaScript function that has JSDoc documentation_
 
 As you can see, when the function is documented I get the information on the function, the number **and type** of parameters and the return value of the function by just hovering it. It even tells you the components of the third parameter which is an object.
 

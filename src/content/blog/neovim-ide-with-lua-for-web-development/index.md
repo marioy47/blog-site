@@ -6,7 +6,7 @@ cover: ./nvim-logo.png
 ---
 
 > [!NOTE]
-> Since 2024-08 I've been using [LazyVim](https://lazyvim) with the [PHP](https://www.lazyvim.org/extras/lang/php) extra]
+> Since 2024-08 I've been using [LazyVim](https://lazyvim) with the [PHP](https://www.lazyvim.org/extras/lang/php) extra
 
 So I have been using [Vim 8](https://vim.org) for some years now, And so far, [it has been great](https://marioyepes.com/vim-setup-for-modern-web-development/). But lately, some things have started bothering me:
 

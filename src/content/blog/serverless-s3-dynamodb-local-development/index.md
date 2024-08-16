@@ -1,7 +1,7 @@
 ---
 title: Develop for AWS S3, DynamoDB, RDS and API Gateway locally using Serverless
 date: 2020-04-16
-tags: [ aws, s3, lambda, rds, serverless, yml, node ]
+tags: [aws, s3, lambda, rds, serverless, yml, node]
 cover: ./npm-init.png
 ---
 
@@ -155,10 +155,10 @@ Also, I changed the `lambda/handler.js` function so it recognizes the URL parame
 
 ```javascript {5,10}
 // lambdas/handler.js
-"use strict"
+"use strict";
 
-module.exports.hello = async event => {
-  const name = event.pathParameters.name
+module.exports.hello = async (event) => {
+  const name = event.pathParameters.name;
   return {
     statusCode: 200,
     body: JSON.stringify(
@@ -166,10 +166,10 @@ module.exports.hello = async event => {
         message: `Hola ${name}... It works !!!`,
       },
       null,
-      2
+      2,
     ),
-  }
-}
+  };
+};
 ```
 
 This should create a local URL that responds to **get** parameters (line 12 of `serveless.yml` file) and make this url print out the name of the visitor (line 12 of `lambdas/handler.js` file).
@@ -398,7 +398,7 @@ This way, on the next step, we'll have content to review that our configuration 
 
 ### AWS Shell review
 
-Now that we have the DynamoDB resource created and with some initial content, execute `serverless offline start` and head to https://localhost:9000/shell and verify that you have access to the DynamoDB Shell:
+Now that we have the DynamoDB resource created and with some initial content, execute `serverless offline start` and head to <https://localhost:9000/shell> and verify that you have access to the DynamoDB Shell:
 
 ![Start with DynamoDB](./serverless-offline-start-dynamodb.png)
 
@@ -412,16 +412,16 @@ This is the query I used:
 var params = {
   TableName: "UsersTable",
   Limit: 5,
-}
+};
 
-docClient.scan(params, function(err, data) {
+docClient.scan(params, function (err, data) {
   if (err) {
-    ppJson(err)
+    ppJson(err);
   } else {
-    console.log("The Scan call evaluated " + data.ScannedCount + " items")
-    ppJson(data)
+    console.log("The Scan call evaluated " + data.ScannedCount + " items");
+    ppJson(data);
   }
-})
+});
 ```
 
 ### Use the AWS SDK
@@ -465,39 +465,39 @@ I called the new function `users` and it points to the function `index` in the f
 ```javascript {5-10}
 // lambdas/users.js
 
-const AWS = require("aws-sdk")
+const AWS = require("aws-sdk");
 
 AWS.config.update({
   region: "local",
   endpoint: "http://localhost:9000",
   accessKeyId: "S3RVER",
   secretAccessKey: "S3RVER",
-})
-const docClient = new AWS.DynamoDB.DocumentClient()
+});
+const docClient = new AWS.DynamoDB.DocumentClient();
 
 const response = {
   statusCode: 200,
   body: "",
-}
+};
 
-module.exports.index = async event => {
-  console.log("Scanning UsersTable in DynamoDB.")
+module.exports.index = async (event) => {
+  console.log("Scanning UsersTable in DynamoDB.");
   const params = {
     TableName: "UsersTable",
-  }
+  };
 
   try {
-    const result = await docClient.scan(params).promise()
-    response.statusCode = 200
-    response.body = JSON.stringify(result, null, 2)
+    const result = await docClient.scan(params).promise();
+    response.statusCode = 200;
+    response.body = JSON.stringify(result, null, 2);
   } catch (err) {
-    response.statusCode = 500
-    response.body = JSON.stringify(err, null, 2)
-    console.error(err)
+    response.statusCode = 500;
+    response.body = JSON.stringify(err, null, 2);
+    console.error(err);
   }
 
-  return response
-}
+  return response;
+};
 ```
 
 The important thing in that new file is the _config_ section, where I indicate the `AWS` library to use the configuration of a **local** DynamoDB
@@ -508,7 +508,7 @@ AWS.config.update({
   endpoint: "http://localhost:9000",
   accessKeyId: "S3RVER",
   secretAccessKey: "S3RVER",
-})
+});
 ```
 
 On production you should omit (or make conditional 😉) that section and allow _AWS Lambda_ to use the defaults.

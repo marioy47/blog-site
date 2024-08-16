@@ -45,7 +45,7 @@ console.log("Example immutable::", dev2, copy2)
 
 This will output:
 
-```
+```bash
 Example mutable: { name: 'Carlos', age: 20 } { name: 'Carlos', age: 20 }
 Example immutable:: { name: 'Mario', age: 15 } { name: 'Mario', age: 25 }
 ```
@@ -141,7 +141,7 @@ forLoop(0, 5);
 
 And the output will be:
 
-```
+```bash
 Foor loop: 0
 Foor loop: 1
 Foor loop: 2

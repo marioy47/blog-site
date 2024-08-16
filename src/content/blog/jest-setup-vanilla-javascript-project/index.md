@@ -337,7 +337,7 @@ This will output the following report:
 
 ![Jest test coverage report](./test-coverage-first-change.png)
 
-As you can see, the report says that we're testing all (100%) of the functions but only 80% of the lines are tested. 
+As you can see, the report says that we're testing all (100%) of the functions but only 80% of the lines are tested.
 
 So, lest add a new test to cover the exception lines in the `filterByAge` function:
 

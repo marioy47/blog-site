@@ -1,13 +1,13 @@
 ---
 title: React Storybook Intro and Setup
 date: 2020-08-04
-tags: [ react, javascript, storybook ]
+tags: [react, javascript, storybook]
 cover: ./storybook-logo.png
 ---
 
 Recently I needed to create a [React](https://reactjs.org) project for a client that required multiple complex components including an Week Calendar widget, and Image Selection widget, and a small Survey widget. This turned out to be the perfect excuse to apply [Component Driven Development](https://blog.hichroma.com/component-driven-development-ce1109d56c8e):
 
-> Component-Driven Development (CDD) is a development methodology that anchors the build process around components. It is a process that builds UIs from the “bottom up” by starting at the level of components and ending at the level of pages or screens. — @tmeasday https://blog.hichroma.com/component-driven-development-ce1109d56c8e
+> Component-Driven Development (CDD) is a development methodology that anchors the build process around components. It is a process that builds UIs from the “bottom up” by starting at the level of components and ending at the level of pages or screens. — @tmeasday <https://blog.hichroma.com/component-driven-development-ce1109d56c8e>
 
 That's where [Storybook](https://storybook.js.org/) enters.
 
@@ -45,11 +45,11 @@ yarn create react-app .
 
 > If you have an existing React project you don't need to execute this step:
 
-![](./yarn-create-react-app.png)
+![Screenshot of the command yarn create react](./yarn-create-react-app.png)
 
 This will generate the typical React project **files**:
 
-![](./tree-project-start.png)
+![Screenshot show the project's file structure](./tree-project-start.png)
 
 And just like that we're ready to add Storybook to our project.
 
@@ -61,10 +61,11 @@ As I said before, storybook requires an existing project. If you already have on
 npx sb init
 ```
 
+> [!IMPORTANT]
 > You have to execute it while in your project directory
 
-![](./storybook-init-1.png)
-![](./storybook-init-2.png)
+![Screenshot of storybook init results](./storybook-init-1.png)
+![Screenshot of the init command finishing](./storybook-init-2.png)
 
 This command takes a while to complete and does a myriad of things:
 
@@ -90,17 +91,17 @@ We can execute the first one with `npm run storybook`. Or, if you are using `yar
 yarn storybook
 ```
 
-![](./yarn-run-storybook.png)
+![Screenshot of yarn storybook running](./yarn-run-storybook.png)
 
 This will start a **new development server** (not the same one as the react's one), that you can access on port `6006`, showing the **demo** stories that `npm sb init` created:
 
-![](./storybook-first-start.png)
+![Screenshot of a browser showing the storybook initial screen](./storybook-first-start.png)
 
 Notice how Storybook created 3 **example** stories for us, and an _Introduction_ with some shortcuts.
 
 And you can browse those test stories by clicking on the names of each one on the left sidebar. For instance this is how the **example** story `src/stories/Header.stories.js` looks in Storybook:
 
-![](./browse-individual-story.png)
+![Screenshot of a storybook individual component](./browse-individual-story.png)
 
 Before we go into creating our own components and stories, lets first review what a story is
 
@@ -143,9 +144,9 @@ This is the component:
 ```javascript
 // src/stories/Button.js
 
-import React from "react"
-import PropTypes from "prop-types"
-import "./button.css"
+import React from "react";
+import PropTypes from "prop-types";
+import "./button.css";
 
 /**
  * Primary UI component for user interaction
@@ -153,20 +154,20 @@ import "./button.css"
 export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
   const mode = primary
     ? "storybook-button--primary"
-    : "storybook-button--secondary"
+    : "storybook-button--secondary";
   return (
     <button
       type="button"
       className={["storybook-button", `storybook-button--${size}`, mode].join(
-        " "
+        " ",
       )}
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
       {label}
     </button>
-  )
-}
+  );
+};
 
 Button.propTypes = {
   /**
@@ -189,14 +190,14 @@ Button.propTypes = {
    * Optional click handler
    */
   onClick: PropTypes.func,
-}
+};
 
 Button.defaultProps = {
   backgroundColor: null,
   primary: false,
   size: "medium",
   onClick: undefined,
-}
+};
 ```
 
 In this particular component, there is also a `.css` file that corresponds to the styles apply to it. This means that story book is capable of displaying the component **with its styles**.
@@ -206,9 +207,9 @@ And this **are** the stories that test or display that component:
 ```javascript
 // src/stories/Button.stories.js
 
-import React from "react"
+import React from "react";
 
-import { Button } from "./Button"
+import { Button } from "./Button";
 
 export default {
   title: "Example/Button",
@@ -216,39 +217,39 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
   },
-}
+};
 
-const Template = args => <Button {...args} />
+const Template = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({})
+export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
   label: "Button",
-}
+};
 
-export const Secondary = Template.bind({})
+export const Secondary = Template.bind({});
 Secondary.args = {
   label: "Button",
-}
+};
 
-export const Large = Template.bind({})
+export const Large = Template.bind({});
 Large.args = {
   size: "large",
   label: "Button",
-}
+};
 
-export const Small = Template.bind({})
+export const Small = Template.bind({});
 Small.args = {
   size: "small",
   label: "Button",
-}
+};
 ```
 
 Notice that there are multiple stories on that file ant each story is displaying the button in a different state or configuration.
 
 And here is "Primary" story of the Button stories in Storybook:
 
-![](./story-of-button.png)
+![Screenshot of story of a button](./story-of-button.png)
 
 So, in conclusion:
 
@@ -311,12 +312,12 @@ The component really has noting special. Its just an input that receives the `pl
 ```javascript
 // src/components/input-field/input-field.js
 
-import React from "react"
-import "./input-field.css"
+import React from "react";
+import "./input-field.css";
 
 const InputField = ({ placeholder, type, ...props }) => {
-  const lPlacehoder = placeholder || "Text Input"
-  const lType = type || ""
+  const lPlacehoder = placeholder || "Text Input";
+  const lType = type || "";
   return (
     <input
       type="text"
@@ -324,10 +325,10 @@ const InputField = ({ placeholder, type, ...props }) => {
       placeholder={lPlacehoder}
       {...props}
     />
-  )
-}
+  );
+};
 
-export default InputField
+export default InputField;
 ```
 
 Notice that there is a _class_ called `form-control` that is not included in the `.css` file. We'll be working with that class latter.
@@ -339,19 +340,19 @@ Quoting the Storybook documentation, "The key ingredients (of a story) are the [
 ```javascript
 // src/components/input-field/input-field.stories.js
 
-import React from "react"
-import InputField from "./input-field"
+import React from "react";
+import InputField from "./input-field";
 
 // The default export
 export default {
   title: "New Items/Input Field",
   component: InputField,
-}
+};
 
 // Named exports
-export const InputFieldDefault = () => <InputField />
-export const InputFieldSmall = () => <InputField type="small" />
-export const InputFieldBig = () => <InputField type="big" />
+export const InputFieldDefault = () => <InputField />;
+export const InputFieldSmall = () => <InputField type="small" />;
+export const InputFieldBig = () => <InputField type="big" />;
 ```
 
 In the previous _stories_ example, the `default` object contains information on which component this story belongs to (`InputField`) and where in the menu should it be placed.
@@ -360,9 +361,9 @@ The _const's_ `InputFieldDefault`, `InputFieldSmall`, and `InputFieldBig` are th
 
 Here are the results in Storybook:
 
-![](./input-field-small.png)
+![Screenshot for a story of an input field of storybook](./input-field-small.png)
 
-![](./input-field-big.png)
+![Screenshot for a story of an input field in big format](./input-field-big.png)
 
 Notice how Storybook converted the _camelCased_ words in actual sentences on the sidebar. For instance, it changed `InputFieldDefault` to _Input Field Default_. **Take this into account when naming your stories**.
 
@@ -381,35 +382,35 @@ So, change the `.stories.js` file to use a template like this:
 ```javascript {11-31}
 // src/components/input-field/input-field.stories.js
 
-import React from "react"
-import InputField from "./input-field"
+import React from "react";
+import InputField from "./input-field";
 
 export default {
   title: "New Items/Input Field",
   component: InputField,
-}
+};
 
 // First create a template
-const Template = args => <InputField {...args} />
+const Template = (args) => <InputField {...args} />;
 
 // Create the story as a copy of the template object
-export const InputFieldDefault = Template.bind({})
+export const InputFieldDefault = Template.bind({});
 // change its args
-InputFieldDefault.args = { placeholder: "Hello there" }
+InputFieldDefault.args = { placeholder: "Hello there" };
 
 // Do the same for the "small" version of the input
-export const InputFieldSmall = Template.bind({})
+export const InputFieldSmall = Template.bind({});
 InputFieldSmall.args = {
   ...InputFieldDefault.args,
   type: "small",
-}
+};
 
 // Do the same for the "big" version of the input
-export const InputFieldBig = Template.bind({})
+export const InputFieldBig = Template.bind({});
 InputFieldBig.args = {
   ...InputFieldDefault.args,
   type: "big",
-}
+};
 ```
 
 This might seem a little over complicated just by looking at how to code got bigger but the result is the same. But there are several advantages of using this approach:
@@ -427,7 +428,7 @@ export default {
   args: {
     type: "small",
   },
-}
+};
 ```
 
 Which is a nice alternative.
@@ -452,13 +453,13 @@ For instance, in the `InputField` component, we could specify that the `type` pr
 ```javascript {4,20-28}
 // src/components/input-field/input-field.js
 
-import React from "react"
-import PropTypes from "prop-types"
-import "./input-field.css"
+import React from "react";
+import PropTypes from "prop-types";
+import "./input-field.css";
 
 const InputField = ({ placeholder, type, ...props }) => {
-  const lPlacehoder = placeholder || "Text Input"
-  const lType = type || "normal"
+  const lPlacehoder = placeholder || "Text Input";
+  const lType = type || "normal";
   return (
     <input
       type="text"
@@ -466,20 +467,20 @@ const InputField = ({ placeholder, type, ...props }) => {
       placeholder={lPlacehoder}
       {...props}
     />
-  )
-}
+  );
+};
 
 InputField.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.oneOf(["", "small", "big"]),
-}
+};
 
 InputField.defaultProps = {
   placeholder: "Input default text",
   type: null,
-}
+};
 
-export default InputField
+export default InputField;
 ```
 
 Then, we can simplify our stories to be just one.
@@ -487,18 +488,18 @@ Then, we can simplify our stories to be just one.
 ```javascript {11-14}
 // src/components/input-field/input-field.stories.js
 
-import React from "react"
-import InputField from "./input-field"
+import React from "react";
+import InputField from "./input-field";
 
 export default {
   title: "New Items/Input Field",
   component: InputField,
-}
+};
 
-const Template = args => <InputField {...args} />
+const Template = (args) => <InputField {...args} />;
 
-export const Default = Template.bind({})
-Default.args = { placeholder: "Hello World" }
+export const Default = Template.bind({});
+Default.args = { placeholder: "Hello World" };
 ```
 
 ### By using `argTypes`
@@ -528,7 +529,7 @@ There are extra options on the `argTypes`, that let you _fine control_ the type 
 
 This is the great part. Storybook will display the user a _Controls_ panel where you can change the settings
 
-![](./using-controls.png)
+![Screenshot of a story with parameters](./using-controls.png)
 
 > If you don't see the panel, then type the key `A` on your keyboard, or in the menu next to the Storybook logo, slect **Show Addons**
 
@@ -559,12 +560,12 @@ export const parameters = {
       },
     ],
   },
-}
+};
 ```
 
 Here I'm creating 2 new background colors. One Light and One dark. And in the preview they would look like this:
 
-![](./changing-background-dropdown.png)
+![Screenshot of a storybook story changing a background parameter](./changing-background-dropdown.png)
 
 Remember, I'm changing the behaviour of the [Background](https://storybook.js.org/docs/react/essentials/backgrounds) Add-on. And I'm doing it at the **global** level.
 
@@ -573,8 +574,8 @@ If I wanted to do this change only on one group of _stories_ then I would have t
 ```javascript {9-13}
 // src/components/input-field/input-field.stories.js
 
-import React from "react"
-import InputField from "./input-field"
+import React from "react";
+import InputField from "./input-field";
 
 export default {
   title: "New Items/Input Field",
@@ -584,12 +585,12 @@ export default {
       values: [{ name: "WhiteBg", value: "#ffffff" }],
     },
   },
-}
+};
 
-const Template = args => <InputField {...args} />
+const Template = (args) => <InputField {...args} />;
 
-export const Default = Template.bind({})
-Default.args = { placeholder: "Hello World" }
+export const Default = Template.bind({});
+Default.args = { placeholder: "Hello World" };
 ```
 
 ## Action feedback
@@ -604,8 +605,8 @@ To tests actions, lets add a `onFocus` parameter to our `<InputField />`
 // src/components/input-field/input-field.js
 // ...
 const InputField = ({ placeholder, type, onFocus, ...props }) => {
-  const lPlacehoder = placeholder || "Text Input"
-  const lType = type || "normal"
+  const lPlacehoder = placeholder || "Text Input";
+  const lType = type || "normal";
   return (
     <input
       type="text"
@@ -614,8 +615,8 @@ const InputField = ({ placeholder, type, onFocus, ...props }) => {
       onFocus={onFocus}
       {...props}
     />
-  )
-}
+  );
+};
 // ...
 ```
 
@@ -633,7 +634,7 @@ export default {
     },
   },
   argTypes: { onFocus: { action: "Focused..." } },
-}
+};
 // ...
 ```
 
@@ -641,7 +642,7 @@ What this does is that in our **component** we now receive a new _function_ para
 
 Then, in our **story** we configured _Storybook_ to show the `Focused...` paragraph when the action `onFocused` got triggered:
 
-![](./on-focus-input-field.png)
+![Screenshot of input field in storybook being focused](./on-focus-input-field.png)
 
 And now we can see if our actions are getting triggered correctly.
 
@@ -658,8 +659,8 @@ So lets change our `input-field-stories.js` to look like this:
 ```javascript {15-24}
 // src/components/input-field/input-field.stories.js
 
-import React from "react"
-import InputField from "./input-field"
+import React from "react";
+import InputField from "./input-field";
 
 export default {
   title: "New Items/Input Field",
@@ -671,7 +672,7 @@ export default {
   },
   argTypes: { onFocus: { action: "Focused..." } },
   decorators: [
-    Story => (
+    (Story) => (
       <div className="form-group row">
         <label className="col-form-label col-sm-2">Test Label</label>
         <div className="col-sm-10">
@@ -680,15 +681,15 @@ export default {
       </div>
     ),
   ],
-}
+};
 
-const Template = args => <InputField {...args} />
+const Template = (args) => <InputField {...args} />;
 
-export const Default = Template.bind({})
-Default.args = { placeholder: "Hello World" }
+export const Default = Template.bind({});
+Default.args = { placeholder: "Hello World" };
 ```
 
-![](./input-field-with-decorator.png)
+![Screenshot of input field in storybook with a decorator](./input-field-with-decorator.png)
 
 Notice that `decorators` is an array of functions, where each functions receives a `Story` parameter.
 
@@ -711,7 +712,7 @@ And on `.storybook/preview.js` add the following line:
 ```javascript
 // .storybook/preview.js
 
-import "@storybook/addon-console"
+import "@storybook/addon-console";
 ```
 
 And that's it... Well if you want simple output.
@@ -721,19 +722,19 @@ If you need to have the path of the "emiting" component, that is the component t
 ```javascript
 // .storybook/preview.js
 
-import { addDecorator } from "@storybook/react"
-import { withConsole } from "@storybook/addon-console"
+import { addDecorator } from "@storybook/react";
+import { withConsole } from "@storybook/addon-console";
 
-addDecorator((storyFn, context) => withConsole()(storyFn)(context))
+addDecorator((storyFn, context) => withConsole()(storyFn)(context));
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
-}
+};
 ```
 
 The added benefit is having the errors be displayed right on the actions section:
 
-![](./console-log-and-errors.png)
+![Screenshot of storybook showing console errors](./console-log-and-errors.png)
 
 ## Adding external Style Sheets
 
@@ -766,15 +767,16 @@ Since this is a configuration change, **you have to restart storybook** to view 
 
 Once you restart you can see that the input field is 100% wide and has a blue hue when you focus it.
 
-![](./input-with-bootstrap-style.png)
+![Screenshot of an input field in storybook with bootstrap styling](./input-with-bootstrap-style.png)
 
-**NOTE: Adding external style sheets can interfere with the add-on parameters. Like this case, the Bootstrap styles will override the background parameters added in the previous section**
+> [!NOTE]
+> Adding external style sheets can interfere with the add-on parameters. Like this case, the Bootstrap styles will override the background parameters added in the previous section
 
 ## Upgrading Storybook
 
 Storybook is a very actively developed project so its common that you get the following notice:
 
-![](./upgrade-storybook-notice.png)
+![Screenshot of the result of upgrading storybook](./upgrade-storybook-notice.png)
 
 To upgrade Storybook in your project you just have to execute the following command.
 

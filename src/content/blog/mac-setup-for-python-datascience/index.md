@@ -92,7 +92,7 @@ python3 -m pip install matplotlib
 
 Then create an small plotting program
 
-> This code is taken from the Python Tutorial in Visual Studio Code site on https://code.visualstudio.com/docs/python/python-tutorial
+> This code is taken from the Python Tutorial in Visual Studio Code site on <https://code.visualstudio.com/docs/python/python-tutorial>
 
 ```python
 # mathplot.py

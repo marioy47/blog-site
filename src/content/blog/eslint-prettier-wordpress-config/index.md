@@ -523,7 +523,7 @@ After you've completed this steps, you'll get warnings and fixes right in your e
 
 You can also issue the Vim command
 
-```
+```bash
 :CocCommand eslint.executeAutofix
 ```
 

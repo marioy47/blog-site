@@ -108,7 +108,7 @@ This is a string.
 
 As you can see in the `console.log` section at the end, this can become problematic. Just making sure that all parenthesis are accounted for can be a headache!
 
-Now, you might say: _"Why don't you just save the out put of each call on a variable?"_. 
+Now, you might say: _"Why don't you just save the out put of each call on a variable?"_.
 
 There are 2 problems with that approach:
 

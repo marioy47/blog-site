@@ -401,8 +401,6 @@ And the transition from step to step will be animated like everything in _CodeSu
 
 ![CodeSurfer Columns second step](./code-surfer-cols-step2.png)
 
-
-
 ## Other documentation
 
 This are a couple of projects and articles worth reading for further explanation

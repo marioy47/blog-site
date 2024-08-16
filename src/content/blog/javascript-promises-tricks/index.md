@@ -11,10 +11,9 @@ When you work with asynchronous code you have delve into the world of callbacks 
 
 In my case, I never had any issue understanding callbacks. They are ugly and produce the famous _callback hell_ where you can end up with functions that call functions that call functions that call... You guess it, functions. But they are easy to understand.
 
-With promises I had a little more trouble since the syntax made me think that code that once was asynchronous, it magically became synchronous. And that's not the case. It's still asynchronous, but a little more _flatter_. 
+With promises I had a little more trouble since the syntax made me think that code that once was asynchronous, it magically became synchronous. And that's not the case. It's still asynchronous, but a little more _flatter_.
 
 > Just remember that **to chain promises, you have to _return_ a promise at the end of each `then`**.
-
 
 When _async await_ came into de picture, all became more clear once I understood that **async code need to be encapsulated in it's own _async_ function**
 

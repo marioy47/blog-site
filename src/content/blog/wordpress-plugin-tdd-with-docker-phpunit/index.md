@@ -1,7 +1,7 @@
 ---
 title: WordPress Plug-in Development using TDD, Docker and WpUnitTestCase
 cover: ./tdd-flow.png
-tags: [ wordpress, tdd, docker, phpunit, mocking ]
+tags: [wordpress, tdd, docker, phpunit, mocking]
 date: 2021-09-03
 ---
 
@@ -136,7 +136,7 @@ This creates the Docker Image, but it doesn't run it. For that we need to execut
 docker run --rm -p 8080:80 wp-tdd-image
 ```
 
-And to verify that is actually running, visit http://localhost:8080. **Do not run the installer. It will fail since we still haven't provided a database**.
+And to verify that is actually running, visit <http://localhost:8080>. **Do not run the installer. It will fail since we still haven't provided a database**.
 
 ![WordPress installer in the browser](./tdd-image-running.png)
 
@@ -348,7 +348,7 @@ docker-compose up
 In the last step we added the `install-wp-tests` command to our container. Now we have to execute it so it re-creates the WordPress testing files but with access to our database:
 
 ```bash
-docker-compose exec wp install-wp-tests 
+docker-compose exec wp install-wp-tests
 ```
 
 What this does is to create a "mock" WordPress inside the container in the path `/tmp/wordpress`. This will enable us to make tests without the need to mock `get_option` and `add_shortcode`, or any other WordPress function, ourselves.
@@ -370,8 +370,7 @@ docker-compose exec wp install-wp-tests
 
 Notice that we are using PHPUnit version **7** since that is the current version that WordPress supports.
 
-
-## Executing the `sample-tests.php` 
+## Executing the `sample-tests.php`
 
 We're almost done with the setup. We just need to add a new `scripts` in our `composer.json` file so we can run our tests easily:
 
@@ -452,7 +451,7 @@ class TddTest extends WP_UnitTestCase {
 }
 ```
 
-Notice that we introduced an error.  The last line of the function is a false assertion that will help us to verify that the tests are actually being run.
+Notice that we introduced an error. The last line of the function is a false assertion that will help us to verify that the tests are actually being run.
 
 Les verify that by executing
 

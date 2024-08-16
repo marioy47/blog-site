@@ -449,17 +449,13 @@ The one you'll use more often is `--style` which will change the color scheme fo
 lookatme --style monokay slides.md
 ```
 
-![Lookatme using monokai](./lookatme-monokai.png)
-
-_Lookatme with Monokai_
+![Lookatme using monokai](./lookatme-monokai.png) _Lookatme With Monokai_
 
 ```bash
 lookatme --style solarized-light slides.md
 ```
 
-![Lookatme using solarized-light](./lookatme-solarized-light.png)
-
-_Lookatme with Solalized-Light_
+![Lookatme using solarized-light](./lookatme-solarized-light.png) _Lookatme with Solalized-Light_
 
 For more options and documentation you can got the [official documentation](https://lookatme.readthedocs.io/)
 

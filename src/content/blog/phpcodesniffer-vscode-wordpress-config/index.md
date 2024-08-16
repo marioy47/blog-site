@@ -326,7 +326,6 @@ And since you are using a locally installed `phpcs` you should make the followin
 
 Now, you can use the _Format Document_ command ( `⇧⌥F` in Mac) to instantly format any php file.
 
-
 ## Starter Project
 
 Since this are too many files to take care of, and many commands just to start a project, I've created a [Wordpress Plugin Starter](https://github.com/marioy47/wordpress-plugin-starter) project in **GitHub** that you can grab to start you own project with `PHP_CodeSniffer` enabled.

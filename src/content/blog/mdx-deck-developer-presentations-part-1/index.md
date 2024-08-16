@@ -1,7 +1,7 @@
 ---
 title: Create developer presentations with MDX Deck - Part 1
 date: 2020-10-05
-tags: [ react, javascript, markdown, livecode, slides, presentations ]
+tags: [react, javascript, markdown, livecode, slides, presentations]
 cover: ./code-highlighting.png
 ---
 
@@ -19,7 +19,7 @@ Enter [MDX Deck](https://mdxjs.com/)...
 
 With _MDX Deck_ you can create presentations using only [MDX](https://mdxjs.org)!
 
-![](https://camo.githubusercontent.com/9dcd48bd4f84def850f34ba703a760564cf20ca1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6a786e626c6b2f6d64782d6465636b2d322e676966)
+![Video of developer creating an presentation using MDX](https://camo.githubusercontent.com/a26395521c917176cfd8666d56ba8bcf37b12e6b5b35ca23356020d72f6a066b/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6a786e626c6b2f6d64782d6465636b2d322e676966)
 
 _Taken from the MDX Deck [Github Page](https://github.com/jxnblk/mdx-deck)_
 
@@ -191,9 +191,10 @@ import ImgPath from "./images/jorge-gardner-5DqvsOPKdlk-unsplash.jpg"
 
 If you know react (and I'm assuming you do) you can see that you are including a local image path and then adding an `<Image>` component.
 
-> The `<Image>` component is provided by MDX Deck and made available by default.
-
-> You can used something like `<img src={{ImgPath}} />` too. But `<Image>` is [more powerful](https://raw.githubusercontent.com/jxnblk/mdx-deck/28d5e6dc5d328cdd11796ff898d0435b9abe3208/examples/images/deck.mdx)
+> [!NOTE]
+>
+> - The `<Image>` component is provided by MDX Deck and made available by default.
+> - You can used something like `<img src={{ImgPath}} />` too. But `<Image>` is [more powerful](https://raw.githubusercontent.com/jxnblk/mdx-deck/28d5e6dc5d328cdd11796ff898d0435b9abe3208/examples/images/deck.mdx)
 
 Also notice that you are using the `import` right into the slide and not at the top of the file. **Its not necessary to import components at the top of the file, even tough you can**.
 
@@ -298,29 +299,29 @@ The content of our new component will be a simple button with a counter:
 ```jsx
 // components/counter-button.js
 
-import React, { useState } from "react"
-import styled from "@emotion/styled"
+import React, { useState } from "react";
+import styled from "@emotion/styled";
 
 // Button style with Emotion Styled
 const Button = styled.button`
   padding: 0.7rem 2rem;
   border-radius: 0.6rem;
   font-size: 1.5rem;
-`
+`;
 
 // Component
 const CounterButton = () => {
-  const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(0);
 
   const increment = () => {
-    setCounter(counter + 1)
-  }
+    setCounter(counter + 1);
+  };
 
   // Button component whith the style
-  return <Button onClick={increment}>Counter: {counter}</Button>
-}
+  return <Button onClick={increment}>Counter: {counter}</Button>;
+};
 
-export default CounterButton
+export default CounterButton;
 ```
 
 And in our presentation add the following "slide":
@@ -523,4 +524,3 @@ In this first part we learned how to create a basic MDX Deck presentation with l
 In the second part we'll be looking on how to publish the presentation on a custom domain and how to take the source code presentation to the next level.
 
 Stay safe for now.
-

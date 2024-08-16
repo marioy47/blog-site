@@ -2,7 +2,7 @@
 title: Install a Windows 10 development machine with docker, WSL 2 and asdf
 cover: ./windows-linux.jpg
 date: 2021-04-14
-tags: [ windows, wsl, wsl2, asdf, npm, yarn, vim, terminal ]
+tags: [windows, wsl, wsl2, asdf, npm, yarn, vim, terminal]
 ---
 
 Recently I had to switch from MacOS to Windows 10 for a client's project and setting up my machine resulted in being a complete challenge. Not because windows is not a good development environment, believe me me, it really is good. It was because I had my [dotfiles](https://github.com/marioy47/dotfiles) so tuned up for Mac that when I tried to use them in Linux inside Windows WSL, they didn't worked.
@@ -82,7 +82,7 @@ winget install ubuntu
 
 > That's why we installed `winget` at the beginning, so we could install apps fairly easy and fast.
 
-Then, Start the _Ubuntu-20.04_ **application** from the _Windows Start Menu_. This will prompt us to create our first user. 
+Then, Start the _Ubuntu-20.04_ **application** from the _Windows Start Menu_. This will prompt us to create our first user.
 
 ## Windows Terminal
 
@@ -162,7 +162,7 @@ Additionally, I install the _Hasklug Nerd Font_, which can be downloaded from th
 
 If you are a little more advanced and use `tmux` as a multiplexer, then you might want to stick to Alacritty. Which is even faster than _Windows Terminal_ but lacks some options like tabs and graphical configuration.
 
-In this case, you have to 
+In this case, you have to
 
 - Install _Alacritty_
 - Make a configuration directory
@@ -205,7 +205,6 @@ sudo mv composer.phar /usr/local/bin/composer
 ```
 
 This will make available `php`, `node`, `npm` and `composer` available in our Linux.
-
 
 ## Restore secrets files
 
@@ -279,7 +278,6 @@ And now you should have the `asdf` command at your disposal
 
 If you preffer to install `node` and `yarn` globally or want the _nightly_ version of NeoVim, you can use `asdf` to install those packages locally and update them more frequently.
 
-
 The process is the following:
 
 - Install the `nodejs` plugin so we can download and install the latest version
@@ -332,13 +330,13 @@ The catch is that, after the installation is done, we have to make sure that WSL
 - Go to settings
 - Make sure that the checkbox to use wsl2 engine is active
 - Enable _Resource WSL integration_
-- Enable the `Ubuntu-20` distro 
+- Enable the `Ubuntu-20` distro
 
 ![Docker settings wsl2](./docker-settings.png)
 
 ![Docker WSL with Ubuntu selected as default distro](./docker-wsl-ubuntu-20.png)
 
-If you are installing Docker as a NON administrator user, you might be getting the  error `You are not allowed to use Docker, you must be in the "docker-users" group` when you try to launch the _Docker Desktop_ application.
+If you are installing Docker as a NON administrator user, you might be getting the error `You are not allowed to use Docker, you must be in the "docker-users" group` when you try to launch the _Docker Desktop_ application.
 
 The solution is pretty self explanatory, you have to add your current user (in my case "Mario") to the aforementioned group, so just open the _Computer Management_ control panel as and **Administrator** and:
 
@@ -353,4 +351,3 @@ The solution is pretty self explanatory, you have to add your current user (in m
 ![Computer Management](./docker-users.png)
 
 And afterwards you should be able to launch _Docker Desktop_ with no issue and without the need to do it as an administrator.
-

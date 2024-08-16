@@ -1,7 +1,7 @@
 ---
 title: Using Webpack to compile Javascript in an Wordpress Plugin
 cover: ./webpack-logo.png
-tags: [ webpack, wordpress, development, node ]
+tags: [webpack, wordpress, development, node]
 date: 2019-10-28
 ---
 
@@ -26,7 +26,7 @@ If you want to know more about [Webpack](https://webpack.js.org/) and asset bund
 
 Now that I've convinced you that asses bundling is the way to go. Lets set up a WordPress project that uses **webpack** for asset bundling.
 
-## Starting your project.
+## Starting your project
 
 I'm going to assume you already know how to create WordPress plugins. So I'm not going to go over how to do that. Instead I'm going to show you how to start with Webpack.
 
@@ -93,7 +93,7 @@ So lets create that file and add our initial configuration:
 
 ```js
 // webpack.config.js
-const path = require("path")
+const path = require("path");
 
 module.exports = {
   entry: "./src/js/frontend.js",
@@ -101,7 +101,7 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve(__dirname, "js"),
   },
-}
+};
 ```
 
 Also, lets create the `src/js/frontend.js` file that we just told `webpack` to look for:
@@ -109,9 +109,9 @@ Also, lets create the `src/js/frontend.js` file that we just told `webpack` to l
 ```js
 // src/js/frontend.js
 const myFunction = () => {
-  console.log("frontend.js starting file")
-}
-myFunction()
+  console.log("frontend.js starting file");
+};
+myFunction();
 ```
 
 ![Execute Webpack with success](./webpack-start-success.png)
@@ -132,19 +132,19 @@ To test bundling, create the file `src/js/shared.js` with the following content
 
 ```js
 // src/js/shared.js
-console.log("This is the shared file")
+console.log("This is the shared file");
 ```
 
 And change `src/js/frontend.js` to this:
 
 ```js {2}
 // src/js/frontend.js
-import "./shared"
+import "./shared";
 
 const myFunction = () => {
-  console.log("frontend.js starting file")
-}
-myFunction()
+  console.log("frontend.js starting file");
+};
+myFunction();
 ```
 
 And again, run `npm start` and take a look at the output file (`js/main.js`).
@@ -163,7 +163,7 @@ So lets do that. Lest use the name `frontend` as the entry point. Lest edit `web
 
 ```js {5-7}
 // webpack.config.js
-const path = require("path")
+const path = require("path");
 
 module.exports = {
   entry: {
@@ -173,7 +173,7 @@ module.exports = {
     filename: "[name].js",
     path: path.resolve(__dirname, "js"),
   },
-}
+};
 ```
 
 and execute `npm start` again. You should have a `js/frontend.js` file now with the code of both `src/js/frontend.js` and `src/js/shared.js`.
@@ -196,7 +196,7 @@ And change `webpack.config.js` to include a **modules** section. This section wi
 
 ```js {12-23}
 // webpack.config.js
-const path = require("path")
+const path = require("path");
 
 module.exports = {
   entry: {
@@ -218,7 +218,7 @@ module.exports = {
       },
     ],
   },
-}
+};
 ```
 
 What I'm doing here is:
@@ -238,7 +238,7 @@ Look at that! No arrow function but a regular function. We're doing great so far
 
 ¿Aren't you annoyed by the warning?
 
-```
+```txt
 WARNING in configuration
 The 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.
 You can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/
@@ -286,14 +286,14 @@ We also have to instruct webpack to
 - Convert them to `css` by **using** the `sass-loader` and `css-loader`.
 - And then **extract** the results and save them in the `css/` directory:
 
-That last item is kind of a curveball. It turns out that Webpack bundles **everytihng**!!!. Including CSS files.  So by default your CSS would be included inside your bundle as a _JavaScript_ variable.
+That last item is kind of a curveball. It turns out that Webpack bundles **everytihng**!!!. Including CSS files. So by default your CSS would be included inside your bundle as a _JavaScript_ variable.
 
 That's why we need to tell webpack to extract the CSS and save it elsewhere... Well, if that's what you want that is (Hint: I do want that).
 
 ```js {3, 23-35,38-43}
 // webpack.config.js
-const path = require("path")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
@@ -334,10 +334,11 @@ module.exports = {
       chunkFilename: "[id].css",
     }),
   ],
-}
+};
 ```
 
 Let me explain:
+
 - I included the `mini-css-extract-plugin` to extract the CSS from the final bundle.
 - I created a new rule that instructs webpack to bundle any imported SCSS or CSS files.
 - I instructed the _Extract Plugin_ to save the resulting CSS in `css/`.
@@ -360,13 +361,13 @@ And include that file in our `src/js/frontend.js` file. (If you don't include it
 
 ```js {3}
 // src/js/frontend.js
-import "./shared"
-import "../sass/main.scss"
+import "./shared";
+import "../sass/main.scss";
 
 const myFunction = () => {
-  console.log("frontend.js starting file")
-}
-myFunction()
+  console.log("frontend.js starting file");
+};
+myFunction();
 ```
 
 Again, `npm start` (or `npm run build` if you don't want to block your terminal) and lets look at the result:
@@ -381,10 +382,10 @@ Lets push this SASS/CSS compiling a little further. Lets make the resulting CSS 
 
 For all that we need to use PostCSS plugins:
 
-- https://github.com/postcss/autoprefixer : Add prefix with browser specific rules to the CSS generated rules from SASS.
-- https://github.com/robwierzbowski/node-pixrem : Create alternate measurements in pixels to any measurement made in `rems`.
-- https://github.com/cssnano/cssnano: Compress the Resulting CSS.
-- https://github.com/postcss/postcss-import: Import locally any external css file (like google fonts).
+- <https://github.com/postcss/autoprefixer> : Add prefix with browser specific rules to the CSS generated rules from SASS.
+- <https://github.com/robwierzbowski/node-pixrem> : Create alternate measurements in pixels to any measurement made in `rems`.
+- <https://github.com/cssnano/cssnano>: Compress the Resulting CSS.
+- <https://github.com/postcss/postcss-import>: Import locally any external css file (like google fonts).
 
 To install the `postcss-loader` and its plugins, we have to execute:
 
@@ -409,20 +410,20 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV == 'development'
-            }
+              hmr: process.env.NODE_ENV == "development",
+            },
           },
-          'css-loader',
-          'postcss-loader',
-          'sass-loader' // loading order is inverse
-        ]
-      }
-    ]
+          "css-loader",
+          "postcss-loader",
+          "sass-loader", // loading order is inverse
+        ],
+      },
+    ],
   },
   plugins: [
     // ...
-  ]
-}
+  ],
+};
 ```
 
 And **very importantly** we have to configure _PostCSS_. Which can be done by creating a `postcss` section in `package.json`.
@@ -452,7 +453,7 @@ Again, execute `npm run build` and have a look at the resulting `.css` file in `
 
 You can test even further by adding more rules in `src/sass/main.scss` that include transitions and `@imports` and look how they are now converted.
 
-## Using images:
+## Using images
 
 Images? ... Yes, images.
 
@@ -499,8 +500,8 @@ And finally, lets change the `webpack.config.js` file to include those modules.
 
 ```js {10-30}
 // webpack.config.js
-const path = require("path")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   // ...
@@ -533,7 +534,7 @@ module.exports = {
   plugins: [
     // ...
   ],
-}
+};
 ```
 
 The summary of what I did in `webpack.config.init` is to ask small files to be embedded, and big files to be compressed.

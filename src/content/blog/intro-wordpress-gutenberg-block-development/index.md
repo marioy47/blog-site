@@ -1,7 +1,7 @@
 ---
 title: Static and Dynamic blocks with WordPress Gutenberg
 date: 2022-01-18
-tags: [ wordpress, gutenberg, javascript, php, development ]
+tags: [wordpress, gutenberg, javascript, php, development]
 cover: ./Johannes-Gutenberg.jpeg
 ---
 
@@ -279,8 +279,8 @@ We're going to call this function in the `index.js` file, and place it in `block
 ```javascript
 // blocks/today/src/index.js
 
-import { __ } from "@wordpress/i18n"
-import { registerBlockType } from "@wordpress/blocks"
+import { __ } from "@wordpress/i18n";
+import { registerBlockType } from "@wordpress/blocks";
 
 registerBlockType("gutenberg-multi/today", {
   title: __("Show blocks creation date", "gutenberg-multi"),
@@ -288,7 +288,7 @@ registerBlockType("gutenberg-multi/today", {
   icon: "calendar",
   edit: () => <h2>Show todays day (Backend)</h2>,
   save: () => <h2>Show todays day (Frontend)</h2>,
-})
+});
 ```
 
 From the configuration object you can see that the most **important parameters** are `edit` and `save` which are the callbacks that create the block in the dashboard and on the front-end respectively.
@@ -362,7 +362,7 @@ As you might recall from the previous step, there is an `index.asset.php` file i
 
 As an exercise, you should look that file contents.
 
-### Test the new block.
+### Test the new block
 
 Just go to the back end and add the block
 
@@ -390,7 +390,7 @@ registerBlockType("namespace/block-name", {
   save: ({ attributes, setAttributes, className }) => {
     /* ...*/
   },
-})
+});
 ```
 
 Now, this is very important: **the `attributes` _object_ from the parameters, is the vehicle to pass information from PHP to JavaScript**. And the `setAttributes` is the React hook to work with them inside the block.
@@ -407,11 +407,11 @@ To illustrate that lets make 4 changes:
 ```javascript {6-7,13-20}
 // blocks/today/src/index.js
 
-import { __ } from "@wordpress/i18n"
-import { registerBlockType } from "@wordpress/blocks"
+import { __ } from "@wordpress/i18n";
+import { registerBlockType } from "@wordpress/blocks";
 
-import edit from "./edit"
-import save from "./save"
+import edit from "./edit";
+import save from "./save";
 
 registerBlockType("gutenberg-multi/today", {
   title: __("Show blocks creation date", "gutenberg-multi"),
@@ -426,7 +426,7 @@ registerBlockType("gutenberg-multi/today", {
       default: __("This is a passed attribute", "guten-multi"),
     },
   },
-})
+});
 ```
 
 2: Displaying the `parameters` in the edit component:
@@ -434,7 +434,7 @@ registerBlockType("gutenberg-multi/today", {
 ```javascript
 // blocks/today/src/edit.js
 
-import { __ } from "@wordpress/i18n"
+import { __ } from "@wordpress/i18n";
 
 const Edit = (params) => {
   return (
@@ -444,10 +444,10 @@ const Edit = (params) => {
       <h3>{__("Passed functions:", "gutenberg-multi")}</h3>
       <p>Type of setAttributes: {typeof params.setAttributes}</p>
     </>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;
 ```
 
 3: Displaying the parameters in the save component:
@@ -455,7 +455,7 @@ export default Edit
 ```javascript
 // blocks/today/src/save.js
 
-import { __ } from "@wordpress/i18n"
+import { __ } from "@wordpress/i18n";
 
 const Save = (params) => {
   return (
@@ -463,15 +463,16 @@ const Save = (params) => {
       <h3>{__("Block parameters", "gutenberg-multi")}</h3>
       <pre>{JSON.stringify(params, null, 4)}</pre>
     </>
-  )
-}
+  );
+};
 
-export default Save
+export default Save;
 ```
 
 After those 3 changes (and thanks to the watch command that we're executing) we can now see the following when we **re-add\*** the block on the editor:
 
-**Note: You have reload the editor to see the new block changes**
+> [!NOTE]
+> You have reload the editor to see the new block changes
 
 ![User Form block showing the parameters on the backend](./user-form-block-params.png)
 
@@ -518,11 +519,11 @@ Then, lets change the `edit.js` component to actually use the `className` that 
 ```javascript {4,7,10}
 // blocks/today/src/edit.js
 
-import { __ } from "@wordpress/i18n"
-import "./edit.scss"
+import { __ } from "@wordpress/i18n";
+import "./edit.scss";
 
 const Edit = (params) => {
-  const { className, isSelected } = params
+  const { className, isSelected } = params;
   return (
     <>
       <div className={isSelected ? `${className} selected` : className}>
@@ -532,10 +533,10 @@ const Edit = (params) => {
         <p>Type of setAttributes: {typeof params.setAttributes}</p>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;
 ```
 
 Now, by using the `isSelected` and `className`  parameters together, we can make the block turn black when it gets selected.
@@ -598,11 +599,11 @@ This has to be done on the `registerBlockType` function, specifying the `name` 
 ```javascript {22-32}
 // blocks/today/src/index.js
 
-import { __ } from "@wordpress/i18n"
-import { registerBlockType } from "@wordpress/blocks"
+import { __ } from "@wordpress/i18n";
+import { registerBlockType } from "@wordpress/blocks";
 
-import edit from "./edit"
-import save from "./save"
+import edit from "./edit";
+import save from "./save";
 
 registerBlockType("gutenberg-multi/today", {
   title: __("Show blocks creation date", "gutenberg-multi"),
@@ -628,7 +629,7 @@ registerBlockType("gutenberg-multi/today", {
       label: __("Dark mode", "gutenberg-multi"),
     },
   ],
-})
+});
 ```
 
 Just by making this change, you get 2 things in the **Gutenberg Inspector**
@@ -681,13 +682,13 @@ For this we need to change the `Save` callback in `save.js`:
 ```javascript {4,7-9,12}
 // blocks/today/src/save.js
 
-import { __ } from "@wordpress/i18n"
-import "./save.scss"
+import { __ } from "@wordpress/i18n";
+import "./save.scss";
 
 const Save = (params) => {
   const {
     attributes: { className = "" },
-  } = params
+  } = params;
   return (
     <>
       <div class={`today ${className}`}>
@@ -695,10 +696,10 @@ const Save = (params) => {
         <pre>{JSON.stringify(className, null, 4)}</pre>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Save
+export default Save;
 ```
 
 Notice that we wrapped the content on a `div` tag with the default class of `today`. That's important for the styling we're going to add. And we need to create the `save.scss`  file for the new clases:
@@ -744,7 +745,7 @@ registerBlockType("gutenberg-multi/today", {
     },
   },
   // ...
-})
+});
 ```
 
 Remember: **the `attributes` is how the back-end communicates with the front-end**.
@@ -758,9 +759,9 @@ Then, in our `Edit` component we're going to:
 ```javascript {4,11,17-23,25-31}
 // blocks/today/src/edit.js
 
-import { __ } from "@wordpress/i18n"
-import { RichText } from "@wordpress/block-editor"
-import "./edit.scss"
+import { __ } from "@wordpress/i18n";
+import { RichText } from "@wordpress/block-editor";
+import "./edit.scss";
 
 const Edit = (params) => {
   const {
@@ -768,7 +769,7 @@ const Edit = (params) => {
     isSelected,
     attributes: { blockTitle, afterContent },
     setAttributes,
-  } = params
+  } = params;
   return (
     <>
       <div className={isSelected ? `${className} selected` : className}>
@@ -789,10 +790,10 @@ const Edit = (params) => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;
 ```
 
 A few notes about the [`RichText`](https://developer.wordpress.org/block-editor/reference-guides/richtext/) component:
@@ -817,14 +818,14 @@ To display the new _attributes_ on the front-end. We have to use **again** the `
 ```javascript {4,9,14-18,20-24}
 // blocks/today/src/save.js
 
-import { __ } from "@wordpress/i18n"
-import { RichText } from "@wordpress/block-editor"
-import "./save.scss"
+import { __ } from "@wordpress/i18n";
+import { RichText } from "@wordpress/block-editor";
+import "./save.scss";
 
 const Save = (params) => {
   const {
     attributes: { className = "", blockTitle, afterContent },
-  } = params
+  } = params;
   return (
     <>
       <div class={`today ${className}`}>
@@ -841,10 +842,10 @@ const Save = (params) => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Save
+export default Save;
 ```
 
 Notice how the `Edit` and `Save`  components are almost identical.
@@ -889,7 +890,7 @@ registerBlockType("gutenberg-multi/today", {
     },
   },
   // ...
-})
+});
 ```
 
 Now, let's change our component to have an `InspectorControls` section:
@@ -897,15 +898,15 @@ Now, let's change our component to have an `InspectorControls` section:
 ```javascript {4-10,17,29-46,55}
 // blocks/today/src/edit.js
 
-import { __ } from "@wordpress/i18n"
-import { RichText, InspectorControls } from "@wordpress/block-editor"
+import { __ } from "@wordpress/i18n";
+import { RichText, InspectorControls } from "@wordpress/block-editor";
 import {
   Panel,
   PanelBody,
   SelectControl,
   TextareaControl,
-} from "@wordpress/components"
-import "./edit.scss"
+} from "@wordpress/components";
+import "./edit.scss";
 
 const Edit = (params) => {
   const {
@@ -913,14 +914,14 @@ const Edit = (params) => {
     isSelected,
     attributes: { blockTitle, afterContent, blockContent, blockContentType },
     setAttributes,
-  } = params
+  } = params;
   const innerTypes = [
     { value: "dump", label: "Attributes as JSON" },
     { value: "custom", label: "Custom text" },
-  ]
+  ];
 
   const innerContent =
-    blockContentType == "dump" ? JSON.stringify(params, null, 2) : blockContent
+    blockContentType == "dump" ? JSON.stringify(params, null, 2) : blockContent;
   return (
     <>
       <InspectorControls>
@@ -959,10 +960,10 @@ const Edit = (params) => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;
 ```
 
 Notice that we just changed our component to have a drop-down that let's you select _which_ content to display in the block: The block parameters or custom content
@@ -974,9 +975,9 @@ And since all the changes we do in the back-end, we have to do on the front-end.
 ```javascript {9-15,26-28}
 // blocks/today/src/save.js
 
-import { __ } from "@wordpress/i18n"
-import { RichText } from "@wordpress/block-editor"
-import "./save.scss"
+import { __ } from "@wordpress/i18n";
+import { RichText } from "@wordpress/block-editor";
+import "./save.scss";
 
 const Save = (params) => {
   const {
@@ -987,7 +988,7 @@ const Save = (params) => {
       blockContent,
       blockContentType,
     },
-  } = params
+  } = params;
   return (
     <>
       <div class={`today ${className}`}>
@@ -1008,10 +1009,10 @@ const Save = (params) => {
         />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Save
+export default Save;
 ```
 
 Great, we're done on how to create bloks using Version 1 of the Gutenberg API. Now lets see how to use the version 2
@@ -1123,13 +1124,13 @@ Next, we create the the `blocks/mylatest/src/index.js` file with the same `regis
 ```javascript
 // blocks/mylatest/src/index.js
 
-import { registerBlockType } from "@wordpress/blocks"
-import blockMeta from "../block.json"
+import { registerBlockType } from "@wordpress/blocks";
+import blockMeta from "../block.json";
 
 registerBlockType(blockMeta, {
   edit: () => <p>Placeholder for the backend</p>,
   save: () => null,
-})
+});
 ```
 
 And this is what we get:
@@ -1145,14 +1146,14 @@ The fix is pretty simple. Add import `{useBlockProps}` from `block-edior` to wra
 ```javascript {4,9}
 // blocks/mylatests/src/index.js
 
-import { registerBlockType } from "@wordpress/blocks"
-import { useBlockProps } from "@wordpress/block-editor"
-import blockMeta from "../block.json"
+import { registerBlockType } from "@wordpress/blocks";
+import { useBlockProps } from "@wordpress/block-editor";
+import blockMeta from "../block.json";
 
 registerBlockType(blockMeta, {
   edit: () => <p {...useBlockProps()}>Placeholder for the backend</p>,
   save: () => null,
-})
+});
 ```
 
 ![Block with controls fixed](./block-with-controls-fixed.png)
@@ -1220,31 +1221,31 @@ One last thing before getting into the code. Notice how the `useState` and `useE
 ```javascript
 // blocks/mylatests/src/edit.js
 
-import { __ } from "@wordpress/i18n"
-import { useBlockProps, InspectorControls } from "@wordpress/block-editor"
-import apiFetch from "@wordpress/api-fetch"
-import { useState, useEffect } from "@wordpress/element"
-import { Panel, PanelBody, SelectControl } from "@wordpress/components"
+import { __ } from "@wordpress/i18n";
+import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
+import apiFetch from "@wordpress/api-fetch";
+import { useState, useEffect } from "@wordpress/element";
+import { Panel, PanelBody, SelectControl } from "@wordpress/components";
 
-const postsPath = "/wp/v2/posts"
-const catsPath = "/wp/v2/categories?hide_empty=true"
+const postsPath = "/wp/v2/posts";
+const catsPath = "/wp/v2/categories?hide_empty=true";
 
 const Edit = () => {
-  const [cats, setCats] = useState([])
-  const [posts, setPosts] = useState([])
+  const [cats, setCats] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(async () => {
-    const fetchedCats = await apiFetch({ path: catsPath })
-    setCats(fetchedCats.map((c) => ({ label: c.name, value: c.id })))
-  }, [])
+    const fetchedCats = await apiFetch({ path: catsPath });
+    setCats(fetchedCats.map((c) => ({ label: c.name, value: c.id })));
+  }, []);
 
   useEffect(async () => {
-    const fetchedPosts = await apiFetch({ path: postsPath })
-    setPosts(fetchedPosts)
-  }, [])
+    const fetchedPosts = await apiFetch({ path: postsPath });
+    setPosts(fetchedPosts);
+  }, []);
 
   if (posts.length === 0) {
-    return <div {...useBlockProps()}>Loading posts</div>
+    return <div {...useBlockProps()}>Loading posts</div>;
   }
 
   return (
@@ -1270,10 +1271,10 @@ const Edit = () => {
         </ul>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;
 ```
 
 Notice that we're doing more than is needed. We're adding a _Category_ selector to the inspector. That's because we'll be filtering posts by category in the next step.
@@ -1308,38 +1309,38 @@ Next. Change the `Edit` component to filter out the posts depending on the selec
 ```javascript {12,16,23-31,45-46}
 // blocks/mylatests/src/edit.js
 
-import { __ } from "@wordpress/i18n"
-import { useBlockProps, InspectorControls } from "@wordpress/block-editor"
-import apiFetch from "@wordpress/api-fetch"
-import { useState, useEffect } from "@wordpress/element"
-import { Panel, PanelBody, SelectControl } from "@wordpress/components"
+import { __ } from "@wordpress/i18n";
+import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
+import apiFetch from "@wordpress/api-fetch";
+import { useState, useEffect } from "@wordpress/element";
+import { Panel, PanelBody, SelectControl } from "@wordpress/components";
 
-const postsPath = "/wp/v2/posts"
-const catsPath = "/wp/v2/categories?hide_empty=true"
+const postsPath = "/wp/v2/posts";
+const catsPath = "/wp/v2/categories?hide_empty=true";
 
 const Edit = ({ attributes, setAttributes }) => {
-  const [cats, setCats] = useState([])
-  const [posts, setPosts] = useState([])
+  const [cats, setCats] = useState([]);
+  const [posts, setPosts] = useState([]);
 
-  const { category } = attributes
+  const { category } = attributes;
 
   useEffect(async () => {
-    const fetchedCats = await apiFetch({ path: catsPath })
-    setCats(fetchedCats.map((c) => ({ label: c.name, value: c.id })))
-  }, [])
+    const fetchedCats = await apiFetch({ path: catsPath });
+    setCats(fetchedCats.map((c) => ({ label: c.name, value: c.id })));
+  }, []);
 
   const fetchPosts = async () => {
-    const path = category ? `${postsPath}?categories=${category}` : postsPath
-    const fetchedPosts = await apiFetch({ path })
-    setPosts(fetchedPosts)
-  }
+    const path = category ? `${postsPath}?categories=${category}` : postsPath;
+    const fetchedPosts = await apiFetch({ path });
+    setPosts(fetchedPosts);
+  };
 
   useEffect(() => {
-    fetchPosts()
-  }, [category])
+    fetchPosts();
+  }, [category]);
 
   if (posts.length === 0) {
-    return <div {...useBlockProps()}>Loading posts</div>
+    return <div {...useBlockProps()}>Loading posts</div>;
   }
 
   return (
@@ -1367,10 +1368,10 @@ const Edit = ({ attributes, setAttributes }) => {
         </ul>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;
 ```
 
 The list of changes are:

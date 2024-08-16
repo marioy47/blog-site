@@ -140,7 +140,7 @@ sudo apachectl configtest
 sudo service apache2 reload
 ```
 
-![](./test-and-reload-apache.png)
+![Screenshot of testing and reloading Apache2](./test-and-reload-apache.png)
 
 And head over to the _SSL Labs Test_ page and test again:
 

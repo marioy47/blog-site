@@ -116,7 +116,7 @@ There is no way I can replicate the functionality of `lazygit` using _dotfiles_.
 	remote = green
 ```
 
-The coolest change is with the _log_ command. Which now it is `git l`: 
+The coolest change is with the _log_ command. Which now it is `git l`:
 
 ![New Git Log view](./git-log.png)
 

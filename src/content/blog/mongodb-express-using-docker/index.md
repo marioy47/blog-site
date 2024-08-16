@@ -1,7 +1,7 @@
 ---
 title: Mongo DB and Mongo Express using Docker
 date: 2021-02-05
-tags: [ docker, kubernetes, node, mongodb, cli, docker-compose ]
+tags: [docker, kubernetes, node, mongodb, cli, docker-compose]
 cover: ./docker-mongo-express.png
 ---
 
@@ -181,9 +181,9 @@ To verify that it's running issue:
 docker logs mongodb
 ```
 
-### Mongo Express
+### MongoExpress
 
-This has a lot of variables, but only `ME_CONFIG_MONGODB_ADMINUSERNAME` and `ME_CONFIG_MONGODB_ADMINPASSWORD` are required. 
+This has a lot of variables, but only `ME_CONFIG_MONGODB_ADMINUSERNAME` and `ME_CONFIG_MONGODB_ADMINPASSWORD` are required.
 
 Also, the `ME_CONFIG_MONGODB_SERVER` is important, since that instructs _Mongo Express_ to connect with which service. In our case it should be `mongodb` since that's the name we used in the previous step.
 
@@ -211,10 +211,9 @@ docker rm mongodb mongo-express
 docker network rm mongo-express-network
 ```
 
-
 ## Doing it with Docker Compose
 
-What we just did works great, but wouldn't it be nice if we could do that with just one command and without all those parammeters? 
+What we just did works great, but wouldn't it be nice if we could do that with just one command and without all those parammeters?
 
 Well, it turns out that you can, by using the `docker-compose` command. Which is part of the Docker installation.
 
@@ -233,14 +232,13 @@ volumes:
 
 Only `version` and `services` are required. But we're going to use the 4 sections to have a complete network with the 2 services.
 
-So, re-creating the 3 commands we executed a while ago with `docker-compose` file would be: 
+So, re-creating the 3 commands we executed a while ago with `docker-compose` file would be:
 
 ```yaml
 # mongo-express.yml
 version: "3"
 
 services:
-
   mongodb:
     image: mongo
     container_name: mongodb
@@ -292,4 +290,3 @@ docker-compose -f mongo-express.yaml down
 ## Final thoughts
 
 Hope you find this article helpful and is a big recommendation that you checkout a complete Docker tutorial.
-

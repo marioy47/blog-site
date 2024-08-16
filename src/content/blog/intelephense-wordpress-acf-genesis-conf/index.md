@@ -115,7 +115,6 @@ composer global require php-stubs/generator
 
 > This has to be done only once, not per project.
 
-
 ![Install the  generate-stubs command globally](./composer-install-stub-generator.png)
 
 With the `generate-stubs` command installed, place yourself into the **project directory** where you want to generate the stubs and execute

@@ -1,7 +1,7 @@
 ---
 date: 2020-12-01
 title: TypeScript Development Setup
-tags: [ typescript, javascript, webpack, npm ]
+tags: [typescript, javascript, webpack, npm]
 cover: ./Typescript_logo.png
 ---
 
@@ -29,12 +29,9 @@ The best thing is that TypeScript compiles to JavaScript so you can use it in an
 
 If you where place TypeScript in the JavaScript ecosystem, you would get something like this:
 
-<div style="text-align: center">
-<img src="https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png" width="300px" />
+![Diagram of TypeScript containing JavaScript](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
 
-_Taken from https://basarat.gitbook.io/typescript/recap_
-
-</div>
+_Taken from <https://basarat.gitbook.io/typescript/recap>_
 
 The cherry on top is that the creator of node, Ryan Dahl, has already crated [Deno](https://deno.land/) which is a _A secure runtime for JavaScript and TypeScript_. Meaning that you can create server side projects using TypeScript without the need of a compiler or transpiler.
 
@@ -52,7 +49,7 @@ npm -g i typescript
 
 And just like that you have the `tsc` command available for your computer:
 
-![](./tsc-comand-help.png)
+![Screenshot of the tsc command showing help](./tsc-comand-help.png)
 
 And to convert a Typescript file to JavaScript you just execute `tsc` with the name of the file:
 
@@ -150,13 +147,13 @@ The more simple test is to create a `.ts` script with TypeScript syntax:
 ```typescript
 // src/basics.ts
 
-let firstVar: string
-firstVar = "mario"
+let firstVar: string;
+firstVar = "mario";
 // firstVar = 321; // This is should de marked as wrong in the editor
-console.log(firstVar)
+console.log(firstVar);
 ```
 
-![](./compile-ts-to-js.png)
+![Screenshot of a terminal with the tsc command compiling to js](./compile-ts-to-js.png)
 
 As you can see at the end of the image. The `tsc` compiler generated not only a `.js` file. But a ES5 compatible JavaScript file. This is obvious by the usage of `var` instead of `let`.
 

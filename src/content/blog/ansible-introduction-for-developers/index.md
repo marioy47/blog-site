@@ -1,7 +1,7 @@
 ---
 title: Ansible introduction for developers
 date: 2020-01-06
-tags: [ linux, windows, ssh, winrt, ansible, sysadmin ]
+tags: [linux, windows, ssh, winrt, ansible, sysadmin]
 cover: ./ansible-with-cfg.png
 ---
 
@@ -227,7 +227,7 @@ ansible all -u testuser -a whoami --become
 
 And just like that we executed a command (`whoami`) as root on the remote server.
 
-## Patterns in the inventory file.
+## Patterns in the inventory file
 
 At the beginning we talked about groups of hosts in the inventory. Ansible calls them _patterns_ because you can specify one group or several groups of hosts by using patterns.
 
@@ -265,7 +265,7 @@ The thing to remember with Ansible variables are that they are flattened out so 
 
 With what we've seen so far, we can say that we can specify variables by _host_, by _group_ or both.
 
-#### 1. By host
+### 1. By host
 
 ```yml
 ### inventory.yml
@@ -275,7 +275,7 @@ testgroup:
       my_custom_string: Hola Mundo
 ```
 
-#### 2. By group
+### 2. By group
 
 ```yml
 ### inventory.yml
@@ -287,7 +287,7 @@ testgroup:
     my_custom_string: Hola Mundo
 ```
 
-#### 3. Combined:
+### 3. Combined
 
 ```yml
 ### inventory.yml
@@ -318,7 +318,7 @@ For Ansible to know which variables file to use on a host or a group, you have t
 
 So for instance, in our example we have the group `testgroup`. We should have the following hierarchy:
 
-```
+```bash
 $ tree
 .
 ├── group_vars
@@ -771,5 +771,3 @@ And, if you want a video where a lot of this concepts get explained, you can fin
 ... Hope this article was useful to you and you find value in it.
 
 Good Bye!
-
-

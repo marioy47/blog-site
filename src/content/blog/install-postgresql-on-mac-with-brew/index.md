@@ -44,7 +44,7 @@ In that way you have to manage the start/stop of the service by your self.
 
 On a Mac, a PostgreSQL server without connections do not consume a lot of resources so its pretty safe to have the service start automatically at boot time.
 
-## Service management.
+## Service management
 
 The advantage of using Homebrew is that we can use the `brew` command to manage the service as opposed of the more traditional `lanchctl` command that Mac OS uses.
 

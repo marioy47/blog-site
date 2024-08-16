@@ -19,7 +19,7 @@ const { Content } = await post.render();
 <SiteLayout title={post.data.title}>
 	<main class="mx-auto grid max-w-screen-lg md:grid-cols-[auto_auto]">
 		<h1 class="col-span-2 mb-4 text-center text-4xl font-bold">{post.data.title}</h1>
-		<article class="prose prose-a:font-semibold prose-a:text-orange-600">
+		<article class="prose prose-stone mx-auto 2xl:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
 			<Content />
 		</article>
 		<aside>

@@ -1,11 +1,12 @@
 ---
 title: NeoVim Lua configuration for PHP and JavaScript (WordPress, Gutenberg) development
-tags: [ vim, ide, editor, lua, neovim, react, php, javascript ]
+tags: [vim, ide, editor, lua, neovim, react, php, javascript]
 date: 2022-03-11
 cover: ./nvim-logo.png
 ---
 
-# NeoVim Lua configuration for PHP and JavaScript (WordPress, Gutenberg) development
+> [!NOTE]
+> Since 2024-08 I've been using [LazyVim](https://lazyvim) with the [PHP](https://www.lazyvim.org/extras/lang/php) extra]
 
 So I have been using [Vim 8](https://vim.org) for some years now, And so far, [it has been great](https://marioyepes.com/vim-setup-for-modern-web-development/). But lately, some things have started bothering me:
 
@@ -21,8 +22,6 @@ Additionally, Gutenberg is written with [React](https://reactjs.org) and [Redux]
 After watching many videos and reading many blogs I came to the conclusion that [NeoVim](https://neovim.org) with _native_ LSP support was the way to go. But since I was about to make the switch, I might as well start using [Lua](https://www.lua.org/) for configuration instead of [vimscript](https://learnvimscriptthehardway.stevelosh.com/) and use plugins written in Lua if possible since it's proven to be crazy fast.
 
 I this article, I'll document the process, and also explain some of the **advanced** concepts behind Vim with Lua.
-
-## TOC
 
 ## Why Lua and Why now?
 
@@ -374,7 +373,7 @@ If we execute `nvim lua/options.lua`, this is what we'll get:
 
 ![NeoVim with basic options](./neovim-basic-options.png)
 
-A little better than the default. We have _relative_ line numbers, the line where the cursor is is highlighted, there is some highlighting,  but still a long way to go before we achieve what we want.
+A little better than the default. We have _relative_ line numbers, the line where the cursor is is highlighted, there is some highlighting, but still a long way to go before we achieve what we want.
 
 ## More useful keymaps
 
@@ -456,7 +455,7 @@ require('options')
 require('keymaps')
 ```
 
-The only _gotcha_ is that I created the alias `map` for the built in function [`vim.api.nvim_set_keymap`](https://neovim.io/doc/user/api.html#nvim_set_keymap()) that actually allows you to change keymaps.
+The only _gotcha_ is that I created the alias `map` for the built in function [`vim.api.nvim_set_keymap`](<https://neovim.io/doc/user/api.html#nvim_set_keymap()>) that actually allows you to change keymaps.
 
 Additionally:
 
@@ -649,7 +648,7 @@ vim.cmd([[
 ]])
 ```
 
-On the configuration we're instructing Treesitter to auto-install all **maintained** parsers, to _enable_ highlight,  to enable indent and to enable **incremental** [selection](https://neovim.io/doc/user/visual.html#gn) with `gnn` (select a function with `gnn` while inside a function)
+On the configuration we're instructing Treesitter to auto-install all **maintained** parsers, to _enable_ highlight, to enable indent and to enable **incremental** [selection](https://neovim.io/doc/user/visual.html#gn) with `gnn` (select a function with `gnn` while inside a function)
 
 And at the end, we're re-configuring NeoVim to enable [code folding](https://neovim.io/doc/user/fold.html) so you can use `zc` and `zo` inside a class or function and the code will get recognized and folded.
 
@@ -663,11 +662,11 @@ And this with Treesitter:
 
 The important thing here is not the actual colors, but the fact that NeoVim now understands for instance that `public` acompanies `function` to determine it's visibility, that the `self` inside the comment is a keyword, or that `static` is a statement and not a variable type.
 
-**One important caveat**: In the configuration file, we instructed `nvim-treesitter` to install  all **maintained** languages. So any not maintained language, like [`phpdoc`](https://github.com/claytonrcarter/tree-sitter-phpdoc) have to be installed manually with the command `:TSInstall phpdoc`.
+**One important caveat**: In the configuration file, we instructed `nvim-treesitter` to install all **maintained** languages. So any not maintained language, like [`phpdoc`](https://github.com/claytonrcarter/tree-sitter-phpdoc) have to be installed manually with the command `:TSInstall phpdoc`.
 
 ## Language Server Configuration
 
-Having NeoVim understand the structure of the code with Treesitter is great, but you still need things like _autocompletion_ and inline function help to  be productive while developing. That's where LSP or _Language Server Protocol_ enters.
+Having NeoVim understand the structure of the code with Treesitter is great, but you still need things like _autocompletion_ and inline function help to be productive while developing. That's where LSP or _Language Server Protocol_ enters.
 
 The [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), as it name implies, is a protocol where an IDE, in this case NeoVim, connects to a server to retrieve information about a programming language. Things like _what is a variable_ or _how to identify a function or a class_ is the information that gets interchanged.
 
@@ -900,7 +899,7 @@ You can remove an installed server by typing `X` and if you type _Enter_ you ge
 
 As I said, the best LSP server for PHP is Intelephense, but the free version is incomplete. It doesn't support renaming, find implementations, go to definition or go to declaration.
 
-So  is not a bad idea to [purchase a licence](https://intelephense.com/). And the way to register it so NeoVim can use it licenced is to create a file in your hard drive:
+So is not a bad idea to [purchase a licence](https://intelephense.com/). And the way to register it so NeoVim can use it licenced is to create a file in your hard drive:
 
 ```bash
 cd $HOME

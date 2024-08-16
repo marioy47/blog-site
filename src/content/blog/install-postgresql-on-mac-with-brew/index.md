@@ -5,13 +5,9 @@ tags: [ postgres, macos, database, brew, homebrew, sql ]
 cover: ./brew-install-postgresql.png
 ---
 
-# Install and Manage PostgreSQL in a Mac with Homebrew
-
 In this post I'll show you how to install [PostgreSQL](https://postgresql.org) on a Mac machine, as easy as possible, using [Homebrew](https://brew.sh). And I'll also show you some tips, tricks and gotchas.
 
 As I bonus, I'll show you how to access it directly in visual studio since most of the visualization tools are commercial or pretty cumbersome to use.
-
-## TOC
 
 ## Install the package
 

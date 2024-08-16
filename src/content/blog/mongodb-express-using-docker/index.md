@@ -5,15 +5,11 @@ tags: [ docker, kubernetes, node, mongodb, cli, docker-compose ]
 cover: ./docker-mongo-express.png
 ---
 
-# Mongo and Mongo Express trough Docker
-
 This is just a simple exercise on how to use Docker to locally run [MongoDB](https://www.mongodb.com/) and [Mongo Express](https://github.com/mongo-express/mongo-express).
 
 The main problem that we're going to solve, is how to run both images and have them **communicate to each other** since by default Docker doesn't allow that.
 
 Additionally we're going to do this procedure using the `docker` command, and then using `docker-compose`.
-
-## TOC
 
 ## Prerequisites
 

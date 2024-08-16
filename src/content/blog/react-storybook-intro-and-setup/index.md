@@ -5,8 +5,6 @@ tags: [ react, javascript, storybook ]
 cover: ./storybook-logo.png
 ---
 
-# React Storybook Intro and Setup
-
 Recently I needed to create a [React](https://reactjs.org) project for a client that required multiple complex components including an Week Calendar widget, and Image Selection widget, and a small Survey widget. This turned out to be the perfect excuse to apply [Component Driven Development](https://blog.hichroma.com/component-driven-development-ce1109d56c8e):
 
 > Component-Driven Development (CDD) is a development methodology that anchors the build process around components. It is a process that builds UIs from the “bottom up” by starting at the level of components and ending at the level of pages or screens. — @tmeasday https://blog.hichroma.com/component-driven-development-ce1109d56c8e
@@ -34,8 +32,6 @@ Other advantages of storybook are:
 Storybook is _Framework Agnostic_. This means that you can use it on your [React](https://storybook.js.org/docs/react), [Anglular](https://storybook.js.org/docs/angular), [Vue](https://storybook.js.org/docs/vue/get-started), [Svelte](https://storybook.js.org/docs/svelte), etc. You can even use it into your vanilla [HTML/JavaScript projects](https://storybook.js.org/docs/html/get-started/introduction).
 
 In this article I'm going to give you a brief introduction to [Storybook](https://storybook.js.org) and apply it into a **React** project.
-
-## TOC
 
 ## Project setup
 

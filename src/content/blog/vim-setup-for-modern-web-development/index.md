@@ -5,7 +5,6 @@ tags: [ vim, wordpress, php, neovim, node, coc ]
 cover: ./vim-web-developmet-cover.png
 ---
 
-# Vim setup for Web Development: Php, WordPress, JavaScript, JXS, (S)CSS, Python and Flutter.
 
 If you've read some of my blog posts, you can see that PHP and WordPress are a big part of my day to day... But I love vim.
 
@@ -20,8 +19,6 @@ We'll be setting up:
 - Auto complete
 - Adding closing brackets/keys/quotes automaticalle
 - And pretty colors of course.
-
-## TOC
 
 ## Disclaimer
 

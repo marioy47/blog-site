@@ -5,8 +5,6 @@ cover: ./prettier+eslint.png
 tags: [ wordpress, javascript, eslint, prettier ]
 ---
 
-# Configure Eslint, Prettier and Husky for WordPress Development
-
 Quoting the ESLint [Getting Started Guide](https://eslint.org/docs/user-guide/getting-started)
 
 > ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs.
@@ -24,8 +22,6 @@ But you might be asking yourself ¿Why would you want to use a _command line_ to
 Well, the reason is that by using ESLint and Prettier, you can add the linting and formatting configuration to your project and share it across your team. Also, you can include it in your _Continuous Integration_ platform and ensure that your code is correct.
 
 So lets see how to configure them one by one.
-
-## TOC
 
 ## The Caveat
 

@@ -5,8 +5,6 @@ cover: ./changed-terminal.png
 date: 2021-08-03
 ---
 
-# Setup a restricted machine for node development
-
 Recently I've been asigned an Linux machine with an _Ubuntu standard installation_ for node development. Where all the tools "that I need" are already there.
 
 I can only access this machine using [Vmware Horizon](https://vmc-horizon.vmware.com), I can not install anything from what is already there, and **I can only access the corporate GitHub and the local npm registry**. There is no access to Google, StackOverflow, npm, etc.
@@ -21,8 +19,6 @@ In theory I can develop in this machine just fine. But since I'm old and _old do
 - [LazyGit](https://github.com/jesseduffield/lazygit) to review git changes and commits
 
 So here is how I tried to personalize that machine so I could be more comfortable while developing:
-
-## TOC
 
 ## Enable global packages for NodeJS
 

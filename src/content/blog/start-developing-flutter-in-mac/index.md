@@ -5,8 +5,6 @@ tags: [ flutter, mac, ios, mac simulator ]
 cover: ./flutter-logo.png
 ---
 
-# Simple Mac OS setup for flutter development
-
 So I've been following _The Net Ninja's_ excellent [Flutter tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ), but one thing that he misses is how to install Flutter in your Mac for iOS development. And most of all, how to use the iOS simulator to preview your application in a virtual iPhone.
 
 So I decided to create this short (in words not in length since is loaded with images) article on how to set up your mac for Flutter iOS development in the simplest way possible. I'm also going to go trough Android installation but without too much detail, since most of the steps are going over installation wizards inside [Android Studio](https://developer.android.com/studio).
@@ -14,8 +12,6 @@ So I decided to create this short (in words not in length since is loaded with i
 Before I begin, let me give you a good news and a bad one:
 
 The good news is that all the software we're going to install is free.... The bad one is that all the software is _HUGE_... so most of the time you'll be expending it in downloading apps from the Internet.
-
-## TOC
 
 ## Install Xcode
 

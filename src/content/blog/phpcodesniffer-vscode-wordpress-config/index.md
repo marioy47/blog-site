@@ -5,8 +5,6 @@ tags: [ phpcs, phpcbf, wordpress, vscode, composer, php ]
 cover: ./phpcs.png
 ---
 
-# Configure PHP_CodeSniffer and Visual Studio Code to manage coding standards for WordPress Development
-
 In this article I'll try to show you how to setup a development environment for a WordPress plugin that follows the WordPress coding standards.
 
 I'll be using [Composer](https://getcomposer.org/) for installing all the packages and configuring namespaces for autoloading. So be sure to have it installed globally first.
@@ -14,8 +12,6 @@ I'll be using [Composer](https://getcomposer.org/) for installing all the packag
 Be noted that there are some standards that will not be followed like the file naming, since I want to be able to use `composer` packages with autoloading without too much hassle.
 
 If you want an introduction on PHPCodeSniffer and PHPCodeBeautifier, take a look at [this excellent presentation](https://salferrarello.com/slides/php-code-sniffing/) given by Sal Ferrarello ([@salcode](https://twitter.com/salcode)).
-
-## TOC
 
 ## Start the project
 

@@ -5,13 +5,9 @@ date: 2021-06-05
 tags: [ javascript, jsdoc, development ]
 ---
 
-# How to comment your JavaScript code with JSDoc
-
-So I just been tasked with documenting a fairly large JavaScript project where almost none of it's functions or clases have any comments and there is no information on what the function's parammeters do.
+So I just been tasked with documenting a fairly large JavaScript project where almost none of it's functions or clases have any comments and there is no information on what the function's parameters do.
 
 I took this opportunity to learn more about [JSDoc](https://jsdoc.app/) and its ability to document elements so the _IDE_ recognizes them in a better way. Also, wanted to create API documents and tutorials right from the source code, without the need of creating a separate project for it.
-
-## TOC
 
 ## What is _JSDoc_?
 

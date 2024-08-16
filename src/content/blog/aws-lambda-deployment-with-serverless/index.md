@@ -5,8 +5,6 @@ tags: [ aws, amazon, lambda, cloud, serverless ]
 cover: ./serverless-aws-create.png
 ---
 
-# Deploy your first AWS Lambda function using the Serverless Framework
-
 Serverles is taking the world. And we don't even know what serverless is!!!
 
 Well, Serverles is a development "philosophy" where you don't need to worry about setting up servers or services nor databases or queues for that matter. You just develop an application an publish it in the cloud.
@@ -26,8 +24,6 @@ The basic idea behind the Serverless Architecture is that your provider (Amazon 
 Not only that... The provider will charge you only by the times your app get called and the amount of computing resources it uses. So if your app its idle and you are not storing any data you wont get charged at all.
 
 ... And if your application starts to demand additional resources, you provider will scale them to accommodate automatically.
-
-## TOC
 
 ## Caveats of Serverless
 

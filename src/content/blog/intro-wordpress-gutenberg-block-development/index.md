@@ -5,8 +5,6 @@ tags: [ wordpress, gutenberg, javascript, php, development ]
 cover: ./Johannes-Gutenberg.jpeg
 ---
 
-# Static and Dynamic blocks with WordPress Gutenberg
-
 [Gutenberg](https://wordpress.org/gutenberg/) is the present of WordPress development. Is the new way of creating pages and posts, and pretty soon [full site editing](https://www.youtube.com/watch?v=C6WpIgOGdq0).
 
 So if you are a WordPress developer, the time to learn Gutenberg was yesterday!
@@ -14,8 +12,6 @@ So if you are a WordPress developer, the time to learn Gutenberg was yesterday!
 Unfortunately, the [official documentation](https://developer.wordpress.org/block-editor/) is pretty dense and [it's tutorial](https://developer.wordpress.org/block-editor/getting-started/create-block/) is easy to follow, but not to understand.
 
 So, in this article I'll try to show as succinct, but as complete as possible, how to start to create Gutenberg blocks in a progressive manner. And also how to have them being displayed in the front end of a site built with WordPress.
-
-## TOC
 
 ## Development environment setup
 

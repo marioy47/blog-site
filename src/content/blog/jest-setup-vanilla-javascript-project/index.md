@@ -5,8 +5,6 @@ tags: [ react, javascript, testing, react testing library, development ]
 date: 2021-08-07
 ---
 
-# Setting up Jest for a browser based JavaScript project
-
 I don't have to tell you that testing is important, right?... Right?... RIGHT????
 
 Since [React](https://reactjs.org) decided to use [Jest](https://jestjs.io) with [Testing Library](https://testing-library.com) as the default option to make tests, Jest became the de facto standard for testing project.
@@ -16,8 +14,6 @@ But the problem is this. If you create a project using [Create React App](https:
 Well, that's what this article is about. How to setup Jest into a browser based vanilla project.
 
 I'm going to assume that you already know what Jest is and that you are familiar with testing terms like test suites, test runners, mocks, spies and all of that testing good stuff.
-
-## TOC
 
 ## Linting and formatting first
 

@@ -5,8 +5,6 @@ tags: [ gatsby, react, javascript, graphql, npx ]
 cover: ./gatsby-icon-4a9773549091c227cd2eb82ccd9c5e3a.png
 ---
 
-# Create a Developer Portfolio Site (with a blog) with Gatsby
-
 Creating a [Gatsby](https://www.gatsbyjs.com/) site is not an easy task when you compare it to creating a site with WordPress, Drupal, etc. And the reason is that to a certain point you are creating your own CMS.
 
 To use Gatsby you should be familiar with a bunch of technologies like [Graphql](https://developer.facebook.com/graphql), [React](https://reactjs.org), [Markdown](https://jamstack.org), [Mdx](https://mdxjs.com), etc. And then you need to research and test a bunch of plugins to get a minimal site up and running.
@@ -14,8 +12,6 @@ To use Gatsby you should be familiar with a bunch of technologies like [Graphql]
 But after you pass the configuration steps and you have your site set up, you'll have the more performant site you'll ever create. So the advantages compensate the drawbacks.
 
 Here I'll list the steps I took to create [my personal blog/portfolio site](https://marioyepes.com) without going too much into detail since Gatsby already has an [extensive tutorial](https://www.gatsbyjs.com/docs/tutorial/) and the [docs](https://gastbyjs.org/docs) are actually pretty good.
-
-## TOC
 
 ## Wait... I don't know what Gatsby is!
 

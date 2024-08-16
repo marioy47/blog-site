@@ -5,8 +5,6 @@ tags: [ linux, windows, ssh, winrt, ansible, sysadmin ]
 cover: ./ansible-with-cfg.png
 ---
 
-# Ansible introduction for developers
-
 > All the code in this article can be found in [GitHub](https://github.com/marioy47/learn-ansible-testlab) along a very simple Vagrant test lab.
 
 So you need to setup _yet another_ LEMP (Linux, Nginx, MariaDB, PHP) server on Digital Ocean or EC2 that also includes additional services like a [Redis](https://redis.io/) cache and [Letsencrpyt](https://certbot.eff.org/) for SSL certificate creation.
@@ -37,8 +35,6 @@ Among the advantages of Ansible are:
 - Its maintained by RedHat
 
 > Ansible works by using SSH to execute commands on Linux/MacOS, and [WinRT](https://en.wikipedia.org/wiki/Windows_Runtime) to execute commands on Windows
-
-## TOC
 
 ## Clients setup
 

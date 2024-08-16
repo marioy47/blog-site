@@ -5,8 +5,6 @@ tags: [ markdown, javascript, python, terminal, revealjs ]
 date: 2023-04-24
 ---
 
-# Creating and publishing presentations using Markdown
-
 I know people that just hate markdown. They hate the fact that they can not see **bold** or _underlined_ text while editing. That you have to enclose text in batiks or asterisks to change how it's displayed. Or that headlines and regular text have the same size.
 
 I am not one of those people... I loooove Markdown.
@@ -25,8 +23,6 @@ That's why I use Markdown for almost everything, including this blog. Is written
 So I wanted to implement the same workflow, but for presentations. I wanted to create **Slides** using markdown, and then converted them to PDF or HTML.
 
 But it turns out that there is more than one way to do it. Here I'll show a few.
-
-## TOC
 
 ## So how do you create _Slides_ with Markdown?
 

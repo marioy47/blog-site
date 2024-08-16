@@ -5,8 +5,6 @@ tags: [ wordpress, tdd, docker, phpunit, mocking ]
 date: 2021-09-03
 ---
 
-# WordPress Plugin Development using TDD, Docker and WpUnitTestCase
-
 If you landed in this article is because you already are aware that _testing_ your projects is important.
 
 Also, you might already be aware that testing in WordPress is hard, very hard, since it has [hundreds](https://developer.wordpress.org/reference/) upon hundreds of functions that you need to [Mock](https://en.wikipedia.org/wiki/Mock_object) to make your code work.
@@ -14,8 +12,6 @@ Also, you might already be aware that testing in WordPress is hard, very hard, s
 Finally, you might also be ware that setting up testing in a project that uses a databases is something that can be complex for the amount of _non_ portable configuration it involves.
 
 Well, you are in the right place, because here I'm going to show you how to configure testing in you WordPress plug-in using nothing but docker so you can distribute your environment with your team or move it to a new machine easily.
-
-## TOC
 
 ## Pre-requisites
 

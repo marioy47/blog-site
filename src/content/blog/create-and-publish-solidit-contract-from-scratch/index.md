@@ -5,15 +5,11 @@ cover: ./solidity-logo.png
 tags: [ solidity, smart contracts, ethereum, smart chain, binance, truffle, ganache ]
 ---
 
-# Creating and Publishing a Solidity Contract from Scratch
-
 For the last year I've been really interested in Blockchain technologies and specially the creation of _Solidity Contracts_. Unfortunately most of the tutorials that you find on the Internet assume that you don't want publish contract on a blockchain, that you don't want to use a local blockchain or that you have a dev environment already in place.
 
 So in this article I'm going to create a very simple contract assuming only that I have installed node and Visual Studio Code. No extensions and no global `npm packages` are needed to follow along.
 
 In this article, I **will not** be explaining what Solidity and blockchain are, or what smart contracts is. Those subjects for another article... Maybe 🤷.
-
-## TOC
 
 ## Setup your editor
 

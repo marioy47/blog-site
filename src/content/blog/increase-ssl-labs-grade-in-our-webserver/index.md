@@ -5,13 +5,9 @@ tags: [ nginx, apache, ssl, devops, security, tls ]
 cover: ./ssllabs-server-test.png
 ---
 
-# Increase the SLL Labs Test Grade in your Web Server
-
 Since Google [anounced](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) that they would be giving secure sites a ranking boost in 2014, webmasters all over the wold started taking security seriously.
 
 [I've already covered](/certbot-introduction-and-usage/) how to secure your site using [Certbot](https://certbot.eff.org/) using free SSL Certificates. Now I want to discuss, is how to improve your server's security configuration so you can pass the [SSL Labs](https://www.ssllabs.com/) [SSL Server Test](https://www.ssllabs.com/ssltest/) which can further improve your SEO ranking **and** be less prone to attacks from the network.
-
-### TOC
 
 ## What is the SLL Server Test?
 

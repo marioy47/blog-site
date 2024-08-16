@@ -5,8 +5,6 @@ tags: [ react, javascript, markdown, livecode, slides, presentations ]
 cover: ./code-surfer-example.png
 ---
 
-# Create developer presentations with MDX Deck - Part 2
-
 In the [first part](/mdx-deck-developer-presentations-part-1/) of this series, we introduced [MDX Deck](https://mdxjs.com/) and [created a deck](https://github.com/marioy47/mdx-deck-tutorial) with the following properties:
 
 - A slide with external images
@@ -20,8 +18,6 @@ With what we saw in the first part, its possible to create pretty impressive sli
 But we can still do so more with _MDX Deck_!!!
 
 In this part we'll be seeing how to use [third party components](https://github.com/jxnblk/mdx-deck/#third-party-components), specially the [Code Surfer](https://github.com/pomber/code-surfer) component. And how to publish a deck using GitHub pages with a custom sub-domain.
-
-## TOC
 
 ## Speaker notes
 

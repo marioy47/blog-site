@@ -5,8 +5,6 @@ tags: [ aws, s3, lambda, rds, serverless, yml, node ]
 cover: ./npm-init.png
 ---
 
-# Develop for AWS S3, DynamoDB, RDS and API Gateway locally using Serverless
-
 I've [already said that Serverless its taking over](/aws-lambda-deployment-with-serverless/) even tough we don't know what serverles is. And I've also said that one of the most popular AWS services is [AWS Lambda](http://aws.amazon.com/lambda).
 
 If you don't know what _AWS Lambda_ is, I recommend you read [my article](/aws-lambda-deployment-with-serverless/) on how to setup a Lambda function where I explain on detail on what it is and why you should learn it.
@@ -18,8 +16,6 @@ So Lambda takes away the burden of installing, configuring and tuning a bunch o 
 This is specially problematic if your solution requires the usage of services like S3 and DynamoDb that are proprietary of Amazon.
 
 Luckily the open source community, and Amazon itself, has come to the rescue by creating mockup services and alternatives that can be installed in you machine and allows you develop like you are in the AWS console.
-
-## TOC
 
 ## What are we going to do
 

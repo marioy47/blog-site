@@ -5,8 +5,6 @@ tags: [ django, docker, uwsgi, pipenv ]
 cover: ./django-docker-alpine.png
 ---
 
-# Prepare Django for Docker deployment and development
-
 One of the caveats of Python development is managing version compatibility between some packages and the systems interpreter. Some versions of Python don't play well with legacy code and some packages simply do not compile in certain environments. Also, some packages are written in _C_ and _Rust_ which need to be compiled upon installation.
 
 That's why developing and deploying a Python application written with Django is better when a controlled environment like a Virtual Machine or Deocker container is used.
@@ -16,8 +14,6 @@ In this article I'll try to create some Docker images for creating and deploying
 Additionally, I'll create it in a way that some useful packages like Allauth and uWSGI are included.
 
 By the way, I assume that you have some basic knowledge of Python, Docker and Django.
-
-## TOC
 
 ## Project structure
 

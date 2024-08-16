@@ -13,7 +13,6 @@ tags:
   - phpcs
 cover: ./lint-bug.jpg
 ---
-# Adding linting, formatting, static code analysis to a Laravel project created with Sail
 
 Laravel offers multiple ways to setup a new project. You have [Herd](https://herd.laravel.com), you have `composer create-project laravel/laravel ...`, you have `lavarel new ...`, and you have [Laravel Sail](https://laravel.com/docs/sail) which is a wrapper over the `docker-compose` and `docker` commands.
 

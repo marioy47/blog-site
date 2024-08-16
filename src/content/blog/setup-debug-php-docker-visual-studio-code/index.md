@@ -5,8 +5,6 @@ date: 2022-04-15
 tags: [ docker, wordpress, php, xdebug, vscode, vim ]
 ---
 
-# Wordpress (PHP) debugging in your IDE using Docker and Xdebug
-
 So I started using WordPress as a [REST API](https://developer.wordpress.org/rest-api/) server since that's _the foundation of the [Block Editor](https://developer.wordpress.org/block-editor/)_...
 
 You might be wondering what's does the _Rest API_ has to do with Debugging?
@@ -24,8 +22,6 @@ When you are working with REST calls, you really need a debugger in those cases 
 But, even tough setting up a debugger in PHP is an easy task, is not that well documented. Specially when you are working with Docker.
 
 So here are the steps I take to setup debugging when using WordPress inside the [Official WordPress Docker Image](https://hub.docker.org/_/wordpress).
-
-## TOC
 
 ## Setup WordPress in a container
 

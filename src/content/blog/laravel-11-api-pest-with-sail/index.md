@@ -5,14 +5,10 @@ date: 2024-05-29
 tags: [php, laravel, phpunit, pest, rest]
 ---
 
-# Add support to REST API and Pest on Sail created Laravel 11 application
-
 This is a short one. This is small recipe on how to circumvent 2 situations with Laravel 11 when a project is created with `sail`:
 
 - Enable API support
 - Switch `phpunit` for `pest`
-
-## TOC
 
 ## Setting up a Laravel 11 with Sail
 

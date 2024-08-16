@@ -5,8 +5,6 @@ date: 2021-06-11
 tags: [ javascript, promises, async, await, iifi ]
 ---
 
-# Javascript Promises, Async and Await tips and tricks
-
 So you hear about all the time about JavaScipt's [event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ) and how the it's an event driven single threaded programming language. But you don't fully grasp the implications of that statement until you start working with async code like calling an external API with the `fetch` function.
 
 When you work with asynchronous code you have delve into the world of callbacks or promises.
@@ -23,8 +21,6 @@ When _async await_ came into de picture, all became more clear once I understood
 > That's why before NodeJS 16 you had to use IIFE functions. But more on that latter.
 
 So here there are a couple of tricks that I've learned to work with asynchronous code and most of all, how to work with _Promises_ without losing my mind.
-
-## TOC
 
 ## Setup
 

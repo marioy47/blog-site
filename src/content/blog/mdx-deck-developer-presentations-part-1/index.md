@@ -5,8 +5,6 @@ tags: [ react, javascript, markdown, livecode, slides, presentations ]
 cover: ./code-highlighting.png
 ---
 
-# Create developer presentations with MDX Deck - Part 1
-
 We are developers... right?
 
 Well, maybe you aren't, but I am... And one thing that has bugged me for the last couple of years, is creating presentations using Office tools like MS Power Point, Libre Office Impress or Google Slides.
@@ -24,8 +22,6 @@ With _MDX Deck_ you can create presentations using only [MDX](https://mdxjs.org)
 ![](https://camo.githubusercontent.com/9dcd48bd4f84def850f34ba703a760564cf20ca1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6a786e626c6b2f6d64782d6465636b2d322e676966)
 
 _Taken from the MDX Deck [Github Page](https://github.com/jxnblk/mdx-deck)_
-
-## TOC
 
 ## Wait a minute, what is MDX?
 

@@ -5,15 +5,11 @@ cover: ./Python-Logo-PNG-Image.png
 tags: [ python, django, pandas, flask ]
 ---
 
-# Python Cheat Sheets (Python, Django, Pipenv)
-
 In this article I'll be posting a series of code snippets, gotchas and syntax description for Python and some of its notable projects like Django, Flask, Pandas, Numpy, etc.
 
 The idea is to have a single stop resource for those obscure and sometimes forgettable snippets that you need in your Python projects.
 
 Depending on your level of experience, some of this snips will be too basic or to complex for you.
-
-## TOC
 
 ## Python
 

@@ -5,8 +5,6 @@ tags: [ vim, neovim, php, python, node ]
 cover: ./vim-cheat-sheet-cover.png
 ---
 
-# My (Neo)Vim Cheat Sheet
-
 I love _Vim_ because I can do everything with the keyboard. The downside, is that _you have to do everything with the keyboard_.
 
 In case you didn't get the pun, the real problem is that you have to memorize a bunch of commands and key combinations to to do things like delete a line in the current text or how to format the current buffer.
@@ -16,8 +14,6 @@ To aid myself on memorizing this commands I created this cheat sheet that works 
 If you want something more complete, graphical and generic, you can visit the [Graphical vi-vim Cheat Sheet and Tutorial](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html) site.
 
 One thing tough. I try to use the default key-maps as much as I can, so this cheat sheet might still be useful to you in case you want to create you own.
-
-## TOC
 
 ## Movements and insert
 

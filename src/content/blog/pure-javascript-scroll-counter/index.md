@@ -5,8 +5,6 @@ tags: [ javascript ]
 cover: ./Scroll-triggered-Counter-Plugin-purecounterjs.png
 ---
 
-# Create a pure Javascript Scroll Counter
-
 ![Javascript Counter in action](./scroll-animated-counter.png)
 
 I really don't know why my clients love to have animated counters in their pages. But the fact is that they do. And using a jQuery plugin or a custom library just for that is an over kill.

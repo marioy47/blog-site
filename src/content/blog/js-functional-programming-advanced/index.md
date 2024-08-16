@@ -5,13 +5,9 @@ date: 2021-01-19
 cover: ./lambda.png
 ---
 
-# JavaScript Functional Programming: Advanced Topics
-
 In the previous articles we did a small [introduction and history of functional programming](/js-functional-programming-intro/) and we talked about some [basic concepts](/js-functional-programming-concepts/) regarding Functional Programming.
 
 Now, we are going to discuss some functional programming patterns that allows you to achieve immutability and _composition_. Also, we'll discuss how to achieve loops **without running into errors** which is one of the main problems with functional programming.
-
-## TOC
 
 ## Currying
 

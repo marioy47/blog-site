@@ -5,8 +5,6 @@ tags: [ wordpress, databases, sql, phpmyadmin ]
 cover: ./mysql-logo.png
 ---
 
-# Create a SQL query to display custom fields and custom taxonomies in WordPress
-
 They said the task was simple: _Create a **sql** query to display the **custom fields** for a **custom post type** that have a set of specific **custom tags** so our reporting tool can consume it_.
 
 Wait what? That doesn't sound so simple.
@@ -18,8 +16,6 @@ Currently I'm working on a WordPress project where we have a custom post type ca
 Now, let's say it again: Create a **sql** query to display the `first_name`, `last_name`, `email_address`, `school_zip`  and `school_name` for the **students** that have a submitted record for the **current year**.
 
 Let me show you how I came up with the solution for this report.
-
-## TOC
 
 ## The WordPress Entity Relationship (ER) model
 

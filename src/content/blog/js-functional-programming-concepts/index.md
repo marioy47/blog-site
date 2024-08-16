@@ -5,15 +5,11 @@ date: 2020-11-22
 cover: ./lambda.png
 ---
 
-# JavaScript Functional Programming: Concepts
-
 In the [first part of this series](/js-functional-programming-intro/), I explained what Functional Programming was all about, gave a little history lesson, talked about Imperative vs Declarative programming, and made a case about JavaScript being a (non exclusively) functional programming.
 
 Now I want to go a little deeper by explaining the core concepts of functional programming and what this "philosophy" looks for.
 
 Just a little heads up... This is part of the series is very conceptual even tough I'll be using examples trough and trough. Still, its kind of important to be this conceptual if you want to write better software.
-
-## TOC
 
 ## Immutability
 

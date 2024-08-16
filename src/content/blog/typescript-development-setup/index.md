@@ -5,8 +5,6 @@ tags: [ typescript, javascript, webpack, npm ]
 cover: ./Typescript_logo.png
 ---
 
-# Typescript Development Setup
-
 TypeScript is all the rage right now... Only by taking a look at the [TypeScript job openings in Stack Overflow](https://stackoverflow.com/jobs/developer-jobs-using-typescript) you can get an idea of how many companies are using it and the demanding for this kind of engineers is right now.
 
 And the reasons are obvious. Its like JavaScript but better... Quite literally I might add:
@@ -41,8 +39,6 @@ _Taken from https://basarat.gitbook.io/typescript/recap_
 The cherry on top is that the creator of node, Ryan Dahl, has already crated [Deno](https://deno.land/) which is a _A secure runtime for JavaScript and TypeScript_. Meaning that you can create server side projects using TypeScript without the need of a compiler or transpiler.
 
 If you want a more in depth intro into TypeScript I can not recommend enough the [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/) book by Basarat Ali Syed.
-
-## TOC
 
 ## Setup globally
 

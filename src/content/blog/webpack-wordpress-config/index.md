@@ -5,15 +5,11 @@ tags: [ webpack, wordpress, development, node ]
 date: 2019-10-28
 ---
 
-# Using Webpack to compile Javascript in an Wordpress Plugin
-
 So JavaScript is the future of the web, and that's not just me saying, [everybody is saying it](https://www.youtube.com/watch?v=krzx4iy1igu&feature=emb_title).
 
 Just look at Gutenberg, the new editor for WordPress... Is completely written using React which is a JavaScript framework if you didn't knew (how come you didn't knew????).
 
 So if you want to work on WordPress, you need to use JavaScript... And if you want to work in JavaScript, you have to bundle your assets.
-
-## TOC
 
 ## ¿What is asset bundling you ask?
 

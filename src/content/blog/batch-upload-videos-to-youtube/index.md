@@ -5,8 +5,6 @@ tags: [ youtube, github, google api ]
 cover: ./01-yt-uploader-cover.png
 ---
 
-# Batch upload videos to youtube using Youtube Uploader
-
 Recently I had a client that asked that the documentation of the application I made for them to be on videos posted privately on YouTube.
 
 That's no problem...
@@ -18,8 +16,6 @@ That's why I recurred to the [YouTube Uploader](https://github.com/porjo/youtube
 ![Youtube Uploadeer Home page](./01-yt-uploader-cover.png)
 
 So lets see how you can grab this tool and how can you install it to upload videos to _Youtube_ from the command line.
-
-## TOC
 
 ## Installation
 

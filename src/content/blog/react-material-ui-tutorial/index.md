@@ -5,8 +5,6 @@ tags: [ javascript, material-ui, css, react ]
 cover: ./material-ui.svg
 ---
 
-# Getting Started with React Material-UI
-
 So I wanted to learn [Material UI](https://material-ui.com/) since it seems to be the best way to use Material Design in a React Applications.
 
 But the problem is that the official docs assume that you already are familiar with other UI frameworks for react and just point you to example projects instead of covering the basics on how to start a project using the toolkit.
@@ -14,8 +12,6 @@ But the problem is that the official docs assume that you already are familiar w
 So I decided to create my own documentation just for that and here it is.
 
 In this blog entry I'm going to create a very simple React App that does nothing, but that it looks good thanks to Material-UI.
-
-## TOC
 
 ## What is Material-UI ?
 

@@ -5,8 +5,6 @@ cover: ./Is-blogging-relevant-anymore.jpeg
 tags: [ python, django, pipenv, virtualenv ]
 ---
 
-# Django tooling with Pipenv, Pre-Commit, GitHub actions and PostgreSQL
-
 Lately I've become more and more interested in [Python](https://python.org) for it's usage in Data Science applications, Machine Learning and the creation websites that has some kind of prediction options.
 
 So I started looking at the different python web frameworks and it seems that [Django](https://www.djangoproject.com/) is a safe bet if you are just starting to dip your toes in this world.
@@ -19,8 +17,6 @@ So I created this guide to show you how you can create a kick ass Django develop
 - [PostgreSQL](https://www.postgresql.org/) instead of Sqlite for data storage
 
 Is important to note that this is not a Django guide, nor a development tutorial. It's more a python tooling guide.
-
-## TOC
 
 ## Install Python and Pip
 

@@ -5,13 +5,9 @@ tags: [ python, datascience, brew, visualstudio ]
 cover: ./change-venv.png
 ---
 
-# Setup a Mac OS computer to develop DataScience solutions with Python and VSCode
-
 Even tough is not complicated, there are a series of steps that are suggested to take, in order to be able to be productive while developing Data Science solutions using a Mac machine with the Python language.
 
 In this article I'll show you a series of steps you can take to achieve just this without too many fuzz.
-
-## TOC
 
 ## Install Python
 

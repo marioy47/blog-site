@@ -5,13 +5,9 @@ tags: [ certbot, letsencrypt, ssl, certs, nginx ]
 cover: ./certbot-OG.png
 ---
 
-# Certbot Introduction and Basic Usage with Nginx and Apache
-
 Since 2018 Google started penalizing sites that are not secured by [SSL](https://wikipedia.org/wiki/SSL) lowering its page rank. And even tough its been 2 years since that change, there are still many sites that use Plain HTTP instead of HTTPS.
 
 So here I'm going to show you how to use _Let's Encrypt_ with the `certbot` command to secure your web-server in a very easy (and very free) way.
-
-## TOC
 
 ## So what is LetsEncrypt?
 

@@ -5,13 +5,9 @@ date: 2021-04-14
 tags: [ windows, wsl, wsl2, asdf, npm, yarn, vim, terminal ]
 ---
 
-# Install a Windows 10 development machine with docker, WSL 2 and asdf
-
 Recently I had to switch from MacOS to Windows 10 for a client's project and setting up my machine resulted in being a complete challenge. Not because windows is not a good development environment, believe me me, it really is good. It was because I had my [dotfiles](https://github.com/marioy47/dotfiles) so tuned up for Mac that when I tried to use them in Linux inside Windows WSL, they didn't worked.
 
 So I took this as an opportunity to fix some inconsistencies in my files, created a new development workflow, and to make this blog post about the steps that I took to make it work.
-
-## TOC
 
 ## Enable WSL2
 

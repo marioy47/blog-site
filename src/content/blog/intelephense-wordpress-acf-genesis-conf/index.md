@@ -5,15 +5,11 @@ cover: ./intelephense-genesis-cover.png
 tags: [ wordpress, genesis, composer, intelephense, coc ]
 ---
 
-# Configure Intelephense to recognize WordPress, Genesis Framework and ACF Functions
-
 Its very probable that you don't know what Intelephense is, or at least what it really is.
 
 Intelephense is a [Language Server Protocol](https://langserver.org/), or **LSP**, implementation for PHP. Its not the only one, but in my opinion is the best one.
 
 If you are still confused about what what you just read, let me give you a small history lesson.
-
-## TOC
 
 ## History
 

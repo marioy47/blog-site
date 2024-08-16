@@ -6,8 +6,6 @@ date: 2023-10-05
 cover: ./cloudflare-pages-astro.png
 ---
 
-# Creating a simple site with Astro and publish it to CloudFlare Pages
-
 If you look at the [second post](../gatsby-developer-site-portfolio-and-blog/) in this site, you'll notice that I used to use [GatsbyJS](https://gatsbyjs.com) for publishing this blog, and that worked fine for a while. But some issues started to arise:
 
 - Upgrading packages started to become difficult
@@ -25,8 +23,6 @@ The first thing I tested out was site builders like [Jekyll](https://jekyllrb.co
 Luckily, while looking into publishing tools, I ran into [Astro](https://astro.build/) and I fell in love with how straight forward it is and specially how fast the build step runs.
 
 Here are some notes on the things I learned while reading upon Astro
-
-## TOC
 
 ## But What is Astro
 

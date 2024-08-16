@@ -1,39 +1,33 @@
 ---
-import {Image} from 'astro:assets';
-import SiteLayout from '../layout/site-layout.astro';
-import imgMario from '../images/img-mario-lado.jpg';
-import {SITE_TITLE} from '../consts.ts';
+import { Image } from "astro:assets";
+import SiteLayout from "../layout/site-layout.astro";
+import imgMario from "../images/img-mario-lado.jpg";
 ---
-<SiteLayout title={`About | ${SITE_TITLE}`} hideScroll={true}>
-  <main>
-    <h1>Hola, Soy Mario</h1>
-    <section>
-      <p>I’m an Electric Engineer turned Software Developer that is addicted to technology news, and that hates to do the same thing twice.</p>
-      <p>For more than 20 years I’ve worked in several areas of IT:</p>
-      <ul>
-        <li>Web Master</li>
-        <li>Linux and Solaris server Management</li>
-        <li>Oracle DBA</li>
-        <li>PL/SQL Developer</li>
-        <li>Backend Developer</li>
-        <li>Front End Developer</li>
-        <li>UX Lead</li>
-        <li>Scrum Master</li>
-        <li>Product Owner</li>
-        <li>WordPress Plugin Developer</li>
-      </ul>
-    </section>
-    <section>
-      <picture>
-        <Image src={imgMario} alt="Mario Yepes portrait" widths={[300, 600]} width={400} />
-      </picture>
-    </section>
-    <section>
-        <a class="btn" href="https://docs.google.com/document/d/1lP4DPa3Pztid-yCrT8chuKTm_6SRp0Lo7PTq_dmfKI0/export?format=pdf">Download my Rèsumè</a>
-    </section>
-  </main>
-</SiteLayout>
 
-<style>
-@import '../styles/page-about.scss';
-</style>
+<SiteLayout title="About & Contact">
+	<main class="mx-auto grid min-h-[calc(100svh_-_10rem)] max-w-screen-lg items-start gap-5 md:grid-cols-2 md:grid-rows-[min-content_min-content_auto]">
+		<h1 class="text-center text-4xl font-bold md:order-1 md:col-span-2">Hola, Soy Mario</h1>
+		<section class="md:order-2">
+			<p>I'm an Electric Engineer turned Software Developer that is addicted to technology news, and that hates to do the same thing twice.</p>
+			<p>For more than 20 years I've worked in several areas of IT:</p>
+			<ul class="mt-2 list-disc pl-6">
+				<li>Web Master</li>
+				<li>Linux and Solaris server Management</li>
+				<li>Oracle DBA</li>
+				<li>PL/SQL Developer</li>
+				<li>Backend Developer</li>
+				<li>Front End Developer</li>
+				<li>UX Lead</li>
+				<li>Scrum Master</li>
+				<li>Product Owner</li>
+				<li>WordPress Plugin Developer</li>
+			</ul>
+		</section>
+		<section class="flex justify-around md:order-4 md:col-span-2">
+			<a class="outline-3 inline-block rounded-md bg-orange-600 px-4 py-2 text-slate-50 outline-offset-2 outline-orange-600 hover:outline active:outline" href="https://docs.google.com/document/d/1lP4DPa3Pztid-yCrT8chuKTm_6SRp0Lo7PTq_dmfKI0/export?format=pdf">Download my Rèsumè</a>
+		</section>
+		<picture class="md:order-3">
+			<Image src={imgMario} alt="Mario Yepes portrait" widths={[300, 600]} width={400} class="mx-auto rounded-full" />
+		</picture>
+	</main>
+</SiteLayout>

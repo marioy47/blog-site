@@ -1,40 +1,49 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import SiteLayout from '../../layout/site-layout.astro'
+import SiteLayout from "../../layout/site-layout.astro";
+import { getCollection } from "astro:content";
 
-const projects: array = await getCollection('projects');
-import {SITE_TITLE} from '../../consts.ts';
+const projects = await getCollection("portfolio");
 
-projects.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
+projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<SiteLayout title={`Portfolio | ${SITE_TITLE}`}>
-		<main>
-      <h1>Mario Yepes Portfolio</h1>
-      {projects.map((project, idx) => (
-        <article data-article-id={project.slug} data-tags={project.data.tags.join(',')}>
-          <a href={`/portfolio/${project.slug}`}>
-            <Image
-              src={project.data.cover}
-              width={450}
-              alt={`Screenshot for ${project.data.title}`}
-              loading={idx > 0 ? null : "eager"}
-            />
-          </a>
-          <h2>{project.data.title}</h2>
-          <p><strong>Client: </strong>{project.data.client}</p>
-          <p>{project.data.summary}</p>
-          <ul>{project.data.tags.map( tech => <li><a href={`/portfolio/#${tech}`}>{tech}</a></li>)}</ul>
-          <a href={`/portfolio/${project.slug}`}>Read More &rarr;</a>
-        </article>
-      ))}
+
+<SiteLayout title="Projects">
+	<main class="m-auto max-w-screen-md p-2">
+		<h1 class="text-center text-4xl font-bold">Mario Yepes Portfolio</h1>
+		{
+			projects.map((project) => (
+				<article class="grid gap-2 border-b border-b-slate-300 py-10 md:grid-cols-[50%_auto]" data-article-id={project.slug} data-tags={project.data.tags.join(",")}>
+					<h2 class="text-3xl font-semibold md:col-span-2">{project.data.title}</h2>
+					<img class="md:row-span-4" src={project.data.cover.src} alt={`Screenshot for project ${project.data.title}`} />
+					<div>
+						<strong>Client: </strong>
+						{project.data.client}
+					</div>
+					<div>
+						<strong>Summary:</strong>
+						{project.data.summary}
+					</div>
+					<div class="flex gap-2">
+						<strong>Tags:</strong>
+						<ul class="flex flex-wrap gap-2">
+							{project.data.tags.map((tech: string) => (
+								<li>
+									<a class="text-orange-600 hover:underline" href={`/portfolio/#${tech}`}>
+										{tech}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+					<a class="ml-auto inline-block font-bold text-orange-600 hover:underline" href={`/portfolio/${project.slug}`}>
+						Read More &rarr;
+					</a>
+				</article>
+			))
+		}
+	</main>
 </SiteLayout>
 
 <script>
-import '../../scripts/toggle-display-article.ts';
+	import "../../scripts/toggle-display-article.ts";
 </script>
-
-
-<style>
-@import '../../styles/page-portfolio-index.scss';
-</style>

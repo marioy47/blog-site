@@ -1,4 +1,13 @@
 {
-  "MD013": false,
-  "MD025": false
+  "default": true,
+  "heading-style": {
+    "style": "atx"
+  },
+  "line-length": false,
+  "no-inline-html": {
+    "allowed_elements": ["iframe", "video", "source"]
+  },
+  "no-hard-tabs": {
+    "code_blocks": false
+  }
 }

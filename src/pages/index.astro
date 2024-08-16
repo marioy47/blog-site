@@ -1,23 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import SiteLayout from '../layout/site-layout.astro';
-import imgMarioBw from '../images/img-mario-bw.png';
-import {SITE_TITLE} from '../consts.ts';
+// src/pages/index.astro
+import SiteLayout from "../layout/site-layout.astro";
+import { Image } from "astro:assets";
+import imgMarioBw from "../images/img-mario-bw.png";
 ---
 
-<SiteLayout title={`Home | ${SITE_TITLE}`} hideScroll={true}>
-		<main>
-			<h1>Hello,<strong>I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</span></h1>
-      <picture>
-        <Image
-        src={imgMarioBw}
-        widths={[280, 300, 380]}
-        alt="Mario Yepes toon photo"
-        loading="eager" />
-      </picture>
-		</main>
+<SiteLayout title="Welcome" description="Mario Yepes Portfolio">
+	<main class="mx-auto grid min-h-[calc(100svh_-_10rem)] max-w-screen-lg grid-rows-2 items-center justify-center gap-5 md:grid-cols-[40%_auto] md:grid-rows-1">
+		<h1 class="order-2 text-center text-4xl md:order-1 md:text-right">Hello,<strong class="block">I'm Mario.</strong>I'm a Full Stack Developer from Medellín - Colombia</h1>
+		<picture class="order-1 mx-auto md:order-2">
+			<Image src={imgMarioBw} widths={[280, 300, 380]} alt="Mario Yepes toon photo" loading="eager" class="rounded-full object-cover" />
+		</picture>
+	</main>
 </SiteLayout>
-
-<style>
-@import '../styles/page-index.scss';
-</style>

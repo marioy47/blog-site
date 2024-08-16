@@ -1,0 +1,41 @@
+---
+/**
+ * @param {string} className The `class` html attribute for the element.
+ * @param {string} alt What to show when hover.
+ * @param {number} top Pixel to scroll to. By default 0.
+ */
+interface Props {
+	className?: string;
+	alt?: string;
+	top?: number;
+}
+
+/**
+ * Since we need to pass values to the script, we need to create the function as a string
+ * and then evaluate it in the body of the component.
+ */
+const scrollScript = (idToScrollTo = "scroll-to-top", top = 0) => {
+	return `
+<script>
+	document.addEventListener("astro:page-load", () => {
+		const scrollToTop = document.getElementById("${idToScrollTo}");
+		if (scrollToTop) {
+			scrollToTop.addEventListener("click", () => {
+				window.scrollTo(0, ${top});
+			});
+		}
+	});
+</script>
+`;
+};
+
+const { className, top = 0, alt = "Scroll To Top" } = Astro.props;
+/* @var {string} Unique ID */
+const id = "toc-id-" + Math.random().toString(16);
+const evaluatedScript = scrollScript(id, top);
+---
+
+<a id={id} class={className} title={alt}>
+	<slot />
+</a>
+<Fragment set:html={evaluatedScript} />

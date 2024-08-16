@@ -1,16 +1,24 @@
 ---
+// src/components/formatted-date.astro
+
+/**
+ * @param {Date} date The date to format.
+ * @param {string} local By default `en-us`
+ */
 interface Props {
 	date: Date;
+	locale?: string;
+	className?: string;
 }
-const { date } = Astro.props;
+const { date, locale = "en-us", className } = Astro.props;
 ---
 
-<time datetime={date.toISOString()}>
+<time datetime={date.toISOString()} class={className}>
 	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
+		date.toLocaleDateString(locale, {
+			year: "numeric",
+			month: "short",
+			day: "numeric",
 		})
 	}
 </time>

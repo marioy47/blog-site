@@ -1,45 +1,53 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import SiteLayout from '../../layout/site-layout.astro';
-import FormattedDate from '../../components/formatted-date.astro';
-import {SITE_TITLE} from '../../consts.ts';
+import SiteLayout from "../../layout/site-layout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import FormattedDate from "../../components/formatted-date.astro";
 
-const posts: array = await getCollection('posts', ({data}) => {
-  return import.meta.env.PROD ? !data.draft: true;
+type PostsArrayByYear = {
+	[year: string]: CollectionEntry<"blog">[];
+};
+
+const posts = await getCollection("blog", ({ data }) => {
+	return import.meta.env.PROD ? !data.draft : true;
 });
-posts.sort( (a, b) => b.data.date.valueOf() - a.data.date.valueOf() );
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+/**
+ * Array of array of posts. The keys are the posts years.
+ */
+const postsByYear = posts.reduce((accum: PostsArrayByYear, post) => {
+	const year = post.data.date.getFullYear().toString();
+	if (!(year in accum)) {
+		accum[year] = [];
+	}
+	accum[year].push(post);
+	return accum;
+}, {});
+
+/**
+ * Array of years: `["2024", "2021", "2020"]`. Just the years where blog posts where found.
+ */
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
-<SiteLayout title={`Blog Posts | ${SITE_TITLE}`}>
-		<main>
-      <h1>Mario's Blog</h1>
-      {posts.map((post, idx) =>
-        <article data-article-id={post.slug} data-tags={post.data.tags.join(',')}>
-          <a href={`/blog/${post.slug}/`}>
-            <img
-              src={post.data.cover.src}
-              width={100}
-              height={100}
-              alt="An image"
-              loading={idx > 3 ? "lazy": "eager"}
-            />
-          </a>
-          <h2>{post.data.title}</h2>
-          <ul>
-            {post.data.tags.map(tag => <li><a href=`/blog/#${tag}`>{tag}</a></li>)} 
-          </ul>
-          <FormattedDate date={post.data.date} />
-          <a href={`/blog/${post.slug}/`}> Read Article &rarr; </a>
-        </article>
-        )}
-		</main>
+
+<SiteLayout title="Blog Articles">
+	<h1 class="text-center text-4xl font-bold">Blog entries</h1>
+	{
+		years.map((year) => (
+			<section class="mx-auto mb-10 max-w-screen-md">
+				<h2 class="mb-4 text-2xl font-semibold">{year}</h2>
+				<ul class="divide-y divide-slate-300 border-b border-t border-slate-300">
+					{postsByYear[year].map((post, idx) => (
+						<li class="px-1 py-3">
+							<a href={`/blog/${post.slug}`} class="grid grid-cols-[25%_auto] grid-rows-2 items-center gap-8 md:grid-cols-[80px_auto_100px] md:grid-rows-1">
+								<img class="row-span-2 mx-auto h-[80px] w-[80px] rounded-full bg-gray-300 object-cover shadow-[0_0_30px_0_rgba(0,0,0,0.3)] md:order-1 md:row-span-1 dark:shadow-slate-500" src={post.data.cover?.src} width={100} height={100} alt="An image" loading={idx > 3 ? "lazy" : "eager"} />
+								<h3 class="text-xl font-bold text-orange-600 md:order-2">{post.data.title}</h3>
+								<FormattedDate className="md:order-3 mr-auto md:ml-auto" date={post.data.date} />
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		))
+	}
 </SiteLayout>
-
-<script>
-import '../../scripts/toggle-display-article.ts';
-</script>
-
-<style>
-@import '../../styles/page-blog-index.scss';
-</style>
-

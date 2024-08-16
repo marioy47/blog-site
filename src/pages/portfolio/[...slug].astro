@@ -1,12 +1,11 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import SiteLayout from '../../layout/site-layout.astro';
-import {SITE_TITLE} from '../../consts.ts';
-
-type Props = CollectionEntry<'posts'>;
+import SiteLayout from "../../layout/site-layout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+import FormattedDate from "../../components/formatted-date.astro";
+type Props = CollectionEntry<"portfolio">;
 
 export async function getStaticPaths() {
-	const posts = await getCollection('projects');
+	const posts = await getCollection("portfolio");
 	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,
@@ -14,35 +13,36 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
-const { Content, headings } = await post.render();
+const { Content } = await post.render();
 ---
-<SiteLayout title={`${post.data.title} | ${SITE_TITLE}`}>
-  <main>
-    <header>
-      <h1>{post.data.title}</h1>
-    </header>
-    <article>
-      <Content />
-    </article>
-    <aside>
-      <div>
-        <strong>Client: </strong>
-        {post.data.client}
-      </div>
-      <div>
-        <strong>Project date: </strong>
-        {post.data.date.toDateString()}
-      </div>
-      <div>
-        <strong>Used tech: </strong>
-        <ul>
-          {post.data.tags.map(tag => <li><a href=`/portfolio/#${tag}`>{tag}</a></li>)}
-        </ul>
-      </div>
-    </aside>
-  </main>
-</SiteLayout>
 
-<style>
-@import '../../styles/slug-portfolio.scss';
-</style>
+<SiteLayout title={post.data.title}>
+	<main class="mx-auto grid max-w-screen-lg md:grid-cols-[auto_auto]">
+		<h1 class="col-span-2 mb-4 text-center text-4xl font-bold">{post.data.title}</h1>
+		<article class="prose prose-stone mx-auto 2xl:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
+			<Content />
+		</article>
+		<aside>
+			<div>
+				<strong>Client: </strong>
+				{post.data.client}
+			</div>
+			<div>
+				<strong>Project date: </strong>
+				<FormattedDate date={post.data.date} />
+			</div>
+			<div>
+				<strong>Technologies:</strong>
+				<ul class="pl-4 capitalize">
+					{
+						post.data.tags.map((tag: string) => (
+							<li>
+								<a href={`/portfolio/#${tag}`}>{tag}</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</aside>
+	</main>
+</SiteLayout>

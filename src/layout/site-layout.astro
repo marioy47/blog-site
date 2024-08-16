@@ -1,34 +1,126 @@
 ---
-import HeadMeta from './head-meta.astro';
-import SiteHeader from './site-header.astro';
-import SiteFooter from './site-footer.astro';
-import TagManagerHead from '../components/tagmanager-head.astro';
-import TagManagerBody from '../components/tagmanager-body.astro';
+import Search from "astro-pagefind/components/Search";
+import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
+import { GoogleTagmanager } from "@digi4care/astro-google-tagmanager";
+import { Icon } from "astro-icon/components";
+import { SEO, type SEOProps } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
+import ScrollToTop from "../components/scroll-to-top.astro";
 
+import "../styles/global.css";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	authors?: Array<string>;
+}
 
-const {hideScroll, title = SITE_TITLE } = Astro.props;
+const { title, description, image, authors } = Astro.props;
+const headItems: SEOProps = {
+	title: title ?? import.meta.env.SITE_TITLE ?? "No SITE_TITLE env variable",
+	titleTemplate: import.meta.env.SITE_TITLE_TEMPLATE ?? `%s | ${import.meta.env.SITE_TITLE}`,
+	description: description ?? import.meta.env.SITE_DESCRIPTION ?? "This is my site",
+	openGraph: {
+		basic: {
+			type: "website",
+			title: title ?? import.meta.env.SITE_TITLE ?? "Udefined Title",
+			image: image ?? import.meta.env.SITE_IMAGE ?? "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
+		},
+		article: {
+			authors: authors ?? ["Mario Yepes"],
+			tags: [],
+		},
+	},
+	twitter: {
+		card: "summary_large_image",
+		image: image ?? import.meta.env.TWITTER_IMAGE ?? "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
+		creator: authors?.join(" ") ?? import.meta.env.TWITTER_CREATOR ?? "@marioy47",
+	},
+	extend: {
+		meta: [
+			{ name: "generator", content: Astro.generator },
+			{ name: "viewport", content: "width=device-width" },
+		],
+		link: [
+			{ rel: "alternate", type: "application/rss+xml", title: `RSS feed for ${title ?? "this site"}`, href: new URL("rss.xml", Astro.site).toString() },
+			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+			{ rel: "preload", as: "font", type: "font/woff", crossOrigin: "crossorigin", href: "/fonts/fira-sans-v17-latin-300.woff2" },
+			{ rel: "preload", as: "font", type: "font/woff", crossOrigin: "crossorigin", href: "/fonts/fira-sans-v17-latin-300italic.woff2" },
+			{ rel: "preload", as: "font", type: "font/woff", crossOrigin: "crossorigin", href: "/fonts/fira-sans-v17-latin-700.woff2" },
+			{ rel: "preload", as: "font", type: "font/woff", crossOrigin: "crossorigin", href: "/fonts/fira-sans-v17-latin-700italic.woff2" },
+			{ rel: "preload", as: "font", type: "font/woff", crossOrigin: "crossorigin", href: "/fonts/jetbrains-mono-v18-latin-regular.woff2" },
+			{ rel: "sitemap", href: "/sitemap-index.xml" },
+		],
+	},
+};
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <HeadMeta title={title} description={SITE_DESCRIPTION} />
-    <TagManagerHead />
-  </head>
-  <body>
-    <TagManagerBody />
-    <SiteHeader title={SITE_TITLE} />
-    <slot />
-    <SiteFooter hideScroll={hideScroll} />
-  </body>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<SEO {...headItems} />
+		{import.meta.env.GTM_VERIFICATION_ID ? <GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} /> : ""}
+		<ViewTransitions />
+	</head>
+	<body class="bg-slate-100 leading-relaxed text-slate-900 dark:bg-cyan-site-theme dark:text-slate-300">
+		<header class="sticky top-0 z-10 mb-8 grid grid-cols-[4em_auto_2em_4em] grid-rows-[3rem_auto] items-center p-2 shadow-lg shadow-slate-200 backdrop-blur-md dark:shadow-slate-800">
+			<a href="/" aria-label="Link to Front page">
+				<Icon name="icon-developer" size={50} title="Blog Logo" class="transition-all hover:translate-x-3 hover:translate-y-3 hover:scale-150" />
+			</a>
+			<nav class="flex flex-1 justify-center font-bold">
+				<menu>
+					<ul class="flex gap-3">
+						<li>
+							<a href="/blog">Blog</a>
+						</li>
+						<li>
+							<a href="/portfolio">Portfolio</a>
+						</li>
+						<li>
+							<a href="/about">About</a>
+						</li>
+					</ul>
+				</menu>
+			</nav>
+			<div class="flex justify-center">
+				<Icon name="tabler:search" size={24} id="toggle-search" />
+			</div>
+			<ToggleLightDarkMode className="flex justify-end" />
+			<Search id="pagefind-form" className="col-span-4 h-0 overflow-hidden transition-all" />
+		</header>
+
+		<slot />
+
+		<footer class="flex h-16 items-center justify-end border-t-[1px] border-solid border-gray-700 border-opacity-20 px-2">
+			<ScrollToTop className="fixed bottom-1 left-1 cursor-pointer opacity-50 hover:opacity-100">
+				<Icon name="tabler:circle-arrow-up-filled" size={42} title="Scroll to top" />
+			</ScrollToTop>
+			<div class="flex justify-end gap-3">
+				<a href="https://x.com/marioy47" target="_blank">
+					<Icon name="tabler:brand-x" size={32} title="Twitter" />
+				</a>
+				<a href="https://github.com/marioy47" target="_blank">
+					<Icon name="tabler:brand-github" size={32} title="My Github" />
+				</a>
+				<a href="https://www.linkedin.com/in/marioyepes/" target="_blank">
+					<Icon name="tabler:brand-linkedin" size={32} title="Linked In" />
+				</a>
+				<a href="https://profile.codersrank.io/user/marioy47" target="_blank">
+					<Icon name="tabler:code" size={32} title="Coders Rank" />
+				</a>
+			</div>
+		</footer>
+	</body>
 </html>
 
-<style is:global>
-@import "https://unpkg.com/open-props";
-@import "https://unpkg.com/open-props/normalize.min.css";
-@import "https://unpkg.com/open-props/buttons.min.css";
-@import "../styles/site-font-face.scss";
-@import "../styles/global.scss";
-</style>
+<script is:inline>
+	// Toggle search form when mgnify-glass icon gets clicked
+	document.addEventListener("astro:page-load", () => {
+		const toggleSearch = document.getElementById("toggle-search");
+		const pageFindDiv = document.getElementById("pagefind-form");
+		toggleSearch?.addEventListener("click", () => {
+			pageFindDiv?.classList.toggle("h-0");
+		});
+	});
+</script>

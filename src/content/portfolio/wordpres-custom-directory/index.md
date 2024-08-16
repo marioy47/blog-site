@@ -46,12 +46,12 @@ Finally, I configured [Visual Studio Code](https://code.visualstudio.com) to use
 
 The plugin creates a [custom post type](https://developer.wordpress.org/plugins/post-types/) for storing the items that will be displayed on a list.
 
-To display a filtrable list (the _Live Search_ list) you need to use 2 _shortcodes_:
+To display a filterable list (the _Live Search_ list) you need to use 2 _shortcodes_:
 
-2. A shortcode for embedding a _Live Search_ form on a page.
+1. A shortcode for embedding a _Live Search_ form on a page.
 1. A shortcode for embedding a list of items on a page
 
-The requirement is that both shortocodes have to be on the same page since the search works by showing/hiding items o the list using vanilla JavaScript.
+The requirement is that both shortcodes have to be on the same page since the search works by showing/hiding items o the list using vanilla JavaScript.
 
 To change how the items on the list are displayed, there is a _Settings Page_ that allows you to create a template for the search form, the list items and how each item will be displayed on its own.
 
@@ -77,6 +77,4 @@ Here are the live coding sessions for the creation of the plugin.
 
 _This is for demonstration purposes only, there is no sound or explanation of the process._
 
-<div class="video-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLqJrOd2CQU3cx-DUq0fPpFyYpLJYkwTba" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>

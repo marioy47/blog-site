@@ -45,13 +45,13 @@ The solution was a _Locations_ plugin with the following components:
 
 ### Plugin activation and notifications
 
-![](./plugin-activation.png)
+![WordPress Dashboard screenshot showing the list of plugins](./plugin-activation.png)
 
 Upon activation, the plugin asks the _site editor_ to configure the Google Maps API
 
 ### Settings page
 
-![](./settings-page-before-configuration.png)
+![WordPress dashboard screenshot on the plugin settings page 1/2](./settings-page-before-configuration.png)
 
 The Settings where you can enter the Google Maps API Key.
 
@@ -61,11 +61,11 @@ The HTML templates use the [tiwg](https://twig.symfony.com/) template engine so 
 
 This is an example of a settings page with all the fields.
 
-![](./settings-after-configuration.png)
+![WordPress dashboard screenshot on the plugin settings page 2/2](./settings-after-configuration.png)
 
 ### Marker creation page
 
-![](./configuring-single-place.png)
+![WordPress dashboard screenshot showing how to create a marker](./configuring-single-place.png)
 
 On the plugin you have to create markers (called places per client request) and then add those markers to a map.
 
@@ -75,13 +75,13 @@ This is the marker creation page. There you can specify how the marker is diplay
 
 Once the marker fields are completed, you can access it on the front-end.
 
-![](./single-place-front.png)
+![Screenshot of the plugin in action](./single-place-front.png)
 
 As you can see, the content of the _place page_ or _marker page_ is dictated by what you provided on _template field_ on the _settings page_.
 
 ### Map creation page
 
-![](./map-with-2-places-creation.png)
+![WordPress dashboard screenshot showing how to create a map](./map-with-2-places-creation.png)
 
 The _map creation_ page, is very similar to the _marker creation_ page. With two big differences:
 
@@ -90,11 +90,11 @@ The _map creation_ page, is very similar to the _marker creation_ page. With two
 
 Contrary to the markers, a _Map Page_ **is not** created. So, to display the map, you have to use the shortcode inside a page or post.
 
-![](./page-with-map-shortcodes-dashboard.png)
+![Screenshot of WordPress editor using the shortcode](./page-with-map-shortcodes-dashboard.png)
 
 And this will be the result.
 
-![](./page-with-map-shortcodes.png)
+![Screenshot of the resulting page after adding the shortcode](./page-with-map-shortcodes.png)
 
 ## Challenges
 

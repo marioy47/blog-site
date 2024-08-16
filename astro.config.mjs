@@ -9,6 +9,7 @@ import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import remarkUnwrapImages from "remark-unwrap-images";
 import { loadEnv } from "vite";
+import { remarkAlert } from "remark-github-blockquote-alert";
 
 const { SITE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
@@ -28,6 +29,6 @@ export default defineConfig({
 			},
 			transformers: [transformerMetaHighlight()],
 		},
-		remarkPlugins: [remarkUnwrapImages],
+		remarkPlugins: [remarkUnwrapImages, remarkAlert],
 	},
 });

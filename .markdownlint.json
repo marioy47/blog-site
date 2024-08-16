@@ -3,5 +3,11 @@
   "heading-style": {
     "style": "atx"
   },
-  "line-length": false
+  "line-length": false,
+  "no-inline-html": {
+    "allowed_elements": ["iframe"]
+  },
+  "no-hard-tabs": {
+    "code_blocks": false
+  }
 }

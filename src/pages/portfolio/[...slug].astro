@@ -17,12 +17,12 @@ const { Content } = await post.render();
 ---
 
 <SiteLayout title={post.data.title}>
-	<main class="mx-auto grid max-w-screen-lg grid-cols-1 md:grid-cols-[auto_auto]">
-		<h1 class="col-span-2">{post.data.title}</h1>
-		<article class="prose prose-slate col-span-2 mx-auto md:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline md:col-span-1">
+	<article class="prose prose-slate mx-auto grid max-w-screen-lg grid-cols-1 grid-rows-[min-content_min-content] md:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline md:grid-cols-[auto_300px] md:grid-rows-1 md:gap-6">
+		<main>
+			<h1 class="col-span-2">{post.data.title}</h1>
 			<Content />
-		</article>
-		<aside class="px-2 py-4 md:py-0">
+		</main>
+		<aside class="top-60 px-2 py-4 md:pt-20">
 			<div>
 				<strong>Client: </strong>
 				{post.data.client}
@@ -33,7 +33,7 @@ const { Content } = await post.render();
 			</div>
 			<div>
 				<strong>Technologies:</strong>
-				<ul class="pl-4 capitalize">
+				<ul class="space-y-0 px-0 pl-4 capitalize">
 					{
 						post.data.tags.map((tag: string) => (
 							<li>
@@ -44,5 +44,5 @@ const { Content } = await post.render();
 				</ul>
 			</div>
 		</aside>
-	</main>
+	</article>
 </SiteLayout>

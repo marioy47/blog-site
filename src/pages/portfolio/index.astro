@@ -9,7 +9,7 @@ projects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 <SiteLayout title="Projects">
 	<main class="m-auto max-w-screen-md p-2">
-		<h1 class="text-center text-4xl font-bold">Mario Yepes Portfolio</h1>
+		<h1>Mario Yepes Portfolio</h1>
 		{
 			projects.map((project) => (
 				<article class="grid gap-2 border-b border-b-slate-300 py-10 md:grid-cols-[50%_auto]" data-article-id={project.slug} data-tags={project.data.tags.join(",")}>

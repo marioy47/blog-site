@@ -20,7 +20,7 @@ const { Content, headings } = await entry.render();
 ---
 
 <SiteLayout title={entry.data.title}>
-	<article class="prose prose-stone mx-auto 2xl:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
+	<article class="prose prose-slate mx-auto md:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
 		<h1>{entry.data.title}</h1>
 		<div class="flex justify-between text-sm italic">
 			<ReadingTime before="Reading Time" after="minutes" content={entry.body} />

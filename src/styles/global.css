@@ -6,7 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Pagefind Changes */
+/* {{{ Pagefind Changes */
 :root {
 	--pagefind-ui-font: "Fira Sans";
 	--pagefind-ui-text: initial;
@@ -18,7 +18,9 @@
 	@apply bg-gray-100 dark:bg-gray-800;
 }
 
-/* Code block chages */
+/* }}} */
+
+/* {{{ Code block chages */
 .astro-code .line.highlighted {
 	display: inline-block;
 	width: 100%;
@@ -34,8 +36,8 @@
 .astro-code .line::before {
 	content: counter(step);
 	counter-increment: step;
-	width: 1rem;
-	margin-right: 1.5rem;
+	width: 0.5rem;
+	margin-right: 0.75rem;
 	display: inline-block;
 	text-align: right;
 	color: rgb(115 138 148 / 40%);
@@ -52,19 +54,9 @@ html.dark .astro-code span.line.highlighted {
 	background-color: white !important;
 }
 
-dialog::backdrop {
-	backdrop-filter: blur(4px);
-}
+/* }}} */
 
-h2 {
-	scroll-margin-top: 5rem;
-}
-
-details summary {
-	@apply mt-4 text-xl font-semibold;
-}
-
-/* Github Styles for Markdown Alerts: https://wangchujiang.com/remark-github-blockquote-alert/#styling */
+/* {{{ Github Styles for Markdown Alerts: https://wangchujiang.com/remark-github-blockquote-alert/#styling */
 /* stylelint-disable custom-property-pattern */
 @media (prefers-color-scheme: dark) {
 	.markdown-alert {
@@ -183,4 +175,34 @@ details summary {
 	color: var(--color-danger-fg);
 	color: var(--fgColor-danger, var(--color-danger-fg));
 }
-/* stylelint-enable custom-property-pattern */
+
+/* }}} stylelint-enable custom-property-pattern */
+
+/* {{{ Global Styles */
+dialog::backdrop {
+	backdrop-filter: blur(4px);
+}
+
+h1 {
+	@apply text-center text-4xl font-bold;
+}
+
+h2 {
+	@apply text-3xl font-semibold;
+
+	scroll-margin-top: 5rem;
+}
+
+h3 {
+	@apply text-xl font-semibold;
+
+	scroll-margin-top: 5rem;
+}
+
+details summary {
+	@apply mt-4 text-xl font-semibold;
+}
+
+/* }}} */
+
+/* vim: foldmethod=marker folclose=all zM */

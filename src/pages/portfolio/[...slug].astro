@@ -17,12 +17,12 @@ const { Content } = await post.render();
 ---
 
 <SiteLayout title={post.data.title}>
-	<main class="mx-auto grid max-w-screen-lg md:grid-cols-[auto_auto]">
-		<h1 class="col-span-2 mb-4 text-center text-4xl font-bold">{post.data.title}</h1>
-		<article class="prose prose-stone mx-auto 2xl:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline">
+	<main class="mx-auto grid max-w-screen-lg grid-cols-1 md:grid-cols-[auto_auto]">
+		<h1 class="col-span-2">{post.data.title}</h1>
+		<article class="prose prose-slate col-span-2 mx-auto md:prose-lg dark:prose-invert prose-a:font-semibold prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline md:col-span-1">
 			<Content />
 		</article>
-		<aside>
+		<aside class="px-2 py-4 md:py-0">
 			<div>
 				<strong>Client: </strong>
 				{post.data.client}

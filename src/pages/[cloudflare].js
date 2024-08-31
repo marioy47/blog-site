@@ -7,7 +7,7 @@ export async function GET({ params }) {
 			return `${accum}/${current.slug}/ /blog/${current.slug}/ 301\n`;
 		}, "");
 
-		const projects = await getCollection("projects");
+		const projects = await getCollection("portfolio");
 		const redirProjects = projects.reduce((accum, current) => {
 			return `${accum}/${current.slug}/ /portfolio/${current.slug}/ 301\n`;
 		}, "");

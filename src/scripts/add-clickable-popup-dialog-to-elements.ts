@@ -16,10 +16,13 @@ export const addClickablePopupDialogToElements = (selector: string = "img") => {
 
 		const clonedElement = element.cloneNode(true);
 
+		const div = document.createElement("div");
+		div.appendChild(clonedElement);
+		div.appendChild(btn);
+
 		const dialog = document.createElement("dialog");
 		dialog.setAttribute("class", "dynamic-dialog");
-		dialog.appendChild(clonedElement);
-		dialog.appendChild(btn);
+		dialog.appendChild(div);
 
 		dialog.addEventListener("click", () => {
 			dialog.close();

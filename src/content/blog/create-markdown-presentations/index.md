@@ -60,10 +60,9 @@ And that's it, that's a 3 slide presentation!
 
 If you open the previous markdown with Marp (which I'll will explain further down) this is what You'll get:
 
-![Example slide 1](./example-slide-1.png)
-_Slide 1_
+![Example slide 1](./example-slide-1.png "Slide 1")
 
-![Example slide 2](./example-slide-2.png)
+![Example slide 2](./example-slide-2.png "Slide 2")
 _Slide 2_
 
 The BIG caveat on creating slides with Markdown is that **it depends on the tools you are using to covert markdown to PDF/HTML/ODF**. Fortunately, most of the tools follow the previous 3 principles.
@@ -455,7 +454,7 @@ lookatme --style monokay slides.md
 lookatme --style solarized-light slides.md
 ```
 
-![Lookatme using solarized-light](./lookatme-solarized-light.png) _Lookatme with Solalized-Light_
+![Lookatme using solarized-light](./lookatme-solarized-light.png "Lookatme with Solalized-Light")
 
 For more options and documentation you can got the [official documentation](https://lookatme.readthedocs.io/)
 

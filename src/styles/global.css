@@ -20,7 +20,7 @@
 
 /* }}} */
 
-/* {{{ Code block chages */
+/* {{{ Blog code blocks chages */
 .astro-code .line.highlighted {
 	display: inline-block;
 	width: 100%;
@@ -56,7 +56,7 @@ html.dark .astro-code span.line.highlighted {
 
 /* }}} */
 
-/* {{{ Github Styles for Markdown Alerts: https://wangchujiang.com/remark-github-blockquote-alert/#styling */
+/* {{{ Configure GitHub Styles for Markdown Alerts: https://wangchujiang.com/remark-github-blockquote-alert/#styling */
 /* stylelint-disable custom-property-pattern */
 @media (prefers-color-scheme: dark) {
 	.markdown-alert {
@@ -179,10 +179,6 @@ html.dark .astro-code span.line.highlighted {
 /* }}} stylelint-enable custom-property-pattern */
 
 /* {{{ Global Styles */
-dialog::backdrop {
-	backdrop-filter: blur(4px);
-}
-
 h1 {
 	@apply text-center text-4xl font-bold;
 }
@@ -205,4 +201,63 @@ details summary {
 
 /* }}} */
 
-/* vim: foldmethod=marker folclose=all zM */
+/* {{{ Dialog for lightbox images on the Blog */
+
+.dynamic-dialog {
+	background-color: transparent;
+}
+
+.dynamic-dialog > div {
+	position: relative;
+}
+
+.dynamic-dialog img {
+	object-fit: contain;
+	max-height: 100svh;
+}
+
+.dynamic-dialog::backdrop {
+	backdrop-filter: blur(4px);
+}
+
+.dynamic-dialog button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: transparent;
+	width: 36px;
+	height: 36px;
+
+	@apply rounded-full bg-orange-600;
+}
+
+.dynamic-dialog button::before {
+	content: "";
+	display: block;
+	width: 26px;
+	height: 3px;
+	background-color: white;
+	transform: rotate(-45deg) translateY(16px) translateX(-8px);
+}
+
+.dynamic-dialog button::after {
+	content: "";
+	display: block;
+	width: 26px;
+	height: 3px;
+	background-color: white;
+	transform: rotate(45deg) translateY(-17px) translateX(-8px);
+}
+
+/* }}} */
+
+/* {{{ Figure styling in blog articles  */
+figure figcaption {
+	font-style: italic;
+	text-align: center;
+}
+
+/* }}} */
+
+/* vim: foldmethod=marker foldclose=all
+  */

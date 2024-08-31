@@ -10,6 +10,8 @@ import { defineConfig } from "astro/config";
 import remarkUnwrapImages from "remark-unwrap-images";
 import { loadEnv } from "vite";
 import { remarkAlert } from "remark-github-blockquote-alert";
+import rehypeTitleFigure from 'rehype-title-figure'
+
 
 const { SITE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
@@ -29,6 +31,7 @@ export default defineConfig({
 			},
 			transformers: [transformerMetaHighlight()],
 		},
-		remarkPlugins: [remarkUnwrapImages, remarkAlert],
+		remarkPlugins: [remarkAlert],
+		rehypePlugins: [rehypeTitleFigure,  remarkAlert],
 	},
 });

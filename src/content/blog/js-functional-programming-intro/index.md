@@ -23,7 +23,7 @@ But first, some history.
 
 Let's start by saying that functions have been a part of calculus since the 17th century. And if you went trough high school, you might have seen something like
 
-```mathlab
+```matlab
 f(x) = y
 ```
 

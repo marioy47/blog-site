@@ -97,8 +97,8 @@ Let's go over that `.lando.yml` file:
 - I install 4 additional [Lando plugins](https://docs.lando.dev/plugins): Redis for objet caching, PhpMyAdmin to view and manage the database content directly, [Mailhog](https://github.com/mailhog/MailHog)to catch outgoing mails and NodeJs.
 - I create 3 [Lando tooling commands](https://docs.lando.dev/core/v3/tooling.html) to be able to execute `wp` (wp-cli), `npm` and `npx` from the terminal without the need to log in into the **containers**
 
->[!info]
->We are not starting the Lando services just yet. This is to avoid errors related with not having an **autoload** function.
+> [!WARNING]
+> Do not start the Lando services just yet. You will get errors related with not having an **autoload** function if you do.
 
 ### Initialize Bedrock
 
@@ -217,7 +217,7 @@ This is absolutely optional, but it's recommended you install some plugins that 
 
 ```bash
 lando composer require wpackagist-plugin/debug-bar --dev
-lando composer require wpackagist-plugin/query-monitor --dev 
+lando composer require wpackagist-plugin/query-monitor --dev
 lando composer require wpackagist-plugin/wp-hooks-finder --dev
 lando composer require wpackagist-plugin/user-switching --dev
 ```
@@ -252,8 +252,8 @@ lando wp redis enable
 
 Finally, we need to update `.gitignore` adding `web/app/object-cache.php` in the list of ignored files (`redis enable` created this file)
 
->[!note]
->We are done with the _Development Environment_ configuration
+> [!NOTE]
+> We are done with the _Development Environment_ configuration
 
 ## Setup Github
 
@@ -314,8 +314,8 @@ To configure the secret:
 
 In _GitHub > Repo > Settings > Secrets and Variables > Actions > Secrets > New Repository Secret_ paste your the key with the name `SSH_PRIVATE_KEY`
 
->[!note]
->Remember the `SSH_PRIVATE_KEY` name since you'll need it for the GitHub actions section further below.
+> [!NOTE]
+> Remember the `SSH_PRIVATE_KEY` name since you'll need it for the GitHub actions section further below.
 
 ## Setup Deployment in Fortrabbit
 
@@ -380,8 +380,8 @@ And in your local local Git repo add a new remote:
 git add remote fortrabbit learn-bedr-lando@deploy.us1.frbit.com:learn-bedr-lando.git
 ```
 
->[!note]
->I called this remote `fortrabbit`. This is important for the next step.
+> [!NOTE]
+> I called this remote `fortrabbit`. This is important for the next step.
 
 Also, since we are using a custom key for deployment, add the **private** key to your SSH agent with [`ssh-add`](https://www.ssh.com/academy/ssh/add-command)
 
@@ -434,8 +434,8 @@ To deploy.us1.frbit.com:learn-bedr-lando.git
  * [new branch]      main -> main
 ```
 
->[!info]
->What we just did is calle **manual deployment**
+> [!info]
+> What we just did is calle **manual deployment**
 
 ### Install WordPress in Fortrabbit
 
@@ -471,11 +471,10 @@ name: Deploy to Fortrabbit
 # Trigger this workflow on push (could also be in pull or merge) on a specific branch
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 # A workflow is made of multiple jobs that can run sequentially or in parallel
 jobs:
-
   # First (and in this case only) job
   build:
     runs-on: ubuntu-latest
@@ -493,7 +492,7 @@ jobs:
           source_branch: "main"
           destination_repo: "learn-bedr-lando.pul9c9a3seoafpi9@deploy.us1.frbit.com:learn-bedr-lando.git" # Get it from Fortrabbit panel for the App
           destination_branch: "main"
-          destination_ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          destination_ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 ```
 
 You can review your deployments in _GitHub Repo > Actions_

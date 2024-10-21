@@ -19,7 +19,7 @@ And the reasons are obvious. Its like JavaScript but better... Quite literally I
 
 One of the advantages of using TypeScript is that you get IDE notices and hits on your code **while** you are just writing it:
 
-![IDE showwing a TypeScript error](./ide-editor-error.png)
+![IDE showing a TypeScript error](./ide-editor-error.png)
 
 Or just get errors at compile time and not at run time:
 
@@ -29,9 +29,7 @@ The best thing is that TypeScript compiles to JavaScript so you can use it in an
 
 If you where place TypeScript in the JavaScript ecosystem, you would get something like this:
 
-![Diagram of TypeScript containing JavaScript](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png)
-
-_Taken from <https://basarat.gitbook.io/typescript/recap>_
+![Diagram of TypeScript containing JavaScript](https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png "Taken from https://basarat.gitbook.io/typescript/recap")
 
 The cherry on top is that the creator of node, Ryan Dahl, has already crated [Deno](https://deno.land/) which is a _A secure runtime for JavaScript and TypeScript_. Meaning that you can create server side projects using TypeScript without the need of a compiler or transpiler.
 

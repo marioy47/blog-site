@@ -13,7 +13,7 @@ date: 2024-10-20
 cover: ./bedrock.svg
 ---
 
-Bedrock is regarded as the gold standard of _Modern Wordpress Development_. The reason being that it uses a file structure that favors separation of concerns and leverages composer for installing plugins and themes.
+Bedrock is regarded as the gold standard of _Modern WordPress Development_. The reason being that it uses a file structure that favors separation of concerns and leverages composer for installing plugins and themes.
 
 If you are want to know more about Bedrock, I suggest you take a look at it's [documentation](https://roots.io/bedrock/docs/)
 
@@ -25,7 +25,7 @@ To follow along you just need to have a working installation of [Lando](https://
 
 ### Create a Lando/Bedrock Dev Environment
 
-Let's start by creating a local development environment. Which means to create a work dir, and there create a `.lando.yml` file
+Let's start by creating a local development environment. Which means to create a work directory, and there create a `.lando.dist.yml` file
 
 ```bash
 mkdir learn-bedrock-lando
@@ -33,7 +33,9 @@ cd $_
 ```
 
 ```yaml
-# .lando.yml
+# .lando.dist.yml
+
+# Create a .lando.yml file if you need to override any value: https://docs.lando.dev/services/lando-3.html#overrides
 
 name: learn-lando-bedrock
 recipe: wordpress
@@ -51,7 +53,8 @@ services:
   appserver:
     overrides:
       environment:
-        COMPOSER_CACHE_DIR: "/app/.cache/composer" # Saves a lot of time if you need to rebuild
+        COMPOSER_CACHE_DIR: "/app/.cache/composer" # Saves a lot of time you need to rebuild
+        WP_CLI_CACHE_DIR: "/app/.cache/wp-cli" # Saves a lot of space
     sslExpose: false # To avoid port scanning issues at startup https://docs.lando.dev/core/v3/proxy.html#using-https
   redis:
     type: redis
@@ -90,15 +93,18 @@ tooling:
     service: node
 ```
 
-Let's go over that `.lando.yml` file:
+Let's go over that `.lando.dist.yml` file:
 
-- I use theWordPress recipe as starting point
-- I change the config to use Nginx instead of Apache, and MariaDB instead of MySQL
-- I install 4 additional [Lando plugins](https://docs.lando.dev/plugins): Redis for objet caching, PhpMyAdmin to view and manage the database content directly, [Mailhog](https://github.com/mailhog/MailHog)to catch outgoing mails and NodeJs.
+- I use the WordPress recipe as starting point
+- I change the configuration to use Nginx instead of Apache, and MariaDB instead of MySQL
+- I install 4 additional [Lando plugins](https://docs.lando.dev/plugins): Redis for object caching, PhpMyAdmin to view and manage the database content directly, [Mailhog](https://github.com/mailhog/MailHog)to catch outgoing mails and NodeJs.
 - I create 3 [Lando tooling commands](https://docs.lando.dev/core/v3/tooling.html) to be able to execute `wp` (wp-cli), `npm` and `npx` from the terminal without the need to log in into the **containers**
 
-> [!WARNING]
-> Do not start the Lando services just yet. You will get errors related with not having an **autoload** function if you do.
+You can start Lando now:
+
+```bash
+lando start
+```
 
 ### Initialize Bedrock
 
@@ -111,13 +117,14 @@ rmdir bedrock
 cp .env.example .env
 ```
 
-That last command will open a web browser to a "salts" generation site. You'll need that info to configure the `.env` file.
+> [!NOTE]
+> We don't require a local `composer` command since we are using the one present in the Lando environment
 
 ### Configure Bedrock (change the `.env` file)
 
-Bedrock derives all it's configuration from the root `.env` file.
+Bedrock derives all it's configuration from the root `.env` file. That's we created one by copying the `.env.example` on in the last step.
 
-And all the information we need in the `.env` file we can get in 2 places:
+All the information we need in the `.env` file we can get in 2 places:
 
 - The output of the `lando info` command
 - Visiting the site <https://roots.io/salts.html>
@@ -146,7 +153,7 @@ Here is some help with some default values:
 - The database values (username, password, database name) are `wordpress`. That's what Lando uses by default
 - The `DB_HOST` variable is `database`
 - The `WP_HOME` this comes from executing `lando info`
-- Replace the auth salts with what's in roots.io/salts.html
+- Replace the auth salts with what's in <https://roots.io/salts.html>
 
 At the end, your `.env` file should look something like this:
 
@@ -169,30 +176,21 @@ SECURE_AUTH_KEY='x)@jPV?axl7jPsk1I8&7|l#BI7qRtW;H|6e[SEqYrB7.IorXj7PRPk_b:-OYRD/
 # Additional "salt" variables ...
 ```
 
-### Start Lando
+> [!NOTE]
+> We use single quotes here since the `\` char can appear in the salts and in passwords.
 
-Now we can start Lando:
+### Install WordPress with Lando
 
-```bash
-lando start
-```
+If we open <https://learn-lando-bedrock.lndo.site> we'll get the _second step screen_  of the WordPress installation wizard. That's because Bedrock installs the files, configures the database, but does not create the first user.
 
-Just be carefule with any errors in the output
-
-### Install Wordpress with Lando
-
-If we open <https://learn-lando-bedrock.lndo.site> we'll get a WordPress installation dialog. That's because Bedrock install the files, but it does not execute any installation.
-
-We can install WordPress using `lando wp` command:
+We could follow the installation wizard, but why do it if we can use the CLI:
 
 ```bash
-lando wp core download --path=/app/web/wp/
 lando wp core install --title="Learn Lando Bedrock" --admin_user=admin --admin_password=password --admin_email=admin@example.com --url=https://learn-lando-bedrock.lndo.site/wp
-lando wp --path=/app/web/wp option update siteurl https://learn-lando-bedrock.lndo.site
 ```
 
 > [!NOTE]
-> This last 2 commands can be added to the `.lando.yml` file in the `appserver` section to have them automatically executed on first run.
+> This command can be added to the `.lando.dist.yml` file in the `appserver` section to have them automatically executed on first run.
 
 ```diff
    services:
@@ -202,7 +200,7 @@ lando wp --path=/app/web/wp option update siteurl https://learn-lando-bedrock.ln
 +           mkdir -p /app/web/wp # In case I'm doing a rebuild
 +           composer install
 +           sleep 3
-+           wp --path=/app/web/wp core download
++           wp --path=/app/web/wp core download # For a rebuild
 +           wp --path=/app/web/wp core install --title="Learn Lando Bedrock" --url="https://learn-lando-bedrock.lndo.site/wp" --admin_user=admin --admin_password=password --admin_email=admin@example.com
 +           wp --path=/app/web/wp option update siteurl https://learn-lando-bedrock.lndo.site
 ```
@@ -228,7 +226,7 @@ Note that we used the `--dev` flag. This is so it does not get installed in `pro
 
 It's also suggested that you install a _Redis Object Cache_ locally. This will speedup the WordPress dashboard significantly.
 
-This is a multistep process. First install the plugin:
+This is a multi-step process. First install the plugin:
 
 ```bash
 lando composer require wpackagist-plugin/redis-cache --dev
@@ -237,9 +235,9 @@ lando composer require wpackagist-plugin/redis-cache --dev
 Then we need to change `config/environments/development.php` file so WordPress knows where to find the object cache server:
 
 ```php
-// .config/environments/development.php
+// ./config/environments/development.php
 
-// ...
+// Enable Redis in dev for faster reloading.
 Config::define('WP_REDIS_HOST', 'redis');
 ```
 
@@ -435,7 +433,7 @@ To deploy.us1.frbit.com:learn-bedr-lando.git
 ```
 
 > [!info]
-> What we just did is calle **manual deployment**
+> What we just did is call **manual deployment**
 
 ### Install WordPress in Fortrabbit
 
@@ -449,7 +447,7 @@ Then get the MySQL access credentials. Fortrabbit can give that to use trough th
 ssh learn-bedr-lando@deploy.us1.frbit.com secrets
 ```
 
-Now you can install wordpress using the remote `wp` command trough SSH:
+Now you can install WordPress using the remote `wp` command trough SSH:
 
 ```bash
 ssh learn-bedr-lando@deploy.us1.frbit.com "wp --path=web/wp core install --url=https://learn-bedr-lando.frb.io --title=LearnBedrockLando --admin_user=admin --admin_password=password --admin_email=admin@example.com"
